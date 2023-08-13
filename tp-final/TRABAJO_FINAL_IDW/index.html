@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "es">
+    <head>
+            <meta name=viewport content="width=device-width, initial-scale=1">
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="keywords" content="Sistema de Bedelia - FCAd - UNER">
+            <title>FCAd - UNER</title>
+            <link rel="icon" href="/recursos/img/favicon.ico">
+            <link rel="stylesheet" href="/estilos/estilo.css" type="text/css"/>
+    </head>
+    <body>
+        <header>
+            <div class="header-item">
+                <a href="/index.html"><div class="logo-uner"></div></a>
+            </div>
+            <nav class="header-item">
+                <input type="checkbox" id="btn-menu">
+                <label for="btn-menu"><img src="/recursos/img/bars-menu.svg" alt=""></label>
+                <ul class="menu-horizontal">
+                    <li><a id="institucional" class="img-institucional" href="/institucional.html">Institucional</a></li>
+                    <li><a id="contacto" class="img-contacto" href="/contacto.html">Contacto</a></li>
+                    <li><a id="carreras" class="img-carreras" href="/carreras.html">Carreras</a></li>
+                    <li><a id="acceso-bedelia" class="img-acceso-bedelia" href="/sistema-principal.html">Acceso Bedelia</a></li>
+                    <li><a id="buscar" class="img-buscar" href="#"></a></li>
+                </ul>
+            </nav>
+        </header>
+        <nav class="contenido">
+            <button id="boton_rojo_grande_acceso_carreras" class="boton-rojo-grande">NUESTRAS CARRERAS</button>
+        </nav>
+        <div class="contenido">
+            <aside class="menu-lateral">
+                <section class="encabezado-de-seccion">ACCESOS RAPIDOS</section>
+                <button id="acceso-bedelia-accrap" class="item-menu-lateral img-acceso-bedelia-wh"><h4>Acceso Bedelia</h4></button>
+                <button id="campus-virtual-accrap" class="item-menu-lateral img-campus-virtual-wh"><h4>Campus Virtual</h4></button>
+                <button class="item-menu-lateral img-plan-estrategico-wh"><h4>Plan Estrategico 2017-2054</h4></button>
+                <button class="item-menu-lateral img-correo-institucional-wh"><h4>Correo Institucional</h4></button>
+                <button class="item-menu-lateral img-biblioteca-digital-wh"><h4>Biblioteca Digital</h4></button>
+            </aside>
+            <main class="contenido-principal">
+                <section class="encabezado-de-seccion">NOVEDADES</section>
+                <div>
+                    <ul id="slide-novedades"></ul>
+                </div> 
+            </main>
+            </div>
+        </section>
+        <script src="/scripts/funciones.js" onload="document.getElementById('acceso-bedelia-accrap')?.addEventListener('click', acceso_bedelia_accrap); document.getElementById('boton_rojo_grande_acceso_carreras')?.addEventListener('click', acceso_carreras); buscarInfo('uner');"></script>
+    </body>
+    <footer>
+        <div class="item contenido-con-margen-chico">
+            <p class="contenido-con-margen-chico">SOCIAL</p>
+            <div class="img-facebook"><p>Facebook</p></div>
+            <div class="img-instagram"><p>Instagram</p></div>
+            <div class="img-twiter"><p>Twiter</p></div>
+        </div>
+        <div class="item contenido-con-margen-chico">
+            <p class="contenido-con-margen-chico">IDW, TP Final.</p>
+        </div>
+        <div class="item contenido-con-margen-chico centered">
+            <h3>Facultad de Ciencias de la Administracion</h3>
+            <p>Monseñor Tavella 1424. Concordia. CP(3200). | Provincia de Entre Ríos</p>
+            <p>Teléfono: (+54) (345) 4231400 – Fax: (+54) (345) 4231410 |</p>
+            <p>E-mail.: informes.fcad@uner.edu.ar</p>
+        </div>
+    </footer>

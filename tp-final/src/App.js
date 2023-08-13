@@ -6,7 +6,7 @@ import Footer from './layouts/Footer';
 import Modal from './components/Modal';
 
 function App() {
-  const [estadoModal, cambiarEstadoModal] = useState(true);
+  const [estadoModal, cambiarEstadoModal] = useState(false);
   return (
     <div className="App">
       <Header />
