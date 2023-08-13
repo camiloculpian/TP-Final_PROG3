@@ -1,0 +1,82 @@
+.overlay{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    padding: 40px;
+    padding-top: 150px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.contenedorModal{
+    width: 500px;
+    min-height: 100px;
+    background: #fff;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+
+.encabezadoModal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E8E8E8;
+
+}
+
+.encabezadoModal h3{
+    margin: 0;
+    font-weight: 500px;
+    font-size: 16px;
+    color: #1766DC;
+}
+
+.buttonCloseModal{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    border-radius: 5px;
+    color: #1766DC;
+}
+
+.buttonCloseModal svg{
+    padding: 10%;
+    width: 80%;
+    height: 80%;
+    fill: #1766DC;
+}
+
+.buttonCloseModal:hover{
+    background: #F2F2F2;
+}
+
+.contenidoModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenidoModal h1{
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.contenidoModal p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
