@@ -1,0 +1,7 @@
+.Content {
+    display: flex;
+    color:rgb(241, 241, 241);
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 100px;
+}

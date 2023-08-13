@@ -1,0 +1,47 @@
+
+
+ul.menuHorizontal {
+    display: flex;
+    flex: auto;
+    margin-left: 80px;
+    width: 100%;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+    width:fit-content;
+    white-space: nowrap;
+}
+
+ul.menuHorizontal .item {
+    display: flex;
+    background-color: brown;
+    size: 100%;
+}
+
+ul.menuHorizontal li {
+    list-style-type: none;
+    margin-left: 50px;
+    float:left;
+    height: 100%;
+    padding-top: 4%;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 5px;
+    flex-grow: 1;
+}
+
+ul.menuHorizontal li:hover {
+    background-color: #2b3e52;
+}
+
+ul.menuHorizontal a {
+    margin: 50px auto;
+    color:#ebebeb;
+    text-decoration:none;
+    text-align:center;
+    font-size: large;
+}
+
+ul.menuHorizontal a:hover {
+    text-decoration: underline;
+}
