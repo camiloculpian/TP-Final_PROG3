@@ -1,7 +1,178 @@
 .Content {
     display: flex;
-    color:rgb(241, 241, 241);
-    margin-left: 50px;
-    margin-right: 50px;
-    height: 100px;
+    flex-direction: column;
+    color:#001E2D;
+    padding-left: 8%;
+    padding-right: 8%;
+    position: relative;
+    min-height: 60vh;
+    /* padding-bottom:200px; */
+    background-color:white;
+}
+
+.contentItem {
+    display: flex;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.contenidoPrincipal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.menuLateral {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.contenidoCentrado {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.contenidoConMargen{
+    margin: 50px;
+}
+
+.contenidoConMargenChico{
+    margin: 5px;
+}
+
+.centered {
+    text-align: center;
+}
+
+
+h1{
+    font-family: inherit;
+    font-size: 60px;
+    margin: 5;
+}
+
+h2{
+    font-family: inherit;
+    font-size: 35px;
+}
+
+h3{
+    margin: 0;
+}
+
+.imgMapaUner{
+    display: flex;
+    background-image: url("../assets/mapa-uner.png");
+    background-repeat: no-repeat;
+    background-size: 600px;
+    background-position:center;
+    width: 100%;
+    height: 400px;
+}
+
+.seccionHeader {
+    border-radius: 5px;
+    display: flex;
+    color:#ebebeb;
+    background-color: #001E2D;
+    height: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgAccesoBedeliaWh {
+    background-image: url("../layouts/svg/address-card.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgAccesoBedeliaWh:hover {
+    background-image: url("../layouts/svg/address-card-hover.svg");
+}
+
+.imgCampusVirtualWh {
+    background-image: url("../layouts/svg/address-book.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgCampusVirtualWh:hover {
+    background-image: url("../layouts/svg/address-book-hover.svg");
+}
+
+.imgPlanEstrategicoWh {
+    background-image: url("../layouts/svg/compass.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgPlanEstrategicoWh:hover {
+    background-image: url("../layouts/svg/compass-hover.svg");
+}
+
+.imgCorreoInstitucionalWh {
+    background-image: url("../layouts/svg/envelope-open.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgCorreoInstitucionalWh:hover {
+    background-image: url("../layouts/svg/envelope-open-hover.svg");
+}
+
+.imgBibliotecaDigitalWh {
+    background-image: url("../layouts/svg/bookmark.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgBibliotecaDigitalWh:hover {
+    background-image: url("../layouts/svg/bookmark-hover.svg");
+}
+
+.imgCerrarSesionWh {
+    background-image: url("../layouts/svg/exit-hover.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+    padding-left: 1.3rem;
+    color: #e9e9e9;
+}
+
+.imgCerrarSesionWh:hover {
+    background-image: url("../layouts/svg/exit.svg");
+}
+
+/* *-iwh significa inverted with hover */
+
+.imgCerrarSesionIwh {
+    background-image: url("../layouts/svg/exit.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgCerrarSesionWh:hover {
+    background-image: url("../layouts/svg/exit-hover.svg");
 }
