@@ -1,7 +1,81 @@
 .Content {
     display: flex;
-    color:rgb(241, 241, 241);
-    margin-left: 50px;
-    margin-right: 50px;
-    height: 100px;
+    flex-direction: column;
+    color:#001E2D;
+    padding-left: 8%;
+    padding-right: 8%;
+    position: relative;
+    min-height: 60vh;
+    /* padding-bottom:200px; */
+    background-color:white;
 }
+
+.contenido {
+    display: flex;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-bottom: 2.5rem;
+}
+
+.contenidoPrincipal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.menuLateral {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.contenidoCentrado {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.contenidoConMargen{
+    margin: 50px;
+}
+
+.contenidoConMargenChico{
+    margin: 5px;
+}
+
+.centered {
+    text-align: center;
+}
+
+
+h1{
+    font-family: inherit;
+    font-size: 60px;
+    margin: 5;
+}
+
+h2{
+    font-family: inherit;
+    font-size: 35px;
+}
+
+h3{
+    margin: 0;
+}
+
+.imgMapaUner{
+    display: flex;
+    background-image: url("../assets/mapa-uner.png");
+    background-repeat: no-repeat;
+    background-size: 600px;
+    background-position:center;
+    width: 100%;
+    height: 400px;
+}
+
