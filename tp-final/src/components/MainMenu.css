@@ -2,10 +2,12 @@
 nav{
     display: flex;
     text-align: center;
+    
 }
 
 ul.menuHorizontal {
     display: flex;
+    flex-grow: 1;
     flex: auto;
     margin-left: 80px;
     width: 100%;
@@ -24,12 +26,11 @@ ul.menuHorizontal .item {
 
 ul.menuHorizontal li {
     list-style-type: none;
-    margin-left: 50px;
     float:left;
     height: 100%;
     padding-top: 4%;
-    padding-left: 1%;
-    padding-right: 1%;
+    padding-left:25px;
+    padding-right: 25px;
     border-radius: 5px;
     flex-grow: 1;
 }
@@ -44,6 +45,7 @@ ul.menuHorizontal a {
     text-decoration:none;
     text-align:center;
     font-size: large;
+    height: 100%;
 }
 
 ul.menuHorizontal a:hover {

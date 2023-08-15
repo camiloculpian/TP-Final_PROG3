@@ -12,8 +12,8 @@
 
 .contentItem {
     display: flex;
-    margin-left: 8%;
-    margin-right: 8%;
+    /* margin-left: 8%;
+    margin-right: 8%; */
     margin-top: 1%;
     margin-bottom: 1%;
 }
