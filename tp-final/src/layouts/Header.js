@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+import {NavLink} from 'react-router-dom';
 import './Header.css';
 import MainMenu from '../components/MainMenu';
 
@@ -7,7 +7,7 @@ function Header() {
     <header>
       <div className='headerContent'>
         <div className="headerItem">
-          <a href="/index.html"><div className="logoUner"></div></a>
+          <NavLink exact to="/" activeClassName='active'><div className="logoUner"></div></NavLink>
         </div>
         <div className="headerItem">
           <MainMenu/>

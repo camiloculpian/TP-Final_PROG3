@@ -1,20 +1,19 @@
-import './App.css';
-import React, {useState} from 'react';
-import Header from './layouts/Header';
-import Content from './layouts/Content';
-import Footer from './layouts/Footer';
-import Modal from './components/Modal';
+import {Routes, BrowserRouter, Route} from 'react-router-dom';
 
+import './App.css';
+import Contacto from './pages/Contacto/Contacto';
+import Institucional from './pages/Institucional/Institucional';
+import Home from './pages/Home/Home';
 function App() {
-  const [estadoModal, cambiarEstadoModal] = useState(false);
   return (
     <div className="App">
-      <Header />
-      <Content />
-      <Footer />
-      <Modal title={'Titulo'} state={estadoModal} changeState={cambiarEstadoModal}>
-        <p>Contenido del modal</p>
-      </Modal>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/institucional" element={<Institucional />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

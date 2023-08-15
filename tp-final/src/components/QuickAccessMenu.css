@@ -1,0 +1,27 @@
+.quickAccessMenu {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+.quickAccessMenuItem {
+    margin: 5%;
+    margin-bottom: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e9e9e9;
+    color: #001E2D;
+    border: solid;
+    border-color: #001E2D;
+    border-width: 2px;
+    height: 40px;
+    text-decoration: none;
+}
+
+.quickAccessMenuItem:hover {
+    background-color: #001E2D;
+    color: #e9e9e9;
+}

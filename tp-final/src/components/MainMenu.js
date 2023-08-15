@@ -1,15 +1,18 @@
-import './MainMenu.css'
+import './MainMenu.css';
+import {NavLink} from 'react-router-dom';
 
 function MainMenu() {
-    return (
-      <>
-        <ul className="menuHorizontal">
-            <li><a >Institucional</a></li>
-            <li><a >Contacto</a></li>
-            <li><a >Carreras</a></li>
-            <li><a >Acceso Bedelia</a></li>
-        </ul>
-      </>
+  // const navigate = useNavigate();
+  return (
+    <nav>
+      <ul className="menuHorizontal">
+        <li><NavLink exact to='/' activeClassName='active'>Home</NavLink></li>
+        <li><NavLink exact to='/institucional' >Institucional</NavLink></li>
+        <li><NavLink exact to='/contacto' >Contacto</NavLink></li>
+        <li><NavLink exact to='/carreras' >Carreras</NavLink></li>
+        <li><NavLink exact to='/bedelia' >Acceso Bedelia</NavLink></li>
+      </ul>
+    </nav>
     );
   }
   

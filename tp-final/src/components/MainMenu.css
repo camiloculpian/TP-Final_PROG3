@@ -1,4 +1,8 @@
 
+nav{
+    display: flex;
+    text-align: center;
+}
 
 ul.menuHorizontal {
     display: flex;
@@ -44,4 +48,8 @@ ul.menuHorizontal a {
 
 ul.menuHorizontal a:hover {
     text-decoration: underline;
+}
+
+.active{
+    font-weight: bold;
 }
