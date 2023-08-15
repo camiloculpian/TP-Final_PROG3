@@ -6,14 +6,18 @@ import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
 import { NavLink } from 'react-router-dom';
+import QuickAccessMenu from '../../components/QuickAccessMenu';
 function Home(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
     return (
         <>
             <Header />
             <Content>
-                <nav className="contenido">
+                <nav className="contentItem">
                     <NavLink exact to={'/carreras'} className="botonRojoGrande">NUESTRAS CARRERAS</NavLink>
+                </nav>
+                <nav className="contentItem">
+                <QuickAccessMenu />
                 </nav>
             </Content>
             <Footer />

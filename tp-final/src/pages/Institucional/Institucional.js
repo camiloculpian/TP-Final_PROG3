@@ -8,16 +8,15 @@ function Institucional(){
             <Content>
                 <div className="contenido">
                     <div className="contenidoPrincipal">
-                        <div className="contenidoCentrado "><h1>Institucional</h1></div>
-                        <h3 className="centered">
+                        <div className="contenidoCentrado "><h2>Informacion Institucional</h2></div>
+                        <div className="centered">
                             <h3 className="contenidoConMargenChico">La Facultad de Ciencias de la Administración es una de las nueve Facultades que componen la Universidad Nacional de Entre Ríos (UNER) .</h3>
                             <h3 className="contenidoConMargenChico">Estas unidades académicas, se encuentran en forma descentralizadas y expandidas en la provincia de Entre Ríos. Esta conformación la distingue de las Universidades Nacionales que reúnen todas sus actividades en un mismo núcleo urbano.</h3>
                             <h3 className="contenidoConMargenChico">El Rectorado tiene su sede en la ciudad de Concepción del Uruguay y sus Unidades Académicas se distribuyen de la siguiente manera:</h3>
-                        </h3>
+                        </div>
                     </div>
                 </div>
-                
-                <nav className="contenido">
+                <nav className="contenido contenidoConMargen">
                     <aside className="menuLateral contenidoConMargenChico">
                         <div className="contenidoConMargenChico">
                             <h3>Concordia:</h3>

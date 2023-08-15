@@ -10,13 +10,12 @@
     background-color:white;
 }
 
-.contenido {
+.contentItem {
     display: flex;
     margin-left: 8%;
     margin-right: 8%;
     margin-top: 1%;
     margin-bottom: 1%;
-    padding-bottom: 2.5rem;
 }
 
 .contenidoPrincipal {
@@ -79,3 +78,101 @@ h3{
     height: 400px;
 }
 
+.seccionHeader {
+    border-radius: 5px;
+    display: flex;
+    color:#ebebeb;
+    background-color: #001E2D;
+    height: 40px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgAccesoBedeliaWh {
+    background-image: url("../layouts/address-card.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgAccesoBedeliaWh:hover {
+    background-image: url("../layouts/address-card-hover.svg");
+}
+
+.imgCampusVirtualWh {
+    background-image: url("../layouts/address-book.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgCampusVirtualWh:hover {
+    background-image: url("../layouts/address-book-hover.svg");
+}
+
+.imgPlanEstrategicoWh {
+    background-image: url("../layouts/compass.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgPlanEstrategicoWh:hover {
+    background-image: url("../layouts/compass-hover.svg");
+}
+
+.imgCorreoInstitucionalWh {
+    background-image: url("../layouts/envelope-open.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgCorreoInstitucionalWh:hover {
+    background-image: url("../layouts/envelope-open-hover.svg");
+}
+
+.imgBibliotecaDigitalWh {
+    background-image: url("../layouts/bookmark.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgBibliotecaDigitalWh:hover {
+    background-image: url("../layouts/bookmark-hover.svg");
+}
+
+.imgCerrarSesionWh {
+    background-image: url("../layouts/exit-hover.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+    padding-left: 1.3rem;
+    color: #e9e9e9;
+}
+
+.imgCerrarSesionWh:hover {
+    background-image: url("../layouts/exit.svg");
+}
+
+/* *-iwh significa inverted with hover */
+
+.imgCerrarSesionIwh {
+    background-image: url("../layouts/exit.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+}
+
+.imgCerrarSesionWh:hover {
+    background-image: url("../layouts/exit-hover.svg");
+}

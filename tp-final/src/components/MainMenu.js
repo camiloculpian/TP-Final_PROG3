@@ -1,5 +1,5 @@
 import './MainMenu.css';
-import {NavLink, useNavigate} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 function MainMenu() {
   // const navigate = useNavigate();
