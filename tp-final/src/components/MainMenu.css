@@ -74,15 +74,15 @@ ul.mainDropDowm li:hover .dropDownContent{
     margin: 5px;
 }
 
-.imgHome{
+.imgInstitucional{
     background-image: url("../layouts/svg/building-hover.svg");
-    background-position-x: 8%;
+    background-position-x: 3%;
     background-position-y: center ;
     background-size: 1rem 1rem;
     background-repeat: no-repeat;
 }
 
-.imgInstitucional{
+.imgCarreras{
     background-image: url("../layouts/svg/landmark-hover.svg");
     background-position-x: 3%;
     background-position-y: center ;
@@ -91,7 +91,15 @@ ul.mainDropDowm li:hover .dropDownContent{
 }
 
 .imgContact{
-    background-image: url("../layouts/svg/phone-solid-hover.svg");
+    background-image: url("../layouts/svg/square-phone-solid-hover.svg");
+    background-position-x: 3%;
+    background-position-y: center ;
+    background-size: 1.1rem 1.1rem;
+    background-repeat: no-repeat;
+}
+
+.imgLogin{
+    background-image: url("../layouts/svg/user-solid-hover.svg");
     background-position-x: 3%;
     background-position-y: center ;
     background-size: 1rem 1rem;
