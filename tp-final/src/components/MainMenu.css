@@ -42,8 +42,9 @@ ul.mainDropDowm a:hover {
     text-decoration: underline;
 }
 
-.active{
+ul.mainDropDowm a.active{
     font-weight: bold;
+    text-decoration: underline;
 }
 
 ul.mainDropDowm li:hover .dropDownContent{
