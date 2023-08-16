@@ -1,7 +1,7 @@
 .quickAccessMenu {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 400px;
     margin-right: 1%;
     margin-bottom: 1%;
 }
