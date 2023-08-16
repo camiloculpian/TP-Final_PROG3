@@ -70,10 +70,11 @@ ul.mainDropDowm li:hover .dropDownContent{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropDownContent a{
+/* .dropDownContent .href{
     font-weight: 200;
     margin: 5px;
-}
+    color: black;
+} */
 
 .imgInstitucional{
     background-image: url("../layouts/svg/building-hover.svg");
