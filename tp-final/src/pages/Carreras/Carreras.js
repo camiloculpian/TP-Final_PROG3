@@ -20,6 +20,7 @@ function Carreras() {
                 </ul>
             </div>
             <Content>
+                <p>Aca hay que implementar que lea las carreras de forma dinamica, aplique los estilos de colores de forma dinamica y muestre el contnido de l misma manera</p>
             </Content>
             <Footer />
         </>

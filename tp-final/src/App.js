@@ -12,7 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/carreras" element={<Carreras />} />
-          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/contacto" element={<Contacto/>} />
+          <Route path="/contacto/contactform" element={<Contacto estadoModal='true'/>} />
           <Route path="/institucional" element={<Institucional />} />
         </Routes>
       </BrowserRouter>

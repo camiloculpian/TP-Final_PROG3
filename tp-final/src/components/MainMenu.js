@@ -1,6 +1,5 @@
 import './MainMenu.css';
 import {NavLink} from 'react-router-dom';
-
 function MainMenu() {
   // const navigate = useNavigate();
   return (
@@ -13,7 +12,11 @@ function MainMenu() {
           </ul> */}
         </li>
         <li className='imgCarreras'><NavLink exact to='/carreras' >Carreras</NavLink></li>
-        <li className='imgContact'><NavLink exact to='/contacto' >Contacto</NavLink></li>
+        <li className='imgContact'><NavLink exact to='/contacto' >Contacto</NavLink>
+          <ul className='dropDownContent'>
+            <NavLink className='href' exact to={{pathname: `/contacto/contactform`, props:{estadoModal: `${true}`} }}>Formulario de Contacto</NavLink>
+          </ul>
+        </li>
         <li className='imgLogin'><NavLink exact to='/bedelia' >Acceso Bedelia</NavLink></li>
       </ul>
     </nav>

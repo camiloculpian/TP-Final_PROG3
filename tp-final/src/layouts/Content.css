@@ -176,3 +176,31 @@ h3{
 .imgCerrarSesionWh:hover {
     background-image: url("../layouts/svg/exit-hover.svg");
 }
+
+.celeste{
+    color: #3982e9;
+}
+
+table , td, th {
+	border: 1px solid #001E2D;
+	border-collapse: collapse;
+}
+td, th {
+	padding: 5px;
+	width: auto;
+	height: 25px;
+}
+th {
+    font-weight: 100;
+    border: 1px solid #e9e9e9;
+    background-color: #001E2D;
+    color: #e9e9e9;
+}
+
+.contentWithoutMargin{
+    margin: 0;
+}
+
+.contentWithoutBotomMargin{
+    margin-bottom: 0;
+}
