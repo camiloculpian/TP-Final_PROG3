@@ -5,7 +5,6 @@ import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
 function Contacto() {
-       
     const [estadoModal, cambiarEstadoModal] = useState(false);
     return(
         <> 
@@ -127,7 +126,7 @@ function Contacto() {
 }
 
 function send_contact(e){
-    e.preventDefault();
+    //e.preventDefault();
     alert('Mensaje enviado....');
     console.log('enviado....');
 }
