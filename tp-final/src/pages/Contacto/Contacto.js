@@ -9,10 +9,10 @@ import Content from '../../layouts/Content';
 function Contacto() {
     // const location = useLocation();
     // const [estadoModal, cambiarEstadoModal] = useState(location.state?.estadoModal);
-
+    
     const [estadoModal, cambiarEstadoModal] = useState(false);
     return(
-        <>
+        <> 
             <Header />
             <Content>
             <nav className="contenido">
