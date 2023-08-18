@@ -1,7 +1,6 @@
 import './Modal.css';
 
 function Modal({title, children, state, changeState}) {
-    console.log('function Modal({title, children, state, changeState}) estado: ', state);
   return (
     <>
         {state &&
