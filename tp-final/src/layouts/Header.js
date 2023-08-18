@@ -7,7 +7,7 @@ function Header() {
     <header>
       <div className='headerContent'>
         <div className="headerItem">
-          <NavLink exact to="/" activeClassName='active'><div className="logoUner"></div></NavLink>
+          <NavLink to="/"><div className="logoUner"></div></NavLink>
         </div>
         <div className="headerItem">
           <MainMenu/>

@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 
+import { useLocation } from "react-router-dom";
+
 import Modal from '../../components/Modal';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
-function Contacto(props) {
-    const [estadoModal, cambiarEstadoModal] = useState(props.estadoModal);
+function Contacto() {
+    const location = useLocation();
+    const [estadoModal, cambiarEstadoModal] = useState(location.state?.estadoModal);
+    console.log('function Contacto(props): estadoModal',location.state?.estadoModal);
     return(
         <>
             <Header />
@@ -91,7 +95,7 @@ function Contacto(props) {
             </nav>
             </Content>
             <Footer />
-            <Modal title={'Titulo'} state={estadoModal} changeState={cambiarEstadoModal}>
+            <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
                 <p>Contenido del modal</p>
             </Modal>
         </>

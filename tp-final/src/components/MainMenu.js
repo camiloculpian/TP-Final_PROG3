@@ -5,19 +5,19 @@ function MainMenu() {
   return (
     <nav>
       <ul className="mainDropDowm">
-        <li className='imgInstitucional'><NavLink exact to='/institucional' activeClassName='active'>Institucional</NavLink>
+        <li className='imgInstitucional'><NavLink to='/institucional'>Institucional</NavLink>
           {/* <ul className='dropDownContent'>
             <NavLink className='href' exact to='/'>Etiqueta Submenu 1</NavLink>
             <NavLink exact to='/'>Etiqueta 2</NavLink>
           </ul> */}
         </li>
-        <li className='imgCarreras'><NavLink exact to='/carreras' >Carreras</NavLink></li>
-        <li className='imgContact'><NavLink exact to='/contacto' >Contacto</NavLink>
+        <li className='imgCarreras'><NavLink to='/carreras' >Carreras</NavLink></li>
+        <li className='imgContact'><NavLink to='/contacto'>Contacto</NavLink>
           <ul className='dropDownContent'>
-            <NavLink className='href' exact to={{pathname: `/contacto/contactform`, props:{estadoModal: `${true}`} }}>Formulario de Contacto</NavLink>
+            <NavLink to='/contacto/contactform' state={{estadoModal: 'true'}}>Formulario de Contacto</NavLink>            
           </ul>
         </li>
-        <li className='imgLogin'><NavLink exact to='/bedelia' >Acceso Bedelia</NavLink></li>
+        <li className='imgLogin'><NavLink to='/bedelia' >Acceso Bedelia</NavLink></li>
       </ul>
     </nav>
     );
