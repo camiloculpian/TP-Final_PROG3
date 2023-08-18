@@ -12,11 +12,7 @@ function MainMenu() {
           </ul> */}
         </li>
         <li className='imgCarreras'><NavLink to='/carreras' >Carreras</NavLink></li>
-        <li className='imgContact'><NavLink to='/contacto'>Contacto</NavLink>
-          <ul className='dropDownContent'>
-            <NavLink to='/contacto/contactform' state={{estadoModal: 'true'}}>Formulario de Contacto</NavLink>            
-          </ul>
-        </li>
+        <li className='imgContact'><NavLink to='/contacto'>Contacto</NavLink></li>
         <li className='imgLogin'><NavLink to='/bedelia' >Acceso Bedelia</NavLink></li>
       </ul>
     </nav>
