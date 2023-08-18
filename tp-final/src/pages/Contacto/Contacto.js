@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 import Modal from '../../components/Modal';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
 function Contacto() {
-    const location = useLocation();
-    const [estadoModal, cambiarEstadoModal] = useState(location.state?.estadoModal);
-    console.log('function Contacto(props): estadoModal',location.state?.estadoModal);
+    // const location = useLocation();
+    // const [estadoModal, cambiarEstadoModal] = useState(location.state?.estadoModal);
+
+    const [estadoModal, cambiarEstadoModal] = useState(false);
     return(
         <>
             <Header />
@@ -91,7 +92,9 @@ function Contacto() {
                             </tbody>
                         </table>
                     </nav>
+                    
                 </main>
+                <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
             </nav>
             </Content>
             <Footer />

@@ -204,3 +204,27 @@ th {
 .contentWithoutBotomMargin{
     margin-bottom: 0;
 }
+
+button.botonComun {
+    margin-top: 2em;
+    margin-right: 5em;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 5px;
+    text-align:center;
+    background-color: #001E2D;
+    color:#ebebeb;
+    height:40px;
+    padding:10px 10px;
+    border: none;
+    width: auto;
+}
+
+button.botonComun:hover {
+    text-align:center;
+    background-color: #cccccc;
+    color: #001E2D;
+    border: 1px solid;
+    border-color: #001E2D;
+    cursor: pointer;
+}
