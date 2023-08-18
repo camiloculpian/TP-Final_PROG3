@@ -237,6 +237,7 @@ textarea {
     overflow-x: scroll;
     border: 2px solid;
     border-color: #001E2D;
+    border-radius: 5px;
 }
 
 .dataLine {
@@ -264,7 +265,8 @@ label.dataTitle {
     padding: 6px;
     border-radius: 3px;
     display: inline;
-    border: #ebebeb;
+    border: 1px solid;
+    border-color: #001E2D;
     background-color:#ebebeb;
     overflow: hidden;
 }
