@@ -111,9 +111,7 @@ function Contacto() {
                                 </div>
                                 <div>
                                     <button className="botonComun contentWithoutMargin" id="enviarconsulta" onClick={(e) => {
-                                        //function expression
-                                        send_contact(e);
-                                        //function call:ejecuta
+                                        sendContactMessage(e);
                                         cambiarEstadoModal();
                                     }} >Enviar</button>
                                 </div>
@@ -125,7 +123,7 @@ function Contacto() {
     )
 }
 
-function send_contact(e){
+function sendContactMessage(e){
     //e.preventDefault();
     alert('Mensaje enviado....');
     console.log('enviado....');
