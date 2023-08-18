@@ -206,7 +206,7 @@ th {
 }
 
 button.botonComun {
-    margin-top: 2em;
+    margin-top: 1.5em;
     margin-right: 5em;
     margin-left: 0.5em;
     margin-bottom: 0.5em;
@@ -227,4 +227,44 @@ button.botonComun:hover {
     border: 1px solid;
     border-color: #001E2D;
     cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    white-space: nowrap;
+    overflow-x: scroll;
+    border: 2px solid;
+    border-color: #001E2D;
+}
+
+.dataLine {
+    margin-top: 10px;
+    margin: 5px;
+    display: flex;
+    width: auto;
+}
+
+label.dataTitle {
+    display: flex;
+    color: #ebebeb;
+    background-color:#001E2D;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 15px;
+    align-items: center;
+}
+
+.dataEntry {
+    vertical-align: baseline;
+    text-align: justify;
+    margin-left: 5px;
+    font-size: 17px;
+    padding: 6px;
+    border-radius: 3px;
+    display: inline;
+    border: #ebebeb;
+    background-color:#ebebeb;
+    overflow: hidden;
 }

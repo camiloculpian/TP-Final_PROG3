@@ -99,7 +99,29 @@ function Contacto() {
             </Content>
             <Footer />
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
-                <p>Contenido del modal</p>
+                <div class="module-content" id="modulo_registrar_inscripcion">
+                        <form> 
+                            <fieldset>
+                                <legend>'Realizar Consulta'</legend>
+                                <div class="dataLine">
+                                    <label class="dataTitle" for="APE_NOMB">Apellido y Nombres:</label>
+                                    <input name="APE_NOMB" class="dataEntry" id="APE_NOMB" autofocus requiered placeholder="Apellido y Nombres"></input>
+                                </div>
+                                <div className="dataLine">
+                                    <label class="dataTitle" for="EMAIL">e-m@il:</label>
+                                    <input name="EMAIL" required class="dataEntry" id="EMAIL"></input>
+                                </div>
+                                <div className="dataLine"> 
+                                    <textarea placeholder='Consulta'></textarea>
+                                </div>
+                                <div>
+                                    <button className="botonComun contentWithoutMargin" id="enviarconsulta">Enviar</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <script src="/scripts/funciones-bedelia-inscripciones.js" onload=" document.getElementById('VALOR_DE_BUSQUEDA').focus(); llenar_selector_carreras(); document.getElementById('inscribir')?.addEventListener('click', realizar_inscripcion); document.getElementById('buscar-estudiante')?.addEventListener('click', buscar_estudiante);"></script>
+                    </div>
+                
             </Modal>
         </>
     )
