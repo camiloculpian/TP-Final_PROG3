@@ -1,7 +1,5 @@
 import './Home.css'
-import React, {useState} from 'react';
 
-import Modal from '../../components/Modal';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
@@ -9,7 +7,6 @@ import { NavLink } from 'react-router-dom';
 import QuickAccessMenu from '../../components/QuickAccessMenu';
 import News from '../../components/News';
 function Home(){
-    const [estadoModal, cambiarEstadoModal] = useState(false);
     return (
         <>
             <Header />
@@ -23,9 +20,6 @@ function Home(){
                 </nav>
             </Content>
             <Footer />
-            <Modal title={'Titulo'} state={estadoModal} changeState={cambiarEstadoModal}>
-                <p>Contenido del modal</p>
-            </Modal>
         </>
   );
 }

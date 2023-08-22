@@ -17,7 +17,7 @@ function Contacto(props) {
         //   .then(json => setMessage(json.message))
         alert('Mensaje de: '+data.get('NOMBRE')+'\ne-m@il: '+data.get('EMAIL')+'\nMensaje: '+data.get('MESSAGE'));
         cambiarEstadoModal();
-      }
+    }
     return(
         <> 
             <Header />
