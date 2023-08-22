@@ -15,7 +15,6 @@ function Contacto(props) {
         // fetch('/api', { method: 'POST', body: data })
         //   .then(res => res.json())
         //   .then(json => setMessage(json.message))
-        console.log(data);
         alert('Mensaje de: '+data.get('NOMBRE')+'\ne-m@il: '+data.get('EMAIL')+'\nMensaje: '+data.get('MESSAGE'));
         cambiarEstadoModal();
       }
