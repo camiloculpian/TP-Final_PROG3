@@ -1,11 +1,24 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 
 import Modal from '../../components/Modal';
 import Header from '../../layouts/Header';
 import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
-function Contacto() {
+function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
+
+    // const [message, setMessage] = useState(props.message)
+    const form = useRef(null)
+    const submit = e => {
+        e.preventDefault()
+        const data = new FormData(form.current)
+        // fetch('/api', { method: 'POST', body: data })
+        //   .then(res => res.json())
+        //   .then(json => setMessage(json.message))
+        console.log(data);
+        alert('Mensaje de: '+data.get('NOMBRE')+'\ne-m@il: '+data.get('EMAIL')+'\nMensaje: '+data.get('MESSAGE'));
+        cambiarEstadoModal();
+      }
     return(
         <> 
             <Header />
@@ -95,25 +108,22 @@ function Contacto() {
             <Footer />
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
-                        <form> 
+                        <form ref={form} onSubmit={submit}> 
                             <fieldset>
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="APE_NOMB">Apellido y Nombres:</label>
-                                    <input name="APE_NOMB" className="dataEntry" id="APE_NOMB" autoFocus placeholder="Apellido y Nombres"></input>
+                                    <input name="NOMBRE" className="dataEntry" id="NOMBRE" autoFocus placeholder="Apellido y Nombres"></input>
                                 </div>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="EMAIL">e-m@il:</label>
                                     <input name="EMAIL" className="dataEntry" id="EMAIL"></input>
                                 </div>
                                 <div className="dataLine"> 
-                                    <textarea placeholder='Consulta'></textarea>
+                                    <textarea name='MESSAGE' id='MESSAGE' placeholder='Consulta'></textarea>
                                 </div>
                                 <div>
-                                    <button className="botonComun contentWithoutMargin" id="enviarconsulta" onClick={(e) => {
-                                        sendContactMessage(e);
-                                        cambiarEstadoModal();
-                                    }} >Enviar</button>
+                                    <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -121,12 +131,6 @@ function Contacto() {
             </Modal>
         </>
     )
-}
-
-function sendContactMessage(e){
-    //e.preventDefault();
-    alert('Mensaje enviado....');
-    console.log('enviado....');
 }
 
 export default Contacto;
