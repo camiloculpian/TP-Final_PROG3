@@ -7,6 +7,7 @@ import Institucional from './pages/Institucional/Institucional';
 import Carreras from './pages/Carreras/Carreras';
 import Bedelia from './pages/Bedelia/Bedelia';
 import RegisterStudent from './pages/Bedelia/RegisterStudent';
+import EditStudent from './pages/Bedelia/EditStudent';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route path="/bedelia" element={<Bedelia />}>
             <Route path='students'>
               <Route path='register' element={<RegisterStudent />} />
-              {/* <Route path='edit' element={<EditStudent />} /> */}
+              <Route path='edit' element={<EditStudent />} />
             </Route>
             <Route path='subjects'>
 

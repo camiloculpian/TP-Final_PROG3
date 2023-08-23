@@ -1,3 +1,45 @@
 .contentModule{
     margin: 45px;
+    margin-left: 80px;
+}
+
+.moduleContent{
+    margin: auto;
+}
+
+.moduleContent fieldset {
+    padding: 10px;
+    border-radius: 5px;
+    border-color: #001E2D;
+}
+
+.moduleContent legend {
+    font-size: small;
+    border-color: #001E2D;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+button.searchButton {
+    background-image: url('../../layouts/svg/magnifying-glass-hover.svg');
+    background-position-x: center;
+    background-position-y: center ;
+    background-size: 1.3rem 1.3rem;
+    background-repeat: no-repeat;
+    margin-right: 5em;
+    margin-left: 0.5em;
+    border-radius: 5px;
+    text-align:center;
+    background-color: #001E2D;
+    color:#ebebeb;
+    height:35px;
+    width: 35px;
+    padding:10px 10px;
+    border: none;
+}
+
+button.searchButton:hover{
+    background-image: url('../../layouts/svg/magnifying-glass-solid.svg');
+    background-color: #ebebeb;
+    color: #001E2D
 }
