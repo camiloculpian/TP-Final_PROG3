@@ -1,4 +1,4 @@
-.Content {
+.content {
     display: flex;
     flex-direction: column;
     color:#001E2D;
@@ -53,19 +53,26 @@
 }
 
 
-h1{
+.content h1{
     font-family: inherit;
     font-size: 60px;
     margin: 5;
 }
 
-h2{
+.content h2{
     font-family: inherit;
     font-size: 35px;
 }
 
-h3{
+.content h3{
     margin: 0;
+}
+
+.content h4{
+    margin: auto;
+    font-family: inherit;
+    font-size: 18px;
+    text-align: left
 }
 
 .imgMapaUner{

@@ -12,7 +12,7 @@ function Home(){
             <Header />
             <Content>
                 <nav className="contentItem">
-                    <NavLink exact to={'/carreras'} className="botonRojoGrande">NUESTRAS CARRERAS</NavLink>
+                    <NavLink to={'/carreras'} className="botonRojoGrande">NUESTRAS CARRERAS</NavLink>
                 </nav>
                 <nav className="contentItem">
                 <QuickAccessMenu />

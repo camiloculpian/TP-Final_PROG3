@@ -3,7 +3,7 @@ import './Content.css';
 
 function Content({children}) {
   return (
-    <section className='Content'>
+    <section className='content'>
       {children}
     </section>
   );
