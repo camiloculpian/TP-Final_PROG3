@@ -30,7 +30,7 @@ function BedeliaMenu(){
                     </li>
                     <li><p>Inscripcion a Materias</p>
                         <ul>
-                            <li><NavLink to={'/bedelia/enrollment/enroll'}>Inscribir a Materia</NavLink></li>
+                            <li><NavLink to={'/bedelia/enrollments/enroll'}>Inscribir a Materia</NavLink></li>
                         </ul>
                     </li>
                 </ul>

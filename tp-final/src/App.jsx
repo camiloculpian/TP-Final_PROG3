@@ -20,6 +20,16 @@ function App() {
           <Route path="/bedelia" element={<Bedelia />}>
             <Route path='students'>
               <Route path='register' element={<RegisterStudent />} />
+              {/* <Route path='edit' element={<EditStudent />} /> */}
+            </Route>
+            <Route path='subjects'>
+
+            </Route>
+            <Route path='careers'>
+
+            </Route>
+            <Route path='enrollments'>
+
             </Route>
           </ Route>
         </Routes>
