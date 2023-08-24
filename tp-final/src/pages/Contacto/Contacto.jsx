@@ -30,20 +30,20 @@ function Contacto(props) {
                             </div>
                             <h3  className="celeste">Correos Electrónicos Institucionales</h3>
                             <section className="contenedorDeItems">
-                                <div className="item">
-                                    <h4  className="celeste contentWithoutBotomMargin">Secretaría de Extensión Universitaria</h4>
+                                <div className="item contenidoConMargenChico">
+                                    <h4  className="celeste contenidoCentrado">Secretaría de Extensión Universitaria</h4>
                                     <p className="contentWithoutMargin">informes.fcad@uner.edu.ar</p>
                                 </div>
-                                <div className="item">
-                                    <h4  className="celeste contentWithoutBotomMargin">Oficina de Ciencia y Técnica</h4>
+                                <div className="item contenidoConMargenChico">
+                                    <h4  className="celeste contenidoCentrado">Oficina de Ciencia y Técnica</h4>
                                     <p className="contentWithoutMargin">oficinacyt.fcad@uner.edu.ar</p>
                                 </div>
-                                <div className="item">
-                                    <h4  className="celeste contentWithoutBotomMargin">Oficina de Becas</h4>
+                                <div className="item contenidoConMargenChico">
+                                    <h4  className="celeste contenidoCentrado">Oficina de Becas</h4>
                                     <p className="contentWithoutMargin">estudiantes.fcad@uner.edu.ar</p>
                                 </div>
-                                <div className="item">
-                                    <h4  className="celeste contentWithoutBotomMargin">Oficina de Pasantías</h4>
+                                <div className="item contenidoConMargenChico">
+                                    <h4  className="celeste contenidoCentrado">Oficina de Pasantías</h4>
                                     <p className="contentWithoutMargin">pasantias.fcad@uner.edu.ar</p>
                                 </div>
                             </section>

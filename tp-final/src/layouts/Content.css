@@ -66,12 +66,13 @@
 
 .content h3{
     margin: 0;
+    font-size: 20px;
 }
 
 .content h4{
     margin: auto;
     font-family: inherit;
-    font-size: 18px;
+    font-size: 15px;
     text-align: left
 }
 

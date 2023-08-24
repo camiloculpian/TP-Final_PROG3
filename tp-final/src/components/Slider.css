@@ -1,0 +1,46 @@
+.slider{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider .newsDiv{
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    height: 500px;
+    background-color: dimgray;
+    color: rgb(255, 255, 255);
+    background-size: cover;
+    justify-content: flex-end;
+}
+
+.slider .textBackground{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.slider .navSlide{
+    opacity: 0;
+    transition: opacity 0.75s ease-in-out;
+}
+
+.slider .navSlide.active{
+    opacity: 1;
+}
+
+.slider a{
+    text-decoration: none;
+}
+
+.slider button.next{
+    height: 100%;
+    background-color: dimgray;
+}
+
+.slider button.prev{
+    height: 100%;
+    background-color: dimgray;
+}
