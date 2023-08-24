@@ -1,20 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Slider.css'
 import { NavLink } from 'react-router-dom';
 
 function Slider(props){
     const { news } = props;
     const [actualNews, setActualNews] = useState(0);
-    const actualNewsLength = news?.length;
-    console.log('actualNewa: '+actualNews);
-    console.log('length: '+actualNewsLength);
+    // const newsLength = news?.length;
     
     const nextNews = () =>{
-        setActualNews(actualNews ===  actualNewsLength - 1 ? 0 : actualNews + 1)
+        setActualNews(actualNews ===  news?.length - 1 ? 0 : actualNews + 1);
+        console.log('actualNewa: '+actualNews);
     };
     const previousNews = () =>{
-        setActualNews(actualNews ===  actualNewsLength - 1 ? 0 : actualNews - 1)
+        setActualNews(actualNews ===  news?.length - 1 ? 0 : actualNews - 1)
+        console.log('actualNewa: '+actualNews);
     };
+    
+    // const delay = 10000;
+    // useEffect(() => {
+    //     setTimeout(
+    //       () =>
+    //         setActualNews((prevIndex) =>
+    //             prevIndex ===   news?.length - 1 ? 0 : prevIndex + 1
+    //         ),
+    //       delay
+    //     );
+    //     return () => {};
+    //   }, [actualNews, news]);
+
+    // setTimeout(nextNews,10000);
     return(
         <div className='slider'>
             <button className='prev' onClick={previousNews}>-</button>
@@ -22,7 +36,7 @@ function Slider(props){
                     return (
                         <nav key={'nav'+index} className={actualNews === index ? 'navSlide active' : 'navSlide'}>
                             {actualNews === index && (
-                                <NavLink to={item.url}>
+                                <NavLink target='_blank' to={item.url}>
                                     <div className='newsDiv' style={{ backgroundImage: `url(${item.urlToImage})` }}>
                                         <div className='textBackground'>
                                             <h2>{item.title}</h2>

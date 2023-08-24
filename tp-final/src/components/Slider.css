@@ -10,7 +10,7 @@
 .slider .newsDiv{
     display: flex;
     flex-direction: column;
-    width: 900px;
+    min-width: 100%;
     height: 500px;
     background-color: dimgray;
     color: rgb(255, 255, 255);
