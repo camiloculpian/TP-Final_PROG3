@@ -13,7 +13,10 @@
 }
 
 .contenedorModal{
-    width: 500px;
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 20px; */
+    min-width: 500px;
     min-height: 100px;
     background: #fff;
     position: relative;
@@ -23,17 +26,19 @@
 }
 
 .encabezadoModal{
+    height: 30px;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    /* margin-bottom: 30px; */
     border-bottom: 1px solid #E8E8E8;
 
 }
 
 .encabezadoModal h3{
     margin: 0;
+    margin-bottom: 10px;
     font-weight: 500px;
     font-size: 16px;
     /* color: #1766DC; */
