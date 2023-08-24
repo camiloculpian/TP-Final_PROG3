@@ -46,16 +46,16 @@ function EditStudent(props){
                 </fieldset>
             </div>
 
-            <Modal title={'titulo'} state={estadoModal} changeState={cambiarEstadoModal}>
+            <Modal title={''} state={estadoModal} changeState={cambiarEstadoModal}>
                 <div className="moduleContent" id="modulo_registrar_inscripcion">
                     <form ref={form} onSubmit={searchStudent}> 
                         <fieldset>
                             <legend>'Busqueda de Estudiante'</legend>
                             <div className="dataLine">
                                 <label className="dataTitle" htmlFor="NOMBRE">Buscar por:</label>
-                                <select name="NACIONALIDAD" disabled className="dataEntry" id="NACIONALIDAD">
+                                <select name="CRBUSQUEDA" className="dataEntry" id="NACIONALIDAD">
                                     <option value="DNI" selected>DNI</option>
-                                    <option value="APENOMB" selected>Apellido y Nombre</option>
+                                    <option value="APENOMB">Apellido y Nombre</option>
                                 </select>
                                 <input name="NOMBRE" className="dataEntry" id="NOMBRE" autoFocus></input>
                                 <button className="searchButton" type='button' onClick={(cambiarEstadoModal)}></button>
