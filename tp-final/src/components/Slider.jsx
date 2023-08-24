@@ -9,24 +9,25 @@ function Slider(props){
     
     const nextNews = () =>{
         setActualNews(actualNews ===  news?.length - 1 ? 0 : actualNews + 1);
+        clearTimeout (idTimeOut);
         console.log('actualNewa: '+actualNews);
     };
     const previousNews = () =>{
         setActualNews(actualNews ===  news?.length - 1 ? 0 : actualNews - 1)
+        clearTimeout (idTimeOut);
         console.log('actualNewa: '+actualNews);
     };
     
-    // const delay = 10000;
-    // useEffect(() => {
-    //     setTimeout(
-    //       () =>
-    //         setActualNews((prevIndex) =>
-    //             prevIndex ===   news?.length - 1 ? 0 : prevIndex + 1
-    //         ),
-    //       delay
-    //     );
-    //     return () => {};
-    //   }, [actualNews, news]);
+    const delay = 10000;
+     
+
+    const idTimeOut = setTimeout(
+          () =>
+            setActualNews((prevIndex) =>
+                prevIndex ===   news?.length - 1 ? 0 : prevIndex + 1
+            ),
+          delay
+        );
 
     // setTimeout(nextNews,10000);
     return(
