@@ -9,7 +9,7 @@ import News from '../../components/News';
 function Home(){
     return (
         <>
-            
+        <Header />
             <Content>
                 <nav className="contentItem">
                     <NavLink to={'/carreras'} className="botonRojoGrande">NUESTRAS CARRERAS</NavLink>
@@ -19,7 +19,7 @@ function Home(){
                 <News/>
                 </nav>
             </Content>
-           
+        <Footer />
         </>
   );
 }
