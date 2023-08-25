@@ -42,6 +42,10 @@ footer {
     /* padding: 15px; */
 }
 
+.footerContent ul {
+    height: 100%;
+}
+
 .footerContent ul li {
     background-image: url('../layouts/svg/chevron-right-blue-solid.svg');
     background-position-x: -3px;
