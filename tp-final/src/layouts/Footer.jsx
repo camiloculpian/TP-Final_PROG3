@@ -1,3 +1,4 @@
+import { NavLink } from 'react-bootstrap';
 import './Footer.css';
 // import logo from '../assets/logo-fcad.png'
 
@@ -44,6 +45,11 @@ function Footer() {
             <p> Provincia de Entre Ríos</p>
             <p>Teléfono: (+54) (345) 4231400 – Fax: (+54) (345) 4231410 </p>
             <p> E-mail.: informes.fcad@uner.edu.ar</p>
+            <div className='socialNets'>
+              <NavLink className='imgTwiter'></NavLink>
+              <NavLink className='imgFacebook'></NavLink>
+              <NavLink className='imgInstagram'></NavLink>
+            </div>
           </ul>
         </div>
       </nav>

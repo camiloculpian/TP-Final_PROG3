@@ -43,11 +43,26 @@ footer {
 }
 
 .footerContent ul li {
+    background-image: url('../layouts/svg/chevron-right-blue-solid.svg');
+    background-position-x: -3px;
+    background-position-y: center ;
+    background-size: 0.8rem 0.8rem;
+    background-repeat: no-repeat;
+    padding-left: 1.3rem;
     list-style     : none;
     display        : grid;
     justify-content: flex-start;
     /* margin         : .5em 0px; */
     cursor         : pointer;
+}
+
+.footerContent .socialNets{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-top: 10px;
+    justify-content: center;
 }
 
 .footerContent ul li:hover {
@@ -62,7 +77,6 @@ footer {
 
 .anteFooter {
     align-items: center;
-
     background-color: #006a6a;
 }
 
