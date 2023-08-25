@@ -82,7 +82,6 @@ function Slider(props){
                         <nav key={'nav'+index} className={currentIndex === index ? 'navSlide active' : 'navSlide'}>
                             {currentIndex === index && (
                                 <>
-                                
                                     <div className='newsDiv' style={{ backgroundImage: `url(${item.urlToImage})` }}>
                                         <div className='textBackground'>
                                             <NavLink target='_blank' to={item.url}>
@@ -92,7 +91,6 @@ function Slider(props){
                                             {dots()}
                                         </div>
                                     </div>
-                                
                                 </>
                             )}
                         </nav>
