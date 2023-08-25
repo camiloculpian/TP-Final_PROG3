@@ -1,10 +1,7 @@
-import Header from '../../layouts/Header';
-import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
 function Institucional(){
     return (
         <>
-            <Header />
             <Content>
                 <div className="contenido">
                     <div className="contenidoPrincipal">
@@ -49,7 +46,6 @@ function Institucional(){
                     </main>
                 </nav>
             </Content>
-            <Footer />
         </>
   );
 }

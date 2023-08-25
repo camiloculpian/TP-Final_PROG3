@@ -8,12 +8,15 @@ import Carreras from './pages/Carreras/Carreras';
 import Bedelia from './pages/Bedelia/Bedelia';
 import RegisterStudent from './pages/Bedelia/RegisterStudent';
 import EditStudent from './pages/Bedelia/EditStudent';
+import Footer from './layouts/Footer';
+import Header from './layouts/Header';
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/carreras" element={<Carreras />} />
@@ -32,6 +35,7 @@ function App() {
             </Route>
           </ Route>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

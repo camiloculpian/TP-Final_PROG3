@@ -1,8 +1,6 @@
 
 import './Bedelia.css';
 
-import Header from '../../layouts/Header';
-import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
 import BedeliaMenu from '../../components/BedeliaMenu';
 import { Outlet } from 'react-router';
@@ -10,7 +8,6 @@ import { Outlet } from 'react-router';
 function Bedelia(){
     return (
         <>
-            <Header />
             <Content>
                 <nav className="contentItem">
                     <BedeliaMenu />
@@ -19,7 +16,6 @@ function Bedelia(){
                     </nav>
                 </nav> 
             </Content>
-            <Footer />
         </>
     );
 }

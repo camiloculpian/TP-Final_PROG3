@@ -1,8 +1,6 @@
 import React, {useRef, useState} from 'react';
 
 import Modal from '../../components/Modal';
-import Header from '../../layouts/Header';
-import Footer from '../../layouts/Footer';
 import Content from '../../layouts/Content';
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
@@ -20,7 +18,6 @@ function Contacto(props) {
     }
     return(
         <> 
-            <Header />
             <Content>
                 <nav className="contenido">
                     <main className="contenidoPrincipal">
@@ -104,7 +101,6 @@ function Contacto(props) {
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
                 </nav>
             </Content>
-            <Footer />
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form ref={form} onSubmit={submit}> 
