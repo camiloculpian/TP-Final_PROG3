@@ -66,16 +66,19 @@ footer {
 
 .anteFooter ul {
     display        : flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
 }
 
 .anteFooter ul li {
+    justify-content: center;
     color       : aliceblue;
     display     : flex;
     padding     : 1em 15vh;
     border-right: .5px solid #1a7979;
     border-left : .5px solid #1a7979;
-
+    width: 100%;
 }
 
 .anteFooter ul li:hover {
