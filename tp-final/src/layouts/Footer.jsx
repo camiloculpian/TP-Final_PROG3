@@ -40,8 +40,10 @@ function Footer() {
         <div className='footerContentItem'>
           <h3>Facultad de Ciencias de la Administracion</h3>
           <ul>
-            <p>Monseñor Tavella 1424. Concordia. CP(3200). | Provincia de Entre Ríos</p>
-            <p>Teléfono: (+54) (345) 4231400 – Fax: (+54) (345) 4231410 | E-mail.: informes.fcad@uner.edu.ar</p>
+            <p>Monseñor Tavella 1424. Concordia. CP(3200).</p>
+            <p> Provincia de Entre Ríos</p>
+            <p>Teléfono: (+54) (345) 4231400 – Fax: (+54) (345) 4231410 </p>
+            <p> E-mail.: informes.fcad@uner.edu.ar</p>
           </ul>
         </div>
       </nav>

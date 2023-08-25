@@ -26,6 +26,10 @@ footer {
     margin-bottom: 0px;
 }
 
+.footerContent p{
+    margin: 0px;
+}
+
 .footerContentItem{
     display: flex;
     flex-direction: column;
