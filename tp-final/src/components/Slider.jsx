@@ -13,7 +13,7 @@ function Slider(props){
     const settings = {
         speed: 1000,
         autoplay: true,
-        autoplaySpeed: 3000
+        autoplaySpeed: 7000
     };
 
     const goTo = useCallback(
@@ -48,6 +48,23 @@ function Slider(props){
         setActiveAutoplay(false);
     };
 
+    const dots = () => {
+        const totalItems = Array.apply(null, Array(news.length));
+        const dotsButtons = totalItems.map((item, index) => {
+          return (
+            <button
+              className={currentIndex === index  ? 'newsDotsActive' : 'newsDots'}
+              key={index.toString()}
+              onMouseEnter={pauseTimer}
+              onMouseLeave={playTimer}
+              onClick={() => goTo(index)}
+            >
+            </button>
+          );
+        });
+        return <div className="dots">{dotsButtons}</div>;
+    };
+
     useEffect(() => {
         if (settings.autoplay && activeAutoplay) {
           clearTimeout(autoplayRef.current);
@@ -59,24 +76,29 @@ function Slider(props){
 
     return(
         <div className='slider'>
-            <button className='prev' onClick={() => goPrev()} onMouseEnter={pauseTimer} onMouseLeave={playTimer}>-</button>
+            <button className='prevBtn' onClick={() => goPrev()} onMouseEnter={pauseTimer} onMouseLeave={playTimer} />
                 {news?.map((item, index) => {
                     return (
                         <nav key={'nav'+index} className={currentIndex === index ? 'navSlide active' : 'navSlide'}>
                             {currentIndex === index && (
-                                <NavLink target='_blank' to={item.url}>
+                                <>
+                                
                                     <div className='newsDiv' style={{ backgroundImage: `url(${item.urlToImage})` }}>
                                         <div className='textBackground'>
-                                            <h2>{item.title}</h2>
-                                            <p>{item.description}</p>
+                                            <NavLink target='_blank' to={item.url}>
+                                                <h2>{item.title}</h2>
+                                                <p>{item.description}</p>
+                                            </NavLink>
+                                            {dots()}
                                         </div>
                                     </div>
-                                </NavLink>
+                                
+                                </>
                             )}
                         </nav>
                     );
                 })}
-            <button className='next' onClick={() => goNext()} onMouseEnter={pauseTimer} onMouseLeave={playTimer}>-</button>
+            <button className='nextBtn' onClick={() => goNext()} onMouseEnter={pauseTimer} onMouseLeave={playTimer} />
         </div>
     );
 }
