@@ -1,3 +1,4 @@
+import CountrySelect from '../../components/CountrySelect';
 import Modal from '../../components/Modal';
 import { useRef, useState } from "react";
 
@@ -23,21 +24,20 @@ function EditStudent(props){
                     <legend>Estudiantes - Editar Estudiante</legend>
                     <form>
                         <div className="dataLine">
-                            <label className="dataTitle" for="VALOR_DE_BUSQUEDA">DNI</label>
-                            <input name="VALOR_DE_BUSQUEDA" className="dataEntry" id="VALOR_DE_BUSQUEDA" autofocus maxlength="9" placeholder="Ingrese DNI"></input>
+                            <label className="dataTitle" htmlFor="VALOR_DE_BUSQUEDA">DNI</label>
+                            <input name="VALOR_DE_BUSQUEDA" className="dataEntry" id="VALOR_DE_BUSQUEDA" autoFocus maxLength="9" placeholder="Ingrese DNI"></input>
                             <button className="searchButton" type='button' onClick={(cambiarEstadoModal)}></button>
                         </div>
                         <var id="ID_ESTUDIANTE"></var>
-                        <div className="dataLine"><label className="dataTitle" for="APELLIDO">Apellido:</label><input name="APELLIDO" disabled className="dataEntry"id="APELLIDO"></input></div>
-                        <div className="dataLine"><label className="dataTitle" for="NOMBRE">Nombre:</label><input name="NOMBRE" disabled className="dataEntry"id="NOMBRE"></input></div>
-                        <div className="dataLine"><label className="dataTitle" for="DNI">DNI:</label><input name="DNI" disabled className="dataEntry" id="DNI"></input></div>
-                        <div className="dataLine"><label className="dataTitle" for="FECHA_NACIMIENTO">Fecha Nacimiento:</label><input name="FECHA_NACIMIENTO" disabled type="date" className="dataEntry" id="FECHA_NACIMIENTO" required ></input></div>
-                        <div class="dataLine"><label className="dataTitle" for="NACIONALIDAD">Nacionalidad:</label>
-                            <select name="NACIONALIDAD" disabled className="dataEntry" id="NACIONALIDAD">
-                            </select>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="APELLIDO">Apellido:</label><input name="APELLIDO" disabled className="dataEntry"id="APELLIDO"></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="NOMBRE">Nombre:</label><input name="NOMBRE" disabled className="dataEntry"id="NOMBRE"></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="DNI">DNI:</label><input name="DNI" disabled className="dataEntry" id="DNI"></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="FECHA_NACIMIENTO">Fecha Nacimiento:</label><input name="FECHA_NACIMIENTO" disabled type="date" className="dataEntry" id="FECHA_NACIMIENTO" required ></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="NACIONALIDAD">Nacionalidad:</label>
+                            <CountrySelect />
                         </div>
-                        <div className="dataLine"><label className="dataTitle" for="TELEFONO">Teléfono:</label><input name="TELEFONO" disabled type="tel" className="dataEntry" id="TELEFONO"></input></div>
-                        <div className="dataLine"><label className="dataTitle" for="EMAIL">e-m@il:</label><input name="EMAIL" disabled type="email" className="dataEntry" id="EMAIL"></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="TELEFONO">Teléfono:</label><input name="TELEFONO" disabled type="tel" className="dataEntry" id="TELEFONO"></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="EMAIL">e-m@il:</label><input name="EMAIL" disabled type="email" className="dataEntry" id="EMAIL"></input></div>
                         <div>
                             <button className="botonComun" id="editar-estudiante" type="button">Guardar</button>
                             <button className="botonComun" id="cancelar-editar-estudiante" type="button">Cancelar</button>
