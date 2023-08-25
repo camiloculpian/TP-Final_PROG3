@@ -22,7 +22,7 @@ function CountrySelect(){
         <select name="countrySelect" className="dataEntry" id="NACIONALIDAD">
             {datos?.map((country, index) => {
                 return (
-                    <option value={index}>{country.name.common}</option>
+                    <option value={index} {...country?.name.common === 'Argentina' ? 'selected' : ''}>{country.name.common}</option>
                 );
             })}
         </select>
