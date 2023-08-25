@@ -35,6 +35,8 @@ footer {
     flex-direction: column;
     margin-left: 15px;
     margin-right: 15px;
+    justify-content: space-between;
+    width: 100%;
     /* border-left: #161f6d solid 2px;
     border-right: #161f6d solid 2px; */
     /* padding: 15px; */
