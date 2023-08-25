@@ -8,8 +8,7 @@ import Carreras from './pages/Carreras/Carreras';
 import Bedelia from './pages/Bedelia/Bedelia';
 import RegisterStudent from './pages/Bedelia/RegisterStudent';
 import EditStudent from './pages/Bedelia/EditStudent';
-import Header from './layouts/Header';
-import Footer from './layouts/Footer';
+
 
 function App() {
   return (

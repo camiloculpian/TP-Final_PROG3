@@ -10,7 +10,7 @@ footer {
     background-color  : #001E2D;
 }
 
-.FooterContent {
+.footerContent {
     display        : flex;
     align-items    : center;
     justify-content: space-between;
@@ -20,7 +20,7 @@ footer {
     color          : aliceblue;
 }
 
-.FooterContent ul li {
+.footerContent ul li {
     list-style     : none;
     display        : grid;
     justify-content: flex-start;
@@ -28,28 +28,28 @@ footer {
     cursor         : pointer;
 }
 
-.FooterContent ul li:hover {
+.footerContent ul li:hover {
     text-decoration: underline;
 }
 
-.FooterContent picture img {
+.footerContent picture img {
     width : 15em;
     height: 100%;
     cursor: pointer;
 }
 
-.antefooter {
+.anteFooter {
     align-items: center;
 
     background-color: #006a6a;
 }
 
-.antefooter ul {
+.anteFooter ul {
     display        : flex;
     justify-content: space-around;
 }
 
-.antefooter ul li {
+.anteFooter ul li {
     color       : aliceblue;
     display     : flex;
     padding     : 1em 15vh;
@@ -58,7 +58,7 @@ footer {
 
 }
 
-.antefooter ul li:hover {
+.anteFooter ul li:hover {
     background-color: #289c9c;
     cursor          : pointer;
 }

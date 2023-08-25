@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer>
-      <div className='antefooter'>
+      <div className='anteFooter'>
         <ul>
           <li>Compras y Contrataciones</li>
           <li>Consejo Directivo</li>
@@ -13,7 +13,7 @@ function Footer() {
           <li>Concursos Pays</li>
         </ul>
       </div>
-      <nav className='FooterContent'>
+      <nav className='footerContent'>
         <div>
           <h3>Enlaces útiles</h3>
         <ul>
