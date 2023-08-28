@@ -1,4 +1,4 @@
-import {Routes, BrowserRouter, Route} from 'react-router-dom';
+import { Routes, BrowserRouter, Route } from 'react-router-dom';
 
 import './App.css';
 import Home from './pages/Home/Home';
@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/carreras" element={<Carreras />} />
-          <Route path="/contacto" element={<Contacto/>} />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="/institucional" element={<Institucional />} />
           <Route path="/bedelia" element={<Bedelia />}>
             <Route path='students'>
