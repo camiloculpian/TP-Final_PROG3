@@ -1,3 +1,5 @@
+import CountrySelect from "../../components/CountrySelect";
+
 function RegisterStudent(){
     return (
         <div className="moduleContent">
@@ -9,8 +11,7 @@ function RegisterStudent(){
                     <div className="dataLine"><label className="dataTitle" for="DNI">DNI:</label><input name="DNI" required minlength="9" maxlength="9" className="dataEntry" id="DNI"></input></div>
                     <div className="dataLine"><label className="dataTitle" for="FECHA_NACIMIENTO">Fecha Nacimiento:</label><input name="FECHA_NACIMIENTO" type="date" required className="dataEntry" id="FECHA_NACIMIENTO"></input></div>
                     <div className="dataLine"><label class="dataTitle" for="NACIONALIDAD">Nacionalidad:</label>
-                        <select name="NACIONALIDAD" required className="dataEntry" id="NACIONALIDAD">
-                        </select>
+                        <CountrySelect />
                     </div>
                     <div className="dataLine"><label class="dataTitle" for="TELEFONO">Teléfono:</label><input name="TELEFONO" type="tel" required className="dataEntry" id="TELEFONO"></input></div>
                     <div className="dataLine"><label class="dataTitle" for="EMAIL">e-m@il:</label><input name="EMAIL" type="email" required className="dataEntry" id="EMAIL"></input></div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function CountrySelect(){
     const [datos, setDatos] = useState(null);
+    const [selected, setSelected] = useState('240');
 
     useEffect(()=>{
         const consulta = `https://restcountries.com/v3.1/all`;
@@ -18,11 +19,16 @@ function CountrySelect(){
         });
     }, []);
 
+    const changeSelected = event => {
+        console.log(event.target.value);
+        setSelected(event.target.value);
+      };
+
     return (
-        <select name="countrySelect" className="dataEntry" id="NACIONALIDAD">
+        <select value={selected} onChange={changeSelected} name="countrySelect" className="dataEntry" id="NACIONALIDAD">
             {datos?.map((country, index) => {
                 return (
-                    <option value={index} {...country?.name.common === 'Argentina' ? 'selected' : ''}>{country.name.common}</option>
+                    <option key={index} value={index}>{country.name.common}</option>
                 );
             })}
         </select>
