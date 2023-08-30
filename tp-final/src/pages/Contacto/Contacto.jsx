@@ -112,7 +112,7 @@ function Contacto(props) {
                                 </div>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="EMAIL">e-m@il:</label>
-                                    <input name="EMAIL" className="dataEntry" id="EMAIL"></input>
+                                    <input name="EMAIL" className="dataEntry" id="EMAIL" placeholder="...@..."></input>
                                 </div>
                                 <div className="dataLine"> 
                                     <textarea name='MESSAGE' id='MESSAGE' placeholder='Consulta'></textarea>
