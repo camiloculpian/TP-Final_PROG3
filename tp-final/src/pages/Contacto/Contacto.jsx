@@ -16,14 +16,8 @@ function Contacto(props) {
         alert('Mensaje de: ' + data.get('NOMBRE') + '\ne-m@il: ' + data.get('EMAIL') + '\nMensaje: ' + data.get('MESSAGE'));
         cambiarEstadoModal();
     }
-<<<<<<< HEAD
     return(
         <> 
-=======
-    return (
-        <>
-            <Header />
->>>>>>> 858bc36 (	modificados:     tp-final/src/pages/Contacto/Contacto.jsx)
             <Content>
                 <nav className="contenido">
                     <main className="contenidoPrincipal">
@@ -109,7 +103,6 @@ function Contacto(props) {
             </Content>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
-<<<<<<< HEAD
                         <form ref={form} onSubmit={submit}> 
                             <fieldset>
                                 <legend>'Realizar Consulta'</legend>
@@ -130,28 +123,6 @@ function Contacto(props) {
                             </fieldset>
                         </form>
                     </div>
-=======
-                    <form ref={form} onSubmit={submit}>
-                        <fieldset>
-                            <legend>'Realizar Consulta'</legend>
-                            <div className="dataLine">
-                                <label className="dataTitle" htmlFor="APE_NOMB">Apellido y Nombres:</label>
-                                <input name="NOMBRE" className="dataEntry" id="NOMBRE" autoFocus placeholder="Apellido y Nombres"></input>
-                            </div>
-                            <div className="dataLine">
-                                <label className="dataTitle" htmlFor="EMAIL">e-m@il:</label>
-                                <input name="EMAIL" className="dataEntry" id="EMAIL" placeholder="ejemplo@..."></input>
-                            </div>
-                            <div className="dataLine">
-                                <textarea name='MESSAGE' id='MESSAGE' placeholder='Consulta'></textarea>
-                            </div>
-                            <div>
-                                <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
->>>>>>> 858bc36 (	modificados:     tp-final/src/pages/Contacto/Contacto.jsx)
             </Modal>
         </>
     )
