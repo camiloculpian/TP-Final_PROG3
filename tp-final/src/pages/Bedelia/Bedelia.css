@@ -3,6 +3,10 @@
     margin-left: 80px;
 }
 
+.justifyRight{
+    justify-content: right !important;
+}
+
 .moduleContent{
     margin: auto;
 }

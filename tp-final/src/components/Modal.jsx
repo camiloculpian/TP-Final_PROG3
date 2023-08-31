@@ -1,13 +1,13 @@
 import './Modal.css';
 
-function Modal({children, state, changeState, title, modalColor = 'modalDefault'}) {
+function Modal({children, state, changeState, title, modalColor = 'modalDefault', showBorderOnHeader=true}) {
   return (
     <>
         {state &&
             <div className='overlay' >
                 <div className={(modalColor)}>
                     <div className={'contenedorModal '+(modalColor)}>
-                        <div className={'encabezadoModal'}>
+                        <div className={showBorderOnHeader ? 'encabezadoModal showBorderOnHeader':'encabezadoModal'}>
                             {title &&
                                 <h3>{title}</h3>
                             }
