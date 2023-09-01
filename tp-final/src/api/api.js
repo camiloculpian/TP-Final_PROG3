@@ -45,9 +45,9 @@ appi.post('/contacto', cors(), (req, res) => {
     const cuerpo = '<h1>Hola llego un correo de ' + nombre + ' </h1>';
     
     const opciones = {
-        from : 'CONTACT PAGE API',
+        from : 'no-reply@tp-bedelia.com.ar',
         to:'camiloculpian@gmail.com',
-        subject:'___CONTACT___',
+        subject:'___CONTACTO___',
         html:mensaje
     }
     
