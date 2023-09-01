@@ -6,7 +6,7 @@ function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
     
 
-    const [values, setValues] = React.useState({
+    const [formData, setFormData] = useState({
         nombre: "",
         email: "",
         mensaje: "",
@@ -17,7 +17,7 @@ function Contacto(props) {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ values })
+            body: JSON.stringify({ formData })
         };
         fetch('http://localhost:3005/contacto', requestOptions)
             .then(async response => {
@@ -30,20 +30,24 @@ function Contacto(props) {
                 return data;
                 
             }).then(data =>{
+                //ACA MOSTRAR QUE TODO SALIO OK!
                 console.log(data);
             }).catch(error => {
+                //ACA MOSTRAR QUE TODO SALIO MAL!
                 console.error('There was an error!', error);
             });
+        setFormData({nombre:"",email:"",mensaje:""});
+        cambiarEstadoModal();
     }
     
     function handleChange(e) {
         const { target } = e;
         const { name, value } = target;
         const newValues = {
-          ...values,
+          ...formData,
           [name]: value,
         };
-        setValues(newValues);
+        setFormData(newValues);
     }
 
     return(
@@ -131,21 +135,21 @@ function Contacto(props) {
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
                 </nav>
             </Content>
-            <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
+            <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form onSubmit={handleSubmit} method='POST'> 
                             <fieldset>
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="nombre">Apellido y Nombres:</label>
-                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres" value={values.nombre} onChange={handleChange}></input>
+                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres" value={formData.nombre} onChange={handleChange}></input>
                                 </div>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="email">e-m@il:</label>
-                                    <input name="email" className="dataEntry" id="email" placeholder="...@..." value={values.email} onChange={handleChange}></input>
+                                    <input name="email" className="dataEntry" id="email" placeholder="...@..." value={formData.email} onChange={handleChange}></input>
                                 </div>
                                 <div className="dataLine"> 
-                                    <textarea name='mensaje' id='mensaje' placeholder='Consulta...' value={values.mensaje} onChange={handleChange}></textarea>
+                                    <textarea name='mensaje' id='mensaje' placeholder='Consulta...' value={formData.mensaje} onChange={handleChange}></textarea>
                                 </div>
                                 <div>
                                     <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>

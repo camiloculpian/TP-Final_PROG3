@@ -27,8 +27,43 @@ appi.get('/', (req, res)=>{
 
 appi.options('*', cors()) 
 appi.post('/contacto', cors(), (req, res) => {
+    const {nombre, email, mensaje} = req.body['formData'];
+    // console.log(data);
+    const transporter = nodemailer.createTransport({
+        service:'gmail',
+        auth:{
+            user:process.env.CORREO,
+            pass:process.env.CLAVE
+        }
+    })
+    console.log(nombre);
+    console.log(email);
+    console.log(mensaje);
+
+    //TAREA: mejorar el cuerpo del correo
+	//agregar el mensaje que recibmos en el body 
+    const cuerpo = '<h1>Hola llego un correo de ' + nombre + ' </h1>';
+    
+    const opciones = {
+        from : 'CONTACT PAGE API',
+        to:'camiloculpian@gmail.com',
+        subject:'___CONTACT___',
+        html:mensaje
+    }
+    
+    transporter.sendMail(opciones, (error, info) => {
+        if(error){
+            console.log('error -> ', error);
+            const respuesta = 'correo no enviado';
+            res.json({respuesta});
+        }else{
+            console.log(info);
+            const respuesta = 'correo enviado';
+            res.json({respuesta});
+        }
+    })
+    
     const data = req.body;
-    console.log(data);
     res.send(data);
   })
 
