@@ -5,7 +5,6 @@ import Content from '../../layouts/Content';
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
     
-
     const [formData, setFormData] = useState({
         nombre: "",
         email: "",
