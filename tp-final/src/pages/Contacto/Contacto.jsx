@@ -4,6 +4,7 @@ import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
+    // const [contactFormData, setContactFormData] = useState(nombre = '', email = '', message = '');
 
     // const [message, setMessage] = useState(props.message)
     const form = useRef(null)
@@ -13,7 +14,7 @@ function Contacto(props) {
         // fetch('/api', { method: 'POST', body: data })
         //   .then(res => res.json())
         //   .then(json => setMessage(json.message))
-        alert('Mensaje de: ' + data.get('NOMBRE') + '\ne-m@il: ' + data.get('EMAIL') + '\nMensaje: ' + data.get('MESSAGE'));
+        alert('Mensaje de: ' + data.get('nombre') + '\ne-m@il: ' + data.get('email') + '\nMensaje: ' + data.get('message'));
         cambiarEstadoModal();
     }
     return(
@@ -108,14 +109,14 @@ function Contacto(props) {
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="APE_NOMB">Apellido y Nombres:</label>
-                                    <input name="NOMBRE" className="dataEntry" id="NOMBRE" autoFocus placeholder="Apellido y Nombres"></input>
+                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres"></input>
                                 </div>
                                 <div className="dataLine">
-                                    <label className="dataTitle" htmlFor="EMAIL">e-m@il:</label>
-                                    <input name="EMAIL" className="dataEntry" id="EMAIL" placeholder="...@..."></input>
+                                    <label className="dataTitle" htmlFor="email">e-m@il:</label>
+                                    <input name="email" className="dataEntry" id="email" placeholder="...@..."></input>
                                 </div>
                                 <div className="dataLine"> 
-                                    <textarea name='MESSAGE' id='MESSAGE' placeholder='Consulta'></textarea>
+                                    <textarea name='message' id='message' placeholder='Consulta'></textarea>
                                 </div>
                                 <div>
                                     <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>
