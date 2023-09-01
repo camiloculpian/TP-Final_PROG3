@@ -1,22 +1,51 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
-    // const [contactFormData, setContactFormData] = useState(nombre = '', email = '', message = '');
+    
 
-    // const [message, setMessage] = useState(props.message)
-    const form = useRef(null)
-    const submit = e => {
-        e.preventDefault()
-        const data = new FormData(form.current)
-        // fetch('/api', { method: 'POST', body: data })
-        //   .then(res => res.json())
-        //   .then(json => setMessage(json.message))
-        alert('Mensaje de: ' + data.get('nombre') + '\ne-m@il: ' + data.get('email') + '\nMensaje: ' + data.get('message'));
-        cambiarEstadoModal();
+    const [values, setValues] = React.useState({
+        nombre: "",
+        email: "",
+        mensaje: "",
+    });
+    
+    function handleSubmit(e) {
+        e.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ values })
+        };
+        fetch('http://localhost:3005/contacto', requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response.ok) {
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                return data;
+                
+            }).then(data =>{
+                console.log(data);
+            }).catch(error => {
+                console.error('There was an error!', error);
+            });
     }
+    
+    function handleChange(e) {
+        const { target } = e;
+        const { name, value } = target;
+        const newValues = {
+          ...values,
+          [name]: value,
+        };
+        setValues(newValues);
+    }
+
     return(
         <> 
             <Content>
@@ -104,19 +133,19 @@ function Contacto(props) {
             </Content>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
-                        <form ref={form} onSubmit={submit} method='POST'> 
+                        <form onSubmit={handleSubmit} method='POST'> 
                             <fieldset>
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
-                                    <label className="dataTitle" htmlFor="APE_NOMB">Apellido y Nombres:</label>
-                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres"></input>
+                                    <label className="dataTitle" htmlFor="nombre">Apellido y Nombres:</label>
+                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres" value={values.nombre} onChange={handleChange}></input>
                                 </div>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="email">e-m@il:</label>
-                                    <input name="email" className="dataEntry" id="email" placeholder="...@..."></input>
+                                    <input name="email" className="dataEntry" id="email" placeholder="...@..." value={values.email} onChange={handleChange}></input>
                                 </div>
                                 <div className="dataLine"> 
-                                    <textarea name='message' id='message' placeholder='Consulta'></textarea>
+                                    <textarea name='mensaje' id='mensaje' placeholder='Consulta...' value={values.mensaje} onChange={handleChange}></textarea>
                                 </div>
                                 <div>
                                     <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>
