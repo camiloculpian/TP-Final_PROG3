@@ -104,7 +104,7 @@ function Contacto(props) {
             </Content>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={cambiarEstadoModal}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
-                        <form ref={form} onSubmit={submit}> 
+                        <form ref={form} onSubmit={submit} method='POST'> 
                             <fieldset>
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
