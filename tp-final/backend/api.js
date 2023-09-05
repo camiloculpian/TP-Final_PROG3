@@ -13,7 +13,7 @@ const appi = express();
 // para recibir las peticiones del req en formato json
 appi.use(express.json());
 appi.use(express.urlencoded({extended:true}))
-
+appi.use(cors());
 // console.log(process.env);
 
 
@@ -25,7 +25,7 @@ appi.get('/', (req, res)=>{
 	    res.status(200).json({saludo});
 });
 
-appi.options('*', cors()) 
+// appi.options('*', cors()) 
 appi.post('/contacto', cors(), (req, res) => {
     const {nombre, email, mensaje} = req.body['formData'];
     // console.log(data);
@@ -36,9 +36,6 @@ appi.post('/contacto', cors(), (req, res) => {
             pass:process.env.CLAVE
         }
     })
-    console.log(nombre);
-    console.log(email);
-    console.log(mensaje);
 
     //TAREA: mejorar el cuerpo del correo
 	//agregar el mensaje que recibmos en el body 
@@ -54,17 +51,14 @@ appi.post('/contacto', cors(), (req, res) => {
     transporter.sendMail(opciones, (error, info) => {
         if(error){
             console.log('error -> ', error);
-            const respuesta = 'correo no enviado';
+            const respuesta = 'El mensaje no ha sido enviado...';
             res.json({respuesta});
         }else{
             console.log(info);
-            const respuesta = 'correo enviado';
+            const respuesta = 'El mensaje se ha enviado de forma correcta...';
             res.json({respuesta});
         }
     })
-    
-    const data = req.body;
-    res.send(data);
   })
 
 

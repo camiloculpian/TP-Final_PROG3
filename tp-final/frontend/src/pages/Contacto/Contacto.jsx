@@ -11,7 +11,7 @@ function Contacto(props) {
         mensaje: "",
     });
     
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const requestOptions = {
             method: 'POST',
@@ -27,11 +27,11 @@ function Contacto(props) {
                     return Promise.reject(error);
                 }
                 return data;
-                
             }).then(data =>{
                 //ACA MOSTRAR QUE TODO SALIO OK!
-                console.log(data);
+                alert(data['respuesta']);
             }).catch(error => {
+                alert(error);
                 //ACA MOSTRAR QUE TODO SALIO MAL!
                 console.error('There was an error!', error);
             });
