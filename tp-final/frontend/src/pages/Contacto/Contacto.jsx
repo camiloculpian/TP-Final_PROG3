@@ -30,10 +30,9 @@ function Contacto(props) {
             }).then(data =>{
                 //ACA MOSTRAR QUE TODO SALIO OK!
                 alert(data['respuesta']);
-            }).catch(error => {
-                alert(error);
+            }).catch(error => { 
                 //ACA MOSTRAR QUE TODO SALIO MAL!
-                console.error('There was an error!', error);
+                alert(error);
             });
         setFormData({nombre:"",email:"",mensaje:""});
         cambiarEstadoModal();
