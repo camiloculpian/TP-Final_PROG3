@@ -39,7 +39,14 @@ appi.post('/contacto', cors(), (req, res) => {
 
     //TAREA: mejorar el cuerpo del correo
 	//agregar el mensaje que recibmos en el body 
-    const cuerpo = '<h1>Hola llego un correo de ' + nombre + ' </h1>';
+    const cuerpo = '<h1>Hola llego un correo de ' + nombre + ' </h1>'+'\n'+mensaje;
+    
+    const opciones = {
+        from : email,
+        to:'ingo.prog3@gmail.com',
+        subject:'___CONTACTO___'+email,
+        html:cuerpo
+    }
     
     transporter.sendMail(opciones, (error, info) => {
         if(error){
