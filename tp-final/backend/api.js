@@ -41,13 +41,6 @@ appi.post('/contacto', cors(), (req, res) => {
 	//agregar el mensaje que recibmos en el body 
     const cuerpo = '<h1>Hola llego un correo de ' + nombre + ' </h1>';
     
-    const opciones = {
-        from : 'no-reply@tp-bedelia.com.ar',
-        to:'camiloculpian@gmail.com',
-        subject:'___CONTACTO___',
-        html:mensaje
-    }
-    
     transporter.sendMail(opciones, (error, info) => {
         if(error){
             console.log('error -> ', error);
