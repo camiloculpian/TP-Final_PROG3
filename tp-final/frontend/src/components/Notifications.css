@@ -27,7 +27,7 @@
 
 .notificationWait{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(108, 172, 233);
+    background-color: rgb(155, 195, 231);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
     border: #174a97;
@@ -42,7 +42,7 @@
 
 .notificationOK{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(146, 228, 146);
+    background-color: rgb(172, 230, 172);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
     border: #269717;
@@ -62,7 +62,7 @@
 
 .notificationERROR{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(228, 146, 146);
+    background-color: rgb(224, 159, 159);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
     border: #971717;
