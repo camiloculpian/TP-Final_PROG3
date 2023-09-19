@@ -22,7 +22,7 @@ ul.mainDropDowm li {
     padding-left:25px;
     padding-right: 25px;
     border-radius: 5px;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex-direction: column;
 }
 

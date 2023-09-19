@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 
 import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
+import Notification from '../../components/Notifications';
+
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
+    const [estadoEspera, setEstadoEspera] = useState(false);
     
     const [formData, setFormData] = useState({
         nombre: "",
@@ -12,6 +15,7 @@ function Contacto(props) {
     });
     
     const handleSubmit = async (e) => {
+        setEstadoEspera(true);
         e.preventDefault();
         const requestOptions = {
             method: 'POST',
@@ -36,6 +40,7 @@ function Contacto(props) {
             });
         setFormData({nombre:"",email:"",mensaje:""});
         cambiarEstadoModal();
+        setEstadoEspera(false);
     }
     
     function handleChange(e) {
@@ -133,6 +138,9 @@ function Contacto(props) {
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
                 </nav>
             </Content>
+            <Notification state={estadoEspera} onChange={()=>setEstadoEspera(!estadoEspera)} >
+                <p>Enviando Mensaje</p>
+            </Notification>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form onSubmit={handleSubmit} method='POST'> 

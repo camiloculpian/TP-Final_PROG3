@@ -1,0 +1,41 @@
+.overlay{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.301);
+    /* padding: 40px; */
+    padding-top: 250px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.notificationContent{
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 20px; */
+    min-width: 300px;
+    /*min-height: 100px; */
+    position: relative;
+    /* border-radius: 15px; */
+    padding: 15px;
+    font-weight: 400;
+    font-size: large;
+}
+
+.notificationWait{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(108, 172, 233);
+    /* border: solid 1px rgb(28, 71, 95); */
+    /* color: rgb(28, 71, 95); */
+    border: #174a97;
+    color: #174a97;
+    border-radius: 10px;
+}
+
+.iconWAIT{
+    fill: #174a97;
+    /* fill: rgb(28, 71, 95); */
+}
