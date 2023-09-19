@@ -39,3 +39,70 @@
     fill: #174a97;
     /* fill: rgb(28, 71, 95); */
 }
+
+.notificationOK{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(146, 228, 146);
+    /* border: solid 1px rgb(28, 71, 95); */
+    /* color: rgb(28, 71, 95); */
+    border: #269717;
+    color: #269717;
+    border-radius: 10px;
+}
+
+.iconOK{
+    fill: #269717;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseOK{
+    fill: #269717;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.notificationERROR{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(228, 146, 146);
+    /* border: solid 1px rgb(28, 71, 95); */
+    /* color: rgb(28, 71, 95); */
+    border: #971717;
+    color: #971717;
+    border-radius: 10px;
+}
+
+.iconERROR{
+    fill: #971717;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseOK{
+    fill: #269717;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseERROR{
+    fill: #971717;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseNotification{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease all;
+    border-radius: 5px;
+}
+
+.buttonCloseNotification svg{
+    padding: 10%;
+}
+
+.buttonCloseNotification:hover{
+    /* background: #F2F2F2; */
+    /* fill: #000000; */
+}

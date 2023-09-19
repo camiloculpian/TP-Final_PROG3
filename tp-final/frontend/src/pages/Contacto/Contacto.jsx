@@ -6,8 +6,11 @@ import Notification from '../../components/Notifications';
 
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
-    const [estadoEspera, setEstadoEspera] = useState(false);
-    
+    const [estadoEspera, setShowEstadoEspera] = useState(false);
+    const [estadoOK, setShowEstadoOK] = useState(false);
+    const [estadoERROR, setShowEstadoERROR] = useState(false);
+    const [ERROR, setERROR] = useState('');
+
     const [formData, setFormData] = useState({
         nombre: "",
         email: "",
@@ -15,7 +18,7 @@ function Contacto(props) {
     });
     
     const handleSubmit = async (e) => {
-        setEstadoEspera(true);
+        setShowEstadoEspera(true);
         e.preventDefault();
         const requestOptions = {
             method: 'POST',
@@ -32,15 +35,15 @@ function Contacto(props) {
                 }
                 return data;
             }).then(data =>{
-                //ACA MOSTRAR QUE TODO SALIO OK!
-                alert(data['respuesta']);
+                setShowEstadoEspera(false);
+                setShowEstadoOK(true);
             }).catch(error => { 
-                //ACA MOSTRAR QUE TODO SALIO MAL!
-                alert(error);
+                setShowEstadoEspera(false);
+                setERROR(error.message);
+                setShowEstadoERROR(true);
             });
         setFormData({nombre:"",email:"",mensaje:""});
         cambiarEstadoModal();
-        setEstadoEspera(false);
     }
     
     function handleChange(e) {
@@ -138,8 +141,17 @@ function Contacto(props) {
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
                 </nav>
             </Content>
-            <Notification state={estadoEspera} onChange={()=>setEstadoEspera(!estadoEspera)} >
+            <Notification state={estadoEspera} >
                 <p>Enviando Mensaje</p>
+            </Notification>
+            <Notification state={estadoOK} notifType='OK' onChangeState={setShowEstadoOK}>
+                <p>El mensaje se envio de manera correcta...</p>
+            </Notification>
+            <Notification state={estadoERROR} notifType='ERROR' onChangeState={setShowEstadoERROR}>
+                <>
+                <p>El mensaje no pudo ser evviado debido al siguiente error</p>
+                <h4>{ERROR}</h4>
+                </>
             </Notification>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">

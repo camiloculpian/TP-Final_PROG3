@@ -4,7 +4,7 @@ nav{
 
 ul.mainDropDowm {
     display: flex;
-    flex-grow: 1;
+    /* flex-grow: 1; */
     flex: auto;
     margin-left: 80px;
     width: 100%;
