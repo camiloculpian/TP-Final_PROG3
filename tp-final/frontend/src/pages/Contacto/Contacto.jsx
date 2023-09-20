@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
-import Notification from '../../components/Notifications';
+import {NotificationERROR, NotificationOK, NotificationWAIT} from '../../components/Notifications';
 
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
@@ -141,18 +141,18 @@ function Contacto(props) {
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
                 </nav>
             </Content>
-            <Notification state={estadoEspera} >
+            <NotificationWAIT state={estadoEspera} >
                 <p>Enviando Mensaje</p>
-            </Notification>
-            <Notification state={estadoOK} notifType='OK' onChangeState={setShowEstadoOK}>
+            </NotificationWAIT>
+            <NotificationOK state={estadoOK} onChangeState={setShowEstadoOK}>
                 <p>El mensaje se envio de manera correcta...</p>
-            </Notification>
-            <Notification state={estadoERROR} notifType='ERROR' onChangeState={setShowEstadoERROR}>
+            </NotificationOK>
+            <NotificationERROR state={estadoERROR} onChangeState={setShowEstadoERROR}>
                 <>
-                <p>El mensaje no pudo ser evviado debido al siguiente error</p>
+                <p>El mensaje no pudo ser enviado debido al siguiente error</p>
                 <h4>{ERROR}</h4>
                 </>
-            </Notification>
+            </NotificationERROR>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form onSubmit={handleSubmit} method='POST'> 

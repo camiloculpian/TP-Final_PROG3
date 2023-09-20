@@ -25,7 +25,7 @@
     font-size: large;
 }
 
-.notificationWait{
+.notificationINFO{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: rgb(155, 195, 231);
     /* border: solid 1px rgb(28, 71, 95); */
@@ -35,8 +35,33 @@
     border-radius: 10px;
 }
 
-.iconWAIT{
+.iconINFO{
     fill: #174a97;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseINFO{
+    fill: #174a97;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.notificationWARN{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(231, 213, 155);
+    /* border: solid 1px rgb(28, 71, 95); */
+    /* color: rgb(28, 71, 95); */
+    border: #976a17;
+    color: #976a17;
+    border-radius: 10px;
+}
+
+.iconWARN{
+    fill: #976a17;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseWARN{
+    fill: #976a17;
     /* fill: rgb(28, 71, 95); */
 }
 
