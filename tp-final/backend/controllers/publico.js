@@ -38,11 +38,9 @@ exports.enviarCorreo = async (req, res) =>{
 
     transporter.sendMail(opciones, (error, info) => {
         if (error) {
-            console.log('error -> ', error);
-            const respuesta = 'El mensaje no ha sido enviado...';
+            const respuesta = 'El mensaje NO ha sido enviado...';
             res.json({ respuesta });
         } else {
-            console.log(info);
             const respuesta = 'El mensaje se ha enviado de forma correcta...';
             res.json({ respuesta });
         }
