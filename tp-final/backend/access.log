@@ -1,0 +1,4 @@
+::ffff:127.0.0.1 - - [21/Sep/2023:09:41:37 +0000] "OPTIONS /contacto HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [21/Sep/2023:09:41:38 +0000] "POST /contacto HTTP/1.1" 404 148 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [21/Sep/2023:09:44:18 +0000] "OPTIONS /api/v1/publico/contacto HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [21/Sep/2023:09:46:40 +0000] "OPTIONS /api/v1/publico/contacto HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"

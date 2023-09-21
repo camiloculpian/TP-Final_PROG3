@@ -25,7 +25,7 @@ function Contacto(props) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ formData })
         };
-        fetch('http://localhost:3005/contacto', requestOptions)
+        fetch('http://localhost:3005/api/v1/publico/contacto', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();

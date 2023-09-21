@@ -1,4 +1,4 @@
-const estudianteBD = require('../baseDatos/estudianteBD');
+const estudianteBD = require('../dataBase/estudianteBD');
 
 buscarPorId = async(req, res) => {
     try{

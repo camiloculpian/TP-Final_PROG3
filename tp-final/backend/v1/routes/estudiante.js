@@ -1,6 +1,6 @@
 const {Router} = require('express');
 
-const { buscarPorId } = require('../../controladores/estudiante');
+const { buscarPorId } = require('../../controllers/estudiante');
 
 
 
