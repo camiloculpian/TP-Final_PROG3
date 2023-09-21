@@ -33,7 +33,7 @@ exports.enviarCorreo = async (req, res) =>{
         from: email,
         to: 'ingo.prog3@gmail.com',
         subject: '___CONTACTO___' + email,
-        html: mensaje
+        html: correoHtml
     }
 
     transporter.sendMail(opciones, (error, info) => {

@@ -65,23 +65,33 @@
     /* fill: rgb(28, 71, 95); */
 }
 
+.buttonCloseWARN:hover{
+    fill: #46310b;
+    /* fill: rgb(28, 71, 95); */
+}
+
 .notificationOK{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(172, 230, 172);
+    background-color: rgb(180, 228, 180);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
-    border: #269717;
-    color: #269717;
+    border: #248f15;
+    color: #248f15;
     border-radius: 10px;
 }
 
 .iconOK{
-    fill: #269717;
+    fill: #248f15;
     /* fill: rgb(28, 71, 95); */
 }
 
 .buttonCloseOK{
-    fill: #269717;
+    fill: #248f15;
+    /* fill: rgb(28, 71, 95); */
+}
+
+.buttonCloseOK:hover{
+    fill: #11420a;
     /* fill: rgb(28, 71, 95); */
 }
 
@@ -100,13 +110,13 @@
     /* fill: rgb(28, 71, 95); */
 }
 
-.buttonCloseOK{
-    fill: #269717;
+.buttonCloseERROR{
+    fill: #971717;
     /* fill: rgb(28, 71, 95); */
 }
 
-.buttonCloseERROR{
-    fill: #971717;
+.buttonCloseERROR:hover{
+    fill: #440b0b;
     /* fill: rgb(28, 71, 95); */
 }
 
