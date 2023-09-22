@@ -45,6 +45,9 @@ function SearchStudent({returnStudent}){
                         <button type='submit' className="searchButton"></button>
                     </div>
                 </form>
+                {/*ESTA TABLA DEBERIA ESTAR EN UN COMONENTE AL QUE SE LE PASE UN JSON CON LOS DATOS Y QUE SI SON MUCHOS LOS DIVIDA EN PAGINAS
+                 CON UN INDICE ABAJO Y QUE REIBA EL PARAMETRO DE LA FUNCION DE DEVOLUCION DE DATOS setReturnStudent Y LO BINDEE A CADA ESTUDIANTE
+                 PARA QUE CUANDO SE HAGA CLICK O DOBLECLICK EN ALGUNO LO RETORNE*/}
                 <table className='searchTable'>
                     <thead>
                         <tr>
@@ -57,6 +60,7 @@ function SearchStudent({returnStudent}){
                     </thead>
                     <tbody id="LISTADO_ESTUDIANTES_DINAMICO_MODAL"></tbody>
                 </table>
+                {/** SOLO DE PUEBAS SACAR DESPUES */}
                 <button className="botonComun" style={{float: 'left'}} onClick={setReturnStudent} type="button">Aceptar</button>
             </div>
 
