@@ -9,7 +9,9 @@ function SearchStudent({returnStudent}){
     });
 
     const [student, setStudent] = useState([{ 
-        idEstudiante: ''
+        idEstudiante: '',
+        nombreEstudiante: '',
+        apellidoEstudiante: '',
     }]);
 
     function handleChange(e) {
@@ -23,12 +25,13 @@ function SearchStudent({returnStudent}){
     }
 
     const setReturnStudent = () =>{
+        setStudent({idEstudiante:'1',nombreEstudiante:formData.nombreBusqueda.toString(), apellidoEstudiante:formData.apellidoBusqueda.toString()});
         returnStudent(student);
     }
 
     const searchStudent = async (e) =>{
         e.preventDefault();
-        console.log('Buscar Estudiante con nombre: '+formData.nombreBusqueda+', y apellido: '+formData.apellidoBusqueda);
+        //console.log('Buscar Estudiante con nombre: '+formData.nombreBusqueda+', y apellido: '+formData.apellidoBusqueda);
     }
 
     return (
