@@ -11,6 +11,7 @@ function EditStudent(){
         // en student tengo el estudiante sobre el que necesito trabajar....
         console.log(student);
     }
+    
     // const [message, setMessage] = useState(props.message)
     // const form = useRef(null)
     // const searchStudent = e => {

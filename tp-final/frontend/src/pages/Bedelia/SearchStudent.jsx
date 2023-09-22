@@ -8,11 +8,11 @@ function SearchStudent({returnStudent}){
         apellidoBusqueda: "",
     });
 
-    const [student, setStudent] = useState([{ 
+    const [student, setStudent] = useState({ 
         idEstudiante: '',
         nombreEstudiante: '',
         apellidoEstudiante: '',
-    }]);
+    });
 
     function handleChange(e) {
         const { target } = e;
