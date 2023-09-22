@@ -42,7 +42,7 @@ function NotificationOK({children, state, onChangeState}) {
     return(
             <>
                 {state &&
-                    <div className='overlay'>
+                    <div className='notifOverlay'>
                         <div className='notificationOK'>
                             <div className='notificationContent'>
                                 <button className={'buttonCloseNotification '} onClick={() => onChangeState(!state)}>
@@ -70,7 +70,7 @@ function NotificationERROR({children, state, onChangeState}) {
     return(
             <>
                 {state &&
-                    <div className='overlay'>
+                    <div className='notifOverlay'>
                         <div className='notificationERROR'>
                             <div className='notificationContent'>
                                 <button className={'buttonCloseNotification '} onClick={() => onChangeState(!state)}>
@@ -97,7 +97,7 @@ function NotificationINFO({children, state, onChangeState}) {
     return(
             <>
                 {state &&
-                    <div className='overlay'>
+                    <div className='notifOverlay'>
                         <div className='notificationINFO'>
                             <div className='notificationContent'>
                                 <button className={'buttonCloseNotification '} onClick={() => onChangeState(!state)}>
@@ -125,7 +125,7 @@ function NotificationWARN({children, state, onChangeState}) {
     return(
             <>
                 {state &&
-                    <div className='overlay'>
+                    <div className='notifOverlay'>
                         <div className='notificationWARN'>
                             <div className='notificationContent'>
                                 <button className={'buttonCloseNotification '} onClick={() => onChangeState(!state)}>
@@ -153,7 +153,7 @@ function NotificationWAIT({children, state, onChangeState}) {
     return(
             <>
                 {state &&
-                    <div className='overlay'>
+                    <div className='notifOverlay'>
                         <div className='notificationINFO'>
                             <div className='notificationContent'>
                                 {children &&

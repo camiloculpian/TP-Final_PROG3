@@ -20,3 +20,5 @@
 ::1 - - [21/Sep/2023:10:40:18 +0000] "GET /api/v1/estudiante HTTP/1.1" 404 156 "-" "PostmanRuntime/7.32.1"
 ::1 - - [21/Sep/2023:10:40:23 +0000] "GET /api/v1/estudiante/4 HTTP/1.1" 404 158 "-" "PostmanRuntime/7.32.1"
 ::1 - - [21/Sep/2023:10:42:49 +0000] "GET /api/v1/estudiante/estudiantes/4 HTTP/1.1" 200 101 "-" "PostmanRuntime/7.32.1"
+::1 - - [21/Sep/2023:12:09:56 +0000] "GET /api/v1/estudiante/estudiantes/4 HTTP/1.1" 200 104 "-" "PostmanRuntime/7.32.1"
+::1 - - [21/Sep/2023:12:13:33 +0000] "GET /api/v1/estudiante/estudiantes/4 HTTP/1.1" 200 101 "-" "PostmanRuntime/7.32.1"

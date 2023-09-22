@@ -10,7 +10,7 @@ buscarPorId = async(req, res) => {
 
         const estudiante = await estudianteBD.buscarPorId(idEstudiante);
 
-        res.json({estado:'OK', dato:estudiante});
+        res.json({status:'OK', data:estudiante});
 
     }catch (exec){
         throw exec;

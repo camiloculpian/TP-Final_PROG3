@@ -1,4 +1,4 @@
-.overlay{
+.notifOverlay{
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -10,6 +10,7 @@
     padding-top: 250px;
     align-items: flex-start;
     justify-content: center;
+    z-index: 200;
 }
 
 .notificationContent{
@@ -23,6 +24,7 @@
     padding: 15px;
     font-weight: 400;
     font-size: large;
+    z-index: 200;
 }
 
 .notificationINFO{
@@ -47,21 +49,21 @@
 
 .notificationWARN{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(231, 213, 155);
+    background-color: rgb(254, 255, 183);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
-    border: #976a17;
-    color: #976a17;
+    border: #e6b223;
+    color: #e6b223;
     border-radius: 10px;
 }
 
 .iconWARN{
-    fill: #976a17;
+    fill: #e6b223;
     /* fill: rgb(28, 71, 95); */
 }
 
 .buttonCloseWARN{
-    fill: #976a17;
+    fill: #e6b223;
     /* fill: rgb(28, 71, 95); */
 }
 
@@ -72,7 +74,7 @@
 
 .notificationOK{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(180, 228, 180);
+    background-color: rgb(195, 230, 195);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
     border: #248f15;

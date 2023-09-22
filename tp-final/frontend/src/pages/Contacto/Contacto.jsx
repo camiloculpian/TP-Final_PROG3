@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 
 import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
-import {NotificationERROR, NotificationOK, NotificationWAIT} from '../../components/Notifications';
+import {NotificationERROR, NotificationOK, NotificationWAIT, NotificationWARN} from '../../components/Notifications';
 
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
     const [estadoEspera, setShowEstadoEspera] = useState(false);
     const [estadoOK, setShowEstadoOK] = useState(false);
+    const [estadoWARN, setShowEstadoWARN] = useState(false);
     const [estadoERROR, setShowEstadoERROR] = useState(false);
     const [ERROR, setERROR] = useState('');
 
@@ -18,32 +19,39 @@ function Contacto(props) {
     });
     
     const handleSubmit = async (e) => {
-        setShowEstadoEspera(true);
         e.preventDefault();
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ formData })
-        };
-        fetch('http://localhost:3005/api/v1/publico/contacto', requestOptions)
-            .then(async response => {
-                const isJson = response.headers.get('content-type')?.includes('application/json');
-                const data = isJson && await response.json();
-                if (!response.ok) {
-                    const error = (data && data.message) || response.status;
-                    return Promise.reject(error);
-                }
-                return data;
-            }).then(data =>{
-                setShowEstadoEspera(false);
-                setShowEstadoOK(true);
-            }).catch(error => { 
-                setShowEstadoEspera(false);
-                setERROR(error.message);
-                setShowEstadoERROR(true);
-            });
-        setFormData({nombre:"",email:"",mensaje:""});
-        cambiarEstadoModal();
+        if(formData.nombre!==''&& formData.email !== '' && formData.mensaje!=='')
+        {
+            setShowEstadoEspera(true);
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ formData })
+            };
+            fetch('http://localhost:3005/api/v1/publico/contacto', requestOptions)
+                .then(async response => {
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+                    if (!response.ok) {
+                        const error = (data && data.message) || response.status;
+                        return Promise.reject(error);
+                    }
+                    return data;
+                }).then(data =>{
+                    setShowEstadoEspera(false);
+                    setShowEstadoOK(true);
+                }).catch(error => { 
+                    setShowEstadoEspera(false);
+                    setERROR(error.message);
+                    setShowEstadoERROR(true);
+                });
+            setFormData({nombre:"",email:"",mensaje:""});
+            cambiarEstadoModal();
+        }else{
+            cambiarEstadoModal();
+            setShowEstadoWARN(true);
+            cambiarEstadoModal(true);
+        }
     }
     
     function handleChange(e) {
@@ -153,6 +161,9 @@ function Contacto(props) {
                 <h4>{ERROR}</h4>
                 </>
             </NotificationERROR>
+            <NotificationWARN state={estadoWARN} onChangeState={setShowEstadoWARN}>
+                <p>Por favor verifique que los campos no esten vacios...</p>
+            </NotificationWARN>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form onSubmit={handleSubmit} method='POST'> 
@@ -160,14 +171,14 @@ function Contacto(props) {
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="nombre">Apellido y Nombres:</label>
-                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres" value={formData.nombre} onChange={handleChange}></input>
+                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres" value={formData.nombre} onChange={handleChange} required></input>
                                 </div>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="email">e-m@il:</label>
-                                    <input name="email" className="dataEntry" id="email" placeholder="...@..." value={formData.email} onChange={handleChange}></input>
+                                    <input name="email" className="dataEntry" id="email" placeholder="...@..." value={formData.email} onChange={handleChange} required></input>
                                 </div>
                                 <div className="dataLine"> 
-                                    <textarea name='mensaje' id='mensaje' placeholder='Consulta...' value={formData.mensaje} onChange={handleChange}></textarea>
+                                    <textarea name='mensaje' id='mensaje' placeholder='Consulta...' value={formData.mensaje} onChange={handleChange} required></textarea>
                                 </div>
                                 <div>
                                     <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>
