@@ -22,3 +22,7 @@
 ::1 - - [21/Sep/2023:10:42:49 +0000] "GET /api/v1/estudiante/estudiantes/4 HTTP/1.1" 200 101 "-" "PostmanRuntime/7.32.1"
 ::1 - - [21/Sep/2023:12:09:56 +0000] "GET /api/v1/estudiante/estudiantes/4 HTTP/1.1" 200 104 "-" "PostmanRuntime/7.32.1"
 ::1 - - [21/Sep/2023:12:13:33 +0000] "GET /api/v1/estudiante/estudiantes/4 HTTP/1.1" 200 101 "-" "PostmanRuntime/7.32.1"
+::ffff:127.0.0.1 - - [22/Sep/2023:09:36:37 +0000] "OPTIONS /api/v1/publico/contacto HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [22/Sep/2023:09:36:43 +0000] "POST /api/v1/publico/contacto HTTP/1.1" 200 61 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [22/Sep/2023:10:14:25 +0000] "OPTIONS /api/v1/publico/contacto HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [22/Sep/2023:10:14:28 +0000] "POST /api/v1/publico/contacto HTTP/1.1" 200 61 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
