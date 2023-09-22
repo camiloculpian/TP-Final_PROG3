@@ -2,10 +2,11 @@ import { useState } from 'react';
 import './Bedelia.css'
 
 function SearchStudent({returnStudent}){
-    const [valorBusqueda, setValorBusqueda] = useState([{
-        apellidoBusqueda: '',
-        nombreBusqueda: ''
-    }]) 
+
+    const [formData, setFormData] = useState({
+        nombreBusqueda: "",
+        apellidoBusqueda: "",
+    });
 
     const [student, setStudent] = useState([{ 
         idEstudiante: ''
@@ -15,10 +16,10 @@ function SearchStudent({returnStudent}){
         const { target } = e;
         const { name, value } = target;
         const newValues = {
-          ...valorBusqueda,
+          ...formData,
           [name]: value,
         };
-        setValorBusqueda(newValues);
+        setFormData(newValues);
     }
 
     const setReturnStudent = () =>{
@@ -27,17 +28,17 @@ function SearchStudent({returnStudent}){
 
     const searchStudent = async (e) =>{
         e.preventDefault();
-        console.log('Buscar Estudiante con nombre: '+valorBusqueda.nombreBusqueda+', y apellido: '+valorBusqueda.apellidoBusqueda);
+        console.log('Buscar Estudiante con nombre: '+formData.nombreBusqueda+', y apellido: '+formData.apellidoBusqueda);
     }
 
     return (
             <div>
-                <form onSubmit={searchStudent}>
+                <form onSubmit={searchStudent}  method='GET'>
                     <div className="dataLine">
                         <label className="dataTitle" htmlFor="apellidoBusqueda">Apellido:</label>
-                        <input className="dataEntry" name="apellidoBusqueda" autoFocus="" placeholder="Ingrese Apellido" value={valorBusqueda.apellidoBusqueda} onChange={handleChange}/>
+                        <input className="dataEntry" id="apellidoBusqueda" name="apellidoBusqueda" autoFocus="" placeholder="Ingrese Apellido" value={formData.apellidoBusqueda} onChange={handleChange}></input>
                         <label className="dataTitle" htmlFor="nombreBusqueda">Nombre:</label>
-                        <input className="dataEntry" name="nombreBusqueda" autoFocus="" placeholder="Ingrese Nombre" value={valorBusqueda.nombreBusqueda} onChange={handleChange}/>
+                        <input className="dataEntry" id="nombreBusqueda" name="nombreBusqueda" autoFocus="" placeholder="Ingrese Nombre" value={formData.nombreBusqueda} onChange={handleChange}></input>
                         <button type='submit' className="searchButton"></button>
                     </div>
                 </form>

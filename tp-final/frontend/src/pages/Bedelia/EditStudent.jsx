@@ -6,7 +6,7 @@ import SearchStudent from './SearchStudent';
 function EditStudent(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
-    const [student, setStudent] = useState([{ idEstudiante: '' }]);
+    // const [student, setStudent] = useState([{ idEstudiante: '' }]);
     const setReturnStudent = (student) =>{
         // en student tengo el estudiante sobre el que necesito trabajar....
         console.log(student);
