@@ -7,10 +7,9 @@ function CountrySelect(){
     useEffect(()=>{
         const consulta = `https://restcountries.com/v3.1/all`;
 
-        fetch(consulta/*, { 'mode': 'cors', 'headers': { 'Access-Control-Allow-Origin': '*'}}*/)
+        fetch(consulta)
         .then( resp => {
             resp.json().then(data => {
-                console.log(data);
                 setDatos(data);
             } )
         })
@@ -20,7 +19,6 @@ function CountrySelect(){
     }, []);
 
     const changeSelected = event => {
-        console.log(event.target.value);
         setSelected(event.target.value);
       };
 

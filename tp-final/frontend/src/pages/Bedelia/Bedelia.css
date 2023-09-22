@@ -47,3 +47,7 @@ button.searchButton:hover{
     background-color: #ebebeb;
     color: #001E2D
 }
+
+.searchTable{
+    width: 100%;
+}

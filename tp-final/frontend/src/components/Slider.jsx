@@ -21,7 +21,6 @@ function Slider(props){
           if (!isAnimating) {
             setCurrentIndex(index);
             setIsAnimating(true);
-    
             setTimeout(() => {
               setIsAnimating(false);
             }, settings.speed);
@@ -31,12 +30,10 @@ function Slider(props){
     );
 
     const goNext  = useCallback(() => {
-        console.log('const goNext = (): '+currentIndex >= news?.length - 1 ? 0 : currentIndex + 1);
         goTo(currentIndex >= news?.length - 1 ? 0 : currentIndex + 1);
       }, [currentIndex, goTo, news?.length]);
 
     const goPrev = () => {
-        console.log('const goPrev = (): '+currentIndex <= 0 ? news?.length - 1 : currentIndex - 1);
         goTo(currentIndex <= 0 ? news?.length - 1 : currentIndex - 1);
     };
     

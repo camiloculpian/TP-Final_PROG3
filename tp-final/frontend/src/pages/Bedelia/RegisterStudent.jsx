@@ -1,5 +1,5 @@
 import CountrySelect from "../../components/CountrySelect";
-
+import './Bedelia.css'
 function RegisterStudent(){
     return (
         <div className="moduleContent">

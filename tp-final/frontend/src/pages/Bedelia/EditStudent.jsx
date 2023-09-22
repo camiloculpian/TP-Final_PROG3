@@ -1,21 +1,27 @@
 import CountrySelect from '../../components/CountrySelect';
 import Modal from '../../components/Modal';
-import { useRef, useState } from "react";
+import { useState } from "react";
+import SearchStudent from './SearchStudent';
 
-function EditStudent(props){
+function EditStudent(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
-    // const [message, setMessage] = useState(props.message)
-    const form = useRef(null)
-    const searchStudent = e => {
-        e.preventDefault()
-        const data = new FormData(form.current)
-        // fetch('/api', { method: 'POST', body: data })
-        //   .then(res => res.json())
-        //   .then(json => setMessage(json.message))
-        alert(data);
-        cambiarEstadoModal();
+    const [student, setStudent] = useState([{ idEstudiante: '' }]);
+    const setReturnStudent = (student) =>{
+        // en student tengo el estudiante sobre el que necesito trabajar....
+        console.log(student);
     }
+    // const [message, setMessage] = useState(props.message)
+    // const form = useRef(null)
+    // const searchStudent = e => {
+    //     e.preventDefault()
+    //     const data = new FormData(form.current)
+    //     // fetch('/api', { method: 'POST', body: data })
+    //     //   .then(res => res.json())
+    //     //   .then(json => setMessage(json.message))
+    //     alert(data);
+    //     cambiarEstadoModal();
+    // }
 
     return (
         <>
@@ -46,8 +52,8 @@ function EditStudent(props){
                 </fieldset>
             </div>
 
-            <Modal title={''} state={estadoModal} changeState={cambiarEstadoModal}>
-                <div className="moduleContent" id="modulo_registrar_inscripcion">
+            <Modal title={'Buscar Estudiante'} state={estadoModal} changeState={cambiarEstadoModal}>
+                {/* <div className="moduleContent" id="modulo_registrar_inscripcion">
                     <form ref={form} onSubmit={searchStudent}> 
                         <fieldset>
                             <legend>'Busqueda de Estudiante'</legend>
@@ -62,7 +68,8 @@ function EditStudent(props){
                             </div>
                         </fieldset>
                     </form>
-                </div>
+                </div> */}
+                <SearchStudent returnStudent={setReturnStudent}/>
             </Modal>
         </>
     );

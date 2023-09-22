@@ -8,7 +8,6 @@ function News() {
         const tema = 'ciencia';
         const apiKey = 'a27692ea8dd84e2aa20404bfe91fdecb';
         const consulta = `https://newsapi.org/v2/everything?q=${tema}&sortBy=publishedAt&pageSize=15&language=es&apiKey=${apiKey}`;
-
         fetch(consulta)
         .then( resp => {
             resp.json().then(data => {
