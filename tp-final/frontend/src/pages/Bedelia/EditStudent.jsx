@@ -6,23 +6,10 @@ import SearchStudent from './SearchStudent';
 function EditStudent(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
-    // const [student, setStudent] = useState([{ idEstudiante: '' }]);
     const setReturnStudent = (student) =>{
         // en student tengo el estudiante sobre el que necesito trabajar....
         console.log(student);
     }
-    
-    // const [message, setMessage] = useState(props.message)
-    // const form = useRef(null)
-    // const searchStudent = e => {
-    //     e.preventDefault()
-    //     const data = new FormData(form.current)
-    //     // fetch('/api', { method: 'POST', body: data })
-    //     //   .then(res => res.json())
-    //     //   .then(json => setMessage(json.message))
-    //     alert(data);
-    //     cambiarEstadoModal();
-    // }
 
     return (
         <>
@@ -54,22 +41,6 @@ function EditStudent(){
             </div>
 
             <Modal title={'Buscar Estudiante'} state={estadoModal} changeState={cambiarEstadoModal}>
-                {/* <div className="moduleContent" id="modulo_registrar_inscripcion">
-                    <form ref={form} onSubmit={searchStudent}> 
-                        <fieldset>
-                            <legend>'Busqueda de Estudiante'</legend>
-                            <div className="dataLine">
-                                <label className="dataTitle" htmlFor="NOMBRE">Buscar por:</label>
-                                <select name="CRBUSQUEDA" className="dataEntry" id="NACIONALIDAD">
-                                    <option value="DNI" selected>DNI</option>
-                                    <option value="APENOMB">Apellido y Nombre</option>
-                                </select>
-                                <input name="NOMBRE" className="dataEntry" id="NOMBRE" autoFocus></input>
-                                <button className="searchButton" type='button' onClick={(cambiarEstadoModal)}></button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div> */}
                 <SearchStudent returnStudent={setReturnStudent}/>
             </Modal>
         </>
