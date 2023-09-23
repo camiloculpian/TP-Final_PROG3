@@ -22,6 +22,9 @@ const router = Router();
 
 router.get('/lookup?', buscar);
 
-router.post('/add/dni/:apellido/:nombre/')
+router.post('/add', agregar)
+
+router.post('/test', test)
+
 
 module.exports = router;
