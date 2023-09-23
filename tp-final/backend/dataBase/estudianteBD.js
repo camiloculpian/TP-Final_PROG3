@@ -2,16 +2,7 @@ const conexion = require('./conexionBD');
 
 const buscarPorId = async (idEstudiante) => {
 
-    const consulta = `SELECT  dni, nombre, apellido,
-    (CASE
-        WHEN nacionalidad = 0 THEN 'arg'
-        WHEN nacionalidad = 1 THEN 'uru'
-        WHEN nacionalidad = 2 THEN 'chi'
-        WHEN nacionalidad = 3 THEN 'par'
-        WHEN nacionalidad = 4 THEN 'bra'
-        WHEN nacionalidad = 5 THEN 'bol'
-        ELSE ''
-    END) AS nacionalidad 
+    const consulta = `SELECT *
     FROM estudiante 
     WHERE activo = 1 AND idEstudiante = ?`;
 
@@ -20,11 +11,21 @@ const buscarPorId = async (idEstudiante) => {
     return estudiante;
 }
 
-// const crear = async () => {}
-// const editar = async () => {}
-// const buscarTodos = async () => {}
-// const eliminar = async () => {}
+const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
+    console.log('const buscarPorApeNomb = async ('+apeEstudiante+','+nombEstudiante+') => {');
+
+    const consulta = `SELECT *
+    FROM estudiante 
+    WHERE activo = 1 AND apellido LIKE ? AND nombre LIKE ?`;
+    if(!apeEstudiante) apeEstudiante = '';
+    if(!nombEstudiante) nombEstudiante = '';
+
+    const [estudiante] = await conexion.query(consulta,[apeEstudiante + '%',nombEstudiante + '%']);    
+
+    return estudiante;
+}
 
 module.exports = {
     buscarPorId,
+    buscarPorApeNomb,
 }

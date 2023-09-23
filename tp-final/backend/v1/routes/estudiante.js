@@ -1,7 +1,6 @@
 const {Router} = require('express');
 
-const { buscarPorId } = require('../../controllers/estudiante');
-
+const { buscarPorId, buscarPorApeNomb } = require('../../controllers/estudiante');
 
 
 const router = Router();
@@ -20,8 +19,9 @@ const router = Router();
 // router.get('/estudientes');
 
 //buscarPorID
-router.get('/estudiantes/:idEstudiante', buscarPorId);
 
+router.get('/lookup?', buscar);
 
+router.post('/add/dni/:apellido/:nombre/')
 
 module.exports = router;
