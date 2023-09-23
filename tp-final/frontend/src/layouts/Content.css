@@ -266,7 +266,7 @@ button.botonComun {
     color:#ebebeb;
     height:40px;
     padding:10px 10px;
-    border: none;
+    border: 1px solid;
     width: auto;
 }
 
