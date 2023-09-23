@@ -8,11 +8,31 @@ function SearchStudent({returnStudent}){
         apellidoBusqueda: "",
     });
 
-    const [student, setStudent] = useState({ 
-        idEstudiante: '',
-        nombreEstudiante: '',
-        apellidoEstudiante: '',
-    });
+    // {
+    //     "idEstudiante": 4,
+    //     "dni": 43264515,
+    //     "nombre": "Mateo",
+    //     "apellido": "Barainca",
+    //     "fechaNacimiento": null,
+    //     "nacionalidad": 0,
+    //     "correoElectronico": "mateob@correo.com",
+    //     "celular": null,
+    //     "foto": null,
+    //     "activo": 1
+    // }
+
+    // const [student, setStudent] = useState({ 
+    //     idEstudiante: null,
+    //     dni: null,
+    //     nombre: null,
+    //     apellido: null,
+    //     fechaNacimiento: null,
+    //     nacionalidad: null,
+    //     correoElectronico: null,
+    //     celular: null,
+    //     foto: null,
+    //     activo: null
+    // });
 
     function handleChange(e) {
         const { target } = e;
@@ -25,7 +45,12 @@ function SearchStudent({returnStudent}){
     }
 
     const setReturnStudent = () =>{
-        setStudent({idEstudiante:'1',nombreEstudiante:formData.nombreBusqueda.toString(), apellidoEstudiante:formData.apellidoBusqueda.toString()});
+        // setStudent({idEstudiante:'1',nombre:formData.nombreBusqueda.toString(), apellido:formData.apellidoBusqueda.toString()});
+        const student = {
+            idEstudiante:'1',
+            nombre:formData.nombreBusqueda.toString(),
+            apellido:formData.apellidoBusqueda.toString(),
+        }
         returnStudent(student);
     }
 

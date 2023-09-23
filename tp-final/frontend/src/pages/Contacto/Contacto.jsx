@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 
 import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
-import {NotificationERROR, NotificationOK, NotificationWAIT, NotificationWARN} from '../../components/Notifications';
+import {Notification, NotificationWAIT} from '../../components/Notifications';
 
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
     const [estadoEspera, setShowEstadoEspera] = useState(false);
-    const [estadoOK, setShowEstadoOK] = useState(false);
-    const [estadoWARN, setShowEstadoWARN] = useState(false);
-    const [estadoERROR, setShowEstadoERROR] = useState(false);
-    const [ERROR, setERROR] = useState('');
+
+    const [notificationState, launchNotificacion] = useState({
+        notifMessage: '',
+        notifType: '',
+        state: false
+    })
 
     const [formData, setFormData] = useState({
         nombre: "",
@@ -39,17 +41,33 @@ function Contacto(props) {
                     return data;
                 }).then(data =>{
                     setShowEstadoEspera(false);
-                    setShowEstadoOK(true);
+                    launchNotificacion({
+                        notifMessage: <p>El mensaje se envio de manera correcta...</p>,
+                        notifType: 'OK',
+                        state: true
+                    })
+
                 }).catch(error => { 
                     setShowEstadoEspera(false);
-                    setERROR(error.message);
-                    setShowEstadoERROR(true);
+                    launchNotificacion({
+                        notifMessage:
+                                    <>
+                                        <p>El mensaje no pudo ser enviado debido al siguiente error</p>
+                                        <h4>{error.message}</h4>
+                                    </>,
+                        notifType: 'ERROR',
+                        state: true
+                    })
                 });
             setFormData({nombre:"",email:"",mensaje:""});
             cambiarEstadoModal();
         }else{
             cambiarEstadoModal();
-            setShowEstadoWARN(true);
+            launchNotificacion({
+                notifMessage: <p>Por favor verifique que los campos no esten vacios...</p>,
+                notifType: 'WARN',
+                state: true
+            })
             cambiarEstadoModal(true);
         }
     }
@@ -63,6 +81,14 @@ function Contacto(props) {
         };
         setFormData(newValues);
     }
+
+    // function lanzarTotificacion(){
+    //     launchNotificacion({
+    //         notifMessage: <><p>Esto en una Prueba</p><h2>Esto es el otro mensaje</h2></>,
+    //         notifType: 'WARN',
+    //         state: true
+    //     })
+    // }
 
     return(
         <> 
@@ -147,23 +173,13 @@ function Contacto(props) {
 
                     </main>
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
+                    {/* <button className='botonComun' onClick={(lanzarTotificacion)}>Contactar</button> */}
                 </nav>
             </Content>
+            <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
             <NotificationWAIT state={estadoEspera} >
                 <p>Enviando Mensaje</p>
             </NotificationWAIT>
-            <NotificationOK state={estadoOK} onChangeState={setShowEstadoOK}>
-                <p>El mensaje se envio de manera correcta...</p>
-            </NotificationOK>
-            <NotificationERROR state={estadoERROR} onChangeState={setShowEstadoERROR}>
-                <>
-                <p>El mensaje no pudo ser enviado debido al siguiente error</p>
-                <h4>{ERROR}</h4>
-                </>
-            </NotificationERROR>
-            <NotificationWARN state={estadoWARN} onChangeState={setShowEstadoWARN}>
-                <p>Por favor verifique que los campos no esten vacios...</p>
-            </NotificationWARN>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form onSubmit={handleSubmit} method='POST'> 
