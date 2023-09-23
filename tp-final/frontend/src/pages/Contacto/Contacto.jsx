@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 
 import Modal from '../../components/Modal';
 import Content from '../../layouts/Content';
-import {Notification, NotificationWAIT} from '../../components/Notifications';
+import {Notification} from '../../components/Notifications';
 
 function Contacto(props) {
     const [estadoModal, cambiarEstadoModal] = useState(false);
-    const [estadoEspera, setShowEstadoEspera] = useState(false);
 
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
@@ -24,7 +23,11 @@ function Contacto(props) {
         e.preventDefault();
         if(formData.nombre!==''&& formData.email !== '' && formData.mensaje!=='')
         {
-            setShowEstadoEspera(true);
+            launchNotificacion({
+                notifMessage: <p>Enviando mensaje</p>,
+                notifType: 'WAIT',
+                state: true
+            })
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -40,7 +43,6 @@ function Contacto(props) {
                     }
                     return data;
                 }).then(data =>{
-                    setShowEstadoEspera(false);
                     launchNotificacion({
                         notifMessage: <p>El mensaje se envio de manera correcta...</p>,
                         notifType: 'OK',
@@ -48,7 +50,6 @@ function Contacto(props) {
                     })
 
                 }).catch(error => { 
-                    setShowEstadoEspera(false);
                     launchNotificacion({
                         notifMessage:
                                     <>
@@ -177,9 +178,6 @@ function Contacto(props) {
                 </nav>
             </Content>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-            <NotificationWAIT state={estadoEspera} >
-                <p>Enviando Mensaje</p>
-            </NotificationWAIT>
             <Modal title={'Fromulario de Contacto'} state={estadoModal} changeState={() => {cambiarEstadoModal(); setFormData({nombre:"",email:"",mensaje:""});}}>
                 <div className="module-content" id="modulo_registrar_inscripcion">
                         <form onSubmit={handleSubmit} method='POST'> 
