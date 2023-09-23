@@ -241,3 +241,5 @@
 ::1 - - [23/Sep/2023:23:47:57 +0000] "POST /api/v1/estudiante/add HTTP/1.1" 200 285 "-" "PostmanRuntime/7.32.1"
 ::1 - - [23/Sep/2023:23:48:06 +0000] "GET /api/v1/estudiante/lookup HTTP/1.1" 200 1260 "-" "PostmanRuntime/7.32.1"
 ::1 - - [23/Sep/2023:23:48:16 +0000] "POST /api/v1/estudiante/add HTTP/1.1" 200 300 "-" "PostmanRuntime/7.32.1"
+::ffff:127.0.0.1 - - [23/Sep/2023:23:52:39 +0000] "OPTIONS /api/v1/publico/contacto HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [23/Sep/2023:23:52:42 +0000] "POST /api/v1/publico/contacto HTTP/1.1" 200 61 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
