@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 
-function CountrySelect(){
+// DEJAR ELEGIRT EL NOMBRE DEL CAMPO
+
+function CountrySelect({callbackSelected, name='countrySelect', defaultSelected=56}){
     const [datos, setDatos] = useState(null);
-    const [selected, setSelected] = useState('240');
+    const [selected, setSelected] = useState(defaultSelected);
 
     useEffect(()=>{
         const consulta = `https://restcountries.com/v3.1/all`;
@@ -19,11 +21,12 @@ function CountrySelect(){
     }, []);
 
     const changeSelected = event => {
+        callbackSelected(event);
         setSelected(event.target.value);
       };
 
     return (
-        <select value={selected} onChange={changeSelected} name="countrySelect" className="dataEntry" id="NACIONALIDAD">
+        <select value={selected} onChange={changeSelected} name={name} className="dataEntry">
             {datos?.map((country, index) => {
                 return (
                     <option key={index} value={index}>{country.name.common}</option>

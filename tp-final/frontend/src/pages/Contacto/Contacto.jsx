@@ -83,14 +83,6 @@ function Contacto(props) {
         setFormData(newValues);
     }
 
-    // function lanzarTotificacion(){
-    //     launchNotificacion({
-    //         notifMessage: <><p>Esto en una Prueba</p><h2>Esto es el otro mensaje</h2></>,
-    //         notifType: 'WARN',
-    //         state: true
-    //     })
-    // }
-
     return(
         <> 
             <Content>
@@ -174,7 +166,6 @@ function Contacto(props) {
 
                     </main>
                     <button className='botonComun' onClick={(cambiarEstadoModal)}>Contactar</button>
-                    {/* <button className='botonComun' onClick={(lanzarTotificacion)}>Contactar</button> */}
                 </nav>
             </Content>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>

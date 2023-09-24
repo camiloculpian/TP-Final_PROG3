@@ -1,27 +1,106 @@
+import { useState } from "react";
 import CountrySelect from "../../components/CountrySelect";
 import './Bedelia.css'
+import { Notification } from "../../components/Notifications";
 function RegisterStudent(){
+
+    const [notificationState, launchNotificacion] = useState({
+        notifMessage: '',
+        notifType: '',
+        state: false
+    })
+
+    const [formData, setFormData] = useState({
+        apellido: "",
+        nombre: "",
+        dni: "",
+        fechaNacimiento: "",
+        nacionalidad: "56",
+        celular: "",
+        correoElectronico: "",
+    });
+
+    const handleChange = (e) => {
+        const { target } = e;
+        const { name, value } = target;
+        const newValues = {
+          ...formData,
+          [name]: value,
+        };
+        setFormData(newValues);
+    }
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        launchNotificacion({
+            notifMessage: <p>Agregando Estudiante</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        var formBody = [];
+        for (var property in formData) {
+            var encodedKey = encodeURIComponent(property);
+            var encodedValue = encodeURIComponent(formData[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            body: formBody
+        };
+        fetch('http://localhost:3005/api/v1/estudiante/add', requestOptions)
+                .then(async response => {
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+                    if (!response.ok) {
+                        const error = (data && data.message) || response.status;
+                        return Promise.reject(error);
+                    }
+                    return data;
+                }).then(data =>{
+                    launchNotificacion({
+                        notifMessage: <p>{data['message']}</p>,
+                        notifType: data['status'],
+                        state: true
+                    })
+
+                }).catch(error => { 
+                    launchNotificacion({
+                        notifMessage:
+                                    <>
+                                        <p>NO se pudo añadir el estudiante</p>
+                                        <h4>{error.message}</h4>
+                                    </>,
+                        notifType: 'ERROR',
+                        state: true
+                    })
+                });
+    }
     return (
-        <div className="moduleContent">
-            <fieldset>
-                <legend>Estudiantes - Añadir Estudiante</legend>
-                <form> 
-                    <div className="dataLine"><label className="dataTitle" for="APELLIDO">Apellido:</label><input name="APELLIDO" autofocus required className="dataEntry"id="APELLIDO"></input></div>
-                    <div className="dataLine"><label className="dataTitle" for="NOMBRE">Nombre:</label><input name="NOMBRE" required className="dataEntry"id="NOMBRE"></input></div>
-                    <div className="dataLine"><label className="dataTitle" for="DNI">DNI:</label><input name="DNI" required minlength="9" maxlength="9" className="dataEntry" id="DNI"></input></div>
-                    <div className="dataLine"><label className="dataTitle" for="FECHA_NACIMIENTO">Fecha Nacimiento:</label><input name="FECHA_NACIMIENTO" type="date" required className="dataEntry" id="FECHA_NACIMIENTO"></input></div>
-                    <div className="dataLine"><label class="dataTitle" for="NACIONALIDAD">Nacionalidad:</label>
-                        <CountrySelect />
-                    </div>
-                    <div className="dataLine"><label class="dataTitle" for="TELEFONO">Teléfono:</label><input name="TELEFONO" type="tel" required className="dataEntry" id="TELEFONO"></input></div>
-                    <div className="dataLine"><label class="dataTitle" for="EMAIL">e-m@il:</label><input name="EMAIL" type="email" required className="dataEntry" id="EMAIL"></input></div>
-                    <div>
-                        <button type="submit" className="botonComun">Agregar Estudiante</button>
-                        <button type="cancel" className="botonComun">Cancelar</button>
-                    </div>
-                </form>
-            </fieldset>
-        </div>
+        <>
+            <div className="moduleContent">
+                <fieldset>
+                    <legend>Estudiantes - Añadir Estudiante</legend>
+                    <form onSubmit={handleSubmit} method='POST'> 
+                        <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="9" maxLength="9" className="dataEntry" value={formData.dni} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="fechaNacimiento">Fecha Nacimiento:</label><input name="fechaNacimiento" type="date" required className="dataEntry" value={formData.fechaNacimiento} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nacionalidad">Nacionalidad:</label>
+                            <CountrySelect callbackSelected={handleChange} name={'nacionalidad'} defaultSelected={formData.nacionalidad}/>
+                        </div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" required className="dataEntry" id="TELEFONO" value={formData.celular} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
+                        <div>
+                            <button type="submit" className="botonComun">Agregar Estudiante</button>
+                            <button type="cancel" className="botonComun">Cancelar</button>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+            <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
+        </>
     );
 }
 

@@ -39,7 +39,7 @@ agregar = async(req, res) => {
             }]
             res.json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
         }else{
-            res.json({status:'ERROR', message:'El estudiante ya existe', data:estudiante});
+            res.json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
         }
     }catch (excep){
         throw(excep);

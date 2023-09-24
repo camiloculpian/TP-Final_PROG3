@@ -1,7 +1,15 @@
 const conexion = require('./conexionBD');
 
 const buscarPorId = async (idEstudiante) => {
-    const consulta = `SELECT *
+    const consulta = `SELECT
+                            idEstudiante AS ID,
+                            dni AS DNI,
+                            apellido AS Apellido,
+                            nombre AS Nombre,
+                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            nacionalidad as Nacionalidad,
+                            correoElectronico AS 'e-m@il',
+                            celular as Celular
     FROM estudiante 
     WHERE activo = 1 AND idEstudiante = ?`;
 
@@ -11,7 +19,15 @@ const buscarPorId = async (idEstudiante) => {
 }
 
 const buscarPorDNI = async (dniEstudiante) => {
-    const consulta = `SELECT *
+    const consulta = `SELECT
+                            idEstudiante AS ID,
+                            dni AS DNI,
+                            apellido AS Apellido,
+                            nombre AS Nombre,
+                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            nacionalidad as Nacionalidad,
+                            correoElectronico AS 'e-m@il',
+                            celular as Celular
     FROM estudiante 
     WHERE activo = 1 AND dni = ?`;
 
@@ -21,7 +37,16 @@ const buscarPorDNI = async (dniEstudiante) => {
 }
 
 const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
-    const consulta = `SELECT *
+    const consulta = `SELECT
+                            idEstudiante AS ID,
+                            dni AS DNI,
+                            apellido AS Apellido,
+                            nombre AS Nombre,
+                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            nacionalidad as Nacionalidad,
+                            correoElectronico AS 'e-m@il',
+                            celular as Celular
+                            
     FROM estudiante 
     WHERE activo = 1 AND apellido LIKE ? AND nombre LIKE ?`;
     if(!apeEstudiante) apeEstudiante = '';
