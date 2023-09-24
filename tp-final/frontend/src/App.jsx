@@ -8,6 +8,7 @@ import Carreras from './pages/Carreras/Carreras';
 import Bedelia from './pages/Bedelia/Bedelia';
 import RegisterStudent from './pages/Bedelia/RegisterStudent';
 import EditStudent from './pages/Bedelia/EditStudent';
+import ListStudents from './pages/Bedelia/ListStudents';
 import Footer from './layouts/Footer';
 import Header from './layouts/Header';
 
@@ -26,6 +27,7 @@ function App() {
             <Route path='students'>
               <Route path='register' element={<RegisterStudent />} />
               <Route path='edit' element={<EditStudent />} />
+              <Route path='list' element={<ListStudents />} />
             </Route>
             <Route path='subjects'>
             </Route>
