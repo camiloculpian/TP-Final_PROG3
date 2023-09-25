@@ -64,9 +64,27 @@ const agregarEstudiante = async ( dni, apellido, nombre, fechaNacimiento, nacion
     return response;
 }
 
+const eliminarEstudiante = async (idEstudiante) => {
+    const consulta = `UPDATE estudiante SET activo = 0 WHERE idEstudiante = ?`;
+
+    const [response] = await conexion.query(consulta,idEstudiante);    
+
+    return response;
+}
+
+const modificarEstudiante = async ( dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto, id) => {
+    const consulta = 'UPDATE estudiante SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, nacionalidad=?, correoElectronico=?, celular=?, foto=? WHERE idEstudiante=?';
+
+    const [estudiante] = await conexion.query(consulta, parseInt(dni), apellido, nombre ,fechaNacimiento, parseInt(nacionalidad), correoElectronico, celular, foto, id);
+
+    return estudiante;
+}
+
 module.exports = {
     buscarPorId,
     buscarPorDNI,
     buscarPorApeNomb,
-    agregarEstudiante
+    agregarEstudiante,
+    eliminarEstudiante,
+    modificarEstudiante
 }
