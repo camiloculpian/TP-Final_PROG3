@@ -11,6 +11,7 @@ import EditStudent from './pages/Bedelia/EditStudent';
 import ListStudents from './pages/Bedelia/ListStudents';
 import Footer from './layouts/Footer';
 import Header from './layouts/Header';
+import DeleteStudent from './pages/Bedelia/DeleteStudent';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path='students'>
               <Route path='register' element={<RegisterStudent />} />
               <Route path='edit' element={<EditStudent />} />
+              <Route path='delete' element={<DeleteStudent />} />
               <Route path='list' element={<ListStudents />} />
             </Route>
             <Route path='subjects'>

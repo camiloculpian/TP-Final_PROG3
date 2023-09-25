@@ -5,7 +5,7 @@ import { useState } from "react";
 import SearchStudent from './SearchStudent';
 import { Notification } from '../../components/Notifications';
 
-function EditStudent(){
+function DeleteStudent(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const [notificationState, launchNotificacion] = useState({
@@ -31,15 +31,15 @@ function EditStudent(){
         foto: "",
     });
 
-    const handleChange = (e) => {
-        const { target } = e;
-        const { name, value } = target;
-        const newValues = {
-          ...formData,
-          [name]: value,
-        };
-        setFormData(newValues);
-    }
+    // const handleChange = (e) => {
+    //     const { target } = e;
+    //     const { name, value } = target;
+    //     const newValues = {
+    //       ...formData,
+    //       [name]: value,
+    //     };
+    //     setFormData(newValues);
+    // }
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -179,27 +179,27 @@ function EditStudent(){
             <div className="moduleContent">
                 <fieldset>
                     <legend>Estudiantes - Editar Estudiante</legend>
-                    <div className='cuadroBusqueda'>
+                    <div className='cuadroBusquedaForDeletion'>
                         <div className="dataLine">
                             <label className="dataTitle" htmlFor="valorDeBusqueda">DNI</label>
                             <input name="valorDeBusqueda" className="dataEntry" autoFocus minLength="7" maxLength="8" placeholder="Ingrese DNI para buscar" value={valorDeBusqueda} onChange={(e)=>setValorDeBusqueda(((!isNaN(e.target.value) ? e.target.value : '')))}></input>
                             <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit}  method='PUT'>
+                    <form onSubmit={handleSubmit}  method='PUT' onReset={()=>{setFormData({idEstudiante:"",apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>
                         <var id="idEstudiante"></var>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={handleChange}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={handleChange}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="fechaNacimiento">Fecha Nacimiento:</label><input name="fechaNacimiento" type="date" required className="dataEntry" value={formData.fechaNacimiento} onChange={handleChange}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="nacionalidad">Nacionalidad:</label>
-                            <CountrySelect callbackSelected={handleChange} name={'nacionalidad'} selected={formData.nacionalidad}/>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} contentEditable={false} readOnly={true} ></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} readOnly={true}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} readOnly={true}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="fechaNacimiento">Fecha Nacimiento:</label><input name="fechaNacimiento" type="date" required className="dataEntry" readOnly={true}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nacionalidad" >Nacionalidad:</label>
+                            <CountrySelect callbackSelected={()=>{}} name={'nacionalidad'} selected={formData.nacionalidad} readOnly={true}/>
                         </div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" required className="dataEntry" value={formData.celular} onChange={handleChange}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" required className="dataEntry" value={formData.celular} readOnly={true}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} readOnly={true}></input></div>
                         <div>
-                            <button className="botonComun" id="editar-estudiante" type="submit">Guardar</button>
-                            <button className="botonComun" id="cancelar-editar-estudiante" type="reset" onClick={()=>{setFormData({idEstudiante: "", apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>Cancelar</button>
+                            <button className="botonComun" id="eliminarEstudiante" type="submit">Eliminar</button>
+                            <button className="botonComun" id="cancelarEliminarEstudiante" type="reset">Cancelar</button>
                         </div>
                     </form>
                 </fieldset>
@@ -212,4 +212,4 @@ function EditStudent(){
     );
 }
 
-export default EditStudent;
+export default DeleteStudent;

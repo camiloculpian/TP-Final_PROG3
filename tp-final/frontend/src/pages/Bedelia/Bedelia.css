@@ -57,3 +57,9 @@ button.searchButton:hover{
     padding: 15px;
     border-radius: 5px;
 }
+
+.cuadroBusquedaForDeletion{
+    background-color: rgb(202, 177, 177);
+    padding: 15px;
+    border-radius: 5px;
+}
