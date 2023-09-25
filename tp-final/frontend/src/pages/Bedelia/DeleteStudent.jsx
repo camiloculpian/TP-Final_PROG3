@@ -41,21 +41,20 @@ function DeleteStudent(){
     //     setFormData(newValues);
     // }
 
-    const handleSubmit = async (e) =>{
-        e.preventDefault();
+    const deleteStudent = () =>{
         launchNotificacion({
             notifMessage: <p>Guardando modificaciones</p>,
             notifType: 'WAIT',
             state: true
         })
         const requestOptions = {
-            method: 'PUT',
+            method: 'DELETE',
             headers:{
                 'Content-Type':'application/json'
                 },
                 body: JSON.stringify(formData)
         };
-        fetch(`http://localhost:3005/api/v1/estudiante/edit`,requestOptions)
+        fetch(`http://localhost:3005/api/v1/estudiante/delete`,requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
@@ -65,22 +64,6 @@ function DeleteStudent(){
                 }
                 return data;
             }).then(data =>{
-                setFormData({
-                    idEstudiante: data['data'][0]['ID'],
-                    dni: data['data'][0]['DNI'],
-                    nombre: data['data'][0]['Nombre'],
-                    apellido: data['data'][0]['Apellido'],
-                    fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                    nacionalidad: data['data'][0]['Nacionalidad'],
-                    correoElectronico: data['data'][0]['e-m@il'],
-                    celular: data['data'][0]['Celular'],
-                    foto: "",
-                });
-                launchNotificacion({
-                    notifMessage: 'Los cambios fueron guardados de forma correcta.',
-                    notifType: 'OK',
-                    state: true
-                })
                 setFormData({
                     idEstudiante: "",
                     apellido: "",
@@ -92,16 +75,49 @@ function DeleteStudent(){
                     celular: "",
                     foto: "",
                 });
+                launchNotificacion({
+                    notifMessage: <><p>Los cambios fueron guardados de forma correcta.</p><h3>El estudiante esta marcado ahora como inactivo</h3></>,
+                    notifType: 'OK',
+                    state: true
+                })
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
-                                    <p>No se pudo realizar la busqueda debido al siguiente error</p>
+                                    <p>No se pudo realizar la solicitud debido al siguiente error</p>
                                     <h4>{error.message}</h4>
                                   </>,
                     notifType: 'ERROR',
                     state: false
                 })
             });;
+    }
+    const canecelDeleteStudent = () =>{
+        setFormData({
+            idEstudiante: "",
+            apellido: "",
+            nombre: "",
+            dni: "",
+            fechaNacimiento: "",
+            nacionalidad: 56,
+            correoElectronico: "",
+            celular: "",
+            foto: "",
+        });
+    }
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        await launchNotificacion({
+            notifMessage: <>
+                            <p>Esta realmente seguro que desea eliminar el estudiante?</p>
+                            <h3>La accion no se podra desacer</h3>
+                            <div className='WARNPromtLine'>
+                                <button className='WARNPromptButton' onClick={()=>{deleteStudent(); launchNotificacion({})}}><h4>Confirmar</h4></button>
+                                <button className='WARNPromptButton' onClick={()=>{canecelDeleteStudent(); launchNotificacion({})}}><h4>Cancelar</h4></button>
+                            </div>
+                          </>,
+            notifType: 'WARN',
+            state: true
+        })
     }
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
@@ -163,7 +179,7 @@ function DeleteStudent(){
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage: <>
-                                        <p>No se pudo realizar la busqueda debido al siguiente error??????????????</p>
+                                        <p>No se pudo realizar la busqueda debido al siguiente error</p>
                                         <h4>{error.message}</h4>
                                       </>,
                         notifType: 'ERROR',
@@ -186,7 +202,7 @@ function DeleteStudent(){
                             <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit}  method='PUT' onReset={()=>{setFormData({idEstudiante:"",apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>
+                    <form onSubmit={formData.idEstudiante ? handleSubmit:null}  method='PUT' onReset={()=>{setFormData({idEstudiante:"",apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>
                         <var id="idEstudiante"></var>
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} contentEditable={false} readOnly={true} ></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} readOnly={true}></input></div>

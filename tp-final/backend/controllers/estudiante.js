@@ -24,7 +24,6 @@ agregar = async(req, res) => {
         let estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
         if(!estudiante.length){
             const idEstudiante = await estudianteBD.agregarEstudiante(req.body.dni, req.body.apellido, req.body.nombre, req.body.fechaNacimiento, req.body.nacionalidad, req.body.correoElectronico, req.body.celular, req.body.foto);
-            //estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
             estudiante = [{
                 idEstudiante: idEstudiante[0]['insertId'],
                 dni: parseInt(req.body.dni),
@@ -49,7 +48,7 @@ agregar = async(req, res) => {
 eliminar = async(req, res) => {
     try{
         // const estudiante = await estudianteBD.buscarPorId(req.query['id']);
-        const estudiante = await estudianteBD.eliminarEstudiante(req.query['id']);
+        const estudiante = await estudianteBD.eliminarEstudiante(parseInt(req.body.idEstudiante));
 
         if(!estudiante.length){
 
@@ -75,7 +74,6 @@ modificar = async(req, res) => {
     try{
         let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
         if(estudiante.length){
-            console.log(' if(!estudiante.length){');
             const respuesta = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
             estudiante = [{
                 idEstudiante: (req.body.id),
