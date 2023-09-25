@@ -1,6 +1,6 @@
 const {Router} = require('express');
 
-const { buscarPorId, buscarPorApeNomb } = require('../../controllers/estudiante');
+const { buscarPorId, buscarPorApeNomb, eliminar, test, modificar } = require('../../controllers/estudiante');
 
 
 const router = Router();
@@ -24,7 +24,11 @@ router.get('/lookup?', buscar);
 
 router.post('/add', agregar)
 
-router.post('/test', test)
+router.get('/test', test)
+
+router.patch('/delete?', eliminar)
+
+router.patch('/modificar', modificar)
 
 
 module.exports = router;

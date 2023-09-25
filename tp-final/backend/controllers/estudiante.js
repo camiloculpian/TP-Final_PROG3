@@ -46,9 +46,51 @@ agregar = async(req, res) => {
     }
 }
 
+eliminar = async(req, res) => {
+    try{
+        // const estudiante = await estudianteBD.buscarPorId(req.query['id']);
+        const estudiante = await estudianteBD.eliminarEstudiante(req.query['id']);
+
+        if(!estudiante.length){
+
+            res.json({status:'OK',message:'El estudiante se eliminó correctamente'});
+        }else{
+            res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
+        }
+    }catch (excep){
+        throw (excep);
+    }
+}
+
 test = async(req, res) => {
     try{
         console.log(req)
+        res.json({status:'OK',message:'Bienvenido!!!'})
+    }catch (excep){
+        throw (excep);
+    }
+}
+
+modificar = async(req, res) => {
+    try{
+        // let estudiante = await estudianteBD.buscarPorId(req.body.id);
+        if(true){
+            const respuesta = await estudianteBD.modificarEstudiante(parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
+            estudiante = [{
+                idEstudiante: (req.body.id),
+                dni: parseInt(req.body.dni),
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                fechaNacimiento: req.body.fechaNacimiento,
+                nacionalidad: parseInt(req.body.nacionalidad),
+                correoElectronico: req.body.correoElectronico,
+                celular: req.body.celular,
+                foto: req.body.foto
+            }]
+            res.json({status:'OK',message:'El estudiante se modifico correctamente', data:estudiante});
+        }else{
+            res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!', data:estudiante});
+        }
     }catch (excep){
         throw (excep);
     }
@@ -57,5 +99,7 @@ test = async(req, res) => {
 module.exports = {
     buscar,
     agregar,
+    eliminar,
+    modificar,
     test
 }
