@@ -1,38 +1,21 @@
 import { useState } from 'react';
 import './Bedelia.css'
+import { AdaptativeTable } from '../../components/AdaptativeTable';
+import { Notification } from '../../components/Notifications';
 
 function SearchStudent({returnStudent}){
+    const [notificationState, launchNotificacion] = useState({
+        notifMessage: '',
+        notifType: '',
+        state: false
+    })
 
     const [formData, setFormData] = useState({
         nombreBusqueda: "",
         apellidoBusqueda: "",
     });
 
-    // {
-    //     "idEstudiante": 4,
-    //     "dni": 43264515,
-    //     "nombre": "Mateo",
-    //     "apellido": "Barainca",
-    //     "fechaNacimiento": null,
-    //     "nacionalidad": 0,
-    //     "correoElectronico": "mateob@correo.com",
-    //     "celular": null,
-    //     "foto": null,
-    //     "activo": 1
-    // }
-
-    // const [student, setStudent] = useState({ 
-    //     idEstudiante: null,
-    //     dni: null,
-    //     nombre: null,
-    //     apellido: null,
-    //     fechaNacimiento: null,
-    //     nacionalidad: null,
-    //     correoElectronico: null,
-    //     celular: null,
-    //     foto: null,
-    //     activo: null
-    // });
+    const [studentsList, setStudentsList] = useState();
 
     function handleChange(e) {
         const { target } = e;
@@ -44,51 +27,76 @@ function SearchStudent({returnStudent}){
         setFormData(newValues);
     }
 
-    const setReturnStudent = () =>{
-        // setStudent({idEstudiante:'1',nombre:formData.nombreBusqueda.toString(), apellido:formData.apellidoBusqueda.toString()});
-        const student = {
-            idEstudiante:'1',
-            nombre:formData.nombreBusqueda.toString(),
-            apellido:formData.apellidoBusqueda.toString(),
-        }
-        returnStudent(student);
+    const setReturnStudent = (s) =>{
+        returnStudent({
+            idEstudiante: s['ID'],
+            dni: s['DNI'],
+            nombre: s['Apellido'],
+            apellido: s['Nombre'],
+            fechaNacimiento: s['Fecha Nac.'],
+            nacionalidad: s['Nacionalidad'],
+            correoElectronico: s['e-m@il'],
+            celular: s['Celular'],
+            foto: null,
+            activo: 1
+        });
+        
     }
 
     const searchStudent = async (e) =>{
         e.preventDefault();
-        //console.log('Buscar Estudiante con nombre: '+formData.nombreBusqueda+', y apellido: '+formData.apellidoBusqueda);
+        launchNotificacion({
+            notifMessage: <p>Buscando Estudiante</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'GET',
+        };
+        fetch(`http://localhost:3005/api/v1/estudiante/lookup?apellido=${encodeURIComponent(formData.apellidoBusqueda)}&nombre=${encodeURIComponent(formData.nombreBusqueda)}`, requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response.ok) {
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                return data;
+            }).then(data =>{
+                setStudentsList(data);
+                launchNotificacion({
+                    notifMessage: '',
+                    notifType: '',
+                    state: false
+                })
+            }).catch(error => { 
+                launchNotificacion({
+                    notifMessage: <>
+                                    <p>No se pudo obtener la lista debido al siguiente error</p>
+                                    <h4>{error.message}</h4>
+                                  </>,
+                    notifType: 'ERROR',
+                    state: false
+                })
+            });;
     }
 
     return (
-            <div>
-                <form onSubmit={searchStudent}  method='GET'>
-                    <div className="dataLine">
-                        <label className="dataTitle" htmlFor="apellidoBusqueda">Apellido:</label>
-                        <input className="dataEntry" id="apellidoBusqueda" name="apellidoBusqueda" autoFocus="" placeholder="Ingrese Apellido" value={formData.apellidoBusqueda} onChange={handleChange}></input>
-                        <label className="dataTitle" htmlFor="nombreBusqueda">Nombre:</label>
-                        <input className="dataEntry" id="nombreBusqueda" name="nombreBusqueda" autoFocus="" placeholder="Ingrese Nombre" value={formData.nombreBusqueda} onChange={handleChange}></input>
-                        <button type='submit' className="searchButton"></button>
-                    </div>
-                </form>
-                {/*ESTA TABLA DEBERIA ESTAR EN UN COMONENTE AL QUE SE LE PASE UN JSON CON LOS DATOS Y QUE SI SON MUCHOS LOS DIVIDA EN PAGINAS
-                 CON UN INDICE ABAJO Y QUE REIBA EL PARAMETRO DE LA FUNCION DE DEVOLUCION DE DATOS setReturnStudent Y LO BINDEE A CADA ESTUDIANTE
-                 PARA QUE CUANDO SE HAGA CLICK O DOBLECLICK EN ALGUNO LO RETORNE*/}
-                <table className='searchTable'>
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Apellido</th>
-                            <th>Nombre</th>
-                            <th>DNI</th>
-                            <th>Fecha Nacimiento</th>
-                        </tr>
-                    </thead>
-                    <tbody id="LISTADO_ESTUDIANTES_DINAMICO_MODAL"></tbody>
-                </table>
-                {/** SOLO DE PUEBAS SACAR DESPUES */}
-                <button className="botonComun" style={{float: 'left'}} onClick={setReturnStudent} type="button">Aceptar</button>
-            </div>
-
+            <>
+                <div>
+                    <form onSubmit={searchStudent}  method='GET'>
+                        <div className="dataLine">
+                            <label className="dataTitle" htmlFor="apellidoBusqueda">Apellido:</label>
+                            <input className="dataEntry" id="apellidoBusqueda" name="apellidoBusqueda" autoFocus="" placeholder="Ingrese Apellido" value={formData.apellidoBusqueda} onChange={handleChange}></input>
+                            <label className="dataTitle" htmlFor="nombreBusqueda">Nombre:</label>
+                            <input className="dataEntry" id="nombreBusqueda" name="nombreBusqueda" autoFocus="" placeholder="Ingrese Nombre" value={formData.nombreBusqueda} onChange={handleChange}></input>
+                            <button type='submit' className="searchButton"></button>
+                        </div>
+                    </form>
+                    <AdaptativeTable json={studentsList} callbackSelectable={setReturnStudent}/>
+                </div>
+                <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
+            </>
     );
 }
 
