@@ -21,3 +21,8 @@
 ::ffff:127.0.0.1 - - [25/Sep/2023:12:10:45 +0000] "GET /api/v1/estudiante/lookup?apellido=&nombre= HTTP/1.1" 200 1144 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
 ::ffff:127.0.0.1 - - [25/Sep/2023:12:20:06 +0000] "GET /api/v1/estudiante/lookup?apellido=&nombre= HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
 ::ffff:127.0.0.1 - - [25/Sep/2023:12:32:56 +0000] "GET /api/v1/estudiante/lookup?apellido=&nombre= HTTP/1.1" 200 1144 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [25/Sep/2023:12:36:52 +0000] "GET /api/v1/estudiante/lookup?apellido=&nombre= HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [25/Sep/2023:12:36:56 +0000] "OPTIONS /api/v1/estudiante/delete HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [25/Sep/2023:12:36:56 +0000] "DELETE /api/v1/estudiante/delete HTTP/1.1" 200 67 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [25/Sep/2023:12:40:46 +0000] "OPTIONS /api/v1/estudiante/delete HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [25/Sep/2023:12:40:47 +0000] "DELETE /api/v1/estudiante/delete HTTP/1.1" 200 67 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
