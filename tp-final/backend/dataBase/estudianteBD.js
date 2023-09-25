@@ -59,7 +59,7 @@ const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
 const agregarEstudiante = async ( dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto) =>{
     const consulta = `INSERT INTO estudiante (dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto, activo)
                         VALUES(?,?,?,?,?,?,?,?,1)`;
-    const response = await conexion.query(consulta,[parseInt(dni), apellido, nombre, fechaNacimiento,parseInt(nacionalidad),correoElectronico, celular,foto]);
+    const response = await conexion.query(consulta,[dni, apellido, nombre, fechaNacimiento,nacionalidad,correoElectronico, celular, foto]);
     
     return response;
 }
@@ -72,10 +72,11 @@ const eliminarEstudiante = async (idEstudiante) => {
     return response;
 }
 
-const modificarEstudiante = async ( dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto, id) => {
-    const consulta = 'UPDATE estudiante SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, nacionalidad=?, correoElectronico=?, celular=?, foto=? WHERE idEstudiante=?';
+const modificarEstudiante = async (id, dni, nombre, apellido, fechaNacimiento, nacionalidad, correoElectronico, celular, foto) => {
 
-    const [estudiante] = await conexion.query(consulta, parseInt(dni), apellido, nombre ,fechaNacimiento, parseInt(nacionalidad), correoElectronico, celular, foto, id);
+    const consulta = 'UPDATE estudiante SET dni=?,  nombre=?, apellido=?,fechaNacimiento = ?, nacionalidad = ?, correoElectronico = ?, celular = ?, foto = ? WHERE activo = 1 AND idEstudiante = ?';
+
+    const [estudiante] = await conexion.query(consulta, [dni, nombre, apellido, fechaNacimiento, nacionalidad, correoElectronico, celular, foto, id]);
 
     return estudiante;
 }
@@ -86,5 +87,5 @@ module.exports = {
     buscarPorApeNomb,
     agregarEstudiante,
     eliminarEstudiante,
-    modificarEstudiante
+    modificarEstudiante,
 }

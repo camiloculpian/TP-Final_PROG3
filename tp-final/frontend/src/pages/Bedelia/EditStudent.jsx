@@ -18,15 +18,19 @@ function EditStudent(){
         cambiarEstadoModal(false);
         setFormData(student);
     }
+
     const [formData, setFormData] = useState({
+        idEstudiante: "",
         apellido: "",
         nombre: "",
         dni: "",
         fechaNacimiento: "",
         nacionalidad: 56,
-        celular: "",
         correoElectronico: "",
+        celular: "",
+        foto: "",
     });
+
     const handleChange = (e) => {
         const { target } = e;
         const { name, value } = target;
@@ -36,22 +40,83 @@ function EditStudent(){
         };
         setFormData(newValues);
     }
+
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        // ACA SE GRABARIAN LOS DATOS
+        launchNotificacion({
+            notifMessage: <p>Guardando modificaciones</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'PUT',
+            headers:{
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify(formData)
+        };
+        fetch(`http://localhost:3005/api/v1/estudiante/edit`,requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response.ok) {
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                return data;
+            }).then(data =>{
+                setFormData({
+                    idEstudiante: data['data'][0]['ID'],
+                    dni: data['data'][0]['DNI'],
+                    nombre: data['data'][0]['Nombre'],
+                    apellido: data['data'][0]['Apellido'],
+                    fechaNacimiento: data['data'][0]['Fecha Nac.'],
+                    nacionalidad: data['data'][0]['Nacionalidad'],
+                    correoElectronico: data['data'][0]['e-m@il'],
+                    celular: data['data'][0]['Celular'],
+                    foto: "",
+                });
+                launchNotificacion({
+                    notifMessage: 'Los cambios fueron guardados de forma correcta.',
+                    notifType: 'OK',
+                    state: true
+                })
+                setFormData({
+                    idEstudiante: "",
+                    apellido: "",
+                    nombre: "",
+                    dni: "",
+                    fechaNacimiento: "",
+                    nacionalidad: 56,
+                    correoElectronico: "",
+                    celular: "",
+                    foto: "",
+                });
+            }).catch(error => { 
+                launchNotificacion({
+                    notifMessage: <>
+                                    <p>No se pudo realizar la busqueda debido al siguiente error</p>
+                                    <h4>{error.message}</h4>
+                                  </>,
+                    notifType: 'ERROR',
+                    state: false
+                })
+            });;
     }
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
     function buscarEstudiante(){
         setFormData({
+            idEstudiante: "",
             apellido: "",
             nombre: "",
             dni: "",
             fechaNacimiento: "",
             nacionalidad: 56,
+            correoElectronico: "",
             celular: "",
-            correoElectronico: ""
+            foto: "",
         });
         if(valorDeBusqueda){
             launchNotificacion({
@@ -72,25 +137,33 @@ function EditStudent(){
                     }
                     return data;
                 }).then(data =>{
-                    setFormData({
-                        idEstudiante: data['data'][0]['ID'],
-                        dni: data['data'][0]['DNI'],
-                        nombre: data['data'][0]['Apellido'],
-                        apellido: data['data'][0]['Nombre'],
-                        fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                        nacionalidad: data['data'][0]['Nacionalidad'],
-                        correoElectronico: data['data'][0]['e-m@il'],
-                        celular: data['data'][0]['Celular'],
-                    });
-                    launchNotificacion({
-                        notifMessage: '',
-                        notifType: '',
-                        state: false
-                    })
+                    if(data['data'][0]){
+                        setFormData({
+                            idEstudiante: data['data'][0]['ID'],
+                            dni: data['data'][0]['DNI'],
+                            nombre: data['data'][0]['Apellido'],
+                            apellido: data['data'][0]['Nombre'],
+                            fechaNacimiento: data['data'][0]['Fecha Nac.'],
+                            nacionalidad: data['data'][0]['Nacionalidad'],
+                            correoElectronico: data['data'][0]['e-m@il'],
+                            celular: data['data'][0]['Celular'],
+                        });
+                        launchNotificacion({
+                            notifMessage: '',
+                            notifType: '',
+                            state: false
+                        })
+                    }else{
+                        launchNotificacion({
+                            notifMessage: 'No existe un estudiante con ese dni',
+                            notifType: 'WARN',
+                            state: true
+                        })
+                    }
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage: <>
-                                        <p>No se pudo realizar la busqueda debido al siguiente error</p>
+                                        <p>No se pudo realizar la busqueda debido al siguiente error??????????????</p>
                                         <h4>{error.message}</h4>
                                       </>,
                         notifType: 'ERROR',

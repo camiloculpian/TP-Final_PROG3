@@ -73,9 +73,10 @@ test = async(req, res) => {
 
 modificar = async(req, res) => {
     try{
-        // let estudiante = await estudianteBD.buscarPorId(req.body.id);
-        if(true){
-            const respuesta = await estudianteBD.modificarEstudiante(parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
+        let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
+        if(estudiante.length){
+            console.log(' if(!estudiante.length){');
+            const respuesta = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
             estudiante = [{
                 idEstudiante: (req.body.id),
                 dni: parseInt(req.body.dni),
@@ -89,7 +90,7 @@ modificar = async(req, res) => {
             }]
             res.json({status:'OK',message:'El estudiante se modifico correctamente', data:estudiante});
         }else{
-            res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!', data:estudiante});
+            res.json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja...', data:[{}]});
         }
     }catch (excep){
         throw (excep);

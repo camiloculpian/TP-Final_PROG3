@@ -26,9 +26,9 @@ router.post('/add', agregar)
 
 router.get('/test', test)
 
-router.patch('/delete?', eliminar)
+router.delete('/delete', eliminar)
 
-router.patch('/modificar', modificar)
+router.put('/edit', modificar)
 
 
 module.exports = router;

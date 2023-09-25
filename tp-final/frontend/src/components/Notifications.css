@@ -49,21 +49,21 @@
 
 .notificationWARN{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: rgb(254, 255, 183);
+    background-color: rgb(255, 244, 181);
     /* border: solid 1px rgb(28, 71, 95); */
     /* color: rgb(28, 71, 95); */
-    border: #e6b223;
-    color: #e6b223;
+    border: #e7b204;
+    color: #e7b204;
     border-radius: 10px;
 }
 
 .iconWARN{
-    fill: #e6b223;
+    fill: #e7b204;
     /* fill: rgb(28, 71, 95); */
 }
 
 .buttonCloseWARN{
-    fill: #e6b223;
+    fill: #e7b204;
     /* fill: rgb(28, 71, 95); */
 }
 
