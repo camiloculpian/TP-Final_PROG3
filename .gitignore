@@ -3,3 +3,5 @@ tp-final/backend/access.log
 tp-final/backend/.env
 
 tp-final/backend/.env
+
+tp-final/backend/access.log
