@@ -1,7 +1,7 @@
 import './BedeliaMenu.css';
 import {NavLink} from 'react-router-dom';
-
-function BedeliaMenu(){
+// DEBERIA CREARSE EL MENU CON UN JSON DESCRIPTIVO, PASADO POR EL SERVIDOR DE ACUERDO A LOS PERMISOS DEL USUARIO!!!
+function BedeliaMenu({menuJson}){
     return(
         <aside>
             <section className="seccionHeader">BEDELIA</section>
@@ -17,9 +17,9 @@ function BedeliaMenu(){
                     </li>
                     <li><p>Materias</p>
                         <ul>
-                            <li><NavLink to={'/bedelia/subjects/register'}>Registrar Materia</NavLink></li>
-                            <li><NavLink to={'/bedelia/subjects/list'}>Listado de Materias</NavLink></li>
-                            <li><NavLink to={'/bedelia/subjects/search'}>Buscar Materia</NavLink></li>
+                            <li><NavLink to={'/bedelia/courses/register'}>Registrar Materia</NavLink></li>
+                            <li><NavLink to={'/bedelia/courses/list'}>Listado de Materias</NavLink></li>
+                            <li><NavLink to={'/bedelia/courses/search'}>Buscar Materia</NavLink></li>
                         </ul>
                     </li>
                     <li><p>Carreras</p>

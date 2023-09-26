@@ -1,6 +1,6 @@
 import './Modal.css';
 
-function Modal({children, state, changeState, title, modalColor = 'modalDefault', showBorderOnHeader=true}) {
+function Modal({children, state, changeState, title, modalColor = 'modalDefault', showBorderOnHeader=true, }) {
   return (
     <>
         {state &&

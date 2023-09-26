@@ -7,6 +7,7 @@ import Institucional from './pages/Institucional/Institucional';
 import Carreras from './pages/Carreras/Carreras';
 import Bedelia from './pages/Bedelia/Bedelia';
 import RegisterStudent from './pages/Bedelia/RegisterStudent';
+import RegisterCourse from './pages/Bedelia/RegisterCourse';
 import EditStudent from './pages/Bedelia/EditStudent';
 import ListStudents from './pages/Bedelia/ListStudents';
 import Footer from './layouts/Footer';
@@ -31,7 +32,8 @@ function App() {
               <Route path='delete' element={<DeleteStudent />} />
               <Route path='list' element={<ListStudents />} />
             </Route>
-            <Route path='subjects'>
+            <Route path='courses'>
+              <Route path='register' element={<RegisterCourse />} />
             </Route>
             <Route path='careers'>
             </Route>

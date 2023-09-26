@@ -194,7 +194,7 @@ function DeleteStudent(){
         <>
             <div className="moduleContent">
                 <fieldset>
-                    <legend>Estudiantes - Editar Estudiante</legend>
+                    <legend>Estudiantes -&gt; Editar Estudiante</legend>
                     <div className='cuadroBusquedaForDeletion'>
                         <div className="dataLine">
                             <label className="dataTitle" htmlFor="valorDeBusqueda">DNI</label>

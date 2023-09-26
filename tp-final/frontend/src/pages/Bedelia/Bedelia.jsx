@@ -1,30 +1,43 @@
-
 import './Bedelia.css';
 
 import Content from '../../layouts/Content';
 import BedeliaMenu from '../../components/BedeliaMenu';
-import BedeliaInformationBar from '../../components/BedeliaInformationBar';
+import BedeliaInformationBar from './BedeliaInformationBar';
 import Modal from '../../components/Modal';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import { useState } from 'react';
 import Login from './Login';
 
 function Bedelia(){
-    const [estadoModal, cambiarEstadoModal] = useState(false);
+    const test = (t) =>{
+        console.log(t);
+    }
+    const [loginState, setLoginState] = useState({
+        logged: false,
+        loginUser: '',
+        loginGroup: '',
+        loginTimeOut: (e)=>{test(e)}
+    });
+    const navigate = useNavigate();
     return (
         <>
-        <Content>
-            <BedeliaInformationBar />
-            <nav className="contentItem">
-                <BedeliaMenu />
-                <nav className="contentModule">
-                    <Outlet />
-                </nav>
-            </nav> 
-        </Content>
-        <Modal title={'Iniciar Sesión'} state={estadoModal} changeState={cambiarEstadoModal} showBorderOnHeader={false} >
-            <Login />
-        </Modal>
+            <Content>
+                {/* {loginState.logged && */}
+                <>
+                    <BedeliaInformationBar loginState={loginState} setLoginState={setLoginState}/>
+                    <nav className="contentItem">
+                        <BedeliaMenu />
+                        <nav className="contentModule">
+                            <Outlet />
+                        </nav>
+                    </nav>
+                </>
+                {/* }  */}
+            </Content>
+            {/* <Modal title={'Iniciar Sesión'} state={!loginState.logged} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
+                <Login setLoginState={setLoginState}/>
+            </Modal> */}
+
         </>
     );
 }

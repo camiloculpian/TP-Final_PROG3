@@ -56,7 +56,7 @@ export default function EditStudent(){
         <>
             <div className="moduleContent">
                 <fieldset>
-                    <legend>Estudiantes - Listar Estudiantes</legend>
+                    <legend>Estudiantes -&gt; Listar Estudiantes</legend>
                     <AdaptativeTable json={data} callbackSelectable={test}/>
                 </fieldset>
             </div>

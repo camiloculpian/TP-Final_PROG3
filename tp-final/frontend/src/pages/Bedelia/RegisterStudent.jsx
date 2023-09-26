@@ -81,7 +81,7 @@ function RegisterStudent(){
         <>
             <div className="moduleContent">
                 <fieldset>
-                    <legend>Estudiantes - Añadir Estudiante</legend>
+                    <legend>Estudiantes -&gt; Añadir Estudiante</legend>
                     <form onSubmit={handleSubmit} method='POST'> 
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={handleChange}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={handleChange}></input></div>
