@@ -3,26 +3,27 @@ import './Bedelia.css';
 import Content from '../../layouts/Content';
 import BedeliaMenu from '../../components/BedeliaMenu';
 import BedeliaInformationBar from './BedeliaInformationBar';
-import Modal from '../../components/Modal';
 import { Outlet, useNavigate } from 'react-router';
 import { useState } from 'react';
+import Modal from '../../components/Modal';
 import Login from './Login';
 
 function Bedelia(){
-    const test = (t) =>{
-        console.log(t);
-    }
+    // const test = (t) =>{
+    //     console.log(t);
+    // }
     const [loginState, setLoginState] = useState({
         logged: false,
         loginUser: '',
         loginGroup: '',
-        loginTimeOut: (e)=>{test(e)}
+        loginTimeOut: 0
     });
     const navigate = useNavigate();
+
     return (
         <>
             <Content>
-                {/* {loginState.logged && */}
+                {!loginState.logged &&
                 <>
                     <BedeliaInformationBar loginState={loginState} setLoginState={setLoginState}/>
                     <nav className="contentItem">
@@ -32,11 +33,11 @@ function Bedelia(){
                         </nav>
                     </nav>
                 </>
-                {/* }  */}
+                }
             </Content>
-            {/* <Modal title={'Iniciar Sesión'} state={!loginState.logged} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
+            <Modal title={'Iniciar Sesión'} state={loginState.logged} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
                 <Login setLoginState={setLoginState}/>
-            </Modal> */}
+            </Modal>
 
         </>
     );

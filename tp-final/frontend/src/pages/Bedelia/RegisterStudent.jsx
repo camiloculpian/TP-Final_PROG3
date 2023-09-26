@@ -37,17 +37,10 @@ function RegisterStudent(){
             notifType: 'WAIT',
             state: true
         })
-        var formBody = [];
-        for (var property in formData) {
-            var encodedKey = encodeURIComponent(property);
-            var encodedValue = encodeURIComponent(formData[property]);
-            formBody.push(encodedKey + "=" + encodedValue);
-        }
-        formBody = formBody.join("&");
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-            body: formBody
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
         };
         fetch('http://localhost:3005/api/v1/estudiante/add', requestOptions)
                 .then(async response => {
@@ -59,12 +52,22 @@ function RegisterStudent(){
                     }
                     return data;
                 }).then(data =>{
+                    if(data['message']==='OK'){
+                        setFormData({
+                            apellido: "",
+                            nombre: "",
+                            dni: "",
+                            fechaNacimiento: "",
+                            nacionalidad: "56",
+                            celular: "",
+                            correoElectronico: "",
+                        })
+                    }
                     launchNotificacion({
                         notifMessage: <p>{data['message']}</p>,
                         notifType: data['status'],
                         state: true
                     })
-
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage:

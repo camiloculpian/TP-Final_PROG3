@@ -1,6 +1,6 @@
 const {Router} = require('express');
 
-const { buscarPorId, buscarPorApeNomb, eliminar, test, modificar } = require('../../controllers/estudiante');
+const { buscar, eliminar, test, modificar } = require('../../controllers/estudiante');
 
 
 const router = Router();

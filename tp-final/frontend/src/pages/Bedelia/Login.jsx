@@ -1,7 +1,7 @@
 import './Login.css';
 import './Bedelia.css';
 import { useState } from 'react';
-
+ 
 function Login({setLoginState}) {
   const [formData, setFormData] = useState({
     username: '',
@@ -18,14 +18,48 @@ function Login({setLoginState}) {
 }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData.username === 'test' && formData.password === 'test'){
-      setLoginState({
-        logged: true,
-        loginUser: 'test',
-        loginGroup: 'test',
-        loginTimeOut: 5000
-      });
-    }
+    const requestOptions = {
+      method: 'POST',
+      headers:{
+          'Content-Type':'application/json'
+          },
+          body: JSON.stringify(formData)
+    };
+    fetch(`http://localhost:3005/api/v1/usuario/login`,requestOptions)
+      .then(async response => {
+          const isJson = response.headers.get('content-type')?.includes('application/json');
+          const data = isJson && await response.json();
+          if (!response.ok) {
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          }
+          return data;
+      }).then(data =>{
+          console.log(data);
+          setLoginState({
+            logged: true,
+            loginUser: data['data'][0]['nombre'],
+            loginGroup: data['data'][0]['tipoUsuario'],
+            loginTimeOut: 5000
+          })
+      }).catch(error => { 
+          // launchNotificacion({
+          //     notifMessage: <>
+          //                     <p>No se pudio</p>
+          //                     <h4>{error.message}</h4>
+          //                   </>,
+          //     notifType: 'ERROR',
+          //     state: false
+          // })
+      });;
+    // if(formData.username === 'test' && formData.password === 'test'){
+    //   setLoginState({
+    //     logged: true,
+    //     loginUser: 'test',
+    //     loginGroup: 'test',
+    //     loginTimeOut: 5000
+    //   });
+    // }
   }
   return (
     <>
