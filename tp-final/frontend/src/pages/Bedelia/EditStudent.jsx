@@ -141,8 +141,8 @@ function EditStudent(){
                         setFormData({
                             idEstudiante: data['data'][0]['ID'],
                             dni: data['data'][0]['DNI'],
-                            nombre: data['data'][0]['Apellido'],
-                            apellido: data['data'][0]['Nombre'],
+                            nombre: data['data'][0]['Nombre'],
+                            apellido: data['data'][0]['Apellido'],
                             fechaNacimiento: data['data'][0]['Fecha Nac.'],
                             nacionalidad: data['data'][0]['Nacionalidad'],
                             correoElectronico: data['data'][0]['e-m@il'],

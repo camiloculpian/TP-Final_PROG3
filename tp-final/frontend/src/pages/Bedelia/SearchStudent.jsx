@@ -31,8 +31,8 @@ function SearchStudent({returnStudent}){
         returnStudent({
             idEstudiante: s['ID'],
             dni: s['DNI'],
-            nombre: s['Apellido'],
-            apellido: s['Nombre'],
+            nombre: s['Nombre'],
+            apellido: s['Apellido'],
             fechaNacimiento: s['Fecha Nac.'],
             nacionalidad: s['Nacionalidad'],
             correoElectronico: s['e-m@il'],

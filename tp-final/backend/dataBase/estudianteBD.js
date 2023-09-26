@@ -48,7 +48,7 @@ const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
                             celular as Celular
                             
     FROM estudiante 
-    WHERE activo = 1 AND apellido LIKE ? AND nombre LIKE ?`;
+    WHERE activo = 1 AND apellido LIKE ? AND nombre LIKE ? ORDER BY Apellido, Nombre ASC`;
     if(!apeEstudiante) apeEstudiante = '';
     if(!nombEstudiante) nombEstudiante = '';
     const [estudiante] = await conexion.query(consulta,[apeEstudiante + '%',nombEstudiante + '%']);    
