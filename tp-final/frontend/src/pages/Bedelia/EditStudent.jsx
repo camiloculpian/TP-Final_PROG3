@@ -77,8 +77,8 @@ function EditStudent(){
                     foto: "",
                 });
                 launchNotificacion({
-                    notifMessage: 'Los cambios fueron guardados de forma correcta.',
-                    notifType: 'OK',
+                    notifMessage: data['message'],
+                    notifType: data['status'],
                     state: true
                 })
                 setFormData({
@@ -163,7 +163,7 @@ function EditStudent(){
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage: <>
-                                        <p>No se pudo realizar la busqueda debido al siguiente error??????????????</p>
+                                        <p>No se pudo realizar la busqueda debido al siguiente error</p>
                                         <h4>{error.message}</h4>
                                       </>,
                         notifType: 'ERROR',

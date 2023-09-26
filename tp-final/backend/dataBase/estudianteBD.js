@@ -56,10 +56,13 @@ const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
     return estudiante;
 }
 
-const agregarEstudiante = async ( dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto) =>{
-    const consulta = `INSERT INTO estudiante (dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto, activo)
-                        VALUES(?,?,?,?,?,?,?,?,1)`;
-    const response = await conexion.query(consulta,[dni, apellido, nombre, fechaNacimiento,nacionalidad,correoElectronico, celular, foto]);
+// const agregarEstudiante = async ( dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto) =>{
+    // const consulta = `INSERT INTO estudiante (dni, apellido, nombre, fechaNacimiento, nacionalidad, correoElectronico, celular, foto, activo)
+    //                     VALUES(?,?,?,?,?,?,?,?,1)`;
+const agregarEstudiante = async ( estudiante) =>{
+    const consulta = `INSERT INTO estudiante SET ?`;
+
+    const response = await conexion.query(consulta,[estudiante]);
     
     return response;
 }

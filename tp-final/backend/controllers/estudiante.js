@@ -23,7 +23,8 @@ agregar = async(req, res) => {
         //TIRAR ERROR Y EL ESTUDIANTE SI ESTE YA EXISTE(BUSCAR POR DNI)
         let estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
         if(!estudiante.length){
-            const idEstudiante = await estudianteBD.agregarEstudiante(req.body.dni, req.body.apellido, req.body.nombre, req.body.fechaNacimiento, req.body.nacionalidad, req.body.correoElectronico, req.body.celular, req.body.foto);
+            // const idEstudiante = await estudianteBD.agregarEstudiante(req.body.dni, req.body.apellido, req.body.nombre, req.body.fechaNacimiento, req.body.nacionalidad, req.body.correoElectronico, req.body.celular, req.body.foto);
+            const idEstudiante = await estudianteBD.agregarEstudiante(req.body);
             estudiante = [{
                 idEstudiante: idEstudiante[0]['insertId'],
                 dni: parseInt(req.body.dni),
@@ -85,7 +86,7 @@ modificar = async(req, res) => {
                 celular: req.body.celular,
                 foto: req.body.foto
             }]
-            res.json({status:'OK',message:'El estudiante se modifico correctamente', data:estudiante});
+            res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:estudiante});
         }else{
             res.json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja...', data:[{}]});
         }
