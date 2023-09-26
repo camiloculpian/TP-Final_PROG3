@@ -1,5 +1,4 @@
+# misc
 /node_modules
-/access.log
-/.env
 .env
 access.log

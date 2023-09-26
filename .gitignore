@@ -1,7 +1,4 @@
 tp-final/backend/node_modules/
+tp-final/frontend/node_modules/
 tp-final/backend/access.log
 tp-final/backend/.env
-
-tp-final/backend/.env
-
-tp-final/backend/access.log

@@ -29,3 +29,4 @@
 ::ffff:127.0.0.1 - - [25/Sep/2023:13:28:19 +0000] "GET /api/v1/estudiante/lookup HTTP/1.1" 200 1144 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
 ::ffff:127.0.0.1 - - [25/Sep/2023:13:28:19 +0000] "GET /api/v1/estudiante/lookup HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
 ::ffff:127.0.0.1 - - [25/Sep/2023:14:09:32 +0000] "GET /api/v1/estudiante/lookup?apellido=&nombre= HTTP/1.1" 200 1144 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
+::ffff:127.0.0.1 - - [25/Sep/2023:18:19:06 +0000] "GET /api/v1/estudiante/lookup?apellido=&nombre= HTTP/1.1" 200 1144 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/117.0"
