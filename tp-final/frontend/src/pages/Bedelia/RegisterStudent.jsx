@@ -52,7 +52,7 @@ function RegisterStudent(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data['message']==='OK'){
+                    if(data['status']==='OK'){
                         setFormData({
                             apellido: "",
                             nombre: "",
@@ -85,7 +85,7 @@ function RegisterStudent(){
             <div className="moduleContent">
                 <fieldset>
                     <legend>Estudiantes -&gt; Añadir Estudiante</legend>
-                    <form onSubmit={handleSubmit} method='POST'> 
+                    <form onSubmit={handleSubmit} onReset={()=>setFormData({apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: "",})} method='POST'> 
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={handleChange}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={handleChange}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}></input></div>
@@ -97,7 +97,7 @@ function RegisterStudent(){
                         <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
                         <div>
                             <button type="submit" className="botonComun">Agregar Estudiante</button>
-                            <button type="cancel" className="botonComun">Cancelar</button>
+                            <button type="reset" className="botonComun">Cancelar</button>
                         </div>
                     </form>
                 </fieldset>

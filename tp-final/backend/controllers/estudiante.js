@@ -37,9 +37,9 @@ agregar = async(req, res) => {
                 foto: req.body.foto,
                 activo: 1
             }]
-            res.json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
+            res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
         }else{
-            res.json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
+            res.status(200).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
         }
     }catch (excep){
         throw(excep);
