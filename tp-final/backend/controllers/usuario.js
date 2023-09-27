@@ -14,3 +14,16 @@ buscarUsuario = async(req, res) => {
         throw (excep);
     }
 }
+
+buscarUsuarioPorID = async(req, res) => {
+    try{
+        const usuario = await usuarioBD.buscarUsuario(req.body.id);
+        if(usuario.length){
+            res.status(200).json({status:'OK',data:usuario});
+        }else{
+            res.status(200).json({status:'ERROR', message:'ERROR: credenciales Incorrectas'});
+        }
+    }catch (excep){
+        throw (excep);
+    }
+}
