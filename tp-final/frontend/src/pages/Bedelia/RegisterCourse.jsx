@@ -1,3 +1,5 @@
+import CareerSelect from "./CareerSelect";
+
 export default function CreateCourse(){
     return(
     <>
@@ -14,11 +16,7 @@ export default function CreateCourse(){
                     </div>
                     <div className="dataLine"><label className="dataTitle" htmlFor="hsSemanales">Hs. Semanales:</label><input name="hsSemanales" required="" className="dataEntry" /></div>
                     <div className="dataLine"><label className="dataTitle" htmlFor="CARRERA">Carrera:</label>
-                        <select name="carrera" required="" className="dataEntry" id="carrera">
-                            <option value="1">Tec. en Desarrollo Web</option>
-                            <option value="2">Contador Publico</option>
-                            <option value="3">Lic. en Sistemas</option>
-                        </select>
+                    <CareerSelect callbackSelected={()=>{}}/>
                     </div>
                     <div>
                         <button className="botonComun" id="submit">Agregar</button>
