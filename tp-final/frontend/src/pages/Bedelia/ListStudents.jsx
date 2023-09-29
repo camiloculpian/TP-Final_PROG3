@@ -48,16 +48,12 @@ export default function ListStudent(){
             });;
     }, [])
 
-    const test = (e) =>{
-        console.log(e);
-    }
-
     return(
         <>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Estudiantes -&gt; Listar Estudiantes</legend>
-                    <AdaptativeTable json={data} callbackSelectable={test}/>
+                    <AdaptativeTable json={data} />
                 </fieldset>
             </div>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>

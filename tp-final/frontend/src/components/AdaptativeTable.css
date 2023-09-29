@@ -1,0 +1,41 @@
+.tdEditButton{
+    background-image: url("../layouts/svg/edit.svg");
+    background-position-x: center;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    text-align:center;
+    background-color: #ebebeb;
+    color:#001E2D;
+    padding:10px 10px;
+    border: 1px solid;
+    width: auto;
+}
+
+.tdDeleteButton{
+    background-image: url("../layouts/svg/delete.svg");
+    background-position-x: center;
+    background-position-y: center ;
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    text-align:center;
+    background-color: #ebebeb;
+    color:#001E2D;
+    padding:10px 10px;
+    border: 1px solid;
+    width: auto;
+}
+.tdEditButton:hover{
+    cursor: pointer;
+    background-image: url("../layouts/svg/edit-hover.svg");
+    background-color: #001E2D;
+    color:#ebebeb;
+}
+.tdDeleteButton:hover{
+    cursor: pointer;
+    background-image: url("../layouts/svg/delete-hover.svg");
+    background-color: #001E2D;
+    color:#ebebeb;
+}

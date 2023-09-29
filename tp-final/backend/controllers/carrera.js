@@ -32,7 +32,17 @@ buscar = async(req, res) => {
     }
 }
 
+borrar = async(req, res) => {
+    try{
+        const carrera = await carreraBD.borrarCarrera(req.body.idCarrera);
+        res.status(200).json({status:'OK', data:carrera});
+    }catch (excep){
+        throw excep;
+    }
+}
+
 module.exports = {
                   agregar,
-                  buscar
+                  buscar,
+                  borrar
 }

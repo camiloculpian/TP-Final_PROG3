@@ -8,6 +8,14 @@ const agregarCarrera = async (carrera) =>{
     return response;
 }
 
+const borrarCarrera = async (idCarrera) =>{
+    const consulta = `UPDATE carrera set activo=0 WHERE idCarrera = ?`;
+
+    const response = await conexion.query(consulta,[idCarrera]);
+    
+    return response;
+}
+
 const buscarCarrera = async (nombre) =>{
     if(nombre){
         const consulta = `SELECT 
@@ -34,5 +42,6 @@ const buscarCarrera = async (nombre) =>{
 
 module.exports = {
     agregarCarrera,
-    buscarCarrera
+    buscarCarrera,
+    borrarCarrera
 }
