@@ -3,7 +3,7 @@ import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 
 
-export default function ListStudent(){
+export default function ListCareers(){
     // ACA ELFETCH DE LOS DATOS
     const [data, setData] = useState();
     const [notificationState, launchNotificacion] = useState({
@@ -20,7 +20,7 @@ export default function ListStudent(){
             notifType: 'WAIT',
             state: true
         })
-        fetch('http://localhost:3005/api/v1/estudiante/lookup', requestOptions)
+        fetch('http://localhost:3005/api/v1/carrera/lookup', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
@@ -47,16 +47,14 @@ export default function ListStudent(){
                 })
             });;
     }, [])
+    const test = (e) => {
 
-    const test = (e) =>{
-        console.log(e);
     }
-
     return(
         <>
             <div className="moduleContent">
                 <fieldset>
-                    <legend>Estudiantes -&gt; Listar Estudiantes</legend>
+                    <legend>Carreras -&gt; Listar Carreras</legend>
                     <AdaptativeTable json={data} callbackSelectable={test}/>
                 </fieldset>
             </div>

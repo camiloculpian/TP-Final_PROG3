@@ -82,13 +82,14 @@
 
 .WARNPromtLine button{
     padding: 10px;
-    background-color: #e7b204;
     border-radius: 5px;
+    background-color: #e7b204;
     border: 1px solid rgb(255, 244, 181);
     color: rgb(255, 244, 181);
 }
 
-.WARNPromtLine .button:hover{
+.WARNPromtLine button:hover{
+    cursor: pointer;
     background-color: rgb(255, 244, 181);
     border: 1px solid #e7b204;
     color: #e7b204;

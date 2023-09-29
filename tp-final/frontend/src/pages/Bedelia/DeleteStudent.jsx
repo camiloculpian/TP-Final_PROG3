@@ -1,4 +1,5 @@
 import './Bedelia.css'
+import '../../components/Notifications.css'
 import CountrySelect from '../../components/CountrySelect';
 import Modal from '../../components/Modal';
 import { useState } from "react";
@@ -109,10 +110,10 @@ function DeleteStudent(){
         await launchNotificacion({
             notifMessage: <>
                             <p>Esta realmente seguro que desea eliminar el estudiante?</p>
-                            <h3>La accion no se podra desacer</h3>
+                            <h3>La accion no se podra deshacer</h3>
                             <div className='WARNPromtLine'>
-                                <button className='WARNPromptButton' onClick={()=>{deleteStudent(); launchNotificacion({})}}><h4>Confirmar</h4></button>
-                                <button className='WARNPromptButton' onClick={()=>{canecelDeleteStudent(); launchNotificacion({})}}><h4>Cancelar</h4></button>
+                                <button onClick={()=>{deleteStudent(); launchNotificacion({})}}><h4>Confirmar</h4></button>
+                                <button onClick={()=>{canecelDeleteStudent(); launchNotificacion({})}}><h4>Cancelar</h4></button>
                             </div>
                           </>,
             notifType: 'WARN',

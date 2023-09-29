@@ -5,7 +5,7 @@ buscar = async(req, res) => {
     try{
         if(req.query['id']){
             const estudiante = await estudianteBD.buscarPorId(req.query['id']);
-            res.json({status:'OK', data:estudiante});
+            res.status(200).json({status:'OK', data:estudiante});
         }else if(req.query['dni']){
             const estudiante = await estudianteBD.buscarPorDNI(req.query['dni']);
             res.json({status:'OK', data:estudiante});

@@ -13,6 +13,8 @@ import ListStudents from './pages/Bedelia/ListStudents';
 import Footer from './layouts/Footer';
 import Header from './layouts/Header';
 import DeleteStudent from './pages/Bedelia/DeleteStudent';
+import RegisterCareer from './pages/Bedelia/RegisterCareer';
+import ListCareers from './pages/Bedelia/ListCareers';
 
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
               <Route path='register' element={<RegisterCourse />} />
             </Route>
             <Route path='careers'>
+              <Route path='register' element={<RegisterCareer />} />
+              <Route path='list' element={<ListCareers />} />
             </Route>
             <Route path='enrollments'>
             </Route>

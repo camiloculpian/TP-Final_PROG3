@@ -1,6 +1,6 @@
 const {Router} = require('express');
 
-const { buscar, eliminar, test, modificar } = require('../../controllers/estudiante');
+const { buscar, eliminar, agregar, modificar } = require('../../controllers/estudiante');
 
 
 const router = Router();
@@ -23,8 +23,6 @@ const router = Router();
 router.get('/lookup?', buscar);
 
 router.post('/add', agregar)
-
-router.get('/test', test)
 
 router.delete('/delete', eliminar)
 

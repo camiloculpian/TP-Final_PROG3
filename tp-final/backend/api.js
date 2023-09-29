@@ -49,12 +49,14 @@ appi.get('/', (req, res) => {
 const v1Publico = require('./v1/routes/publico');
 const v1Estudiante = require('./v1/routes/estudiante');
 const v1Usuario = require('./v1/routes/usuario');
+const V1Carrera = require('./v1/routes/carrera');
 
 
 // middlEWare
 appi.use('/api/v1/publico', v1Publico);
 appi.use('/api/v1/estudiante', v1Estudiante);
 appi.use('/api/v1/usuario', v1Usuario);
+appi.use('/api/v1/carrera', V1Carrera);
 
 
 
