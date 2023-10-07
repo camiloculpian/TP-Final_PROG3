@@ -1,16 +1,17 @@
 // Recibe un json con las header(cabecera) y data (datos=filas) y transforma todo en una tabla
 import './AdaptativeTable.css';
 
-function AdaptativeTable({json, callbackSelectable, callbackEditable, callbackDeletable}){
-    if (json && json['data'][0]){
-        const TRs=Object.keys(json['data'][0]);
-        const TDs=Object.values(json['data']);
+function AdaptativeTable({tableData, callbackSelectable, callbackEditable, callbackDeletable}){
+
+    if (tableData['headers'] && tableData['data']){
+        const TRs=tableData['headers'];
+        const TDs=tableData['data'];
         return(
             <table>
                 <thead>
                     <tr>{
                             TRs.map((element, id) => {
-                                return(<th key={id}>{element}</th>);
+                                return(<th key={id}>{element.name}</th>);
                             })
                         }
                         {callbackEditable||callbackSelectable?<th id='actions' colSpan={callbackEditable&&callbackDeletable?2:1}>ACTIONS</th>:<></>}

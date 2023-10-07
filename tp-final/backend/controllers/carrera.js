@@ -1,4 +1,3 @@
-const { query } = require('../dataBase/conexionBD');
 const carreraBD = require('../dataBase/carreraBD');
 
 agregar = async(req, res) => {
@@ -25,8 +24,8 @@ agregar = async(req, res) => {
 
 buscar = async(req, res) => {
     try{
-        const carrera = await carreraBD.buscarCarrera(req.body.nombre);
-        res.status(200).json({status:'OK', data:carrera});
+        const response = await carreraBD.buscarCarrera(req.body.nombre);
+        res.status(200).json({status:'OK', headers: response[1],data:response[0]});
     }catch (excep){
         throw excep;
     }

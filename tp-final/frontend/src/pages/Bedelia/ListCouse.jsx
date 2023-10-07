@@ -3,7 +3,7 @@ import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 
 
-export default function ListCareers(){
+export default function ListCourse(){
     // ACA EL FETCH DE LOS DATOS
     const [data, setData] = useState();
 
@@ -12,6 +12,7 @@ export default function ListCareers(){
         notifType: '',
         state: false
     })
+    
     const getCarres = () => {
         const requestOptions = {
             method: 'GET',
@@ -21,7 +22,7 @@ export default function ListCareers(){
             notifType: 'WAIT',
             state: true
         })
-        fetch('http://localhost:3005/api/v1/carrera/lookup', requestOptions)
+        fetch('http://localhost:3005/api/v1/materia/lookup', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
@@ -50,7 +51,11 @@ export default function ListCareers(){
             });;
     };
 
-    useEffect(()=>{getCarres()},[]);
+    const getCourses = () => {
+        return '';
+    }
+
+    useEffect(()=>{getCourses()},[]);
 
     const deleteCareer = (idCarrera) =>{
         launchNotificacion({
@@ -65,7 +70,7 @@ export default function ListCareers(){
                 },
                 body: JSON.stringify({idCarrera: idCarrera})
         };
-        fetch(`http://localhost:3005/api/v1/carrera/delete`,requestOptions)
+        fetch(`http://localhost:3005/api/v1/materia/delete`,requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
@@ -106,7 +111,6 @@ export default function ListCareers(){
     }
 
     const callbackDeletable = (element) => {
-        console.log(element);
         launchNotificacion({
             notifMessage: <>
                             <p>Esta realmente seguro que desea eliminar la Carrera?</p>
@@ -125,7 +129,7 @@ export default function ListCareers(){
         <>
             <div className="moduleContent">
                 <fieldset>
-                    <legend>Carreras -&gt; Listar Carreras</legend>
+                    <legend>Materias -&gt; Listar Materias</legend>
                     <AdaptativeTable tableData={data?data:{data: []}}  callbackSelectable={callbackSelectable} callbackEditable={callbackEditable} callbackDeletable={callbackDeletable}/>
                 </fieldset>
             </div>

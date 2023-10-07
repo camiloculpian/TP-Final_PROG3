@@ -79,8 +79,8 @@ export default function RegisterCareer(){
                         <div className="dataLine">
                             <label className="dataTitle" htmlFor="modalidad">Modalidad</label>
                             <select name="modalidad" required="" className="dataEntry" value={formData.modalidad} onChange={handleChange}>
-                                <option value="0">Presencial</option>
-                                <option value="1">Virtual</option>
+                                <option value={0}>Presencial</option>
+                                <option value={1}>Virtual</option>
                             </select>
                         </div>
                         <div><button className="botonComun" type="submit">Agregar</button></div>

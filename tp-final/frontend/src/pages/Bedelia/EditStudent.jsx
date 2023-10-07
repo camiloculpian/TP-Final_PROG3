@@ -25,7 +25,7 @@ function EditStudent(){
         nombre: "",
         dni: "",
         fechaNacimiento: "",
-        nacionalidad: 56,
+        nacionalidad: 5,
         correoElectronico: "",
         celular: "",
         foto: "",
@@ -87,7 +87,7 @@ function EditStudent(){
                     nombre: "",
                     dni: "",
                     fechaNacimiento: "",
-                    nacionalidad: 56,
+                    nacionalidad: 5,
                     correoElectronico: "",
                     celular: "",
                     foto: "",
@@ -113,7 +113,7 @@ function EditStudent(){
             nombre: "",
             dni: "",
             fechaNacimiento: "",
-            nacionalidad: 56,
+            nacionalidad: 5,
             correoElectronico: "",
             celular: "",
             foto: "",
@@ -195,8 +195,8 @@ function EditStudent(){
                         <div className="dataLine"><label className="dataTitle" htmlFor="nacionalidad">Nacionalidad:</label>
                             <CountrySelect callbackSelected={formData.idEstudiante ? handleChange:()=>{}} name={'nacionalidad'} selected={formData.nacionalidad}/>
                         </div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" required className="dataEntry" value={formData.celular} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={formData.idEstudiante?handleChange:()=>{}}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" className="dataEntry" value={formData.celular} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" className="dataEntry" value={formData.correoElectronico} onChange={formData.idEstudiante?handleChange:()=>{}}></input></div>
                         <div>
                             <button className="botonComun" id="editar-estudiante" type="submit">Guardar</button>
                             <button className="botonComun" id="cancelar-editar-estudiante" type="reset" onClick={()=>{setFormData({idEstudiante: "", apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>Cancelar</button>

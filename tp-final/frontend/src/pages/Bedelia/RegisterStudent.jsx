@@ -15,7 +15,7 @@ function RegisterStudent(){
         nombre: "",
         dni: "",
         fechaNacimiento: "",
-        nacionalidad: "56",
+        nacionalidad: 5,
         celular: "",
         correoElectronico: "",
     });
@@ -58,7 +58,7 @@ function RegisterStudent(){
                             nombre: "",
                             dni: "",
                             fechaNacimiento: "",
-                            nacionalidad: "56",
+                            nacionalidad: 5,
                             celular: "",
                             correoElectronico: "",
                         })
@@ -93,8 +93,8 @@ function RegisterStudent(){
                         <div className="dataLine"><label className="dataTitle" htmlFor="nacionalidad">Nacionalidad:</label>
                             <CountrySelect callbackSelected={handleChange} name={'nacionalidad'} selected={formData.nacionalidad}/>
                         </div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" required className="dataEntry" value={formData.celular} onChange={handleChange}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" className="dataEntry" value={formData.celular} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
                         <div>
                             <button type="submit" className="botonComun">Agregar Estudiante</button>
                             <button type="reset" className="botonComun">Cancelar</button>

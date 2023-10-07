@@ -47,17 +47,21 @@ appi.get('/', (req, res) => {
 
 // las rutas del api
 const v1Publico = require('./v1/routes/publico');
-const v1Estudiante = require('./v1/routes/estudiante');
 const v1Usuario = require('./v1/routes/usuario');
+const v1Estudiante = require('./v1/routes/estudiante');
 const V1Carrera = require('./v1/routes/carrera');
+const V1Materia = require('./v1/routes/materia');
 
+const V1Resources = require('./v1/routes/resources');
 
 // middlEWare
 appi.use('/api/v1/publico', v1Publico);
-appi.use('/api/v1/estudiante', v1Estudiante);
 appi.use('/api/v1/usuario', v1Usuario);
+appi.use('/api/v1/estudiante', v1Estudiante);
 appi.use('/api/v1/carrera', V1Carrera);
+appi.use('/api/v1/materia', V1Materia);
 
+appi.use('/api/v1/resources', V1Resources);
 
 
 // appi.post('/contacto', cors(), (req, res) => {

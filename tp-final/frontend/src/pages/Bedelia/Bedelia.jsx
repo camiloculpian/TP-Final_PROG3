@@ -1,7 +1,7 @@
 import './Bedelia.css';
 
 import Content from '../../layouts/Content';
-import BedeliaMenu from '../../components/BedeliaMenu';
+import BedeliaMenu from './BedeliaMenu';
 import BedeliaInformationBar from './BedeliaInformationBar';
 import { Outlet, useNavigate } from 'react-router';
 import { useState } from 'react';

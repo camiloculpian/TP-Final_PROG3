@@ -7,12 +7,12 @@ function CountrySelect({callbackSelected, name='countrySelect', selected}){
     // const [selected, setSelected] = useState(defaultSelected);
 
     useEffect(()=>{
-        const consulta = `https://restcountries.com/v3.1/all`;
-
+        // const consulta = `https://restcountries.com/v3.1/all`;
+        const consulta = `http://localhost:3005/api/v1/resources/countryList`;
         fetch(consulta)
         .then( resp => {
             resp.json().then(data => {
-                setDatos(data);
+                setDatos(data['data']);
             } )
         })
         .catch(error => {
@@ -28,9 +28,9 @@ function CountrySelect({callbackSelected, name='countrySelect', selected}){
     return (
         
         <select value={selected} onChange={changeSelected} name={name} className="dataEntry" >
-            {datos?.map((country, index) => {
+            {datos?.map((country) => {
                 return (
-                    <option key={index} value={index} >{country.name.common}</option>
+                    <option key={country.id} value={country.id} >{country.nombre}</option>
                 );
             })}
         </select>

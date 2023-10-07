@@ -4,14 +4,14 @@ const estudianteBD = require('../dataBase/estudianteBD');
 buscar = async(req, res) => {
     try{
         if(req.query['id']){
-            const estudiante = await estudianteBD.buscarPorId(req.query['id']);
-            res.status(200).json({status:'OK', data:estudiante});
+            const response = await estudianteBD.buscarPorId(req.query['id']);
+            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }else if(req.query['dni']){
-            const estudiante = await estudianteBD.buscarPorDNI(req.query['dni']);
-            res.json({status:'OK', data:estudiante});
+            const response = await estudianteBD.buscarPorDNI(req.query['dni']);
+            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }else{
-            const estudiante = await estudianteBD.buscarPorApeNomb(req.query['apellido'], req.query['nombre']);
-            res.json({status:'OK', data:estudiante});
+            const response = await estudianteBD.buscarPorApeNomb(req.query['apellido'], req.query['nombre']);
+            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (excep){
         throw excep;
@@ -39,7 +39,7 @@ agregar = async(req, res) => {
             }]
             res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
         }else{
-            res.status(200).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
+            res.json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
         }
     }catch (excep){
         throw(excep);
@@ -52,7 +52,7 @@ eliminar = async(req, res) => {
         const estudiante = await estudianteBD.eliminarEstudiante(parseInt(req.body.idEstudiante));
 
         if(!estudiante.length){
-            res.json({status:'OK',message:'El estudiante se eliminó correctamente'});
+            res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
         }else{
             res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
         }
@@ -64,7 +64,7 @@ eliminar = async(req, res) => {
 test = async(req, res) => {
     try{
         console.log(req)
-        res.json({status:'OK',message:'Bienvenido!!!'})
+        res.status(200).json({status:'OK',message:'Bienvenido!!!'})
     }catch (excep){
         throw (excep);
     }

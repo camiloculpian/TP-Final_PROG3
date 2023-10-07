@@ -93,7 +93,7 @@ function SearchStudent({returnStudent}){
                             <button type='submit' className="searchButton"></button>
                         </div>
                     </form>
-                    <AdaptativeTable json={studentsList} callbackSelectable={setReturnStudent}/>
+                    <AdaptativeTable tableData={studentsList?studentsList:{studentsList: []}} callbackSelectable={setReturnStudent}/>
                 </div>
                 <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
             </>
