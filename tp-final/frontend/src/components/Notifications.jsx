@@ -7,7 +7,7 @@
 //     notifType: '', ('OK', 'ERROR', 'INFO', 'WARN', 'WAIT')
 //     state: false
 // })
-// Ej. anzar la notificacion OK:
+// Ej. lanzar la notificacion OK:
 // launchNotificacion({
 //     notifMessage: <p>El mensaje de la notificacion</p>,
 //     notifType: 'OK',

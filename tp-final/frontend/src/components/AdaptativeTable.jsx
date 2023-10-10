@@ -14,7 +14,7 @@ function AdaptativeTable({tableData, callbackSelectable, callbackEditable, callb
                                 return(<th key={id}>{element.name}</th>);
                             })
                         }
-                        {callbackEditable||callbackSelectable?<th id='actions' colSpan={callbackEditable&&callbackDeletable?2:1}>ACTIONS</th>:<></>}
+                        {callbackEditable||callbackDeletable?<th id='actions' colSpan={callbackEditable&&callbackDeletable?2:1}>ACTIONS</th>:<></>}
                     </tr>
                 </thead>
                 <tbody>{
