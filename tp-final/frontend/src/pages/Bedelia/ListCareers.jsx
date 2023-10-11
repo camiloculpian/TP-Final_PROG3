@@ -1,11 +1,30 @@
 import { useEffect, useState } from "react";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
+import Modal from "../../components/Modal";
 
 
 export default function ListCareers(){
     // ACA EL FETCH DE LOS DATOS
     const [data, setData] = useState();
+
+    const [estadoModal, setEstadoModal] = useState(false);
+
+    const [formData, setFormData] = useState({
+        nombre: "",
+        modalidad: 0,
+        activo: 1
+    });
+    const handleChange = (e) => {
+        console.log(e.target.value);
+        const { target } = e;
+        const { name, value } = target;
+        const newValues = {
+          ...formData,
+          [name]: value,
+        };
+        setFormData(newValues);
+    }
 
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
@@ -100,9 +119,11 @@ export default function ListCareers(){
 
     const callbackEditable = (e) => {
         console.log(e);
-        // e.target.parentElement.parentElement.childNodes.forEach(element => {
-        //     element.innerHTML = '<input value={element.value} />';
-        // });
+        setFormData({
+            nombre: e.Nombre,
+            modalidad : e.Modalidad
+        });
+        setEstadoModal(true);
     }
 
     const callbackDeletable = (element) => {
@@ -130,6 +151,26 @@ export default function ListCareers(){
                 </fieldset>
             </div>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
+            <Modal state={estadoModal} changeState={setEstadoModal}>
+                <div className="moduleContent" >
+                    <form /*onSubmit={handleSubmit}*/>
+                        <fieldset>
+                            <legend>Carreras -&gt; Editar Carrera</legend>
+                            <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre Carrera:</label><input name="nombre" required="" className="dataEntry"value={formData.nombre} onChange={handleChange}/></div>
+                            <div className="dataLine">
+                                <label className="dataTitle" htmlFor="modalidad">Modalidad</label>
+                                <select name="modalidad" required="" className="dataEntry" value={formData.modalidad} onChange={handleChange}>
+                                    <option value={0}>Presencial</option>
+                                    <option value={1}>Virtual</option>
+                                </select>
+                            </div>
+                                <div><button className="botonComun" type="submit">Guardar</button>
+                                <button className="botonComun" type="reset">Cancelar</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </Modal>
         </>
     )
 }
