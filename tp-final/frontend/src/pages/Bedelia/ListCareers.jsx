@@ -127,7 +127,6 @@ export default function ListCareers(){
     }
 
     const callbackDeletable = (element) => {
-        console.log(element);
         launchNotificacion({
             notifMessage: <>
                             <p>Esta realmente seguro que desea eliminar la Carrera?</p>
