@@ -50,6 +50,7 @@ function DeleteStudent(){
         })
         const requestOptions = {
             method: 'DELETE',
+            credentials: 'include',
             headers:{
                 'Content-Type':'application/json'
                 },

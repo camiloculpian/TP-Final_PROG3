@@ -19,7 +19,7 @@ function CareerSelect({callbackSelected, name='careerSelect', selected}){
             state: true
         })
         const consulta = `http://localhost:3005/api/v1/carrera/lookup`;
-        fetch(consulta, {method: 'GET'})
+        fetch(consulta, {method: 'GET', credentials: 'include'})
         .then( resp => {
             resp.json().then(data => {
                 setDatos(data['data']);

@@ -16,6 +16,7 @@ export default function ListCourse(){
     const getCarres = () => {
         const requestOptions = {
             method: 'GET',
+            credentials: 'include', //NO DEBERIA PARA QUE SEA ACCESIBLE POR EL SISTEMA PARA LISTAR CARRETAS EN LA PAGINA PRINCIPAL
         };
         launchNotificacion({
             notifMessage: <p>Obteniendo lista de carreras</p>,
@@ -65,6 +66,7 @@ export default function ListCourse(){
         })
         const requestOptions = {
             method: 'DELETE',
+            credentials: 'include',
             headers:{
                 'Content-Type':'application/json'
                 },

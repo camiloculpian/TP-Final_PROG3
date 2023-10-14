@@ -52,6 +52,7 @@ function SearchStudent({returnStudent}){
         })
         const requestOptions = {
             method: 'GET',
+            credentials: 'include'
         };
         fetch(`http://localhost:3005/api/v1/estudiante/lookup?apellido=${encodeURIComponent(formData.apellidoBusqueda)}&nombre=${encodeURIComponent(formData.nombreBusqueda)}`, requestOptions)
             .then(async response => {

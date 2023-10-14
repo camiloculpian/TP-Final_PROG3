@@ -1,5 +1,7 @@
 const {Router} = require('express');
 
+const { isAuthenticated, isAuthenticatedAndBedel } = require('../../middleware/auth');
+
 const { buscar, eliminar, agregar, modificar } = require('../../controllers/estudiante');
 
 
@@ -20,13 +22,13 @@ const router = Router();
 
 //buscarPorID
 
-router.get('/lookup?', buscar);
+router.get('/lookup?', isAuthenticatedAndBedel, buscar);
 
-router.post('/add', agregar)
+router.post('/add', isAuthenticatedAndBedel, agregar)
 
-router.delete('/delete', eliminar)
+router.delete('/delete', isAuthenticatedAndBedel, eliminar)
 
-router.put('/edit', modificar)
+router.put('/edit', isAuthenticatedAndBedel, modificar)
 
 
 module.exports = router;

@@ -15,6 +15,7 @@ export default function ListStudent(){
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
+            credentials: 'include',
         };
         launchNotificacion({
             notifMessage: <p>Obteniendo lista de estudiantes</p>,
@@ -42,7 +43,7 @@ export default function ListStudent(){
                 launchNotificacion({
                     notifMessage: <>
                                     <p>No se pudo obtener la lista debido al siguiente error</p>
-                                    <h4>{error.message}</h4>
+                                    <h4>{error}</h4>
                                   </>,
                     notifType: 'ERROR',
                     state: false

@@ -126,6 +126,7 @@ function EditStudent(){
             })
             const requestOptions = {
                 method: 'GET',
+                credentials: 'include',
             };
             fetch(`http://localhost:3005/api/v1/estudiante/lookup?dni=${encodeURIComponent(valorDeBusqueda)}`, requestOptions)
                 .then(async response => {

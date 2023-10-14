@@ -17,7 +17,8 @@ const buscarUsuario = async (username,password) => {
                              CONCAT(nombre,' ',apellido) as nombre 
                        FROM usuario WHERE activo = 1 AND correoElectronico = ? AND clave = ?`;
     
-    const [usuario] = await conexion.query(consulta,[username, password]);    
+    const [usuario] = await conexion.query(consulta,[username, password]);   
+    // console.log(usuario); 
     return usuario;
 }
 
@@ -25,6 +26,7 @@ const buscarUsuarioPorID = async (idUsuario) => {
     console.log('ENTERING -> const buscarUsuarioPorID = async (idUsuario: '+idUsuario+')');
     const consulta = `SELECT * FROM usuario WHERE activo = 1 AND idUsuario = ?`;
     const [usuario] = await conexion.query(consulta,[idUsuario]);
+    console.log(usuario);
     console.log('LEAVING <- const buscarUsuarioPorID = async (idUsuario: '+idUsuario+')'); 
     return usuario;
 }

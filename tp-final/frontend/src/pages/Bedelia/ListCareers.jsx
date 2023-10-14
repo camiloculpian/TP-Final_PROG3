@@ -34,6 +34,7 @@ export default function ListCareers(){
     const getCarres = () => {
         const requestOptions = {
             method: 'GET',
+            credentials: 'include',
         };
         launchNotificacion({
             notifMessage: <p>Obteniendo lista de carreras</p>,
@@ -79,6 +80,7 @@ export default function ListCareers(){
         })
         const requestOptions = {
             method: 'DELETE',
+            credentials: 'include',
             headers:{
                 'Content-Type':'application/json'
                 },
