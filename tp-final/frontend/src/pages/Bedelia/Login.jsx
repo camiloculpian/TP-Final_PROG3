@@ -56,8 +56,6 @@ function Login({setLoginState}) {
               loginTimeOut: 5000
             })
           }
-          
-          
       }).catch(error => { 
           launchNotificacion({
               notifMessage: <>

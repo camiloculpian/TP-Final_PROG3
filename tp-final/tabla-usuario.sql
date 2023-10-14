@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 -- Volcando datos para la tabla bedelia12.usuario: ~2 rows (aproximadamente)
 INSERT INTO `usuario` (`idUsuario`, `tipoUsuario`, `correoElectronico`, `clave`, `nombre`, `apellido`, `activo`) VALUES
-	(1, 1, 'bedelia@dominio.com', '098f6bcd4621d373cade4e832627b4f6', 'Camilo Martin', 'Culpian', 1),
-	(2, 1, 'decano@dominio.com', '098f6bcd4621d373cade4e832627b4f6', 'Test', 'Test', 1);
+	(1, 1, 'bedelia@dominio.com', '098f6bcd4621d373cade4e832627b4f6', 'Bedelia', 'Fcad', 1),
+	(2, 1, 'decano@dominio.com', '098f6bcd4621d373cade4e832627b4f6', 'Decano', 'Fcad', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
