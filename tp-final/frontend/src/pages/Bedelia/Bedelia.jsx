@@ -9,21 +9,24 @@ import Modal from '../../components/Modal';
 import Login from './Login';
 
 function Bedelia(){
-    // const test = (t) =>{
-    //     console.log(t);
-    // }
+
     const [loginState, setLoginState] = useState({
         logged: false,
         loginUser: '',
         loginGroup: '',
+        token: '',
         loginTimeOut: 0
     });
     const navigate = useNavigate();
 
+    // const isAuthorized = () =>{
+
+    // }
+
     return (
         <>
             <Content>
-                {!loginState.logged &&
+                {loginState.logged &&
                 <>
                     <BedeliaInformationBar loginState={loginState} setLoginState={setLoginState}/>
                     <nav className="contentItem">
@@ -35,7 +38,7 @@ function Bedelia(){
                 </>
                 }
             </Content>
-            <Modal title={'Iniciar Sesión'} state={loginState.logged} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
+            <Modal title={'Iniciar Sesión'} state={!loginState.logged} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
                 <Login setLoginState={setLoginState}/>
             </Modal>
 

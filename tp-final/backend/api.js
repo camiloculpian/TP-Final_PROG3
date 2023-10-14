@@ -9,6 +9,9 @@ var fs = require('fs');
 // trabajar con las rutas de archivos y directorios del sistema de archivos
 var path = require('path');
 
+//cookie-parser
+const cookieParser = require('cookie-parser');
+
 // handlerbar (estilo al mail de contacto)
 const handlebars = require('handlebars');
 
@@ -26,16 +29,18 @@ const appi = express();
 
 // para recibir las peticiones del req en formato json
 appi.use(express.json());
-appi.use(express.urlencoded({extended:true}))
+appi.use(express.urlencoded({extended:true}));
+
+appi.use(cookieParser());
 
 // CREA UN ARCHIVO DE ACCESO
 // create a write stream (in append mode)
 // console.log(__dirname);
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 // setup the logger
-appi.use(morgan('combined', { stream: accessLogStream }))
+appi.use(morgan('combined', { stream: accessLogStream }));
 
-appi.use(cors());
+appi.use(cors({ origin: true, credentials: true  }));
 
 
 // endpoint de testeo del API
@@ -47,58 +52,23 @@ appi.get('/', (req, res) => {
 
 // las rutas del api
 const v1Publico = require('./v1/routes/publico');
-const v1Usuario = require('./v1/routes/usuario');
 const v1Estudiante = require('./v1/routes/estudiante');
 const V1Carrera = require('./v1/routes/carrera');
 const V1Materia = require('./v1/routes/materia');
-
+const v1Usuario = require('./v1/routes/usuario');
+const v1Auth = require('./v1/routes/auth');
 const V1Resources = require('./v1/routes/resources');
+
+
 
 // middlEWare
 appi.use('/api/v1/publico', v1Publico);
-appi.use('/api/v1/usuario', v1Usuario);
 appi.use('/api/v1/estudiante', v1Estudiante);
 appi.use('/api/v1/carrera', V1Carrera);
 appi.use('/api/v1/materia', V1Materia);
-
+appi.use('/api/v1/usuario', v1Usuario);
+appi.use('/api/v1/auth', v1Auth);
 appi.use('/api/v1/resources', V1Resources);
-
-
-// appi.post('/contacto', cors(), (req, res) => {
-//     const { nombre, email, mensaje } = req.body['formData'];
-//     const transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         auth: {
-//             user: process.env.CORREO,
-//             pass: process.env.CLAVE
-//         }
-//     })
-
-//     //TAREA: mejorar el cuerpo del correo
-//     //agregar el mensaje que recibmos en el body 
-//     //Les dejo la siguiente forma de colocar las variables si estan familiarizados, es un poco más cómodo y legible (la pueden descartar si no les gusta)
-//     const cuerpo1 = `<h1>Hola llegó un mail de ${nombre}</h1> \n ${mensaje}`
-//     const cuerpo = '<h1>Hola llego un correo de ' + nombre + ' </h1>' + '\n' + mensaje;
-
-//     const opciones = {
-//         from: email,
-//         to: 'ingo.prog3@gmail.com',
-//         subject: '___CONTACTO___' + email,
-//         html: cuerpo
-//     }
-
-//     transporter.sendMail(opciones, (error, info) => {
-//         if (error) {
-//             console.log('error -> ', error);
-//             const respuesta = 'El mensaje no ha sido enviado...';
-//             res.json({ respuesta });
-//         } else {
-//             console.log(info);
-//             const respuesta = 'El mensaje se ha enviado de forma correcta...';
-//             res.json({ respuesta });
-//         }
-//     })
-// })
 
 
 appi.listen(process.env.PUERTO, () => {

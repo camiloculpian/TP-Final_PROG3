@@ -1,8 +1,14 @@
 import './Login.css';
 import './Bedelia.css';
 import { useState } from 'react';
+import { Notification } from '../../components/Notifications';
  
 function Login({setLoginState}) {
+  const [notificationState, launchNotificacion] = useState({
+    notifMessage: '',
+    notifType: '',
+    state: false
+  })
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -23,9 +29,10 @@ function Login({setLoginState}) {
       headers:{
           'Content-Type':'application/json'
           },
+          credentials: 'include',
           body: JSON.stringify(formData)
     };
-    fetch(`http://localhost:3005/api/v1/usuario/login`,requestOptions)
+    fetch(`http://localhost:3005/api/v1/auth/login`,requestOptions)
       .then(async response => {
           const isJson = response.headers.get('content-type')?.includes('application/json');
           const data = isJson && await response.json();
@@ -35,31 +42,32 @@ function Login({setLoginState}) {
           }
           return data;
       }).then(data =>{
-          console.log(data);
-          setLoginState({
-            logged: true,
-            loginUser: data['data'][0]['nombre'],
-            loginGroup: data['data'][0]['tipoUsuario'],
-            loginTimeOut: 5000
+          launchNotificacion({
+              notifMessage: data['message'],
+              notifType: data['status'],
+              state: true
           })
+          if(data['data']){
+            setLoginState({
+              logged: true,
+              loginUser: data['data'][0]['nombre'],
+              loginGroup: data['data'][0]['tipoUsuario'],
+              token: data['token'],
+              loginTimeOut: 5000
+            })
+          }
+          
+          
       }).catch(error => { 
-          // launchNotificacion({
-          //     notifMessage: <>
-          //                     <p>No se pudio</p>
-          //                     <h4>{error.message}</h4>
-          //                   </>,
-          //     notifType: 'ERROR',
-          //     state: false
-          // })
+          launchNotificacion({
+              notifMessage: <>
+                              <p>No se pudio</p>
+                              <h4>{error}</h4>
+                            </>,
+              notifType: 'ERROR',
+              state: true
+          })
       });;
-    // if(formData.username === 'test' && formData.password === 'test'){
-    //   setLoginState({
-    //     logged: true,
-    //     loginUser: 'test',
-    //     loginGroup: 'test',
-    //     loginTimeOut: 5000
-    //   });
-    // }
   }
   return (
     <>
@@ -78,6 +86,7 @@ function Login({setLoginState}) {
         </div>
       </form>
       </div>
+      <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
     </>
   );
 }
