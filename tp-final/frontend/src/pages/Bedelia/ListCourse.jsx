@@ -92,7 +92,7 @@ export default function ListCourse(){
                 launchNotificacion({
                     notifMessage: <>
                                     <p>No se pudo realizar la solicitud debido al siguiente error</p>
-                                    <h4>{error.message}</h4>
+                                    <h4>{error}</h4>
                                   </>,
                     notifType: 'ERROR',
                     state: false

@@ -1,6 +1,6 @@
 const {Router} = require('express');
 
-const { isAuthenticated, isAuthenticatedAndBedel } = require('../../middleware/auth');
+const { isAuthenticatedAndBedel } = require('../../middleware/auth');
 
 const { buscar, eliminar, agregar, modificar } = require('../../controllers/estudiante');
 

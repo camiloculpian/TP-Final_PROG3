@@ -15,7 +15,7 @@ import Header from './layouts/Header';
 import DeleteStudent from './pages/Bedelia/DeleteStudent';
 import RegisterCareer from './pages/Bedelia/RegisterCareer';
 import ListCareers from './pages/Bedelia/ListCareers';
-import ListCourse from './pages/Bedelia/ListCouse';
+import ListCourse from './pages/Bedelia/ListCourse';
 
 
 function App() {

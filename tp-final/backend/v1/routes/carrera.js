@@ -1,14 +1,16 @@
 const {Router} = require('express');
 
+const { isAuthenticatedAndBedel } = require('../../middleware/auth');
+
 const { agregar, buscar, borrar } = require('../../controllers/carrera');
 
 
 const router = Router();
 
-router.post('/add', agregar);
+router.post('/add', isAuthenticatedAndBedel, agregar);
 
-router.get('/lookup?', buscar);
+router.get('/lookup?', isAuthenticatedAndBedel, buscar);
 
-router.delete('/delete', borrar);
+router.delete('/delete', isAuthenticatedAndBedel, borrar);
 
 module.exports = router;

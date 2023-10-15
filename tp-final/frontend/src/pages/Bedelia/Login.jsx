@@ -1,9 +1,10 @@
 import './Login.css';
 import './Bedelia.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Notification } from '../../components/Notifications';
  
 function Login({setLoginState}) {
+  //const { setUserData } = useContext(UserContext);
   const [notificationState, launchNotificacion] = useState({
     notifMessage: '',
     notifType: '',
