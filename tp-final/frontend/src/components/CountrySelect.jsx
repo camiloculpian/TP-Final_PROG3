@@ -12,6 +12,7 @@ function CountrySelect({callbackSelected, name='countrySelect', selected}){
         fetch(consulta)
         .then( resp => {
             resp.json().then(data => {
+                //CHEQUEAR QUE DATA NO ESTA VACIO
                 setDatos(data['data']);
             } )
         })
@@ -26,7 +27,6 @@ function CountrySelect({callbackSelected, name='countrySelect', selected}){
       };
 
     return (
-        
         <select value={selected} onChange={changeSelected} name={name} className="dataEntry" >
             {datos?.map((country) => {
                 return (

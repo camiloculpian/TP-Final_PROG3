@@ -175,6 +175,7 @@ function EditStudent(){
             cambiarEstadoModal(true);
         }
     }
+    
     return (
         <>
             <div className="moduleContent">
@@ -188,7 +189,6 @@ function EditStudent(){
                         </div>
                     </div>
                     <form onSubmit={formData.idEstudiante ? handleSubmit:null}  method='PUT'>
-                        <var id="idEstudiante"></var>
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} onChange={(e) => !isNaN(e.target.value)&&formData.idEstudiante?handleChange(e):()=>{}}></input></div>
