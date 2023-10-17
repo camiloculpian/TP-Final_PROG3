@@ -83,30 +83,30 @@ export default function CreateCourse(){
     }
 
     return(
-    <>
-        <div className="moduleContent">
-            <form onSubmit={handleSubmit} onReset={handleReset}>
-                <fieldset>
-                    <legend>Materias -&gt; Agregar Materia</legend>
-                    <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" autoFocus="" required="" className="dataEntry" value={formData.nombre} onChange={handleChange}/></div>
-                    <div className="dataLine"><label className="dataTitle" htmlFor="tipoMateria">Tipo:</label>
-                        <select name="tipoMateria" required="" className="dataEntry" selected={formData.tipoMateria} onChange={handleChange}>
-                            <option value={0}>Cuatrimestral</option>
-                            <option value={1}>Anual</option>
-                        </select>
-                    </div>
-                    <div className="dataLine"><label className="dataTitle" htmlFor="horasSemanales">Hs. Semanales:</label><input name="horasSemanales" required="" className="dataEntry" value={formData.horasSemanales} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}/></div>
-                    <div className="dataLine"><label className="dataTitle" htmlFor="CARRERA">Carrera:</label>
-                    <CareerSelect callbackSelected={handleChange} name={'idCarrera'} selected={formData.idCarrera}/>
-                    </div>
-                    <div>
-                        <button className="botonComun" id="submit">Agregar</button>
-                        <button className="botonComun" type="reset">Cancelar</button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
-        <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-    </>
+        <>
+            <div className="moduleContent">
+                <form onSubmit={handleSubmit} onReset={handleReset}>
+                    <fieldset>
+                        <legend>Materias -&gt; Agregar Materia</legend>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" autoFocus="" required="" className="dataEntry" value={formData.nombre} onChange={handleChange}/></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="tipoMateria">Tipo:</label>
+                            <select name="tipoMateria" required="" className="dataEntry" value={formData.tipoMateria} onChange={handleChange}>
+                                <option value={0}>Cuatrimestral</option>
+                                <option value={1}>Anual</option>
+                            </select>
+                        </div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="horasSemanales">Hs. Semanales:</label><input name="horasSemanales" required="" className="dataEntry" value={formData.horasSemanales} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}/></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="CARRERA">Carrera:</label>
+                        <CareerSelect callbackSelected={handleChange} name={'idCarrera'} selected={formData.idCarrera}/>
+                        </div>
+                        <div>
+                            <button className="botonComun" type="submit">Agregar</button>
+                            <button className="botonComun" type="reset">Cancelar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
+        </>
     );
 }
