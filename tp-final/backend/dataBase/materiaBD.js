@@ -18,20 +18,6 @@ const agregarMateria = async (materia) => {
         } finally {
             connection.release();
         }
-    // await conexion.execute('SET TRANSACTION ISOLATION LEVEL READ COMMITTED');
-    // await conexion.query('START TRANSACTION');
-    // try {
-    //     const consulta = `INSERT INTO materia (nombre, horasSemanales, tipoMateria) VALUES (?,?,?)`;
-    //     const response = await conexion.execute(consulta,[materia.nombre, materia.horasSemanales, materia.tipoMateria]);
-    //     const consulta2 = 'INSERT INTO carreramateria (idCarrera, idMateria) VALUES (?,?)'
-    //     await conexion.execute(consulta2,[materia.idCarrera, response[0].insertId]);
-    //     await conexion.query('COMMIT')
-
-    //     return response;
-    // } catch (error) {
-    //     await conexion.query('ROLLBACK')
-    //     return error;
-    // }
 }
 
 const buscarMateria = async (nombre) => {
