@@ -36,12 +36,14 @@ const agregarMateria = async (materia) => {
 
 const buscarMateria = async (nombre) => {
     const consulta = `SELECT 
-                        idMateria AS ID,
-                        nombre AS Nombre,
-                        tipoMateria as Tipo,
-                        horasSemanales as 'Horas Semanales'
-                    FROM materia
-                    WHERE activo = 1 AND nombre LIKE ?`;
+                        materia.idMateria AS ID,
+                        materia.nombre AS Nombre,
+                        materia.tipoMateria as Tipo,
+                        materia.horasSemanales as 'Hs. Sem.',
+                        carrera.nombre as Carrera
+                    FROM materia, carrera, carreramateria
+                    WHERE materia.activo = 1 AND materia.nombre LIKE ? AND materia.idMateria = carreramateria.idMateria AND carrera.idCarrera = carreramateria.idCarrera
+                    ORDER BY carrera.nombre, materia.nombre`;
     if(!nombre) nombre = '';
     const response = await conexion.query(consulta,[nombre + '%']);
     return response;
@@ -50,9 +52,9 @@ const buscarMateria = async (nombre) => {
 const buscarMateriaPorCarrera = async (idCarrera) => {
     const consulta = `SELECT 
                         materia.idMateria AS ID,
-                        nombre AS Nombre,
-                        tipoMateria as Tipo,
-                        horasSemanales as 'Horas Semanales'
+                        materia.nombre AS Nombre,
+                        materia.tipoMateria as Tipo,
+                        materia.horasSemanales as 'Horas Semanales'
                     FROM materia
                     LEFT JOIN carreramateria ON materia.idMateria = carreramateria.idMateria
                     WHERE materia.activo = 1 AND idCarrera=?`;

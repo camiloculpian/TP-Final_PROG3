@@ -2,10 +2,10 @@
 import './AdaptativeTable.css';
 
 function AdaptativeTable({tableData, callbackSelectable, callbackEditable, callbackDeletable}){
-    if (tableData['data'] && !tableData['headers']){
-        tableData['headers'] = Object.keys(tableData);
-    }
-    if (tableData['headers'] && tableData['data']){
+    // if (tableData['data'] && !tableData['headers']){
+    //     tableData['headers'] = Object.keys(tableData);
+    // }
+    if (tableData && tableData['headers'] && tableData['data']){
         const TRs=tableData['headers'];
         const TDs=tableData['data'];
         return(
