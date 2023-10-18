@@ -34,7 +34,7 @@ function SearchStudent({returnStudent}){
             nombre: s['Nombre'],
             apellido: s['Apellido'],
             fechaNacimiento: s['Fecha Nac.'],
-            nacionalidad: s['Nacionalidad'],
+            nacionalidad: s['idNacionalidad'],
             correoElectronico: s['e-m@il'],
             celular: s['Celular'],
             foto: null,

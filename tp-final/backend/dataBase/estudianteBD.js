@@ -2,15 +2,17 @@ const conexion = require('./conexionBD');
 
 const buscarPorId = async (idEstudiante) => {
     const consulta = `SELECT
-                            idEstudiante AS idEstudiante,
-                            dni AS DNI,
-                            apellido AS Apellido,
-                            nombre AS Nombre,
-                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
-                            nacionalidad as Nacionalidad,
-                            correoElectronico AS 'e-m@il',
-                            celular as Celular
+                            estudiante.idEstudiante AS idEstudiante,
+                            estudiante.dni AS DNI,
+                            estudiante.apellido AS Apellido,
+                            estudiante.nombre AS Nombre,
+                            DATE_FORMAT(estudiante.fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            estudiante.nacionalidad AS idNacionalidad,
+                            pais.nombre AS Nacionalidad,
+                            estudiante.correoElectronico AS 'e-m@il',
+                            estudiante.celular as Celular
     FROM estudiante 
+    LEFT JOIN pais ON pais.id = estudiante.nacionalidad
     WHERE activo = 1 AND idEstudiante = ?`;
 
     const estudiante = await conexion.query(consulta,idEstudiante);    
@@ -20,15 +22,17 @@ const buscarPorId = async (idEstudiante) => {
 
 const isDeleted = async (dni) => {
     const consulta = `SELECT
-                            idEstudiante AS idEstudiante,
-                            dni AS DNI,
-                            apellido AS Apellido,
-                            nombre AS Nombre,
-                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
-                            nacionalidad as Nacionalidad,
-                            correoElectronico AS 'e-m@il',
-                            celular as Celular
+                            estudiante.idEstudiante AS idEstudiante,
+                            estudiante.dni AS DNI,
+                            estudiante.apellido AS Apellido,
+                            estudiante.nombre AS Nombre,
+                            DATE_FORMAT(estudiante.fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            estudiante.nacionalidad AS idNacionalidad,
+                            pais.nombre AS Nacionalidad,
+                            estudiante.correoElectronico AS 'e-m@il',
+                            estudiante.celular as Celular
     FROM estudiante 
+    LEFT JOIN pais ON pais.id = estudiante.nacionalidad
     WHERE AND dni = ?`;
 
     const estudiante = await conexion.query(consulta,idEstudiante);    
@@ -38,15 +42,17 @@ const isDeleted = async (dni) => {
 
 const buscarPorDNI = async (dniEstudiante) => {
     const consulta = `SELECT
-                            idEstudiante AS idEstudiante,
-                            dni AS DNI,
-                            apellido AS Apellido,
-                            nombre AS Nombre,
-                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
-                            nacionalidad as Nacionalidad,
-                            correoElectronico AS 'e-m@il',
-                            celular as Celular
+                            estudiante.idEstudiante AS idEstudiante,
+                            estudiante.dni AS DNI,
+                            estudiante.apellido AS Apellido,
+                            estudiante.nombre AS Nombre,
+                            DATE_FORMAT(estudiante.fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            estudiante.nacionalidad AS idNacionalidad,
+                            pais.nombre AS Nacionalidad,
+                            estudiante.correoElectronico AS 'e-m@il',
+                            estudiante.celular as Celular
     FROM estudiante 
+    LEFT JOIN pais ON pais.id = estudiante.nacionalidad
     WHERE activo = 1 AND dni = ?`;
 
     const estudiante = await conexion.query(consulta,dniEstudiante);    
@@ -56,17 +62,18 @@ const buscarPorDNI = async (dniEstudiante) => {
 
 const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
     const consulta = `SELECT
-                            idEstudiante AS idEstudiante,
-                            dni AS DNI,
-                            apellido AS Apellido,
-                            nombre AS Nombre,
-                            DATE_FORMAT(fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
-                            nacionalidad as Nacionalidad,
-                            correoElectronico AS 'e-m@il',
-                            celular as Celular
-                            
+                            estudiante.idEstudiante AS idEstudiante,
+                            estudiante.dni AS DNI,
+                            estudiante.apellido AS Apellido,
+                            estudiante.nombre AS Nombre,
+                            DATE_FORMAT(estudiante.fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                            estudiante.nacionalidad AS idNacionalidad,
+                            pais.nombre AS Nacionalidad,
+                            estudiante.correoElectronico AS 'e-m@il',
+                            estudiante.celular as Celular
     FROM estudiante 
-    WHERE activo = 1 AND apellido LIKE ? AND nombre LIKE ? ORDER BY Apellido, Nombre ASC`;
+    LEFT JOIN pais ON pais.id = estudiante.nacionalidad
+    WHERE estudiante.activo = 1 AND estudiante.apellido LIKE ? AND estudiante.nombre LIKE ? ORDER BY Apellido, Nombre ASC`;
     if(!apeEstudiante) apeEstudiante = '';
     if(!nombEstudiante) nombEstudiante = '';
     const response = await conexion.query(consulta,[apeEstudiante + '%',nombEstudiante + '%']);    
