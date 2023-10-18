@@ -36,7 +36,7 @@ function CareerSelect({callbackSelected, name='careerSelect', selected}){
                 notifMessage:
                             <>
                                 <p>NO se pudo cargar Carreras</p>
-                                <h4>{error}</h4>
+                                {/* <h4>{error}</h4> */}
                             </>,
                 notifType: 'ERROR',
                 state: true

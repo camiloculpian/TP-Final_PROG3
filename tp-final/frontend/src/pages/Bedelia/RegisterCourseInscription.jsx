@@ -72,7 +72,8 @@ export default function RegisterCourseInscription(){
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
                     if (!response.ok) {
-                        const error = (data && data.message) || response.status;
+                        // const error = (data && data.message) || response.status;
+                        const error = data;
                         return Promise.reject(error);
                     }
                     return data;

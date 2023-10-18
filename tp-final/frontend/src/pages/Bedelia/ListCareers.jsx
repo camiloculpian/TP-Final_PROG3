@@ -32,27 +32,27 @@ export default function ListCareers(){
         state: false
     })
     const getCarres = () => {
-        const requestOptions = {
-            method: 'GET',
-            credentials: 'include',
-        };
         launchNotificacion({
             notifMessage: <p>Obteniendo lista de carreras</p>,
             notifType: 'WAIT',
             state: true
         })
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+        };
         fetch('http://localhost:3005/api/v1/carrera/lookup', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
-                if (!response.ok) {
-                    const error = (data && data.message) || response.status;
+                if (!response || !response.ok) {
+                    // const error = (data && data.message) || response.status;
+                    const error = data;
                     return Promise.reject(error);
                 }
                 return data;
             }).then(data =>{
                 setData(data);
-                console.log(data);
                 launchNotificacion({
                     notifMessage: '',
                     notifType: '',
@@ -62,7 +62,7 @@ export default function ListCareers(){
                 launchNotificacion({
                     notifMessage: <>
                                     <p>No se pudo obtener la lista debido al siguiente error</p>
-                                    <h4>{error}</h4>
+                                    <h4>{error.message}</h4>
                                   </>,
                     notifType: 'ERROR',
                     state: false
@@ -91,7 +91,8 @@ export default function ListCareers(){
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
                 if (!response.ok) {
-                    const error = (data && data.message) || response.status;
+                    // const error = (data && data.message) || response.status;
+                    const error = data;
                     return Promise.reject(error);
                 }
                 return data;
@@ -106,7 +107,7 @@ export default function ListCareers(){
                 launchNotificacion({
                     notifMessage: <>
                                     <p>No se pudo realizar la solicitud debido al siguiente error</p>
-                                    <h4>{error}</h4>
+                                    <h4>{error.message}</h4>
                                   </>,
                     notifType: 'ERROR',
                     state: false

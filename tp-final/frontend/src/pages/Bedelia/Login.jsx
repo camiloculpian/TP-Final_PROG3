@@ -38,7 +38,8 @@ function Login({setLoginState}) {
           const isJson = response.headers.get('content-type')?.includes('application/json');
           const data = isJson && await response.json();
           if (!response.ok) {
-              const error = (data && data.message) || response.status;
+              // const error = (data && data.message) || response.status;
+              const error = data;
               return Promise.reject(error);
           }
           return data;
@@ -61,7 +62,7 @@ function Login({setLoginState}) {
           launchNotificacion({
               notifMessage: <>
                               <p>No se pudio</p>
-                              <h4>{error}</h4>
+                              <h4>{error.message}</h4>
                             </>,
               notifType: 'ERROR',
               state: true

@@ -23,6 +23,7 @@ function AdaptativeTable({tableData, callbackSelectable, callbackEditable, callb
                     TDs.map((element, id) => {
                         return(
                             <tr key={id} onClick={callbackSelectable?() => callbackSelectable(element):()=>{}}>{
+                                //ACA ESTA EL ERROR
                                 Object.values(element).map((value, id) => {
                                     return(<td key={id}>{value}</td>);
                                 })}
