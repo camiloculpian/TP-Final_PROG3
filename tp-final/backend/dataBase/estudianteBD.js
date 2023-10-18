@@ -2,7 +2,7 @@ const conexion = require('./conexionBD');
 
 const buscarPorId = async (idEstudiante) => {
     const consulta = `SELECT
-                            idEstudiante AS ID,
+                            idEstudiante AS idEstudiante,
                             dni AS DNI,
                             apellido AS Apellido,
                             nombre AS Nombre,
@@ -20,7 +20,7 @@ const buscarPorId = async (idEstudiante) => {
 
 const isDeleted = async (dni) => {
     const consulta = `SELECT
-                            idEstudiante AS ID,
+                            idEstudiante AS idEstudiante,
                             dni AS DNI,
                             apellido AS Apellido,
                             nombre AS Nombre,
@@ -38,7 +38,7 @@ const isDeleted = async (dni) => {
 
 const buscarPorDNI = async (dniEstudiante) => {
     const consulta = `SELECT
-                            idEstudiante AS ID,
+                            idEstudiante AS idEstudiante,
                             dni AS DNI,
                             apellido AS Apellido,
                             nombre AS Nombre,
@@ -56,7 +56,7 @@ const buscarPorDNI = async (dniEstudiante) => {
 
 const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
     const consulta = `SELECT
-                            idEstudiante AS ID,
+                            idEstudiante AS idEstudiante,
                             dni AS DNI,
                             apellido AS Apellido,
                             nombre AS Nombre,

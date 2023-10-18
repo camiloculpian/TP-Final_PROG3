@@ -22,10 +22,11 @@ const agregarMateria = async (materia) => {
 
 const buscarMateria = async (nombre) => {
     const consulta = `SELECT 
-                        materia.idMateria AS ID,
+                        materia.idMateria AS idMateria,
                         materia.nombre AS Nombre,
                         materia.tipoMateria as Tipo,
                         materia.horasSemanales as 'Hs. Sem.',
+                        carrera.idCarrera as idCarrera,
                         carrera.nombre as Carrera
                     FROM materia, carrera, carreramateria
                     WHERE materia.activo = 1 AND materia.nombre LIKE ? AND materia.idMateria = carreramateria.idMateria AND carrera.idCarrera = carreramateria.idCarrera
@@ -37,7 +38,7 @@ const buscarMateria = async (nombre) => {
 
 const buscarMateriaPorCarrera = async (idCarrera) => {
     const consulta = `SELECT 
-                        materia.idMateria AS ID,
+                        materia.idMateria AS idMateria,
                         materia.nombre AS Nombre,
                         materia.tipoMateria as Tipo,
                         materia.horasSemanales as 'Horas Semanales'

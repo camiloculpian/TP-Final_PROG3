@@ -3,7 +3,7 @@ import { Notification } from "../../components/Notifications";
 
 // DEJAR ELEGIRT EL NOMBRE DEL CAMPO
 
-function CareerSelect({callbackSelected, name='careerSelect', selected}){
+function CareerSelect({callbackSelected, name='careerSelect', value}){
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
         notifType: '',
@@ -36,7 +36,7 @@ function CareerSelect({callbackSelected, name='careerSelect', selected}){
                 notifMessage:
                             <>
                                 <p>NO se pudo cargar Carreras</p>
-                                {/* <h4>{error}</h4> */}
+                                <h4>{error.message}</h4>
                             </>,
                 notifType: 'ERROR',
                 state: true
@@ -46,15 +46,14 @@ function CareerSelect({callbackSelected, name='careerSelect', selected}){
 
     const changeSelected = event => {
         callbackSelected(event);
-        selected = event.target.value;
+        value = event.target.value;
       };
-
     return (
         <>
-            <select value={selected} onChange={changeSelected} name={name} className="dataEntry" >
-                {datos?.map((carrera, index) => {
+            <select name={name} className="dataEntry" value={parseInt(value)} onChange={changeSelected} >
+                {datos?.map((carrera) => {
                     return (
-                        <option key={carrera.ID} value={carrera.ID} >{carrera.Nombre}</option>
+                        <option key={carrera.ID} value={parseInt(carrera.ID)} >{carrera.Nombre}</option>
                     );
                 })}
             </select>

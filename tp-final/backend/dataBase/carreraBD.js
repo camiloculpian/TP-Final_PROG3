@@ -18,7 +18,7 @@ const borrarCarrera = async (idCarrera) =>{
 
 const buscarCarrera = async (nombre) =>{
     const consulta = `SELECT 
-                        idCarrera AS ID,
+                        idCarrera AS idCarrera,
                         nombre AS Nombre,
                         modalidad as Modalidad,
                         activo as Activo

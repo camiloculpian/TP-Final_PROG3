@@ -34,7 +34,6 @@ export default function ListStudent(){
                 return data;
             }).then(data =>{
                 setData(data);
-                console.log(data);
                 launchNotificacion({
                     notifMessage: '',
                     notifType: '',

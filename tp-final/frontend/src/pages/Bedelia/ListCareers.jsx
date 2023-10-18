@@ -11,6 +11,7 @@ export default function ListCareers(){
     const [estadoModal, setEstadoModal] = useState(false);
 
     const [formData, setFormData] = useState({
+        idCarrera : 0,
         nombre: "",
         modalidad: 0,
         activo: 1
@@ -123,6 +124,7 @@ export default function ListCareers(){
     const callbackEditable = (e) => {
         console.log(e);
         setFormData({
+            idCarrera : e.idCarrera,
             nombre: e.Nombre,
             modalidad : e.Modalidad
         });

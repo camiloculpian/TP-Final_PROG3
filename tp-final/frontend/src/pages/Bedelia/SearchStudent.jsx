@@ -29,7 +29,7 @@ function SearchStudent({returnStudent}){
 
     const setReturnStudent = (s) =>{
         returnStudent({
-            idEstudiante: s['ID'],
+            idEstudiante: s['idEstudiante'],
             dni: s['DNI'],
             nombre: s['Nombre'],
             apellido: s['Apellido'],

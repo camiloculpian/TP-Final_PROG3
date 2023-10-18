@@ -18,10 +18,11 @@ export default function ListCourse(){
     })
 
     const [formData, setFormData] = useState({
+        idMateria: 0,
         nombre: "",
         horasSemanales: 0,
         tipoMateria: 0,
-        idCarrera: 1
+        idCarrera: 0
     });
     const handleChange = (e) => {
         const { target } = e;
@@ -101,7 +102,6 @@ export default function ListCourse(){
                     state: false
                 })
             }).catch(error => {
-
                 launchNotificacion({
                     notifMessage: <>
                                     <p>No se pudo obtener la lista debido al siguiente error</p>
@@ -174,10 +174,11 @@ export default function ListCourse(){
     const callbackEditable = (e) => {
         console.log(e['Tipo']);
         setFormData({
+            idMateria: parseInt(e['idMateria']),
             nombre: e['Nombre'],
-            horasSemanales: parseInt(e['Horas Semanales']),
-            tipoMateria: e['Tipo'],
-            idCarrera: parseInt(e['ID'])
+            horasSemanales: parseInt(e['Hs. Sem.']),
+            tipoMateria: parseInt(e['Tipo']),
+            idCarrera: parseInt(e['idCarrera'])
         });
         setEstadoModal(true);
     }
@@ -220,7 +221,7 @@ export default function ListCourse(){
                                 </div>
                                 <div className="dataLine"><label className="dataTitle" htmlFor="horasSemanales">Hs. Semanales:</label><input name="horasSemanales" required="" className="dataEntry" value={formData.horasSemanales} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}/></div>
                                 <div className="dataLine"><label className="dataTitle" htmlFor="CARRERA">Carrera:</label>
-                                <CareerSelect callbackSelected={handleChange} name={'idCarrera'} selected={formData.idCarrera}/>
+                                <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
                                 </div>
                                 <div>
                                     <button className="botonComun" type="submit">Agregar</button>

@@ -53,7 +53,8 @@ function EditStudent(){
             headers:{
                 'Content-Type':'application/json'
                 },
-                body: JSON.stringify(formData)
+            credentials: 'include',
+            body: JSON.stringify(formData)
         };
         fetch(`http://localhost:3005/api/v1/estudiante/edit`,requestOptions)
             .then(async response => {
