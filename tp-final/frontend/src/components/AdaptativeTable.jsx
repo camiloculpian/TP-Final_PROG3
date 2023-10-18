@@ -2,9 +2,9 @@
 import './AdaptativeTable.css';
 
 function AdaptativeTable({tableData, callbackSelectable, callbackEditable, callbackDeletable}){
-    // if (tableData['data'] && !tableData['headers']){
-    //     tableData['headers'] = Object.keys(tableData);
-    // }
+    console.log('function AdaptativeTable({tableData, callbackSelectable, callbackEditable, callbackDeletable})');
+    
+    console.log(tableData['headers']);
     if (tableData && tableData['headers'] && tableData['data']){
         const TRs=tableData['headers'];
         const TDs=tableData['data'];

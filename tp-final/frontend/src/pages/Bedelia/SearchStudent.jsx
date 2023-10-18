@@ -37,8 +37,6 @@ function SearchStudent({returnStudent}){
             nacionalidad: s['idNacionalidad'],
             correoElectronico: s['e-m@il'],
             celular: s['Celular'],
-            foto: null,
-            activo: 1
         });
         
     }

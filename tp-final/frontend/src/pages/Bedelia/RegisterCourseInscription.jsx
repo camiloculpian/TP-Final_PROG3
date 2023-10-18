@@ -18,18 +18,23 @@ export default function RegisterCourseInscription(){
         notifType: '',
         state: false
     })
-
     //ESTO CAMBIAR
     const [studentData, setStudentData] = useState({
-        apellido: "",
-        nombre: "",
-        dni: "",
-        fechaNacimiento: "",
-        nacionalidad: 5,
-        celular: "",
-        correoElectronico: "",
+        // idEstudiante:0,
+        // dni: "",
+        // apellido: "",
+        // nombre: "",
+        // fechaNacimiento: "",
+        // nacionalidad: 5,
+        // celular: "",
+        // correoElectronico: "",
     });
 
+    const tableData={
+        headers: [{name: `ID`},{name: `DNI`},{name: `Apellido`},{name: `Nombre`},{name: `Fecha Nac.`},{name: `idNac.`},{name: `e-m@il`},{name: `Celular`}],
+        data: [studentData]
+    };
+    
     const [formData, setFormData] = useState({
         idEstudiante : 0,
     })
@@ -46,17 +51,16 @@ export default function RegisterCourseInscription(){
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
     function buscarEstudiante(){
-        setFormData({
-            idEstudiante: "",
-            apellido: "",
-            nombre: "",
-            dni: "",
-            fechaNacimiento: "",
-            nacionalidad: 5,
-            correoElectronico: "",
-            celular: "",
-            foto: "",
-        });
+        // setFormData({
+        //     idEstudiante: "",
+        //     apellido: "",
+        //     nombre: "",
+        //     dni: "",
+        //     fechaNacimiento: "",
+        //     nacionalidad: 5,
+        //     correoElectronico: "",
+        //     celular: ""
+        // });
         if(valorDeBusqueda){
             launchNotificacion({
                 notifMessage: <p>Buscando estudiante</p>,
@@ -79,15 +83,15 @@ export default function RegisterCourseInscription(){
                     return data;
                 }).then(data =>{
                     if(data['data'][0]){
-                        setFormData({
-                            idEstudiante: data['data'][0]['ID'],
+                        setReturnStudent({
+                            idEstudiante: data['data'][0]['idEstudiante'],
                             dni: data['data'][0]['DNI'],
                             nombre: data['data'][0]['Nombre'],
                             apellido: data['data'][0]['Apellido'],
                             fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                            nacionalidad: data['data'][0]['Nacionalidad'],
+                            nacionalidad: data['data'][0]['idNacionalidad'],
                             correoElectronico: data['data'][0]['e-m@il'],
-                            celular: data['data'][0]['Celular'],
+                            celular: data['data'][0]['Celular']
                         });
                         launchNotificacion({
                             notifMessage: '',
@@ -128,7 +132,7 @@ export default function RegisterCourseInscription(){
                             <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                         </div>
                     </div>
-                    <AdaptativeTable tableData={studentData}/>
+                    <AdaptativeTable tableData={tableData}/>
                     <div className="dataLine"><label class="dataTitle" htmlFor="career">Carrera:</label>
                         <CareerSelect callbackSelected={handleChange} name={'idCarrera'} selected={formData.idCarrera}/>
                     </div>
