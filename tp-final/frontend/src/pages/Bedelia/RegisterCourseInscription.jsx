@@ -11,6 +11,7 @@ export default function RegisterCourseInscription(){
     const setReturnStudent = (student) =>{
         cambiarEstadoModal(false);
         setStudentData(student);
+        setFormData({idEstudiante : student.idEstudiante});
     }
 
     const [notificationState, launchNotificacion] = useState({
@@ -36,7 +37,8 @@ export default function RegisterCourseInscription(){
     };
     
     const [formData, setFormData] = useState({
-        idEstudiante : 0,
+        // idEstudiante : 0,
+        // idCarrera : 0
     })
 
     const handleChange = (e) => {
@@ -51,7 +53,7 @@ export default function RegisterCourseInscription(){
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
     function buscarEstudiante(){
-        // setFormData({
+        //setFormData({
         //     idEstudiante: "",
         //     apellido: "",
         //     nombre: "",
@@ -60,7 +62,7 @@ export default function RegisterCourseInscription(){
         //     nacionalidad: 5,
         //     correoElectronico: "",
         //     celular: ""
-        // });
+        //});
         if(valorDeBusqueda){
             launchNotificacion({
                 notifMessage: <p>Buscando estudiante</p>,
@@ -120,9 +122,14 @@ export default function RegisterCourseInscription(){
         }
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+    }
+
     return (
         <>
-            <form> 
+            <form onSubmit={handleSubmit}> 
                 <fieldset>
                     <legend>Inscripciones -&gt;Registrar Inscripcion a Materia</legend>
                     <div className='cuadroBusqueda'>
@@ -133,13 +140,15 @@ export default function RegisterCourseInscription(){
                         </div>
                     </div>
                     <AdaptativeTable tableData={tableData}/>
-                    <div className="dataLine"><label class="dataTitle" htmlFor="career">Carrera:</label>
-                        <CareerSelect callbackSelected={handleChange} name={'idCarrera'} selected={formData.idCarrera}/>
-                    </div>
+                    {formData.idEstudiante &&
+                        <div className="dataLine"><label className="dataTitle" htmlFor="idCarrera">Carrera:</label>
+                            <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
+                        </div>
+                    }
                     <div id="listado-de-materias"></div>
                     <div>
                         <button className="botonComun" type="submit">Inscribir</button>
-                        <button className="botonComun" id="reset">Cancelar</button>
+                        <button className="botonComun" type="reset">Cancelar</button>
                     </div>
                 </fieldset>
             </form>

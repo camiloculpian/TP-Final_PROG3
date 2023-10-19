@@ -12,7 +12,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
         state: false
     })
     const [datos, setDatos] = useState(null);
-    // const [selected, setSelected] = useState(defaultSelected);
+    //const [selected, setSelected] = useState(defaultSelected);
 
     useEffect(()=>{
         launchNotificacion({
@@ -55,7 +55,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
             <select name={name} className="dataEntry" value={parseInt(value)} onChange={changeSelected} >
                 {datos?.map((carrera) => {
                     return (
-                        <option key={carrera.ID} value={parseInt(carrera.ID)} >{carrera.Nombre}</option>
+                        <option key={carrera.idCarrera} value={carrera.idCarrera} >{carrera.Nombre}</option>
                     );
                 })}
             </select>
