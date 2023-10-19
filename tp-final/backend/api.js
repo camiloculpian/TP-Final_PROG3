@@ -56,6 +56,7 @@ const v1Estudiante = require('./v1/routes/estudiante');
 const V1Carrera = require('./v1/routes/carrera');
 const V1Materia = require('./v1/routes/materia');
 const v1Usuario = require('./v1/routes/usuario');
+const v1Inscripciones = require('./v1/routes/inscripciones');
 const v1Auth = require('./v1/routes/auth');
 const V1Resources = require('./v1/routes/resources');
 
