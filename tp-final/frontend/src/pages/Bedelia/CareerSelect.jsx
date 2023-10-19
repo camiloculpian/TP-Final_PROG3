@@ -33,7 +33,6 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
             })
         })
         .catch(error => {
-            console.log('error -->', error);
             launchNotificacion({
                 notifMessage:
                             <>
@@ -52,7 +51,8 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
       };
     return (
         <>
-            <select name={name} className="dataEntry" value={parseInt(value)} onChange={changeSelected} >
+            <select name={name} className="dataEntry" value={parseInt(value)} onChange={changeSelected}>
+                <option key={''} value={''} >{'Seleccione la Carrera'}</option>
                 {datos?.map((carrera) => {
                     return (
                         <option key={carrera.idCarrera} value={carrera.idCarrera} >{carrera.Nombre}</option>

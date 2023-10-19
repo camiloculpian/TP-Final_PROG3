@@ -53,10 +53,9 @@ const buscarPorDNI = async (dniEstudiante) => {
                             estudiante.celular as Celular
     FROM estudiante 
     LEFT JOIN pais ON pais.id = estudiante.nacionalidad
-    WHERE activo = 1 AND dni = ?`;
+    WHERE estudiante.activo = 1 AND estudiante.dni = ?`;
 
     const estudiante = await conexion.query(consulta,dniEstudiante);    
-
     return estudiante;
 }
 

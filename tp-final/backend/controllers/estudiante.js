@@ -22,7 +22,8 @@ agregar = async(req, res) => {
     try{
         //TIRAR ERROR Y EL ESTUDIANTE SI ESTE YA EXISTE(BUSCAR POR DNI)
         let estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
-        if(!estudiante.length){
+        console.log(estudiante[0]);
+        if(!estudiante[0].length){
             // const idEstudiante = await estudianteBD.agregarEstudiante(req.body.dni, req.body.apellido, req.body.nombre, req.body.fechaNacimiento, req.body.nacionalidad, req.body.correoElectronico, req.body.celular, req.body.foto);
             const idEstudiante = await estudianteBD.agregarEstudiante(req.body);
             estudiante = [{

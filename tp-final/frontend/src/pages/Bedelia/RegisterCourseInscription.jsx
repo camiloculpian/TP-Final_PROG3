@@ -124,12 +124,18 @@ export default function RegisterCourseInscription(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
         console.log(formData);
+    }
+
+    const handleReset = () => {
+        setStudentData({});
+        setFormData({});
     }
 
     return (
         <>
-            <form onSubmit={handleSubmit}> 
+            <form onSubmit={handleSubmit} onReset={handleReset}> 
                 <fieldset>
                     <legend>Inscripciones -&gt;Registrar Inscripcion a Materia</legend>
                     <div className='cuadroBusqueda'>

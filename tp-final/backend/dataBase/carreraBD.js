@@ -16,7 +16,7 @@ const borrarCarrera = async (idCarrera) =>{
     return response;
 }
 
-const buscarCarrera = async (nombre) =>{
+const buscarCarrera = async (nombre,isInscribed) =>{
     const consulta = `SELECT 
                         idCarrera AS idCarrera,
                         nombre AS Nombre,
