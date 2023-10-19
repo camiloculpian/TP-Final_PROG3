@@ -145,6 +145,7 @@ function DeleteStudent(){
             })
             const requestOptions = {
                 method: 'GET',
+                credentials: 'include'
             };
             fetch(`http://localhost:3005/api/v1/estudiante/lookup?dni=${encodeURIComponent(valorDeBusqueda)}`, requestOptions)
                 .then(async response => {
@@ -159,14 +160,14 @@ function DeleteStudent(){
                 }).then(data =>{
                     if(data['data'][0]){
                         setFormData({
-                            idEstudiante: data['data'][0]['ID'],
+                            idEstudiante: data['data'][0]['idEstudiante'],
                             dni: data['data'][0]['DNI'],
                             nombre: data['data'][0]['Apellido'],
                             apellido: data['data'][0]['Nombre'],
                             fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                            nacionalidad: data['data'][0]['Nacionalidad'],
+                            nacionalidad: data['data'][0]['idNacionalidad'],
                             correoElectronico: data['data'][0]['e-m@il'],
-                            celular: data['data'][0]['Celular'],
+                            celular: data['data'][0]['Celular']
                         });
                         launchNotificacion({
                             notifMessage: '',

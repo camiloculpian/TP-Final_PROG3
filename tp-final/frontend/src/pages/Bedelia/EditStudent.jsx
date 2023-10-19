@@ -68,12 +68,12 @@ function EditStudent(){
                 return data;
             }).then(data =>{
                 setFormData({
-                    idEstudiante: data['data'][0]['ID'],
+                    idEstudiante: data['data'][0]['idEstudiante'],
                     dni: data['data'][0]['DNI'],
                     nombre: data['data'][0]['Nombre'],
                     apellido: data['data'][0]['Apellido'],
                     fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                    nacionalidad: data['data'][0]['Nacionalidad'],
+                    nacionalidad: data['data'][0]['idNacionalidad'],
                     correoElectronico: data['data'][0]['e-m@il'],
                     celular: data['data'][0]['Celular'],
                     foto: "",
@@ -143,12 +143,12 @@ function EditStudent(){
                 }).then(data =>{
                     if(data['data'][0]){
                         setFormData({
-                            idEstudiante: data['data'][0]['ID'],
+                            idEstudiante: data['data'][0]['idEstudiante'],
                             dni: data['data'][0]['DNI'],
                             nombre: data['data'][0]['Nombre'],
                             apellido: data['data'][0]['Apellido'],
                             fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                            nacionalidad: data['data'][0]['Nacionalidad'],
+                            nacionalidad: data['data'][0]['idNacionalidad'],
                             correoElectronico: data['data'][0]['e-m@il'],
                             celular: data['data'][0]['Celular'],
                         });
