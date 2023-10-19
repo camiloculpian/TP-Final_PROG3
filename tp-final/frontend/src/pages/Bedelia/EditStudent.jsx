@@ -83,6 +83,7 @@ function EditStudent(){
                     notifType: data['status'],
                     state: true
                 })
+                setValorDeBusqueda('');
                 setFormData({
                     idEstudiante: "",
                     apellido: "",
@@ -179,6 +180,20 @@ function EditStudent(){
         }
     }
     
+    const handleReset = () => {
+        setFormData({
+            idEstudiante: "",
+            apellido: "",
+            nombre: "",
+            dni: "",
+            fechaNacimiento: "",
+            nacionalidad: 5,
+            correoElectronico: "",
+            celular: "",
+            foto: "",
+        });
+    }
+
     return (
         <>
             <div className="moduleContent">
@@ -191,7 +206,7 @@ function EditStudent(){
                             <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                         </div>
                     </div>
-                    <form onSubmit={formData.idEstudiante ? handleSubmit:null}  method='PUT'>
+                    <form onSubmit={formData.idEstudiante ? handleSubmit:null} onReset={handleReset} method='PUT'>
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} onChange={(e) => !isNaN(e.target.value)&&formData.idEstudiante?handleChange(e):()=>{}}></input></div>
