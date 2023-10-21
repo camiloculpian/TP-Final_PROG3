@@ -67,6 +67,7 @@ appi.use('/api/v1/publico', v1Publico);
 appi.use('/api/v1/estudiante', v1Estudiante);
 appi.use('/api/v1/carrera', V1Carrera);
 appi.use('/api/v1/materia', V1Materia);
+appi.use('/api/v1/inscripcion', v1Inscripciones);
 appi.use('/api/v1/usuario', v1Usuario);
 appi.use('/api/v1/auth', v1Auth);
 appi.use('/api/v1/resources', V1Resources);

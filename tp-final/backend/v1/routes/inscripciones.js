@@ -2,14 +2,14 @@ const {Router} = require('express');
 
 const { isAuthenticatedAndBedel } = require('../../middleware/auth');
 
-const { inscribirMateria, buscarMaterias, borrarInscripcionMateria } = require('../../controllers/inscripciones');
+const { inscribirMateria, buscarMaterias, borrarInscripcionMateria, buscarCarreras } = require('../../controllers/inscripciones');
 
 const router = Router();
 
-router.post('inscription/carrer/add', isAuthenticatedAndBedel, agregar);
+router.post('/carrer/add', isAuthenticatedAndBedel, agregar);
 
-router.get('inscription/carrer/lookup?', isAuthenticatedAndBedel, buscar);
+router.get('/carrer/lookup?', buscarCarreras);
 
-router.delete('inscription/carrer/delete', isAuthenticatedAndBedel, borrar);
+router.delete('/carrer/delete', isAuthenticatedAndBedel, borrar);
 
 module.exports = router;

@@ -28,9 +28,10 @@ function BedeliaMenu({menuJson}){
                             <li><NavLink to={'/bedelia/careers/list'}>Listado de Carreras</NavLink></li>
                         </ul>
                     </li>
-                    <li><p>Inscripcion a Materias</p>
+                    <li><p>Inscripciones</p>
                         <ul>
-                            <li><NavLink to={'/bedelia/enrollments/course/enroll'}>Inscribir a Materia</NavLink></li>
+                            <li><NavLink to={'/bedelia/enrollments/course/list'}>Inscripciones a Materias</NavLink></li>
+                            <li><NavLink to={'/bedelia/enrollments/career/list'}>Inscripciones a Carreras</NavLink></li>
                         </ul>
                     </li>
                 </ul>

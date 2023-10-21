@@ -59,6 +59,7 @@ function SearchStudent({returnStudent}){
                 if (!response.ok) {
                     // const error = (data && data.message) || response.status;
                     const error = data;
+                    console.log(error);
                     return Promise.reject(error);
                 }
                 return data;

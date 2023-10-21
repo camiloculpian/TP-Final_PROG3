@@ -48,6 +48,42 @@ button.searchButton:hover{
     color: #001E2D
 }
 
+button.alta {
+    border-radius: 5px;
+    text-align:center;
+    background-color: #155800;
+    color:#cfffc6;
+    padding:5px 10px;
+    border: 1px solid;
+    width: auto;
+}
+
+button.alta:hover {
+    background-color: #cfffc6;
+    color: #155800;
+    border: 1px solid;
+    border-color: #155800;
+    cursor: pointer;
+}
+
+button.baja {
+    border-radius: 5px;
+    text-align:center;
+    background-color: #580000;
+    color:#ffc6c6;
+    padding:5px 10px;
+    border: 1px solid;
+    width: auto;
+}
+
+button.baja:hover {
+    background-color: #ffc6c6;
+    color: #580000;
+    border: 1px solid;
+    border-color: #580000;
+    cursor: pointer;
+}
+
 .searchTable{
     width: 100%;
 }
