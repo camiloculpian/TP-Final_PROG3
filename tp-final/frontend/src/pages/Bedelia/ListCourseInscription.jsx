@@ -5,7 +5,7 @@ import Modal from "../../components/Modal";
 import SearchStudent from "./SearchStudent";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 
-export default function RegisterCourseInscription(){
+export default function ListCourseInscription(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const setReturnStudent = (student) =>{
