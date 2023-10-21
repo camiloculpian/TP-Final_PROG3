@@ -23,8 +23,23 @@ const buscarCarreras = async (idEstudiante) => {
     return carreras;
 }
 
+const buscarCarrerasInscriptas = async (idEstudiante) => {
+    //toma el idUsuario y devuelve lista de carreras con un campo extra que dice si esta inscripto o no
+    const consulta = `SELECT carrera.idCarrera, 
+                             carrera.nombre as Carrera, 
+                             IF((carrera.modalidad = 1), 'Virtual' , 'Presencial') AS Modalidad
+                      FROM carrera
+                      LEFT JOIN estudiantecarrera ON estudiantecarrera.estudiante = ?
+                      WHERE carrera.idCarrera = estudiantecarrera.carrera`;
+    
+    const carreras = await conexion.query(consulta,idEstudiante);  
+
+    return carreras;
+}
+
 module.exports = {
     inscribirMateria,
     buscarMaterias,
-    buscarCarreras
+    buscarCarreras,
+    buscarCarrerasInscriptas
 }

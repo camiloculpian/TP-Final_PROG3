@@ -16,7 +16,7 @@ import DeleteStudent from './pages/Bedelia/DeleteStudent';
 import RegisterCareer from './pages/Bedelia/RegisterCareer';
 import ListCareers from './pages/Bedelia/ListCareers';
 import ListCourse from './pages/Bedelia/ListCourse';
-import RegisterCourseInscription from './pages/Bedelia/RegisterCourseInscription';
+import ListCourseInscription from './pages/Bedelia/ListCourseInscription';
 import ListCareerInscription from './pages/Bedelia/ListCareerInscription';
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
               <Route path='list' element={<ListCareers />} />
             </Route>
             <Route path='enrollments'>
-            <Route path='course/enroll' element={<RegisterCourseInscription />} />
+            <Route path='course/enroll' element={<ListCourseInscription />} />
             <Route path='career/list' element={<ListCareerInscription />} />
             </Route>
           </ Route>
