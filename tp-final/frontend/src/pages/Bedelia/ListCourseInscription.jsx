@@ -20,26 +20,23 @@ export default function ListCourseInscription(){
         state: false
     })
     //ESTO CAMBIAR
-    const [studentData, setStudentData] = useState({
-        // idEstudiante:0,
-        // dni: "",
-        // apellido: "",
-        // nombre: "",
-        // fechaNacimiento: "",
-        // nacionalidad: 5,
-        // celular: "",
-        // correoElectronico: "",
-    });
+    const [studentData, setStudentData] = useState({});
+    const [formData, setFormData] = useState({})
 
     const tableData={
-        headers: [{name: `ID`},{name: `DNI`},{name: `Apellido`},{name: `Nombre`},{name: `Fecha Nac.`},{name: `idNac.`},{name: `e-m@il`},{name: `Celular`}],
+        headers: 
+                [
+                    {name: `ID`},
+                    {name: `DNI`},
+                    {name: `Apellido`},
+                    {name: `Nombre`},
+                    {name: `Fecha Nac.`},
+                    {name: `idNac.`},
+                    {name: `e-m@il`},
+                    {name: `Celular`}
+                ],
         data: [studentData]
     };
-    
-    const [formData, setFormData] = useState({
-        // idEstudiante : 0,
-        // idCarrera : 0
-    })
 
     const handleChange = (e) => {
         const { target } = e;
@@ -53,16 +50,7 @@ export default function ListCourseInscription(){
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
     function buscarEstudiante(){
-        //setFormData({
-        //     idEstudiante: "",
-        //     apellido: "",
-        //     nombre: "",
-        //     dni: "",
-        //     fechaNacimiento: "",
-        //     nacionalidad: 5,
-        //     correoElectronico: "",
-        //     celular: ""
-        //});
+        handleReset();
         if(valorDeBusqueda){
             launchNotificacion({
                 notifMessage: <p>Buscando estudiante</p>,
@@ -124,7 +112,6 @@ export default function ListCourseInscription(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         console.log(formData);
     }
 
@@ -148,7 +135,7 @@ export default function ListCourseInscription(){
                     <AdaptativeTable tableData={tableData}/>
                     {formData.idEstudiante &&
                         <div className="dataLine"><label className="dataTitle" htmlFor="idCarrera">Carrera:</label>
-                            <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
+                            <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera} idEstudiante={formData.idEstudiante}/>
                         </div>
                     }
                     <div id="listado-de-materias"></div>

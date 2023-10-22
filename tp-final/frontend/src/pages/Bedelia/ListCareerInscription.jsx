@@ -1,5 +1,4 @@
 import { useState } from "react";
-import CareerSelect from "./CareerSelect";
 import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
 import SearchStudent from "./SearchStudent";

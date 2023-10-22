@@ -45,7 +45,7 @@ function App() {
               <Route path='list' element={<ListCareers />} />
             </Route>
             <Route path='enrollments'>
-            <Route path='course/enroll' element={<ListCourseInscription />} />
+            <Route path='course/list' element={<ListCourseInscription />} />
             <Route path='career/list' element={<ListCareerInscription />} />
             </Route>
           </ Route>

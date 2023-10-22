@@ -20,7 +20,8 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
             notifType: 'WAIT',
             state: true
         })
-        const consulta = `http://localhost:3005/api/v1/carrera/lookup`;
+        let consulta = '';
+        !idEstudiante ? consulta = `http://localhost:3005/api/v1/carrera/lookup`: consulta = `http://localhost:3005/api/v1/inscripcion/carrer/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}&showOnlyInscripted=true`
         fetch(consulta, {method: 'GET', credentials: 'include'})
         .then( resp => {
             resp.json().then(data => {
