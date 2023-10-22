@@ -74,6 +74,7 @@ test = async(req, res) => {
 modificar = async(req, res) => {
     try{
         let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
+        //CONTROLAR DATOS OBLIGATORIOS
         if(estudiante.length){
             const respuesta = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
             estudiante = [{
@@ -87,6 +88,7 @@ modificar = async(req, res) => {
                 celular: req.body.celular,
                 foto: req.body.foto
             }]
+            estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
             res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:estudiante});
         }else{
             res.json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja...', data:[{}]});

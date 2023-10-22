@@ -31,7 +31,11 @@ function Contacto(props) {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ formData })
+                body: JSON.stringify({ 
+                    nombre: formData.nombre,
+                    email: formData.email,
+                    mensaje: formData.mensaje
+                 })
             };
             fetch('http://localhost:3005/api/v1/publico/contacto', requestOptions)
                 .then(async response => {
