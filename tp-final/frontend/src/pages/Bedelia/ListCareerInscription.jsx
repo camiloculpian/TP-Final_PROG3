@@ -59,7 +59,7 @@ export default function ListCareerInscription(){
             method: 'GET',
             credentials: 'include',
         };
-        fetch(`http://localhost:3005/api/v1/inscripcion/carrer/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}`, requestOptions)
+        fetch(`http://localhost:3005/api/v1/inscripcion/career/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}`, requestOptions)
                 .then(async response => {
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
@@ -158,14 +158,56 @@ export default function ListCareerInscription(){
     }
 
     const darDeAlta = (career) => {
-        console.log(formData);
-        console.log(career);
-        lookupCareers(formData.idEstudiante);
+        launchNotificacion({
+            notifMessage: <p>Inscribiendo a la Carrera</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                idEstudiante:formData.idEstudiante,
+                idCarrera:career.idCarrera
+            })
+        };
+        fetch('http://localhost:3005/api/v1/inscripcion/career/add', requestOptions)
+                .then(async response => {
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+                    if (!response.ok) {
+                        // const error = (data && data.message) || response.status;
+                        const error = data;
+                        return Promise.reject(error);
+                    }
+                    return data;
+                }).then(data =>{
+                    if(data['status']==='OK'){
+                        lookupCareers(formData.idEstudiante);
+                    }
+                    launchNotificacion({
+                        notifMessage: <p>{data['message']}</p>,
+                        notifType: data['status'],
+                        state: true
+                    })
+                }).catch(error => { 
+                    launchNotificacion({
+                        notifMessage:
+                                    <>
+                                        <p>NO se pudo inscribir a la Carrera</p>
+                                        <h4>{error.message}</h4>
+                                    </>,
+                        notifType: 'ERROR',
+                        state: true
+                    })
+                });
+        
+        setFormData({idEstudiante:formData.idEstudiante});
     }
 
     const darDeBaja = (career) => {
-        console.log(formData);
-        console.log(career);
+        
         lookupCareers(formData.idEstudiante);
     }
 

@@ -1,8 +1,18 @@
 const { buscarCarrera } = require('./carreraBD');
 const conexion = require('./conexionBD');
 
-const inscribirMateria = async (idMateria, idEstudiante) =>{
+const inscribirMateria = async (idEstudiante, idMateria) =>{
 
+}
+
+const inscribirCarrera = async (idEstudiante, idCarrera) =>{
+    try{
+        const consulta = `INSERT INTO estudiantecarrera (estudiante, carrera, fechaAlta) VALUES (?,?,CURDATE())`
+        const respuesta = await conexion.query(consulta,[idEstudiante,idCarrera]);  
+        return materias;
+    }catch(e){
+        return(e);
+    }
 }
 
 const buscarMaterias = async (idEstudiante, idCarrera) => {
@@ -69,5 +79,6 @@ module.exports = {
     inscribirMateria,
     buscarMaterias,
     buscarCarreras,
+    inscribirCarrera,
     buscarCarrerasInscriptas
 }

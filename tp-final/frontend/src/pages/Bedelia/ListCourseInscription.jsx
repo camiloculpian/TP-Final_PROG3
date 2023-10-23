@@ -157,11 +157,14 @@ export default function ListCourseInscription(){
     const darDeAlta = (course) => {
         console.log(formData);
         console.log(course);
+        
+        lookupCourse(formData.idEstudiante, formData.idCarrera);
     }
 
     const darDeBaja = (course) => {
         console.log(formData);
         console.log(course);
+        lookupCourse(formData.idEstudiante, formData.idCarrera);
     }
 
     const handleReset = () => {
