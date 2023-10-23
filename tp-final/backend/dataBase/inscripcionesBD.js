@@ -46,8 +46,8 @@ const buscarCarreras = async (idEstudiante) => {
                                 IF((carrera.modalidad = 1), 'Virtual' , 'Presencial') AS Modalidad,
                                 IF((estudiantecarrera.estudiante = ?), 'SI', 'NO') AS Inscripto
                             FROM carrera
-                            LEFT JOIN estudiantecarrera ON carrera.idCarrera = estudiantecarrera.carrera AND estudiantecarrera.estudiante = ?
-                            WHERE carrera.activo = 1`;
+                            LEFT JOIN estudiantecarrera ON carrera.idCarrera = estudiantecarrera.carrera AND estudiantecarrera.estudiante = ? AND estudiantecarrera.fechaBaja IS NULL
+                            WHERE carrera.activo = 1 `;
         
         const carreras = await conexion.query(consulta,[idEstudiante,idEstudiante]);  
 

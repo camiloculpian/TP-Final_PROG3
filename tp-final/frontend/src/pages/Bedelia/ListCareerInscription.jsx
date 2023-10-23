@@ -224,7 +224,7 @@ export default function ListCareerInscription(){
                         </div>
                     </div>
                     <AdaptativeTable tableData={tableData}/>
-                    {formData.idEstudiante &&
+                    {formData.idEstudiante && careerList['headers'] && careerList['data'] &&
                         <>
                         <h4>Listado de Carreras</h4>
                             <table>
