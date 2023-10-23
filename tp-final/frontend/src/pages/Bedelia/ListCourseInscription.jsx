@@ -46,9 +46,50 @@ export default function ListCourseInscription(){
           [name]: value,
         };
         setFormData(newValues);
+        if(formData.idEstudiante && formData.idCarrera){
+            lookupCourse(formData.idEstudiante, formData.idCarrera);
+        }
     };
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
+
+    const [courseList, setCourseList] = useState({headers :[{}], data: [{}]});
+
+    const lookupCourse = (idEstudiante,idMateria) => {
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+        };
+        fetch(`http://localhost:3005/api/v1/inscripcion/course/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}&idCarrera=${encodeURIComponent(idMateria)}`, requestOptions)
+                .then(async response => {
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+                    if (!response.ok) {
+                        // const error = (data && data.message) || response.status;
+                        const error = data;
+                        return Promise.reject(error);
+                    }
+                    return data;
+                }).then(data =>{
+                        console.log(data);
+                        setCourseList(data);
+                        launchNotificacion({
+                            notifMessage: '',
+                            notifType: '',
+                            state: false
+                        })
+                }).catch(error => { 
+                    launchNotificacion({
+                        notifMessage: <>
+                                        <p>No se pudo realizar la busqueda debido al siguiente error</p>
+                                        <h4>{error.message}</h4>
+                                      </>,
+                        notifType: 'ERROR',
+                        state: false
+                    })
+                });;
+    }
+
     function buscarEstudiante(){
         handleReset();
         if(valorDeBusqueda){
@@ -138,11 +179,35 @@ export default function ListCourseInscription(){
                             <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera} idEstudiante={formData.idEstudiante}/>
                         </div>
                     }
-                    <div id="listado-de-materias"></div>
-                    <div>
-                        <button className="botonComun" type="submit">Inscribir</button>
-                        <button className="botonComun" type="reset">Cancelar</button>
-                    </div>
+                    {formData.idEstudiante && formData.idCarrera &&
+                        <>
+                        <h4>Listado de Materias</h4>
+                            <table>
+                                <thead>
+                                    <tr>{
+                                            courseList['headers'].map((element, id) => {
+                                                return(<th key={id}>{element.name}</th>);
+                                            })
+                                        }
+                                        <th id='actions'>ACCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>{
+                                    courseList['data'].map((element, id) => {
+                                        return(
+                                            <tr key={id} >{
+                                                //ACA ESTA EL ERROR
+                                                Object.values(element).map((value, id) => {
+                                                    return(<td key={id} >{value}</td>);
+                                                })}
+                                                {element.Inscripto === 'NO' ?<td><button className="alta" >Alta</button></td>:<td><button className="baja" >Baja</button></td>}
+                                            </tr>
+                                        )
+                                    })
+                                }</tbody>
+                            </table>
+                        </>
+                    }
                 </fieldset>
             </form>
             <Modal title={'Buscar Estudiante'} state={estadoModal} changeState={cambiarEstadoModal}>

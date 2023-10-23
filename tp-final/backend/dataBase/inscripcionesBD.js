@@ -8,17 +8,20 @@ const inscribirMateria = async (idMateria, idEstudiante) =>{
 const buscarMaterias = async (idEstudiante, idCarrera) => {
     //toma el idUsuario i el idCarrera y devuelve lista de materias con un campo extra que dice si esta inscripto o no
     try{
-        const consulta = `SELECT materia.idMateria, 
-                                materia.nombre as Nombre, 
-                                IF((materia.modalidad = 1), 'Cuatrimestral' , 'Anual') AS Tipo,
-                                IF((materia.idMateria = estudiantemateria.idMateria), 'SI' , 'NO') AS Inscripto
-                        FROM materia
-                        LEFT JOIN estudiantemateria ON estudiantemateria.idEstudiante = ?
-                        WHERE materiacarrera.idMateria = materia.idMateria AND materiacarrera.idCarrera = ?`;
+        const consulta = `SELECT 
+                                materia.idMateria AS idMateria,
+                                materia.nombre AS Nombre,
+                                materia.tipoMateria as Tipo,
+                                materia.horasSemanales as 'Horas Semanales',
+                                IF((estudiantemateria.estudiante = ?), 'SI', 'NO') AS Inscripto
+                            FROM materia
+                            LEFT JOIN carreramateria ON materia.idMateria = carreramateria.idMateria
+                            LEFT JOIN estudiantemateria ON materia.idMateria = estudiantemateria.materia AND estudiantemateria.estudiante = ?
+                            WHERE materia.activo = 1 AND idCarrera=?`;
         
-        const carreras = await conexion.query(consulta,[idEstudiante,idCarrera]);  
+        const materias = await conexion.query(consulta,[idEstudiante,idEstudiante,idCarrera]);  
 
-        return carreras;
+        return materias;
     }catch(e){
         return(e);
     }
@@ -27,14 +30,16 @@ const buscarMaterias = async (idEstudiante, idCarrera) => {
 const buscarCarreras = async (idEstudiante) => {
     //toma el idUsuario y devuelve lista de carreras con un campo extra que dice si esta inscripto o no
     try{
-        const consulta = `SELECT carrera.idCarrera, 
-                                carrera.nombre as Nombre, 
+        const consulta = `SELECT 
+                                carrera.idCarrera AS idCarrera,
+                                carrera.nombre AS Nombre,
                                 IF((carrera.modalidad = 1), 'Virtual' , 'Presencial') AS Modalidad,
-                                IF((carrera.idCarrera = estudiantecarrera.carrera), 'SI' , 'NO') AS Inscripto
-                        FROM carrera
-                        LEFT JOIN estudiantecarrera ON estudiantecarrera.estudiante = ?`;
+                                IF((estudiantecarrera.estudiante = ?), 'SI', 'NO') AS Inscripto
+                            FROM carrera
+                            LEFT JOIN estudiantecarrera ON carrera.idCarrera = estudiantecarrera.carrera AND estudiantecarrera.estudiante = ?
+                            WHERE carrera.activo = 1`;
         
-        const carreras = await conexion.query(consulta,idEstudiante);  
+        const carreras = await conexion.query(consulta,[idEstudiante,idEstudiante]);  
 
         return carreras;
     }catch(e){

@@ -12,4 +12,6 @@ router.get('/carrer/lookup?', buscarCarreras);
 
 router.delete('/carrer/delete', isAuthenticatedAndBedel, borrar);
 
+router.get('/course/lookup?', buscarMaterias);
+
 module.exports = router;

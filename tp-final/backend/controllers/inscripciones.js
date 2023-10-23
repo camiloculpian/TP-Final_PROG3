@@ -11,7 +11,8 @@ const inscribirMateria = async(req, res) => {
 
 const buscarMaterias = async(req, res) => {
     try{
-        return [];
+        const response = await inscripcionesBD.buscarMaterias(req.query['idEstudiante'],req.query['idCarrera']);
+        res.status(200).json({status:'OK', headers: response[1],data:response[0]});
     }catch (e){
         throw e;
     }

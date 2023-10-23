@@ -199,11 +199,6 @@ export default function ListCareerInscription(){
                             </table>
                         </>
                     }
-                    {/* <div id="listado-de-materias"></div>
-                    <div>
-                        <button className="botonComun" type="submit">Inscribir</button>
-                        <button className="botonComun" type="reset">Cancelar</button>
-                    </div> */}
                 </fieldset>
             </form>
             <Modal title={'Buscar Estudiante'} state={estadoModal} changeState={cambiarEstadoModal}>
