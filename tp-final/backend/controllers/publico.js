@@ -4,13 +4,13 @@ const nodemailer = require('nodemailer');
 const handlebars = require('handlebars');
 
 exports.enviarCorreo = async (req, res) =>{
+    // Poner en un bloque try catch
     if(!req.body['nombre']&!req.body['correo']&!req.body['mensaje']){
         const respuesta = 'El mensaje NO ha sido enviado, faltan datos...';
         res.json({ respuesta });
     }else{
-        const nombre = req.body['nombre'];
-        const email = req.body['correo'];
-        const mensaje = req.body['mensaje'];
+        const {nombre, correo, mensaje} = req.body;
+        console.log(nombre,correo,mensaje);
         
         const plantillaHds2 = fs.readFileSync(path.join(__dirname, '../utils/handlebars/plantilla.hbs'), 'utf8');
         
@@ -19,7 +19,7 @@ exports.enviarCorreo = async (req, res) =>{
         // Datos de la plantilla
         const datos = {
         nombre: nombre,
-        correo: email,
+        correo: correo,
         mensaje: mensaje
         };
     
@@ -36,9 +36,9 @@ exports.enviarCorreo = async (req, res) =>{
         })
 
         const opciones = {
-            from: email,
+            from: correo,
             to: 'ingo.prog3@gmail.com',
-            subject: '___CONTACTO___' + email,
+            subject: '___CONTACTO___' + correo,
             html: correoHtml
         }
 

@@ -15,7 +15,7 @@ function Contacto(props) {
 
     const [formData, setFormData] = useState({
         nombre: "",
-        email: "",
+        correo: "",
         mensaje: "",
     });
     
@@ -31,11 +31,7 @@ function Contacto(props) {
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    nombre: formData.nombre,
-                    email: formData.email,
-                    mensaje: formData.mensaje
-                 })
+                body: JSON.stringify(formData)
             };
             fetch('http://localhost:3005/api/v1/publico/contacto', requestOptions)
                 .then(async response => {
@@ -64,7 +60,7 @@ function Contacto(props) {
                         state: true
                     })
                 });
-            setFormData({nombre:"",email:"",mensaje:""});
+            setFormData({nombre:"",correo:"",mensaje:""});
             cambiarEstadoModal();
         }else{
             cambiarEstadoModal();
@@ -180,14 +176,14 @@ function Contacto(props) {
                                 <legend>'Realizar Consulta'</legend>
                                 <div className="dataLine">
                                     <label className="dataTitle" htmlFor="nombre">Apellido y Nombres:</label>
-                                    <input name="nombre" className="dataEntry" id="nombre" autoFocus placeholder="Apellido y Nombres" value={formData.nombre} onChange={handleChange} required></input>
+                                    <input name="nombre" className="dataEntry" autoFocus placeholder="Apellido y Nombres" value={formData.nombre} onChange={handleChange} required></input>
                                 </div>
                                 <div className="dataLine">
-                                    <label className="dataTitle" htmlFor="email">e-m@il:</label>
-                                    <input name="email" className="dataEntry" id="email" placeholder="...@..." value={formData.email} onChange={handleChange} required></input>
+                                    <label className="dataTitle" htmlFor="correo">e-m@il:</label>
+                                    <input name="correo" className="dataEntry" placeholder="...@..." value={formData.email} onChange={handleChange} required></input>
                                 </div>
                                 <div className="dataLine"> 
-                                    <textarea name='mensaje' id='mensaje' placeholder='Consulta...' value={formData.mensaje} onChange={handleChange} required></textarea>
+                                    <textarea name='mensaje' placeholder='Consulta...' value={formData.mensaje} onChange={handleChange} required></textarea>
                                 </div>
                                 <div>
                                     <button type='submit' className="botonComun contentWithoutMargin">Enviar</button>

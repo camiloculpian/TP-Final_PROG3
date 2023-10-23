@@ -83,18 +83,18 @@ function EditStudent(){
                     notifType: data['status'],
                     state: true
                 })
-                setValorDeBusqueda('');
-                setFormData({
-                    idEstudiante: "",
-                    apellido: "",
-                    nombre: "",
-                    dni: "",
-                    fechaNacimiento: "",
-                    nacionalidad: 5,
-                    correoElectronico: "",
-                    celular: "",
-                    foto: "",
-                });
+                // setValorDeBusqueda('');
+                // setFormData({
+                //     idEstudiante: "",
+                //     apellido: "",
+                //     nombre: "",
+                //     dni: "",
+                //     fechaNacimiento: "",
+                //     nacionalidad: 5,
+                //     correoElectronico: "",
+                //     celular: "",
+                //     foto: "",
+                // });
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
