@@ -26,7 +26,6 @@ const isAuthenticatedAndBedel = async (req,res,next) => {
         req.user = await usuarioBD.buscarUsuarioPorID(verify.idUsuario);
         req.user.length > 0 && req.user[0].tipoUsuario == 1? next() : res.status(401).json({status:'ERROR', message: 'AUTHORIZATION ERROR, check user and permissions'});
     } catch (error) {
-       res.status(401).json({status:'ERROR', message: '401: UNAUTORIZED'});
        return next({status:'ERROR', message: '401: UNAUTORIZED'}); 
     }
 }

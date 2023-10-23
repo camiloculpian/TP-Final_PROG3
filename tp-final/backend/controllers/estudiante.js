@@ -49,12 +49,16 @@ agregar = async(req, res) => {
 
 eliminar = async(req, res) => {
     try{
-        // const estudiante = await estudianteBD.buscarPorId(req.query['id']);
-        const estudiante = await estudianteBD.eliminarEstudiante(parseInt(req.body.idEstudiante));
-        if(!estudiante.length){
-            res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
+        if(parseInt(req.body.idEstudiante)){
+            const estudiante = await estudianteBD.eliminarEstudiante(req.body.idEstudiante);
+            console.log(estudiante.affectedRows);
+            if(!estudiante.length && estudiante.affectedRows == 1){
+                res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
+            }else{
+                res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
+            }
         }else{
-            res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
+            res.json({status:'ERROR', message:'ERROR: idEstudiante debe ser un valor valido'});
         }
     }catch (excep){
         throw (excep);
