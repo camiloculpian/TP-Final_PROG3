@@ -2,15 +2,27 @@ const { query } = require('../dataBase/conexionBD');
 const inscripcionesBD = require('../dataBase/inscripcionesBD')
 
 const inscribirMateria = async(req, res) => {
-    return [];
+    try{
+        return [];
+    }catch (e){
+        throw e;
+    }
 }
 
 const buscarMaterias = async(req, res) => {
-    return [];
+    try{
+        return [];
+    }catch (e){
+        throw e;
+    }
 }
 
 const borrarInscripcionMateria = (req, res) => {
-    return [];
+    try{
+        return [];
+    }catch (e){
+        throw e;
+    }
 }
 
 const buscarCarreras = async(req, res) => {

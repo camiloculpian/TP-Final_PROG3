@@ -51,7 +51,6 @@ eliminar = async(req, res) => {
     try{
         // const estudiante = await estudianteBD.buscarPorId(req.query['id']);
         const estudiante = await estudianteBD.eliminarEstudiante(parseInt(req.body.idEstudiante));
-
         if(!estudiante.length){
             res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
         }else{

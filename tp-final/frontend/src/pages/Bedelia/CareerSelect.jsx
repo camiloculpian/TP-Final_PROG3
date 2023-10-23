@@ -52,7 +52,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
       };
     return (
         <>
-            <select name={name} className="dataEntry" value={parseInt(value)} onChange={changeSelected}>
+            <select name={name} className="dataEntry" value={value? parseInt(value): ''} onChange={changeSelected}>
                 <option key={''} value={''} >{'Seleccione la Carrera'}</option>
                 {datos?.map((carrera) => {
                     return (

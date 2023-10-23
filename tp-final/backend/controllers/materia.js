@@ -3,15 +3,7 @@ const materiaBD = require('../dataBase/materiaBD');
 agregar = async(req, res) => {
     try{
         const idMateria = await materiaBD.agregarMateria(req.body);
-            materia = [{
-                // idMateria: idMateria[0]['insertId'],
-                nombre: req.body.nombre,
-                horasSemanales: req.body.horasSemanales,
-                tipoMateria: req.body.tipoMateria,
-                idCarrera: req.body.idCarrera,
-                activo : 1
-            }]
-            res.status(200).json({status:'OK',message:'La materia se añadio correctamente', data:materia});
+        res.status(200).json({status:'OK',message:'La materia se añadio correctamente', data:materiaBD.buscarMateriaPorId(idMateria[0]['insertId'])});
     }catch (excep){
         throw(excep);
     }
@@ -31,6 +23,22 @@ buscar = async(req, res) => {
     }
 }
 
+editar = async(req, res) => {
+    try{
+        
+    }catch (excep){
+        throw excep;
+    }
+}
+
+eliminar = async(req, res) => {
+    try{
+        
+    }catch (excep){
+        throw excep;
+    }
+}
+
 buscarPorCarrera = async(req, res) => {
     try{
         const response = await materiaBD.buscarMateriaPorCarrera(req.body.idCarrera);
@@ -42,5 +50,7 @@ buscarPorCarrera = async(req, res) => {
 
 module.exports = {
     agregar,
-    buscar
+    editar,
+    buscar,
+    eliminar
 }
