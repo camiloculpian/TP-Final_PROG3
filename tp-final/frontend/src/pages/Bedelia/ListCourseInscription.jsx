@@ -198,7 +198,7 @@ export default function ListCourseInscription(){
                     {formData.idEstudiante && formData.idCarrera &&
                         <>
                         <h4>Listado de Materias</h4>
-                            <table>
+                            <table style={{width:'100%'}}>
                                 <thead>
                                     <tr>{
                                             courseList['headers'].map((element, id) => {

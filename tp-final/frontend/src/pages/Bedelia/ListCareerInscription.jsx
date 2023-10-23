@@ -227,7 +227,7 @@ export default function ListCareerInscription(){
                     {formData.idEstudiante && careerList['headers'] && careerList['data'] &&
                         <>
                         <h4>Listado de Carreras</h4>
-                            <table>
+                            <table style={{width:'100%'}}>
                                 <thead>
                                     <tr>{
                                             careerList['headers'].map((element, id) => {
