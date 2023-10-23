@@ -157,6 +157,18 @@ export default function ListCareerInscription(){
         setFormData({});
     }
 
+    const darDeAlta = (career) => {
+        console.log(formData);
+        console.log(career);
+        lookupCareers(formData.idEstudiante);
+    }
+
+    const darDeBaja = (career) => {
+        console.log(formData);
+        console.log(career);
+        lookupCareers(formData.idEstudiante);
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit} onReset={handleReset}> 
@@ -191,7 +203,7 @@ export default function ListCareerInscription(){
                                                 Object.values(element).map((value, id) => {
                                                     return(<td key={id} >{value}</td>);
                                                 })}
-                                                {element.Inscripto === 'NO' ?<td><button className="alta" >Alta</button></td>:<td><button className="baja" >Baja</button></td>}
+                                                {element.Inscripto === 'NO' ?<td><button className="alta" onClick={()=>{darDeAlta(element)}}>Alta</button></td>:<td><button className="baja" onClick={()=>{darDeBaja(element)}}>Baja</button></td>}
                                             </tr>
                                         )
                                     })
