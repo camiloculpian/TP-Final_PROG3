@@ -1,23 +1,27 @@
 const conexion = require('./conexionBD');
 
 const buscarPorId = async (idEstudiante) => {
-    const consulta = `SELECT
-                            estudiante.idEstudiante AS idEstudiante,
-                            estudiante.dni AS DNI,
-                            estudiante.apellido AS Apellido,
-                            estudiante.nombre AS Nombre,
-                            DATE_FORMAT(estudiante.fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
-                            estudiante.nacionalidad AS idNacionalidad,
-                            pais.nombre AS Nacionalidad,
-                            estudiante.correoElectronico AS 'e-m@il',
-                            estudiante.celular as Celular
-    FROM estudiante 
-    LEFT JOIN pais ON pais.id = estudiante.nacionalidad
-    WHERE activo = 1 AND idEstudiante = ?`;
+    try{
+        const consulta = `SELECT
+                                estudiante.idEstudiante AS idEstudiante,
+                                estudiante.dni AS DNI,
+                                estudiante.apellido AS Apellido,
+                                estudiante.nombre AS Nombre,
+                                DATE_FORMAT(estudiante.fechaNacimiento, "%Y-%m-%d") AS 'Fecha Nac.',
+                                estudiante.nacionalidad AS idNacionalidad,
+                                pais.nombre AS Nacionalidad,
+                                estudiante.correoElectronico AS 'e-m@il',
+                                estudiante.celular as Celular
+        FROM estudiante 
+        LEFT JOIN pais ON pais.id = estudiante.nacionalidad
+        WHERE activo = 1 AND idEstudiante = ?`;
 
-    const estudiante = await conexion.query(consulta,idEstudiante);    
+        const estudiante = await conexion.query(consulta,idEstudiante);    
 
-    return estudiante;
+        return estudiante;
+    }catch(e){
+        return e;
+    }
 }
 
 const isDeleted = async (dni) => {

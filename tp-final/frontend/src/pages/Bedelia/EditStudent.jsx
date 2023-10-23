@@ -66,35 +66,23 @@ function EditStudent(){
                     return Promise.reject(error);
                 }
                 return data;
-            }).then(data =>{
-                setFormData({
+            }).then((data) =>{
+                launchNotificacion({
+                    notifMessage: data['message'],
+                    notifType: data['status'],
+                    state: true
+                })  
+                setReturnStudent( {
                     idEstudiante: data['data'][0]['idEstudiante'],
-                    dni: data['data'][0]['DNI'],
-                    nombre: data['data'][0]['Nombre'],
                     apellido: data['data'][0]['Apellido'],
+                    nombre: data['data'][0]['Nombre'],
+                    dni: data['data'][0]['DNI'],
                     fechaNacimiento: data['data'][0]['Fecha Nac.'],
                     nacionalidad: data['data'][0]['idNacionalidad'],
                     correoElectronico: data['data'][0]['e-m@il'],
                     celular: data['data'][0]['Celular'],
                     foto: "",
                 });
-                launchNotificacion({
-                    notifMessage: data['message'],
-                    notifType: data['status'],
-                    state: true
-                })
-                // setValorDeBusqueda('');
-                // setFormData({
-                //     idEstudiante: "",
-                //     apellido: "",
-                //     nombre: "",
-                //     dni: "",
-                //     fechaNacimiento: "",
-                //     nacionalidad: 5,
-                //     correoElectronico: "",
-                //     celular: "",
-                //     foto: "",
-                // });
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
@@ -110,17 +98,6 @@ function EditStudent(){
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
     function buscarEstudiante(){
-        setFormData({
-            idEstudiante: "",
-            apellido: "",
-            nombre: "",
-            dni: "",
-            fechaNacimiento: "",
-            nacionalidad: 5,
-            correoElectronico: "",
-            celular: "",
-            foto: "",
-        });
         if(valorDeBusqueda){
             launchNotificacion({
                 notifMessage: <p>Buscando estudiante</p>,
@@ -152,6 +129,7 @@ function EditStudent(){
                             nacionalidad: data['data'][0]['idNacionalidad'],
                             correoElectronico: data['data'][0]['e-m@il'],
                             celular: data['data'][0]['Celular'],
+                            foto: ""
                         });
                         launchNotificacion({
                             notifMessage: '',
@@ -180,7 +158,8 @@ function EditStudent(){
         }
     }
     
-    const handleReset = () => {
+    const handleReset = (e) => {
+        e.preventDefault()
         setFormData({
             idEstudiante: "",
             apellido: "",
@@ -206,7 +185,7 @@ function EditStudent(){
                             <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                         </div>
                     </div>
-                    <form onSubmit={formData.idEstudiante ? handleSubmit:null} onReset={handleReset} method='PUT'>
+                    <form onSubmit={formData.idEstudiante ? handleSubmit:(e)=>{e.preventDefault()}} onReset={handleReset} method='PUT'>
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} onChange={(e) => !isNaN(e.target.value)&&formData.idEstudiante?handleChange(e):()=>{}}></input></div>
@@ -217,8 +196,8 @@ function EditStudent(){
                         <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" className="dataEntry" value={formData.celular} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" className="dataEntry" value={formData.correoElectronico} onChange={formData.idEstudiante?handleChange:()=>{}}></input></div>
                         <div>
-                            <button className="botonComun" id="editar-estudiante" type="submit">Guardar</button>
-                            <button className="botonComun" id="cancelar-editar-estudiante" type="reset" onClick={()=>{setFormData({idEstudiante: "", apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>Cancelar</button>
+                            <button className="botonComun" type="submit">Guardar</button>
+                            <button className="botonComun" type="reset" >Cancelar</button>
                         </div>
                     </form>
                 </fieldset>
