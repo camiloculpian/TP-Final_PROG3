@@ -3,7 +3,7 @@ import { Notification } from "../../components/Notifications";
 
 // DEJAR ELEGIRT EL NOMBRE DEL CAMPO
 
-//si se pasa idEstudiante, solo devuelve las carreras a las que esta inscripto el estudiante ??
+//si se pasa idEstudiante, solo devuelve las carreras a las que esta inscripto el estudiante
 
 function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiante}){
     const [notificationState, launchNotificacion] = useState({
