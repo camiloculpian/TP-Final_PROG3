@@ -21,7 +21,7 @@ export default function ListCourseInscription(){
     })
     //ESTO CAMBIAR
     const [studentData, setStudentData] = useState({});
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState({idEstudiante:'',idCarrera:0})
 
     const tableData={
         headers: 
@@ -46,21 +46,20 @@ export default function ListCourseInscription(){
           [name]: value,
         };
         setFormData(newValues);
-        if(formData.idEstudiante && formData.idCarrera){
-            lookupCourse(formData.idEstudiante, formData.idCarrera);
-        }
     };
+
+
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
     const [courseList, setCourseList] = useState({headers :[{}], data: [{}]});
 
-    const lookupCourse = (idEstudiante,idMateria) => {
+    const lookupCourse = (idEstudiante,idCarrera) => {
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
         };
-        fetch(`http://localhost:3005/api/v1/inscripcion/course/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}&idCarrera=${encodeURIComponent(idMateria)}`, requestOptions)
+        fetch(`http://localhost:3005/api/v1/inscripcion/course/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}&idCarrera=${encodeURIComponent(idCarrera)}`, requestOptions)
                 .then(async response => {
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
@@ -155,6 +154,16 @@ export default function ListCourseInscription(){
         console.log(formData);
     }
 
+    const darDeAlta = (course) => {
+        console.log(formData);
+        console.log(course);
+    }
+
+    const darDeBaja = (course) => {
+        console.log(formData);
+        console.log(course);
+    }
+
     const handleReset = () => {
         setStudentData({});
         setFormData({});
@@ -175,7 +184,12 @@ export default function ListCourseInscription(){
                     <AdaptativeTable tableData={tableData}/>
                     {formData.idEstudiante &&
                         <div className="dataLine"><label className="dataTitle" htmlFor="idCarrera">Carrera:</label>
-                            <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera} idEstudiante={formData.idEstudiante}/>
+                            <CareerSelect callbackSelected={(e)=>{
+                                handleChange(e);
+                                if(formData.idEstudiante&&e.target.value){
+                                    lookupCourse(formData.idEstudiante, e.target.value);
+                                }
+                            }} name={'idCarrera'} value={formData.idCarrera} idEstudiante={formData.idEstudiante}/>
                         </div>
                     }
                     {formData.idEstudiante && formData.idCarrera &&
@@ -195,11 +209,10 @@ export default function ListCourseInscription(){
                                     courseList['data'].map((element, id) => {
                                         return(
                                             <tr key={id} >{
-                                                //ACA ESTA EL ERROR
                                                 Object.values(element).map((value, id) => {
                                                     return(<td key={id} >{value}</td>);
                                                 })}
-                                                {element.Inscripto === 'NO' ?<td><button className="alta" >Alta</button></td>:<td><button className="baja" >Baja</button></td>}
+                                                {element.Inscripto === 'NO' ?<td><button className="alta" onClick={()=>{darDeAlta(element)}}>Alta</button></td>:<td><button className="baja" onClick={()=>{darDeBaja(element)}}>Baja</button></td>}
                                             </tr>
                                         )
                                     })
