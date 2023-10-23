@@ -71,7 +71,6 @@ export default function ListCourseInscription(){
                     }
                     return data;
                 }).then(data =>{
-                        console.log(data);
                         setCourseList(data);
                         launchNotificacion({
                             notifMessage: '',
