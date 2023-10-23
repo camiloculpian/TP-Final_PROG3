@@ -4,7 +4,15 @@ const jwt = require('jsonwebtoken');
 
 const isAuthenticated = async (req,res,next) => {
     try {
-        const {token} = req.cookies;
+        let token = '';
+
+        if(req.headers.authorization)
+        {
+            const bearer = req.headers.authorization.split(" ");
+            token = bearer[1];
+        }else{
+            token = req.cookies.token;
+        }
         if(!token){
             res.status(401).json({status:'ERROR', message: '401: UNAUTORIZED'});
         }
@@ -18,7 +26,16 @@ const isAuthenticated = async (req,res,next) => {
 
 const isAuthenticatedAndBedel = async (req,res,next) => {
     try {
-        const {token} = req.cookies;
+        let token = '';
+
+        if(req.headers.authorization)
+        {
+            const bearer = req.headers.authorization.split(" ");
+            token = bearer[1];
+        }else{
+            token = req.cookies.token;
+        }
+        
         if(!token){
             res.status(401).json({status:'ERROR', message: '401: UNAUTORIZED'});
         }
@@ -26,13 +43,21 @@ const isAuthenticatedAndBedel = async (req,res,next) => {
         req.user = await usuarioBD.buscarUsuarioPorID(verify.idUsuario);
         req.user.length > 0 && req.user[0].tipoUsuario == 1? next() : res.status(401).json({status:'ERROR', message: 'AUTHORIZATION ERROR, check user and permissions'});
     } catch (error) {
-       return next({status:'ERROR', message: '401: UNAUTORIZED'}); 
+       return next(error); 
     }
 }
 
 const isAuthenticatedAndDecano = async (req,res,next) => {
     try {
-        const {token} = req.cookies;
+        let token = '';
+
+        if(req.headers.authorization)
+        {
+            const bearer = req.headers.authorization.split(" ");
+            token = bearer[1];
+        }else{
+            token = req.cookies.token;
+        }
         if(!token){
             res.status(401).json({status:'ERROR', message: '401: UNAUTORIZED'});
         }
