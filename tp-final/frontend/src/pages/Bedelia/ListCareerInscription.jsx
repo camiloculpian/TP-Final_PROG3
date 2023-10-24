@@ -205,8 +205,49 @@ export default function ListCareerInscription(){
     }
 
     const darDeBaja = (career) => {
-        
-        lookupCareers(formData.idEstudiante);
+        launchNotificacion({
+            notifMessage: <p>Eliminando Inscripcion</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                idEstudiante:formData.idEstudiante,
+                idCarrera:career.idCarrera
+            })
+        };
+        fetch('http://localhost:3005/api/v1/inscripcion/career/delete', requestOptions)
+                .then(async response => {
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+                    if (!response.ok) {
+                        const error = data;
+                        return Promise.reject(error);
+                    }
+                    return data;
+                }).then(data =>{
+                    if(data['status']==='OK'){
+                        lookupCareers(formData.idEstudiante);
+                    }
+                    launchNotificacion({
+                        notifMessage: <p>{data['message']}</p>,
+                        notifType: data['status'],
+                        state: true
+                    })
+                }).catch(error => { 
+                    launchNotificacion({
+                        notifMessage:
+                                    <>
+                                        <p>NO se pudo eliminar la Inscripciona</p>
+                                        <h4>{error.message}</h4>
+                                    </>,
+                        notifType: 'ERROR',
+                        state: true
+                    })
+                });
     }
 
     return (

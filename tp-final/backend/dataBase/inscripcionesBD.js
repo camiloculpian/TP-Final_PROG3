@@ -7,7 +7,7 @@ const inscribirMateria = async (idEstudiante, idMateria) =>{
         const respuesta = await conexion.query(consulta,[idEstudiante,idMateria]);  
         return respuesta;
     }catch(e){
-        return(e);
+        return e;
     }
 }
 
@@ -17,7 +17,7 @@ const inscribirCarrera = async (idEstudiante, idCarrera) =>{
         const respuesta = await conexion.query(consulta,[idEstudiante,idCarrera]);  
         return respuesta;
     }catch(e){
-        return(e);
+        return e;
     }
 }
 
@@ -37,7 +37,7 @@ const buscarMaterias = async (idEstudiante, idCarrera) => {
         const materias = await conexion.query(consulta,[idEstudiante,idEstudiante,idCarrera]);  
         return materias;
     }catch(e){
-        return(e);
+        return e;
     }
 }
 
@@ -56,7 +56,7 @@ const buscarCarreras = async (idEstudiante) => {
         const carreras = await conexion.query(consulta,[idEstudiante,idEstudiante]);  
         return carreras;
     }catch(e){
-        return(e);
+        return e;
     }
 }
 
@@ -73,7 +73,18 @@ const buscarCarrerasInscriptas = async (idEstudiante) => {
         const carreras = await conexion.query(consulta,idEstudiante);  
         return carreras;
     }catch(e){
-        return(e);
+        return e;
+    }
+}
+
+const borrarInscripcionCarrera = async (idEstudiante, idCarrera) => {
+    console.log('const borrarInscripcionCarrera = async (idEstudiante, idCarrera)');
+    try{
+        const consulta = `UPDATE estudiantecarrera SET fechaBaja = CURDATE() WHERE estudiante = ? and carrera = ?`;
+        const response = await conexion.query(consulta,[idEstudiante,idCarrera]);    
+        return response;
+    }catch(e){
+        return e;
     }
 }
 
@@ -82,5 +93,6 @@ module.exports = {
     buscarMaterias,
     buscarCarreras,
     inscribirCarrera,
-    buscarCarrerasInscriptas
+    buscarCarrerasInscriptas,
+    borrarInscripcionCarrera
 }
