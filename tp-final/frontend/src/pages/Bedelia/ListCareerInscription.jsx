@@ -254,7 +254,7 @@ export default function ListCareerInscription(){
         <>
             <form onSubmit={handleSubmit} onReset={handleReset}> 
                 <fieldset>
-                    <legend>Inscripciones -&gt; Listado de Carreras por Estudiante</legend>
+                    <legend>Inscripciones -&gt; Inscripcion a Carreras</legend>
                     <div className='cuadroBusqueda'>
                         <div className="dataLine">
                             <label className="dataTitle" htmlFor="valorDeBusqueda">Buscar Estudiante</label>

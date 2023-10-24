@@ -37,6 +37,9 @@ function Carreras() {
                 return data;
             }).then(data =>{
                 setCarreras(data);
+                if(query.get('selected')){
+                    getMaterias(data['data']?.[query.get('selected')]?.codigo)
+                }
                 launchNotificacion({
                     notifMessage: '',
                     notifType: '',
@@ -107,9 +110,9 @@ function Carreras() {
                     })}
                 </ul>
             </div>
-            <Content>
-                {carreras['data']?.[query.get('selected')] &&
-                    <>
+            <Content /*className={'Color'+(parseInt(query.get('selected'))+1%7)}*/>
+                 {carreras['data']?.[query.get('selected')] &&
+                     <>
                         <h1 style={{marginTop:'5px',marginBottom:'0px'}}>{carreras['data']?.[query.get('selected')]?.carrera}</h1>
                         <h2>Modalidad:{' '+carreras['data']?.[query.get('selected')]?.modalidad}</h2>
                         <h3 style={{marginBottom:'8px'}}>Listado de materias de la Carrera</h3>

@@ -1,9 +1,9 @@
 //import logo from './logo.svg';
 import './Content.css';
 
-function Content({children}) {
+function Content({children, className}) {
   return (
-    <section className='content'>
+    <section className={'content '+className}>
       {children}
     </section>
   );
