@@ -159,7 +159,7 @@ export default function ListCareerInscription(){
 
     const darDeAlta = (career) => {
         launchNotificacion({
-            notifMessage: <p>Inscribiendo a la Carrera</p>,
+            notifMessage: <p>Registrando Inscripcion</p>,
             notifType: 'WAIT',
             state: true
         })
@@ -195,15 +195,13 @@ export default function ListCareerInscription(){
                     launchNotificacion({
                         notifMessage:
                                     <>
-                                        <p>NO se pudo inscribir a la Carrera</p>
+                                        <p>NO se pudo registrar la Inscripciona</p>
                                         <h4>{error.message}</h4>
                                     </>,
                         notifType: 'ERROR',
                         state: true
                     })
                 });
-        
-        setFormData({idEstudiante:formData.idEstudiante});
     }
 
     const darDeBaja = (career) => {

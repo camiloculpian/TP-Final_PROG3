@@ -2,14 +2,20 @@ const { buscarCarrera } = require('./carreraBD');
 const conexion = require('./conexionBD');
 
 const inscribirMateria = async (idEstudiante, idMateria) =>{
-
+    try{
+        const consulta = `INSERT INTO estudiantemateria (estudiante, materia, fecha) VALUES (?,?,CURDATE())`
+        const respuesta = await conexion.query(consulta,[idEstudiante,idMateria]);  
+        return respuesta;
+    }catch(e){
+        return(e);
+    }
 }
 
 const inscribirCarrera = async (idEstudiante, idCarrera) =>{
     try{
         const consulta = `INSERT INTO estudiantecarrera (estudiante, carrera, fechaAlta) VALUES (?,?,CURDATE())`
         const respuesta = await conexion.query(consulta,[idEstudiante,idCarrera]);  
-        return materias;
+        return respuesta;
     }catch(e){
         return(e);
     }
@@ -28,9 +34,7 @@ const buscarMaterias = async (idEstudiante, idCarrera) => {
                             LEFT JOIN carreramateria ON materia.idMateria = carreramateria.idMateria
                             LEFT JOIN estudiantemateria ON materia.idMateria = estudiantemateria.materia AND estudiantemateria.estudiante = ?
                             WHERE materia.activo = 1 AND idCarrera=?`;
-        
         const materias = await conexion.query(consulta,[idEstudiante,idEstudiante,idCarrera]);  
-
         return materias;
     }catch(e){
         return(e);
@@ -50,7 +54,6 @@ const buscarCarreras = async (idEstudiante) => {
                             WHERE carrera.activo = 1 `;
         
         const carreras = await conexion.query(consulta,[idEstudiante,idEstudiante]);  
-
         return carreras;
     }catch(e){
         return(e);
@@ -68,7 +71,6 @@ const buscarCarrerasInscriptas = async (idEstudiante) => {
                         WHERE carrera.idCarrera = estudiantecarrera.carrera AND estudiantecarrera.fechaBaja IS NULL`;
         
         const carreras = await conexion.query(consulta,idEstudiante);  
-
         return carreras;
     }catch(e){
         return(e);
