@@ -62,7 +62,19 @@ const enviarCorreo = async (req, res) =>{
 const getCarreras = async (req, res) => {
     try{
         const response = await publicoBD.getCarreras();
-        res.status(200).json({status:'OK', headers: response[1], data:response[0]});
+        res.status(200).json({status:'OK', data:response});
+    }catch (excep){
+        throw(excep);
+    }
+}
+
+const getMaterias = async (req, res) => {
+    try{
+        if(req.query['codigoCarrera']){
+            console.log(req.query['codigoCarrera']);
+            const response = await publicoBD.getMaterias(req.query['codigoCarrera']);
+            res.status(200).json({status:'OK', headers: response[1], data:response[0]});
+        }
     }catch (excep){
         throw(excep);
     }
@@ -70,5 +82,6 @@ const getCarreras = async (req, res) => {
 
 module.exports = {
     enviarCorreo,
-    getCarreras
+    getCarreras,
+    getMaterias
 }
