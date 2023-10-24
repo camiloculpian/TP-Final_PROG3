@@ -1,25 +1,75 @@
 import './Carreras.css';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useLocation} from 'react-router-dom';
 
 import Content from '../../layouts/Content';
+import { useEffect, useState } from 'react';
+import { Notification } from '../../components/Notifications';
 function Carreras() {
+    
+    const query = new URLSearchParams(useLocation().search);
+
+    const [carreras, setCarreras] = useState({});
+    const [notificationState, launchNotificacion] = useState({
+        notifMessage: '',
+        notifType: '',
+        state: false
+    })
+    const getCarres = () => {
+        launchNotificacion({
+            notifMessage: <p>Obteniendo lista de carreras</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'GET',
+            credentials: 'include',
+        };
+        fetch('http://localhost:3005/api/v1/publico/carreras', requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response || !response.ok) {
+                    // const error = (data && data.message) || response.status;
+                    const error = data;
+                    return Promise.reject(error);
+                }
+                return data;
+            }).then(data =>{
+                setCarreras(data);
+                launchNotificacion({
+                    notifMessage: '',
+                    notifType: '',
+                    state: false
+                })
+            }).catch(error => { 
+                launchNotificacion({
+                    notifMessage: <>
+                                    <p>No se pudo obtener la lista de carreras debido al siguiente error</p>
+                                    <h4>{error.message}</h4>
+                                  </>,
+                    notifType: 'ERROR',
+                    state: false
+                })
+            });;
+    };
+    useEffect(()=>{getCarres()},[]);
     return(
         <>
             <div className="espacioRojo">Carreras de pregrado y grado</div>
             <div>
                 <ul className="menuHorizontalColorido">
-                    <li id="licSist"><NavLink to="/carreras/lis_sist">Lic. en Sistemas</NavLink></li>
-                    <li id="progSist"><NavLink to="/carreras/prog_sist">Prog. de Sistemas</NavLink></li>
-                    <li id="tecDweb"><NavLink to="/carreras/des_web">Tec. Universitaria en Desarrollo Web</NavLink></li>
-                    <li id="contPub"><NavLink to="/carreras/cont_pub">Contador Público</NavLink></li>
-                    <li id="licAdm"><NavLink to="/carreras/lic_adm">Lic. en Ciencias de la Administracion</NavLink></li>
-                    <li id="profPort"><NavLink to="/carreras/prof_port">Prof. en Portugues</NavLink></li>
-                    <li id="licTur"><NavLink to="/carreras">Lic. en Turismo</NavLink></li>
+                    {carreras['data']?.map((element, id) => {
+                        return(
+                            <li key={id} className={'Color'+parseInt(id+1%7)}><NavLink to={'/carreras/?selected='+id}><p>{element.carrera}</p></NavLink></li>
+                        )
+                    })}
                 </ul>
             </div>
             <Content>
-                <p>Aca hay que implementar que lea las carreras de forma dinamica, aplique los estilos de colores de forma dinamica y muestre el contenido de la misma manera</p>
+                <p>Modalidad:{' '+carreras['data']?.[query.get('selected')]?.modalidad}</p>
+                <p>idCarrera para buscar materias e info:{' '+carreras['data']?.[query.get('selected')]?.codigo}</p>
             </Content>
+            <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
         </>
     )
 }

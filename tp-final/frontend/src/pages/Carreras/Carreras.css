@@ -43,30 +43,40 @@ ul.menuHorizontalColorido a:hover {
     text-decoration: underline;
 }
 
-li#licSist{
+.menuHorizontalColorido li{
+    height: 120px;
+    text-align: center;
+    align-items: center;
+}
+
+.menuHorizontalColorido p{
+    font-size: larger;
+}
+
+li.Color1{
     background-color:#9E1B3F;
 }
 
-li#progSist{
+li.Color2{
     background-color:#0C3766;
 }
 
-li#tecDweb{
+li.Color3{
     background-color:#5D5D5D;
 }
 
-li#contPub{
+li.Color4{
     background-color:#EDA03F;
 }
 
-li#licAdm{
+li.Color5{
     background-color:#A09F9F;
 }
 
-li#profPort{
+li.Color6{
     background-color:#508CE2;
 }
 
-li#licTur{
+li.Color7{
     background-color:#537B60;
 }

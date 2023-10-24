@@ -25,7 +25,7 @@ agregar = async(req, res) => {
 buscar = async(req, res) => {
     try{
         const response = await carreraBD.buscarCarrera(req.body.nombre);
-        res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+        res.status(200).json({status:'OK', headers: response[1],data: response[0]});
     }catch (excep){
         throw excep;
     }

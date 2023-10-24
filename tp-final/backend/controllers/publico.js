@@ -3,7 +3,9 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 const handlebars = require('handlebars');
 
-exports.enviarCorreo = async (req, res) =>{
+const publicoBD = require('../dataBase/publicoBD');
+
+const enviarCorreo = async (req, res) =>{
     try{
         if(!req.body['nombre']&!req.body['correo']&!req.body['mensaje']){
             const respuesta = 'El mensaje NO ha sido enviado, faltan datos...';
@@ -55,4 +57,18 @@ exports.enviarCorreo = async (req, res) =>{
     }catch(e){
         return(e);
     }
+}
+
+const getCarreras = async (req, res) => {
+    try{
+        const response = await publicoBD.getCarreras();
+        res.status(200).json({status:'OK', headers: response[1], data:response[0]});
+    }catch (excep){
+        throw(excep);
+    }
+}
+
+module.exports = {
+    enviarCorreo,
+    getCarreras
 }
