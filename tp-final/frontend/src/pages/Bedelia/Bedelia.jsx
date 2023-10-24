@@ -12,14 +12,13 @@ import { UserContext } from '../../components/UserContext';
 function Bedelia(){
     const { userData } = useContext(UserContext);
     const navigate = useNavigate();
-    console.log(userData);
     // const isAuthorized = () =>{
 
     // }
     return (
         <>
             <Content>
-                {userData         &&
+                {userData &&
                 <>
                     <BedeliaInformationBar/>
                     <nav className="contentItem">
