@@ -16,6 +16,6 @@ router.post('/course/add', isAuthenticatedAndBedel, inscribirMateria);
 
 router.get('/course/lookup?', buscarMaterias);
 
-router.delete('/career/delete', isAuthenticatedAndBedel, borrarInscripcionMateria);
+router.delete('/course/delete', isAuthenticatedAndBedel, borrarInscripcionMateria);
 
 module.exports = router;

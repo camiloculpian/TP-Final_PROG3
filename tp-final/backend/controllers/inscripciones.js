@@ -60,7 +60,17 @@ const buscarCarreras = async(req, res) => {
 
 const borrarInscripcionMateria = async (req, res) => {
     try{
-        return [];
+        if(req.body['idEstudiante'] && req.body['idMateria']){
+            //TO-DO: Buscar estudiante y materia por id y ver si existen...
+            const response = await inscripcionesBD.borrarInscripcionMateria(req.body['idEstudiante'],req.body['idMateria']);
+            if(response.errno){
+                res.status(401).json({status:'ERROR', message:'ERROR eliminando inscripcion a materia '+response.sqlMessage});
+            }
+            //TO-DO: si afected rows > 0 tuvo exito
+            res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
+        }else{
+            res.status(200).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
+        }   
     }catch (e){
         //TO-DO: lanzar errores
         throw e;

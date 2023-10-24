@@ -201,9 +201,49 @@ export default function ListCourseInscription(){
     }
 
     const darDeBaja = (course) => {
-        console.log(formData);
-        console.log(course);
-        lookupCourse(formData.idEstudiante, formData.idMateria);
+        launchNotificacion({
+            notifMessage: <p>Eliminando Inscripcion</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                idEstudiante:formData.idEstudiante,
+                idMateria:course.idMateria
+            })
+        };
+        fetch('http://localhost:3005/api/v1/inscripcion/course/delete', requestOptions)
+                .then(async response => {
+                    const isJson = response.headers.get('content-type')?.includes('application/json');
+                    const data = isJson && await response.json();
+                    if (!response.ok) {
+                        const error = data;
+                        return Promise.reject(error);
+                    }
+                    return data;
+                }).then(data =>{
+                    if(data['status']==='OK'){
+                        lookupCourse(formData.idEstudiante, formData.idCarrera);
+                    }
+                    launchNotificacion({
+                        notifMessage: <p>{data['message']}</p>,
+                        notifType: data['status'],
+                        state: true
+                    })
+                }).catch(error => { 
+                    launchNotificacion({
+                        notifMessage:
+                                    <>
+                                        <p>NO se pudo eliminar la Inscripcion</p>
+                                        <h4>{error.message}</h4>
+                                    </>,
+                        notifType: 'ERROR',
+                        state: true
+                    })
+                });
     }
 
     const handleReset = () => {
