@@ -108,12 +108,16 @@ function Carreras() {
                 </ul>
             </div>
             <Content>
-                <h2>Modalidad:{' '+carreras['data']?.[query.get('selected')]?.modalidad}</h2>
-
-                <h3 style={{marginBottom:'8px'}}>Listado de materias de la Carrera</h3>
-                <div style={{width:'100%',justifyContent:'center',marginBottom:'100px'}}>
-                    {materias && <AdaptativeTable tableData={materias}/>}
-                </div>
+                {carreras['data']?.[query.get('selected')] &&
+                    <>
+                        <h1 style={{marginTop:'5px',marginBottom:'0px'}}>{carreras['data']?.[query.get('selected')]?.carrera}</h1>
+                        <h2>Modalidad:{' '+carreras['data']?.[query.get('selected')]?.modalidad}</h2>
+                        <h3 style={{marginBottom:'8px'}}>Listado de materias de la Carrera</h3>
+                        <div style={{display:'flex',width:'100%',justifyContent:'center',marginBottom:'100px'}}>
+                            {materias && <AdaptativeTable tableData={materias}/>}
+                        </div>
+                    </>
+                }
             </Content>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
         </>
