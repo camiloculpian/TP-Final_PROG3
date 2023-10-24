@@ -110,7 +110,7 @@ function Carreras() {
             <Content>
                 <h2>Modalidad:{' '+carreras['data']?.[query.get('selected')]?.modalidad}</h2>
 
-                <h3>Lista de materias de la Carrera</h3>
+                <h3 style={{marginBottom:'8px'}}>Listado de materias de la Carrera</h3>
                 <div style={{width:'100%',justifyContent:'center',marginBottom:'100px'}}>
                     {materias && <AdaptativeTable tableData={materias}/>}
                 </div>
