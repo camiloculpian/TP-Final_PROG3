@@ -2,9 +2,11 @@ import './Login.css';
 import './Bedelia.css';
 import { useContext, useState } from 'react';
 import { Notification } from '../../components/Notifications';
- 
-function Login({setLoginState}) {
-  //const { setUserData } = useContext(UserContext);
+import { UserContext } from '../../components/UserContext';
+
+function Login() {
+  const {setUserData } = useContext(UserContext);
+
   const [notificationState, launchNotificacion] = useState({
     notifMessage: '',
     notifType: '',
@@ -49,14 +51,8 @@ function Login({setLoginState}) {
               notifType: data['status'],
               state: true
           })
-          if(data['data']){
-            setLoginState({
-              logged: true,
-              loginUser: data['data'][0]['nombre'],
-              loginGroup: data['data'][0]['tipoUsuario'],
-              token: data['token'],
-              loginTimeOut: 5000
-            })
+          if(data){
+            setUserData({ user: data.usuario, token: data.token });
           }
       }).catch(error => { 
           launchNotificacion({

@@ -4,31 +4,24 @@ import Content from '../../layouts/Content';
 import BedeliaMenu from './BedeliaMenu';
 import BedeliaInformationBar from './BedeliaInformationBar';
 import { Outlet, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useContext } from 'react';
 import Modal from '../../components/Modal';
 import Login from './Login';
+import { UserContext } from '../../components/UserContext';
 
 function Bedelia(){
-
-    const [loginState, setLoginState] = useState({
-        logged: false,
-        loginUser: '',
-        loginGroup: '',
-        token: '',
-        loginTimeOut: 0
-    });
+    const { userData } = useContext(UserContext);
     const navigate = useNavigate();
-
+    console.log(userData);
     // const isAuthorized = () =>{
 
     // }
-
     return (
         <>
             <Content>
-                {loginState.logged &&
+                {userData         &&
                 <>
-                    <BedeliaInformationBar loginState={loginState} setLoginState={setLoginState}/>
+                    <BedeliaInformationBar/>
                     <nav className="contentItem">
                         <BedeliaMenu />
                         <nav className="contentModule">
@@ -38,8 +31,8 @@ function Bedelia(){
                 </>
                 }
             </Content>
-            <Modal title={'Iniciar Sesión'} state={!loginState.logged} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
-                <Login setLoginState={setLoginState}/>
+            <Modal title={'Iniciar Sesión'} state={!userData} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
+                <Login/>
             </Modal>
 
         </>

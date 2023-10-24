@@ -16,7 +16,7 @@ function Carreras() {
         state: false
     })
 
-    const getCarres = () => {
+    const getCarreras = () => {
         launchNotificacion({
             notifMessage: <p>Obteniendo lista de carreras</p>,
             notifType: 'WAIT',
@@ -37,9 +37,9 @@ function Carreras() {
                 return data;
             }).then(data =>{
                 setCarreras(data);
-                if(query.get('selected')){
-                    getMaterias(data['data']?.[query.get('selected')]?.codigo)
-                }
+                // if(query.get('selected')){
+                //     getMaterias(data['data']?.[query.get('selected')]?.codigo)
+                // }
                 launchNotificacion({
                     notifMessage: '',
                     notifType: '',
@@ -96,7 +96,7 @@ function Carreras() {
             });;
     };
 
-    useEffect(()=>{getCarres();},[]);
+    useEffect(()=>{getCarreras()},[]);
 
     return(
         <>

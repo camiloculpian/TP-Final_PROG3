@@ -44,7 +44,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
                 state: true
             })
         });
-    }, []);
+    }, [idEstudiante]);
 
     const changeSelected = event => {
         callbackSelected(event);

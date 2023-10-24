@@ -42,15 +42,15 @@ export default function ListCareerInscription(){
         // idCarrera : 0
     });
 
-    const handleChange = (e) => {
-        const { target } = e;
-        const { name, value } = target;
-        const newValues = {
-          ...formData,
-          [name]: value,
-        };
-        setFormData(newValues);
-    };
+    // const handleChange = (e) => {
+    //     const { target } = e;
+    //     const { name, value } = target;
+    //     const newValues = {
+    //       ...formData,
+    //       [name]: value,
+    //     };
+    //     setFormData(newValues);
+    // };
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 

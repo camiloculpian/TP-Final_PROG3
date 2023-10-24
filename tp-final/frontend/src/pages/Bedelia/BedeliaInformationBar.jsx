@@ -1,15 +1,14 @@
 import { useNavigate } from 'react-router';
-import './BedeliaInformationBar.css';
+import { UserContext } from '../../components/UserContext';
 
-function BedeliaInformationBar({loginState, setLoginState}) {
+import './BedeliaInformationBar.css';
+import { useContext } from 'react';
+
+function BedeliaInformationBar() {
+    const {userData,setUserData } = useContext(UserContext);
     const navigate = useNavigate();
     const logout = () => {
-        setLoginState({
-            logged: false,
-            loginUser: '',
-            loginGroup: '',
-            loginTimeOut: (5000)
-        })
+        setUserData(false);
         navigate('/');
     }
     
@@ -17,7 +16,7 @@ function BedeliaInformationBar({loginState, setLoginState}) {
         <section>
             <div className="bedeliaStatusBar">
                 <div className='informationContent'>
-                    <p>Bienvenido: {loginState.loginUser}</p>
+                    <p>Bienvenido: {userData.user.correoElectronico}</p>
                 </div>
                 <div className="itemRight">
                     <button className="logOutButton" onClick={logout}>Salir</button>

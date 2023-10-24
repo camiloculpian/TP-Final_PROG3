@@ -19,10 +19,13 @@ import ListCourse from './pages/Bedelia/ListCourse';
 import ListCourseInscription from './pages/Bedelia/ListCourseInscription';
 import ListCareerInscription from './pages/Bedelia/ListCareerInscription';
 
+import { UserProvider } from './components/UserContext';
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <UserProvider>
       <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -51,6 +54,7 @@ function App() {
           </ Route>
         </Routes>
         <Footer/>
+        </UserProvider>
       </BrowserRouter>
     </div>
   );
