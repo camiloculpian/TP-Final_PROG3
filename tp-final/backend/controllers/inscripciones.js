@@ -9,7 +9,7 @@ const inscribirMateria = async(req, res) => {
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
         }else{
-            res.status(200).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
+            res.status(401).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
         }   
     }catch (e){
         //TO-DO: lanzar errores
@@ -25,7 +25,7 @@ const inscribirCarrera = async(req, res) => {
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
         }else{
-            res.status(200).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
+            res.status(401).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
         }   
     }catch (e){
         //TO-DO: lanzar errores
@@ -69,7 +69,7 @@ const borrarInscripcionMateria = async (req, res) => {
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
         }else{
-            res.status(200).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
+            res.status(401).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
         }   
     }catch (e){
         //TO-DO: lanzar errores
@@ -88,7 +88,7 @@ const borrarInscripcionCarrera = async (req, res) => {
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
         }else{
-            res.status(200).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
+            res.status(401).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
         }   
     }catch (e){
         //TO-DO: lanzar errores
