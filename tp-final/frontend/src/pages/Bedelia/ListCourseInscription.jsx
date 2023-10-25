@@ -292,7 +292,7 @@ export default function ListCourseInscription(){
                                 <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                             </div>
                         </div>
-                        <AdaptativeTable tableData={tableData}/>
+                        <AdaptativeTable tableData={tableData} style={{width:'100%'}}/>
                         {formData.idEstudiante &&
                             <div className="dataLine"><label className="dataTitle" htmlFor="idCarrera">Carrera:</label>
                                 <CareerSelect callbackSelected={(e)=>{

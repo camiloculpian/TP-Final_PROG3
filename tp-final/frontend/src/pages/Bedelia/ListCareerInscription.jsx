@@ -292,7 +292,7 @@ export default function ListCareerInscription(){
                                 <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                             </div>
                         </div>
-                        <AdaptativeTable tableData={tableData}/>
+                        <AdaptativeTable tableData={tableData}  style={{width:'100%'}}/>
                         {formData.idEstudiante && careerList['headers'] && careerList['data'] &&
                             <>
                             <h4>Listado de Carreras</h4>
