@@ -39,7 +39,7 @@ agregar = async(req, res) => {
             }]
             res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
         }else{
-            res.json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
+            resstatus(400).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
         }
     }catch (excep){
         throw(excep);
@@ -54,10 +54,10 @@ eliminar = async(req, res) => {
             if(!estudiante.length && estudiante.affectedRows == 1){
                 res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
             }else{
-                res.json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
+                res.status(400).json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
             }
         }else{
-            res.json({status:'ERROR', message:'ERROR: idEstudiante debe ser un valor valido'});
+            res.status(400).json({status:'ERROR', message:'ERROR: idEstudiante debe ser un valor valido'});
         }
     }catch (excep){
         throw (excep);
@@ -82,7 +82,7 @@ modificar = async(req, res) => {
             const response = await estudianteBD.buscarPorId(req.body.idEstudiante);
             res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:response[0]});
         }else{
-            res.json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja...', data:[{}]});
+            res.status(400).json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja...', data:[{}]});
         }
     }catch (excep){
         throw (excep);
