@@ -4,7 +4,6 @@ const estudianteBD = require('../dataBase/estudianteBD');
 buscar = async(req, res) => {
     //BUSCA SEGUN CRITERIO PROVISTO, SI NO RETORNA UNA LISTA CON TODOS LOS ESTUDIANTES
     try{
-        let response =[];
         if(req.query['id']){
             response = await estudianteBD.buscarPorId(req.query['id']);
         }else if(req.query['dni']){

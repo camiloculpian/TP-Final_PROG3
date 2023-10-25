@@ -106,10 +106,35 @@ const buscarMateriasPorCarreraNombre = async (idCarrera,nombre) => {
     }
 }
 
+const buscarMateriasPorCarreraNombreExacto = async (idCarrera,nombre) => {
+    try{
+        const consulta = `SELECT 
+                            materia.idMateria AS idMateria,
+                            materia.nombre AS Nombre,
+                            materia.tipoMateria as Tipo,
+                            materia.horasSemanales as 'Hs. Sem.',
+                            carrera.idCarrera as idCarrera,
+                            carrera.nombre as Carrera
+                        FROM materia, carrera, carreramateria
+                        WHERE materia.activo = 1 
+                                AND materia.idMateria = carreramateria.idMateria 
+                                AND carrera.idCarrera = carreramateria.idCarrera 
+                                AND carrera.idCarrera = ?
+                                AND materia.nombre = ?`;
+        if(!nombre) nombre = '';
+        const response = await conexion.query(consulta,[idCarrera,nombre]);
+        return response;
+    }catch(e){
+        console.log(e)
+        return(e);
+    }
+}
+
 module.exports = {
     agregarMateria,
     buscarMateria,
     buscarMateriaPorId,
     buscarMateriasPorCarrera,
-    buscarMateriasPorCarreraNombre
+    buscarMateriasPorCarreraNombre,
+    buscarMateriasPorCarreraNombreExacto
 }
