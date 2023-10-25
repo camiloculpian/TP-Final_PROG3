@@ -36,7 +36,7 @@ buscar = async(req, res) => {
                 response = await materiaBD.buscarMateriasPorCarrera(req.query['idCarrera']);
             }   
         }else{
-            response = await materiaBD.buscarMateria(req.body.nombre); 
+            response = await materiaBD.buscarMateria(req.query['nombreMateria']); 
         }
         if(response.errno){
             res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
