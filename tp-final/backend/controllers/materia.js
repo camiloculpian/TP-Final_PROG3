@@ -60,7 +60,16 @@ editar = async(req, res) => {
 
 eliminar = async(req, res) => {
     try{
-        
+        if(req.body.idMateria){
+            response = await materiaBD.eliminarMateria(req.body.idMateria);
+            if(response.affectedRows >= 1){
+                res.status(200).json({status:'OK',message:'La materia fue dada de baja'});
+            }else{
+                res.status(400).json({status:'ERROR', message:'ERROR: La materia con ese Id NO EXISTE!'});
+            }
+        }else{
+            res.status(400).json({status:'ERROR',message:'ERROR: Faltan datos REQUERIDOS!'});
+        }
     }catch (excep){
         res.status(400).json({status:'ERROR',message:excep});
         throw excep;

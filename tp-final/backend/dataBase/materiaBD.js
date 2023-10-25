@@ -44,6 +44,16 @@ const buscarMateria = async (nombre) => {
     }
 }
 
+const eliminarMateria = async (idMateria) => {
+    try{
+        const consulta = `UPDATE materia SET activo=0 WHERE activo=1 AND idMateria=?`;
+        const response = await conexion.query(consulta,idMateria);
+        return response[0];
+    }catch(e){
+        return(e);
+    }
+}
+
 const buscarMateriaPorId = async (idMateria) => {
     try{
         const consulta = `SELECT 
@@ -133,6 +143,7 @@ const buscarMateriasPorCarreraNombreExacto = async (idCarrera,nombre) => {
 module.exports = {
     agregarMateria,
     buscarMateria,
+    eliminarMateria,
     buscarMateriaPorId,
     buscarMateriasPorCarrera,
     buscarMateriasPorCarreraNombre,

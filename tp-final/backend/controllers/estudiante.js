@@ -57,7 +57,7 @@ eliminar = async(req, res) => {
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
             }else{
-                if(response.affectedRows == 1){
+                if(response.affectedRows >= 1){
                     res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
                 }else{
                     res.status(400).json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});

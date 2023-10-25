@@ -33,46 +33,6 @@ export default function ListCourse(){
         };
         setFormData(newValues);
     }
-    
-    const getCarres = () => {
-        const requestOptions = {
-            method: 'GET',
-            credentials: 'include', //NO DEBERIA PARA QUE SEA ACCESIBLE POR EL SISTEMA PARA LISTAR CARRETAS EN LA PAGINA PRINCIPAL
-        };
-        launchNotificacion({
-            notifMessage: <p>Obteniendo lista de materias</p>,
-            notifType: 'WAIT',
-            state: true
-        })
-        fetch('http://localhost:3005/api/v1/materia/lookup', requestOptions)
-            .then(async response => {
-                const isJson = response.headers.get('content-type')?.includes('application/json');
-                const data = isJson && await response.json();
-                if (!response.ok) {
-                    // const error = (data && data.message) || response.status;
-                    const error = data;
-                    return Promise.reject(error);
-                }
-                return data;
-            }).then(data =>{
-                setData(data);
-                console.log(data);
-                launchNotificacion({
-                    notifMessage: '',
-                    notifType: '',
-                    state: false
-                })
-            }).catch(error => { 
-                launchNotificacion({
-                    notifMessage: <>
-                                    <p>No se pudo obtener la lista debido al siguiente error</p>
-                                    <h4>{error.message}</h4>
-                                  </>,
-                    notifType: 'ERROR',
-                    state: false
-                })
-            });;
-    };
 
     const getCourses = () => {
         const requestOptions = {
@@ -134,7 +94,6 @@ export default function ListCourse(){
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
                 if (!response.ok) {
-                    // const error = (data && data.message) || response.status;
                     const error = data;
                     return Promise.reject(error);
                 }
@@ -145,7 +104,6 @@ export default function ListCourse(){
                     notifType: 'OK',
                     state: true
                 })
-                getCarres();
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
@@ -163,7 +121,8 @@ export default function ListCourse(){
         //console.log(e);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         //GUARDAR LOS CAMBIOS!!!
     }
 
@@ -189,7 +148,7 @@ export default function ListCourse(){
                             <p>Esta realmente seguro que desea eliminar la Materia?</p>
                             <h3>La accion no se podra deshacer</h3>
                             <div className='WARNPromtLine'>
-                                <button onClick={()=>{deleteCourse(element.ID); launchNotificacion({})}}><h4>Confirmar</h4></button>
+                                <button onClick={()=>{deleteCourse(element.idMateria); launchNotificacion({})}}><h4>Confirmar</h4></button>
                                 <button onClick={()=>{launchNotificacion({})}}><h4>Cancelar</h4></button>
                             </div>
                           </>,
