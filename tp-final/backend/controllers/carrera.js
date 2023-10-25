@@ -29,8 +29,9 @@ buscar = async(req, res) => {
         const response = await carreraBD.buscarCarrera(req.body.nombre);
         if(response.errno){
             res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+        }else{
+            res.status(200).json({status:'OK', headers: response[1],data: response[0]});
         }
-        res.status(200).json({status:'OK', headers: response[1],data: response[0]});
     }catch (excep){
         res.status(400).json({status:'ERROR',message:excep});
         throw excep;
