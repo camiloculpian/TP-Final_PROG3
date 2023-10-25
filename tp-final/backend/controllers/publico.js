@@ -12,7 +12,6 @@ const enviarCorreo = async (req, res) =>{
             res.json({ respuesta });
         }else{
             const {nombre, correo, mensaje} = req.body;
-            console.log(nombre,correo,mensaje);
             
             const plantillaHds2 = fs.readFileSync(path.join(__dirname, '../utils/handlebars/plantilla.hbs'), 'utf8');
             
@@ -71,7 +70,6 @@ const getCarreras = async (req, res) => {
 const getMaterias = async (req, res) => {
     try{
         if(req.query['codigoCarrera']){
-            console.log(req.query['codigoCarrera']);
             const response = await publicoBD.getMaterias(req.query['codigoCarrera']);
             res.status(200).json({status:'OK', headers: response[1], data:response[0]});
         }

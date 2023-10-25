@@ -151,7 +151,6 @@ export default function ListCourseInscription(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
     }
 
     const darDeAlta = (course) => {

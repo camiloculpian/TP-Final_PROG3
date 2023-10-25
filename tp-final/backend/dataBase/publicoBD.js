@@ -9,7 +9,6 @@ const getCarreras = async () => {
                         FROM carrera 
                         WHERE activo = 1`;
         const [response] = await conexion.query(consulta);
-        console.log(response);
         return response;
     }catch(e){
         console.log(e);

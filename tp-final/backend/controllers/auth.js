@@ -1,10 +1,10 @@
 const usuarioBD = require('../dataBase/usuarioBD');
 const jwt = require('jsonwebtoken');
-const md5 = require('md5')
+//const md5 = require('md5')
 
 login = async(req, res) => {
     try{
-        const usuario = await usuarioBD.buscarUsuario(req.body.username, md5(req.body.password));
+        const usuario = await usuarioBD.buscarUsuario(req.body.username, req.body.password);
         
         if(usuario.length){
             const token = await jwt.sign({ idUsuario: usuario[0].idUsuario }, process.env.SECRET_KEY, {
