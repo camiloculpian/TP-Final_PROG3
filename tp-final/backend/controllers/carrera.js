@@ -46,6 +46,7 @@ borrar = async(req, res) => {
                 if(response.errno){
                     res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
                 }
+                // if(response.affectedRows == 1) ?
                 res.status(200).json({status:'OK',message:'La carrera fue dada de baja.' , data:response});
             }else{
                 res.status(400).json({status:'ERROR',message:'ERROR: no existe una carrera con ese Id!'});
