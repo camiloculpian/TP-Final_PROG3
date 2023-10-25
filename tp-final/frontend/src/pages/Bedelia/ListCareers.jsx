@@ -122,7 +122,6 @@ export default function ListCareers(){
     }
 
     const callbackEditable = (e) => {
-        console.log(e);
         setFormData({
             idCarrera : e.idCarrera,
             nombre: e.Nombre,
@@ -137,15 +136,25 @@ export default function ListCareers(){
                             <p>Esta realmente seguro que desea eliminar la Carrera?</p>
                             <h3>La accion no se podra deshacer</h3>
                             <div className='WARNPromtLine'>
-                                <button onClick={()=>{deleteCareer(element.ID); launchNotificacion({})}}><h4>Confirmar</h4></button>
+                                <button onClick={()=>{deleteCareer(element.idCarrera); launchNotificacion({})}}><h4>Confirmar</h4></button>
                                 <button onClick={()=>{launchNotificacion({})}}><h4>Cancelar</h4></button>
                             </div>
                           </>,
             notifType: 'WARN',
             state: true
         })
-        // deleteCareer(e.id)
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setEstadoModal(false);
+    }
+
+    const handleReset = (e) => {
+        e.preventDefault();
+        setEstadoModal(false);
+    }
+
     return(
         <>
             <div className="moduleContent">
@@ -157,7 +166,7 @@ export default function ListCareers(){
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
             <Modal title={'Editar Carrera'} state={estadoModal} changeState={setEstadoModal}>
                 <div className="moduleContent" style={{padding:'20px'}}>
-                    <form /*onSubmit={handleSubmit}*/>
+                    <form onSubmit={handleSubmit} onReset={handleReset}>
                         <fieldset>
                             {/* <legend>Carreras -&gt; Editar Carrera</legend> */}
                             <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre Carrera:</label><input name="nombre" required="" className="dataEntry"value={formData.nombre} onChange={handleChange}/></div>

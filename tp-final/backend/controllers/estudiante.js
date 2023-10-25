@@ -2,6 +2,7 @@ const { query } = require('../dataBase/conexionBD');
 const estudianteBD = require('../dataBase/estudianteBD');
 
 buscar = async(req, res) => {
+    //BUSCA SEGUN CRITERIO PROVISTO, SI NO RETORNA UNA LISTA CON TODOS LOS ESTUDIANTES
     try{
         if(req.query['id']){
             const response = await estudianteBD.buscarPorId(req.query['id']);
@@ -14,6 +15,7 @@ buscar = async(req, res) => {
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (excep){
+        res.status(400).json({status:'ERROR', message:excep});
         throw excep;
     }
 }
@@ -21,27 +23,21 @@ buscar = async(req, res) => {
 agregar = async(req, res) => {
     try{
         //TIRAR ERROR Y EL ESTUDIANTE SI ESTE YA EXISTE(BUSCAR POR DNI)
-        let estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
-        if(!estudiante[0].length){
-            // const idEstudiante = await estudianteBD.agregarEstudiante(req.body.dni, req.body.apellido, req.body.nombre, req.body.fechaNacimiento, req.body.nacionalidad, req.body.correoElectronico, req.body.celular, req.body.foto);
-            const idEstudiante = await estudianteBD.agregarEstudiante(req.body);
-            estudiante = [{
-                idEstudiante: idEstudiante[0]['insertId'],
-                dni: parseInt(req.body.dni),
-                nombre: req.body.nombre,
-                apellido: req.body.apellido,
-                fechaNacimiento: req.body.fechaNacimiento,
-                nacionalidad: parseInt(req.body.nacionalidad),
-                correoElectronico: req.body.correoElectronico,
-                celular: req.body.celular,
-                foto: req.body.foto,
-                activo: 1
-            }]
-            res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
+        if(req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
+            let estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
+            if(!estudiante[0].length){
+                const idEstudiante = await estudianteBD.agregarEstudiante(req.body);
+                //VER SI EL ESTUDIANTE FUE RETORNADO DE MANERA CORRECTA
+                [estudiante] =  await estudiateDB.buscarPorId(idEstudiante[0]['insertId']);
+                res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
+            }else{
+                res.status(400).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
+            }
         }else{
-            resstatus(400).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
+            res.status(400).json({status:'ERROR', message:'ERROR: Faltan datos OBLIGATORIOS!!!'});
         }
     }catch (excep){
+        res.status(400).json({status:'ERROR', message:excep});
         throw(excep);
     }
 }
@@ -60,6 +56,7 @@ eliminar = async(req, res) => {
             res.status(400).json({status:'ERROR', message:'ERROR: idEstudiante debe ser un valor valido'});
         }
     }catch (excep){
+        res.status(400).json({status:'ERROR', message:excep});
         throw (excep);
     }
 }
@@ -69,6 +66,7 @@ test = async(req, res) => {
         console.log(req)
         res.status(200).json({status:'OK',message:'Bienvenido!!!'})
     }catch (excep){
+        res.status(400).json({status:'ERROR', message:excep});
         throw (excep);
     }
 }

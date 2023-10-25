@@ -6,6 +6,9 @@ const inscribirMateria = async(req, res) => {
         if(req.body['idEstudiante'] && req.body['idMateria']){
             //TO-DO: Buscar estudiante y materia por id y ver si existen...
             const response = await inscripcionesBD.inscribirMateria(req.body['idEstudiante'],req.body['idMateria']);
+            if(response.errno){
+                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+            }
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
         }else{
@@ -22,6 +25,9 @@ const inscribirCarrera = async(req, res) => {
         if(req.body['idEstudiante'] && req.body['idCarrera']){
             //TO-DO: Buscar estudiante y carrera por id y ver si existen...
             const response = await inscripcionesBD.inscribirCarrera(req.body['idEstudiante'],req.body['idCarrera']);
+            if(response.errno){
+                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+            }
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
         }else{
@@ -36,6 +42,9 @@ const inscribirCarrera = async(req, res) => {
 const buscarMaterias = async(req, res) => {
     try{
         const response = await inscripcionesBD.buscarMaterias(req.query['idEstudiante'],req.query['idCarrera']);
+        if(response.errno){
+            res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+        }
         res.status(200).json({status:'OK', headers: response[1],data:response[0]});
     }catch (e){
         //TO-DO: lanzar errores
@@ -64,7 +73,7 @@ const borrarInscripcionMateria = async (req, res) => {
             //TO-DO: Buscar estudiante y materia por id y ver si existen...
             const response = await inscripcionesBD.borrarInscripcionMateria(req.body['idEstudiante'],req.body['idMateria']);
             if(response.errno){
-                res.status(401).json({status:'ERROR', message:'ERROR eliminando inscripcion a materia '+response.sqlMessage});
+                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
             }
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
@@ -83,7 +92,7 @@ const borrarInscripcionCarrera = async (req, res) => {
             //TO-DO: Buscar estudiante y carrera por id y ver si existen...
             const response = await inscripcionesBD.borrarInscripcionCarrera(req.body['idEstudiante'],req.body['idCarrera']);
             if(response.errno){
-                res.status(401).json({status:'ERROR', message:'ERROR eliminando inscripcion a carrera '+response.sqlMessage});
+                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
             }
             //TO-DO: si afected rows > 0 tuvo exito
             res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});

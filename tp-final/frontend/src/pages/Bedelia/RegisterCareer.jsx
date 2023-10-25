@@ -21,6 +21,7 @@ export default function RegisterCareer(){
           [name]: value,
         };
         setFormData(newValues);
+        console.log(formData);
     }
 
     const handleSubmit = async (e) => {
@@ -71,13 +72,21 @@ export default function RegisterCareer(){
                     })
                 });
     }
+    const handleReset = (e) => {
+        e.preventDefault();
+        setFormData({
+            nombre: "",
+            modalidad: 0,
+            activo: 1
+        })
+    }
     return(
         <>
             <div className="moduleContent" >
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
                     <fieldset>
                         <legend>Carreras -&gt; Registrar Carrera</legend>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre Carrera:</label><input name="nombre" required="" className="dataEntry" value={formData.nombre} onChange={handleChange}/></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre Carrera:</label><input name="nombre" required='true' className="dataEntry" value={formData.nombre} onChange={handleChange}/></div>
                         <div className="dataLine">
                             <label className="dataTitle" htmlFor="modalidad">Modalidad</label>
                             <select name="modalidad" required="" className="dataEntry" value={formData.modalidad} onChange={handleChange}>
@@ -85,7 +94,10 @@ export default function RegisterCareer(){
                                 <option value={1}>Virtual</option>
                             </select>
                         </div>
-                        <div><button className="botonComun" type="submit">Agregar</button></div>
+                        <div>
+                            <button className="botonComun" type="submit">Agregar</button>
+                            <button className="botonComun" type="reset">Cancelar</button>
+                        </div>
                     </fieldset>
                 </form>
             </div>

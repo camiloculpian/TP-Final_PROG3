@@ -4,15 +4,18 @@ const jwt = require('jsonwebtoken');
 
 login = async(req, res) => {
     try{
-        const usuario = await usuarioBD.buscarUsuario(req.body.username, req.body.password);
-        
-        if(usuario.length){
-            const token = await jwt.sign({ idUsuario: usuario[0].idUsuario }, process.env.SECRET_KEY, {
-                expiresIn: process.env.JWT_EXPIRE,
-            });
-            res.status(200).cookie('token' , token, {expire : new Date() + 9999, sameSite: 'strict', secure: true}).json({status:'OK',usuario: usuario[0], token: token});
+        if(req.body.username && req.body.password){
+            const usuario = await usuarioBD.buscarUsuario(req.body.username, req.body.password);
+            if(usuario.length){
+                const token = await jwt.sign({ idUsuario: usuario[0].idUsuario }, process.env.SECRET_KEY, {
+                    expiresIn: process.env.JWT_EXPIRE,
+                });
+                res.status(200).cookie('token' , token, {expire : new Date() + 9999, sameSite: 'strict', secure: true}).json({status:'OK',usuario: usuario[0], token: token});
+            }else{
+                res.status(401).json({status:'ERROR', message:'ERROR: credenciales Incorrectas'});
+            }
         }else{
-            res.status(401).json({status:'ERROR', message:'ERROR: credenciales Incorrectas'});
+            res.status(401).json({status:'ERROR', message:'ERROR: username and password MUST be provided!'});
         }
     }catch (excep){
         throw (excep);

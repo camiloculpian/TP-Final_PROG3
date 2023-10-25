@@ -11,7 +11,7 @@ export default function SearchCourse(){
 
     const [estadoModal, setEstadoModal] = useState(false);
 
-    const[valorDeBusqueda, setValorDeBusqueda] = useState({idCarrera:2,nombreMateria:''});
+    const[valorDeBusqueda, setValorDeBusqueda] = useState({idCarrera:'',nombreMateria:''});
 
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
