@@ -47,6 +47,30 @@
     /* fill: rgb(28, 71, 95); */
 }
 
+
+.INFOPromtLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.INFOPromtLine button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #0479e7;
+    border: 1px solid rgb(181, 228, 255);
+    color: rgb(181, 222, 255);
+}
+
+.INFOPromtLine button:hover{
+    cursor: pointer;
+    background-color: rgb(181, 213, 255);
+    border: 1px solid #0479e7;
+    color: #0494e7;
+}
+
 .notificationWARN{
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: rgb(255, 244, 181);

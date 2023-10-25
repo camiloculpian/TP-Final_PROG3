@@ -32,16 +32,6 @@ function DeleteStudent(){
         foto: "",
     });
 
-    // const handleChange = (e) => {
-    //     const { target } = e;
-    //     const { name, value } = target;
-    //     const newValues = {
-    //       ...formData,
-    //       [name]: value,
-    //     };
-    //     setFormData(newValues);
-    // }
-
     const deleteStudent = () =>{
         launchNotificacion({
             notifMessage: <p>Guardando modificaciones</p>,
@@ -132,7 +122,7 @@ function DeleteStudent(){
             nombre: "",
             dni: "",
             fechaNacimiento: "",
-            nacionalidad: 56,
+            nacionalidad: 5,
             correoElectronico: "",
             celular: "",
             foto: "",
@@ -195,6 +185,21 @@ function DeleteStudent(){
             cambiarEstadoModal(true);
         }
     }
+    const handleReset = (e) => {
+        e.preventDefault();
+        setFormData({
+            idEstudiante: "",
+            apellido: "",
+            nombre: "",
+            dni: "",
+            fechaNacimiento: "",
+            nacionalidad: 5,
+            correoElectronico: "",
+            celular: "",
+            foto: "",
+        });
+    }
+
     return (
         <>
             <div className="moduleContent">
@@ -207,12 +212,12 @@ function DeleteStudent(){
                             <button className="searchButton" type='button' onClick={buscarEstudiante}></button>
                         </div>
                     </div>
-                    <form onSubmit={formData.idEstudiante ? handleSubmit:null}  method='PUT' onReset={()=>{setFormData({idEstudiante:"",apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: ""});}}>
+                    <form onSubmit={formData.idEstudiante ? handleSubmit:(e)=>{e.preventDefault()}}  method='PUT' onReset={handleReset}>
                         <var id="idEstudiante"></var>
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} contentEditable={false} readOnly={true} ></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} readOnly={true}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} readOnly={true}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="fechaNacimiento">Fecha Nacimiento:</label><input name="fechaNacimiento" type="date" required className="dataEntry" readOnly={true}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="fechaNacimiento">Fecha Nacimiento:</label><input name="fechaNacimiento" type="date" required className="dataEntry" value={formData.fechaNacimiento} readOnly={true}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nacionalidad" >Nacionalidad:</label>
                             <CountrySelect callbackSelected={()=>{}} name={'nacionalidad'} selected={formData.nacionalidad} readOnly={true}/>
                         </div>

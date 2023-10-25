@@ -82,12 +82,26 @@ function RegisterStudent(){
                     })
                 });
     }
+    const handleReset = (e) => {
+        e.preventDefault();
+        setFormData({
+            idEstudiante: "",
+            apellido: "",
+            nombre: "",
+            dni: "",
+            fechaNacimiento: "",
+            nacionalidad: 5,
+            correoElectronico: "",
+            celular: "",
+            foto: "",
+        });
+    }
     return (
         <>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Estudiantes -&gt; Añadir Estudiante</legend>
-                    <form onSubmit={handleSubmit} onReset={()=>setFormData({apellido: "",nombre: "",dni: "",fechaNacimiento: "",nacionalidad: "56",celular: "",correoElectronico: "",})} method='POST'> 
+                    <form onSubmit={handleSubmit} onReset={handleReset} method='POST'> 
                         <div className="dataLine"><label className="dataTitle" htmlFor="apellido">Apellido:</label><input name="apellido" autoFocus required className="dataEntry" value={formData.apellido} onChange={handleChange}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre:</label><input name="nombre" required className="dataEntry" value={formData.nombre} onChange={handleChange}></input></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="dni">DNI:</label><input name="dni" required minLength="7" maxLength="8" className="dataEntry" value={formData.dni} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}></input></div>
