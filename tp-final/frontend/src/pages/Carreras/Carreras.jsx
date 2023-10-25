@@ -30,16 +30,15 @@ function Carreras() {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
                 if (!response || !response.ok) {
-                    // const error = (data && data.message) || response.status;
                     const error = data;
                     return Promise.reject(error);
                 }
                 return data;
             }).then(data =>{
                 setCarreras(data);
-                // if(query.get('selected')){
-                //     getMaterias(data['data']?.[query.get('selected')]?.codigo)
-                // }
+                if(query.get('selected')){
+                    getMaterias(data['data']?.[query.get('selected')]?.codigo)
+                }
                 launchNotificacion({
                     notifMessage: '',
                     notifType: '',
@@ -72,7 +71,6 @@ function Carreras() {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
                 if (!response || !response.ok) {
-                    // const error = (data && data.message) || response.status;
                     const error = data;
                     return Promise.reject(error);
                 }
@@ -96,7 +94,10 @@ function Carreras() {
             });;
     };
 
-    useEffect(()=>{getCarreras()},[]);
+    useEffect(()=>{
+        getCarreras();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
     return(
         <>

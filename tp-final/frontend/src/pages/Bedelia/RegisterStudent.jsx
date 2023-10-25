@@ -54,7 +54,8 @@ function RegisterStudent(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data['status']==='OK'){
+                    console.log(data);
+                    if(data?.status==='OK'){
                         setFormData({
                             apellido: "",
                             nombre: "",

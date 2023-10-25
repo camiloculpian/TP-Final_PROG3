@@ -4,27 +4,21 @@ const estudianteBD = require('../dataBase/estudianteBD');
 buscar = async(req, res) => {
     //BUSCA SEGUN CRITERIO PROVISTO, SI NO RETORNA UNA LISTA CON TODOS LOS ESTUDIANTES
     try{
+        let response =[];
         if(req.query['id']){
-            const response = await estudianteBD.buscarPorId(req.query['id']);
-            if(response.errno){
-                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
-            }
-            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+            response = await estudianteBD.buscarPorId(req.query['id']);
         }else if(req.query['dni']){
-            const response = await estudianteBD.buscarPorDNI(req.query['dni']);
-            if(response.errno){
-                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
-            }
-            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+            response = await estudianteBD.buscarPorDNI(req.query['dni']);
         }else{
-            const response = await estudianteBD.buscarPorApeNomb(req.query['apellido'], req.query['nombre']);
-            if(response.errno){
-                res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
-            }
-            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+            response = await estudianteBD.buscarPorApeNomb(req.query['apellido'], req.query['nombre']);
         }
+        if(response.errno){
+            res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+        }else{
+            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+        } 
     }catch (excep){
-        res.status(400).json({status:'ERROR', message:excep});
+        // res.status(400).json({status:'ERROR', message:excep});
         throw excep;
     }
 }
@@ -37,14 +31,16 @@ agregar = async(req, res) => {
                 response = await estudianteBD.agregarEstudiante(req.body);
                 if(response.errno){
                     res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                }else{
+                    response =  await estudianteBD.buscarPorId(response[0]['insertId']);
+                    if(response.errno){
+                        res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                    }else{
+                        res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:response});
+                    }
                 }
-                response =  await estudiateDB.buscarPorId(response[0]['insertId']);
-                if(response.errno){
-                    res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
-                }
-                res.status(200).json({status:'OK',message:'El estudiante se agrego correctamente', data:estudiante});
             }else{
-                res.status(400).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:estudiante});
+                res.status(400).json({status:'ERROR', message:'ERROR: Ya existe un estudiante con el num de dni ingresado!!!', data:response});
             }
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR: Faltan datos OBLIGATORIOS!!!'});
@@ -61,11 +57,12 @@ eliminar = async(req, res) => {
             const response = await estudianteBD.eliminarEstudiante(req.body.idEstudiante);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
-            }
-            if(response.affectedRows == 1){
-                res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
             }else{
-                res.status(400).json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
+                if(response.affectedRows == 1){
+                    res.status(200).json({status:'OK',message:'El estudiante se eliminó correctamente'});
+                }else{
+                    res.status(400).json({status:'ERROR', message:'ERROR: No se encontró el estudiante!!!'});
+                }
             }
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR: idEstudiante debe ser un valor valido'});
@@ -80,12 +77,20 @@ modificar = async(req, res) => {
     try{
         if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
             let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
-            if(estudiante.length){
+            if(estudiante[0].length){
                 response = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
-                response = await estudianteBD.buscarPorId(req.body.idEstudiante);
-                res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:response[0]});
+                if(response.errno){
+                    res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                }else{
+                    response = await estudianteBD.buscarPorId(req.body.idEstudiante);
+                    if(response.errno){
+                        res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                    }else{
+                        res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:response[0]});
+                    }
+                }
             }else{
-                res.status(400).json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja...', data:[{}]});
+                res.status(400).json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja.', data:[{}]});
             }
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR: faltan datos OBLIGATORIOS!', data:[{}]});

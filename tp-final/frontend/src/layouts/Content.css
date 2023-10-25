@@ -235,6 +235,14 @@ table{
     border-radius: 25px;
     border: 2px solid #001E2D !important;
 }
+
+.tableScroll {
+    height:400px;
+    overflow:auto;  
+    margin-top:20px;
+    width: auto;
+}
+
 td, th {
 	border-collapse: collapse;
 }

@@ -89,7 +89,6 @@ const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
         if(!apeEstudiante) apeEstudiante = '';
         if(!nombEstudiante) nombEstudiante = '';
         const response = await conexion.query(consulta,[apeEstudiante + '%',nombEstudiante + '%']);    
-
         return response;
     }catch(e){
         return(e);
@@ -99,9 +98,7 @@ const buscarPorApeNomb = async (apeEstudiante,nombEstudiante) => {
 const agregarEstudiante = async ( estudiante) =>{
     try{
         const consulta = `INSERT INTO estudiante SET ?`;
-
         const response = await conexion.query(consulta,[estudiante]);
-        
         return response;
     }catch(e){
         return(e);
