@@ -98,7 +98,7 @@ export default function CreateCourse(){
                         </div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="horasSemanales">Hs. Semanales:</label><input name="horasSemanales" required="" className="dataEntry" value={formData.horasSemanales} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}/></div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="CARRERA">Carrera:</label>
-                        <CareerSelect callbackSelected={handleChange} name={'idCarrera'} selected={formData.idCarrera}/>
+                        <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
                         </div>
                         <div>
                             <button className="botonComun" type="submit">Agregar</button>

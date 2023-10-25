@@ -8,6 +8,8 @@ import { Notification } from '../../components/Notifications';
 function EditStudent(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
+    const[valorDeBusqueda, setValorDeBusqueda] = useState('');
+
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
         notifType: '',
@@ -94,8 +96,6 @@ function EditStudent(){
                 })
             });;
     }
-
-    const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
     function buscarEstudiante(){
         if(valorDeBusqueda){

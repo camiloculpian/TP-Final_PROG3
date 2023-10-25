@@ -18,8 +18,9 @@ import ListCareers from './pages/Bedelia/ListCareers';
 import ListCourse from './pages/Bedelia/ListCourse';
 import ListCourseInscription from './pages/Bedelia/ListCourseInscription';
 import ListCareerInscription from './pages/Bedelia/ListCareerInscription';
-
+import { ProtectedRoute } from './components/ProtectedRoute';
 import { UserProvider } from './components/UserContext';
+import SearchCourse from './pages/Bedelia/SearchCourse';
 
 function App() {
   return (
@@ -34,22 +35,68 @@ function App() {
           <Route path="/institucional" element={<Institucional />} />
           <Route path="/bedelia" element={<Bedelia />}>
             <Route path='students'>
-              <Route path='register' element={<RegisterStudent />} />
-              <Route path='edit' element={<EditStudent />} />
-              <Route path='delete' element={<DeleteStudent />} />
-              <Route path='list' element={<ListStudents />} />
+              <Route path='register' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<RegisterStudent />}
+                </ProtectedRoute>
+              } />
+              <Route path='edit' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<EditStudent />}
+                </ProtectedRoute>
+              } />
+              <Route path='delete' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<DeleteStudent />}
+                </ProtectedRoute>
+              } />
+              <Route path='list' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<ListStudents />}
+                </ProtectedRoute>
+              } />
             </Route>
             <Route path='courses'>
-              <Route path='register' element={<RegisterCourse />} />
-              <Route path='list' element={<ListCourse />} />
+              <Route path='register' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<RegisterCourse />}
+                </ProtectedRoute>
+              } />
+              <Route path='list' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<ListCourse />}
+                </ProtectedRoute>
+              } />
+              <Route path='search' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<SearchCourse />}
+                </ProtectedRoute>
+              } />
             </Route>
             <Route path='careers'>
-              <Route path='register' element={<RegisterCareer />} />
-              <Route path='list' element={<ListCareers />} />
+              <Route path='register' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<RegisterCareer />}
+                </ProtectedRoute>
+              } />
+              <Route path='list' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<ListCareers />}
+                </ProtectedRoute>
+              } />
             </Route>
             <Route path='enrollments'>
-            <Route path='course/list' element={<ListCourseInscription />} />
-            <Route path='career/list' element={<ListCareerInscription />} />
+            <Route path='course/list' element={
+              <ProtectedRoute mustBeBedel={true}>
+                {<ListCourseInscription />}
+              </ProtectedRoute>
+            } />
+            <Route path='career/list' element={
+              <ProtectedRoute mustBeBedel={true}>
+                {<ListCareerInscription />}
+              </ProtectedRoute>
+            } />
+            
             </Route>
           </ Route>
         </Routes>

@@ -69,13 +69,39 @@ const buscarMateriasPorCarrera = async (idCarrera) => {
                             materia.idMateria AS idMateria,
                             materia.nombre AS Nombre,
                             materia.tipoMateria as Tipo,
-                            materia.horasSemanales as 'Horas Semanales'
-                        FROM materia
-                        LEFT JOIN carreramateria ON materia.idMateria = carreramateria.idMateria
-                        WHERE materia.activo = 1 AND idCarrera=?`;
+                            materia.horasSemanales as 'Hs. Sem.',
+                            carrera.idCarrera as idCarrera,
+                            carrera.nombre as Carrera
+                        FROM materia, carrera, carreramateria
+                        WHERE materia.activo = 1 AND materia.idMateria = carreramateria.idMateria AND carrera.idCarrera = carreramateria.idCarrera AND carrera.idCarrera = ?`;
         const response = await conexion.query(consulta,[idCarrera]);
         return response;
     }catch(e){
+        console.log(e);
+        return(e);
+    }
+}
+
+const buscarMateriasPorCarreraNombre = async (idCarrera,nombre) => {
+    try{
+        const consulta = `SELECT 
+                            materia.idMateria AS idMateria,
+                            materia.nombre AS Nombre,
+                            materia.tipoMateria as Tipo,
+                            materia.horasSemanales as 'Hs. Sem.',
+                            carrera.idCarrera as idCarrera,
+                            carrera.nombre as Carrera
+                        FROM materia, carrera, carreramateria
+                        WHERE materia.activo = 1 
+                                AND materia.idMateria = carreramateria.idMateria 
+                                AND carrera.idCarrera = carreramateria.idCarrera 
+                                AND carrera.idCarrera = ?
+                                AND materia.nombre LIKE ?`;
+        if(!nombre) nombre = '';
+        const response = await conexion.query(consulta,[idCarrera,nombre + '%']);
+        return response;
+    }catch(e){
+        console.log(e)
         return(e);
     }
 }
@@ -84,5 +110,6 @@ module.exports = {
     agregarMateria,
     buscarMateria,
     buscarMateriaPorId,
-    buscarMateriasPorCarrera
+    buscarMateriasPorCarrera,
+    buscarMateriasPorCarreraNombre
 }

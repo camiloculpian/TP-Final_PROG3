@@ -8,18 +8,14 @@ import { useContext } from 'react';
 import Modal from '../../components/Modal';
 import Login from './Login';
 import { UserContext } from '../../components/UserContext';
-
+import { ProtectedElement } from '../../components/ProtectedElement';
 function Bedelia(){
     const { userData } = useContext(UserContext);
     const navigate = useNavigate();
-    // const isAuthorized = () =>{
-
-    // }
     return (
         <>
             <Content>
-                {userData &&
-                <>
+                <ProtectedElement mustBeBedel={false}>
                     <BedeliaInformationBar/>
                     <nav className="contentItem">
                         <BedeliaMenu />
@@ -27,8 +23,7 @@ function Bedelia(){
                             <Outlet />
                         </nav>
                     </nav>
-                </>
-                }
+                </ProtectedElement>
             </Content>
             <Modal title={'Iniciar Sesión'} state={!userData} changeState={()=>{navigate('/');}} showBorderOnHeader={false} >
                 <Login/>

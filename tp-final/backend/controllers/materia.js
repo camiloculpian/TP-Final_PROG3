@@ -12,13 +12,19 @@ agregar = async(req, res) => {
 buscar = async(req, res) => {
     try{
         if(req.query['idCarrera']){
-            const response = await materiaBD.buscarMateriaPorCarrera(req.query['idCarrera']);
-            res.status(200).json({status:'OK', headers: response[1],data:response[0]});  
+            if(req.query['nombreMateria']){
+                const response = await materiaBD.buscarMateriasPorCarreraNombre(req.query['idCarrera'],req.query['nombreMateria']);
+                res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+            }else{
+                const response = await materiaBD.buscarMateriasPorCarrera(req.query['idCarrera']);
+                res.status(200).json({status:'OK', headers: response[1],data:response[0]});
+            }   
         }else{
             const response = await materiaBD.buscarMateria(req.body.nombre);
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (excep){
+        res.status(400).json({status:'ERROR', message:excep});
         throw excep;
     }
 }
