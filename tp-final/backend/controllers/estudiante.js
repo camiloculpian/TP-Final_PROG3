@@ -76,16 +76,6 @@ eliminar = async(req, res) => {
     }
 }
 
-test = async(req, res) => {
-    try{
-        console.log(req)
-        res.status(200).json({status:'OK',message:'Bienvenido!!!'})
-    }catch (excep){
-        res.status(400).json({status:'ERROR', message:excep});
-        throw (excep);
-    }
-}
-
 modificar = async(req, res) => {
     try{
         if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
@@ -101,6 +91,16 @@ modificar = async(req, res) => {
             res.status(400).json({status:'ERROR', message:'ERROR: faltan datos OBLIGATORIOS!', data:[{}]});
         }
     }catch (excep){
+        throw (excep);
+    }
+}
+
+test = async(req, res) => {
+    try{
+        console.log(req)
+        res.status(200).json({status:'OK',message:'Bienvenido!!!'})
+    }catch (excep){
+        res.status(400).json({status:'ERROR', message:excep});
         throw (excep);
     }
 }
