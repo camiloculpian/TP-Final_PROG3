@@ -54,7 +54,14 @@ export default function ListCareerInscription(){
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
-    const lookupCareers = (idEstudiante) => {
+    const lookupCareers = (idEstudiante,notificationWait=false) => {
+        if(notificationWait){
+            launchNotificacion({
+                notifMessage: <p>Obteniendo lista de carreras</p>,
+                notifType: 'WAIT',
+                state: true
+            });
+        }
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
@@ -69,12 +76,15 @@ export default function ListCareerInscription(){
                     }
                     return data;
                 }).then(data =>{
-                        setCareerList(data);
+                    setCareerList(data);
+                    if(notificationWait)
+                    {
                         launchNotificacion({
                             notifMessage: '',
                             notifType: '',
                             state: false
                         })
+                    }
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage: <>

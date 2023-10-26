@@ -41,7 +41,7 @@ const inscribirCarrera = async(req, res) => {
     }
 }
 
-const buscarMaterias = async(req, res) => {
+const buscarMateriasInscripto = async(req, res) => {
     try{
         const response = await inscripcionesBD.buscarMaterias(req.query['idEstudiante'],req.query['idCarrera']);
         if(response.errno){
@@ -55,7 +55,7 @@ const buscarMaterias = async(req, res) => {
     }
 }
 
-const buscarCarreras = async(req, res) => {
+const buscarCarrerasInscripto = async(req, res) => {
     try{
         if(req.query['showOnlyInscripted']){
             const response = await inscripcionesBD.buscarCarrerasInscriptas(req.query['idEstudiante']);
@@ -112,9 +112,9 @@ const borrarInscripcionCarrera = async (req, res) => {
 
 module.exports = {
     inscribirMateria,
-    buscarMaterias,
+    buscarMateriasInscripto,
     borrarInscripcionMateria,
     borrarInscripcionCarrera,
     inscribirCarrera,
-    buscarCarreras
+    buscarCarrerasInscripto
 }

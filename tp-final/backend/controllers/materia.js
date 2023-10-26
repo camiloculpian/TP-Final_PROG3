@@ -87,7 +87,7 @@ editar = async(req, res) => {
     }
 }
 
-eliminar = async(req, res) => {
+borrar = async(req, res) => {
     try{
         if(req.body.idMateria){
             response = await materiaBD.eliminarMateria(req.body.idMateria);
@@ -123,5 +123,5 @@ module.exports = {
     agregar,
     editar,
     buscar,
-    eliminar
+    borrar
 }

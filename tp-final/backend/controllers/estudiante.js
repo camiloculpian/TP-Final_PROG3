@@ -50,7 +50,7 @@ agregar = async(req, res) => {
     }
 }
 
-eliminar = async(req, res) => {
+borrar = async(req, res) => {
     try{
         if(parseInt(req.body.idEstudiante)){
             const response = await estudianteBD.eliminarEstudiante(req.body.idEstudiante);
@@ -132,7 +132,7 @@ test = async(req, res) => {
 module.exports = {
     buscar,
     agregar,
-    eliminar,
+    borrar,
     editar,
     test
 }
