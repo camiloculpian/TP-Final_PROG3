@@ -75,8 +75,12 @@ editar = async(req, res) => {
                 if(resp.errno){
                     res.status(400).json({status:'ERROR', message:'ERROR: '+resp.sqlMessage});
                 }else{
-                    // if(response.affectedRows == 1) ?
-                    res.status(200).json({status:'OK',message:'Los cambios fueron guardados.' , data:resp});
+                    resp = await carreraBD.buscarCarreraPorId(req.body.idCarrera);
+                    if(resp.errno){
+                        res.status(400).json({status:'ERROR', message:'ERROR: '+resp.sqlMessage});
+                    }else{
+                        res.status(200).json({status:'OK',message:'Los cambios fueron guardados.' , data:resp[0]});
+                    }
                 }
             }else if(resp[0].length >= 1){
                 // Si existe y modificó el nombre que deje modificar el tipo de carrera y el nombre siempre y cuando el nombre no sea igual a otra carrera
@@ -88,8 +92,12 @@ editar = async(req, res) => {
                     if(resp.errno){
                         res.status(400).json({status:'ERROR', message:'ERROR: '+resp.sqlMessage});
                     }else{
-                        // if(response.affectedRows == 1) ?
-                        res.status(200).json({status:'OK',message:'Los cambios fueron guardados.' , data:resp});
+                        resp = await carreraBD.buscarCarreraPorId(req.body.idCarrera);
+                        if(resp.errno){
+                            res.status(400).json({status:'ERROR', message:'ERROR: '+resp.sqlMessage});
+                        }else{
+                            res.status(200).json({status:'OK',message:'Los cambios fueron guardados.' , data:resp[0]});
+                        }
                     }
                 }
             }else{

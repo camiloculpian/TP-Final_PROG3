@@ -120,14 +120,58 @@ export default function ListCourse(){
             });;
     }
 
+    const editCourse = () =>{
+        launchNotificacion({
+            notifMessage: <p>Guardando modificaciones</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'PUT',
+            credentials: 'include',
+            headers:{
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify(formData)
+        };
+        fetch(`http://localhost:3005/api/v1/materia/edit`,requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response.ok) {
+                    const error = data;
+                    return Promise.reject(error);
+                }
+                return data;
+            }).then(data =>{
+                if(data.status === 'OK'){
+                    launchNotificacion({
+                        notifMessage: <><p>Los cambios fueron guardados de forma correcta.</p></>,
+                        notifType: 'OK',
+                        state: true
+                    })
+                    getCourses(false);
+                }
+            }).catch(error => { 
+                launchNotificacion({
+                    notifMessage: <>
+                                    <p>No se pudo realizar la solicitud debido al siguiente error</p>
+                                    <h4>{error.message}</h4>
+                                  </>,
+                    notifType: 'ERROR',
+                    state: false
+                })
+            });;
+    }
 
     const callbackSelectable = (e) => {
         //console.log(e);
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-        //GUARDAR LOS CAMBIOS!!!
+        e.preventDefault();
+        editCourse();
+        setEstadoModal(false);
     }
 
     const handleReset = () => {
@@ -186,7 +230,7 @@ export default function ListCourse(){
                                 <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
                                 </div>
                                 <div>
-                                    <button className="botonComun" type="submit">Agregar</button>
+                                    <button className="botonComun" type="submit">Guardar</button>
                                     <button className="botonComun" type="reset">Cancelar</button>
                                 </div>
                             </fieldset>

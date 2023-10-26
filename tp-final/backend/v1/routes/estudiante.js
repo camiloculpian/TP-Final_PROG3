@@ -28,7 +28,7 @@ router.post('/add', isAuthenticatedAndBedel, agregar)
 
 router.delete('/delete', isAuthenticatedAndBedel, eliminar)
 
-router.put('/edit', isAuthenticatedAndBedel, modificar)
+router.put('/edit', isAuthenticatedAndBedel, editar)
 
 
 module.exports = router;

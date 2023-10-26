@@ -24,6 +24,27 @@ const agregarMateria = async (materia) => {
     }
 }
 
+const editarMateria = async (idMateria,nombre,horasSemanales,tipoMateria,idCarrera) => {
+    try{
+        const connection = await conexion.getConnection();
+        try {
+            await connection.beginTransaction();
+            const consulta = `UPDATE materia SET nombre=?, horasSemanales=?, tipoMateria=? WHERE materia.activo=1 AND materia.idMateria=?`;
+            const response = await connection.query(consulta,[nombre, horasSemanales, tipoMateria, idMateria]);
+            const consulta2 = 'UPDATE carreramateria SET idCarrera=? WHERE idMateria=?'
+            await connection.query(consulta2,[idCarrera, idMateria]);
+            await connection.commit();
+            return response;
+        } catch (error) {
+            return(error);
+        } finally {
+            connection.release();
+        }
+    }catch(e){
+        return(e);
+    }
+}
+
 const buscarMateria = async (nombre) => {
     try{
         const consulta = `SELECT 
@@ -55,6 +76,7 @@ const eliminarMateria = async (idMateria) => {
 }
 
 const buscarMateriaPorId = async (idMateria) => {
+    console.log(idMateria);
     try{
         const consulta = `SELECT 
                             materia.idMateria AS idMateria,
@@ -63,10 +85,9 @@ const buscarMateriaPorId = async (idMateria) => {
                             materia.horasSemanales as 'Hs. Sem.',
                             carrera.idCarrera as idCarrera,
                             carrera.nombre as Carrera
-                        FROM materia
-                        WHERE materia.activo = 1 AND materia.idMateria = ?`;
-        if(!nombre) nombre = '';
-        const response = await conexion.query(consulta,[idMateria]);
+                            FROM materia, carrera, carreramateria
+                            WHERE materia.activo = 1 AND materia.idMateria = carreramateria.idMateria AND carrera.idCarrera = carreramateria.idCarrera AND materia.idMateria = ?`;
+        const response = await conexion.query(consulta,idMateria);
         return response;
     }catch(e){
         return(e);
@@ -116,7 +137,7 @@ const buscarMateriasPorCarreraNombre = async (idCarrera,nombre) => {
     }
 }
 
-const buscarMateriasPorCarreraNombreExacto = async (idCarrera,nombre) => {
+const buscarMateriaPorCarreraNombreExacto = async (idCarrera,nombre) => {
     try{
         const consulta = `SELECT 
                             materia.idMateria AS idMateria,
@@ -143,9 +164,10 @@ const buscarMateriasPorCarreraNombreExacto = async (idCarrera,nombre) => {
 module.exports = {
     agregarMateria,
     buscarMateria,
+    editarMateria,
     eliminarMateria,
     buscarMateriaPorId,
     buscarMateriasPorCarrera,
     buscarMateriasPorCarreraNombre,
-    buscarMateriasPorCarreraNombreExacto
+    buscarMateriaPorCarreraNombreExacto
 }

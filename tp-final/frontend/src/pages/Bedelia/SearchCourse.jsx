@@ -48,16 +48,18 @@ export default function SearchCourse(){
         setFormData(newValues);
     }
     
-    const getCourses = () => {
+    const getCourses = (notificateWait=false) => {
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
         };
-        launchNotificacion({
-            notifMessage: <p>Obteniendo lista de materias</p>,
-            notifType: 'WAIT',
-            state: true
-        })
+        if(notificateWait){
+            launchNotificacion({
+                notifMessage: <p>Obteniendo lista de materias</p>,
+                notifType: 'WAIT',
+                state: true
+            })
+        }
         fetch(`http://localhost:3005/api/v1/materia/lookup?idCarrera=${encodeURIComponent(valorDeBusqueda.idCarrera)}&nombreMateria=${encodeURIComponent(valorDeBusqueda.nombreMateria)}`, requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
@@ -70,11 +72,13 @@ export default function SearchCourse(){
                 return data;
             }).then(data =>{
                 setData(data);
-                launchNotificacion({
-                    notifMessage: '',
-                    notifType: '',
-                    state: false
-                })
+                if(notificateWait){
+                    launchNotificacion({
+                        notifMessage: '',
+                        notifType: '',
+                        state: false
+                    })
+                }
             }).catch(error => {
                 launchNotificacion({
                     notifMessage: <>
@@ -116,7 +120,7 @@ export default function SearchCourse(){
                     notifType: 'OK',
                     state: true
                 })
-                getCourses(valorDeBusqueda.idCarrera);
+                getCourses(false);
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
@@ -129,6 +133,49 @@ export default function SearchCourse(){
             });;
     }
 
+    const editCourse = () =>{
+        launchNotificacion({
+            notifMessage: <p>Guardando modificaciones</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'PUT',
+            credentials: 'include',
+            headers:{
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify(formData)
+        };
+        fetch(`http://localhost:3005/api/v1/materia/edit`,requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response.ok) {
+                    const error = data;
+                    return Promise.reject(error);
+                }
+                return data;
+            }).then(data =>{
+                if(data.status === 'OK'){
+                    launchNotificacion({
+                        notifMessage: <><p>Los cambios fueron guardados de forma correcta.</p></>,
+                        notifType: 'OK',
+                        state: true
+                    })
+                    getCourses(false);
+                }
+            }).catch(error => { 
+                launchNotificacion({
+                    notifMessage: <>
+                                    <p>No se pudo realizar la solicitud debido al siguiente error</p>
+                                    <h4>{error.message}</h4>
+                                  </>,
+                    notifType: 'ERROR',
+                    state: false
+                })
+            });;
+    }
 
     const callbackSelectable = (e) => {
         //console.log(e);
@@ -136,6 +183,8 @@ export default function SearchCourse(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        editCourse();
+        setEstadoModal(false);
     }
 
     const handleReset = () => {
@@ -200,11 +249,11 @@ export default function SearchCourse(){
                                     </select>
                                 </div>
                                 <div className="dataLine"><label className="dataTitle" htmlFor="horasSemanales">Hs. Semanales:</label><input name="horasSemanales" required="" className="dataEntry" value={formData.horasSemanales} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}/></div>
-                                <div className="dataLine"><label className="dataTitle" htmlFor="CARRERA">Carrera:</label>
+                                <div className="dataLine"><label className="dataTitle" htmlFor="idCarrera">Carrera:</label>
                                 <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
                                 </div>
                                 <div>
-                                    <button className="botonComun" type="submit">Agregar</button>
+                                    <button className="botonComun" type="submit">Guardar</button>
                                     <button className="botonComun" type="reset">Cancelar</button>
                                 </div>
                             </fieldset>

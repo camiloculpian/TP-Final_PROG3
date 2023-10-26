@@ -72,14 +72,14 @@ eliminar = async(req, res) => {
     }
 }
 
-modificar = async(req, res) => {
+editar = async(req, res) => {
     try{
         if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
             let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
 
             if(estudiante[0].length && estudiante[0][0].DNI == req.body.dni){
                 // existe y no modifica el DNI
-                response = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
+                response = await estudianteBD.editarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
                 if(response.errno){
                     res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
                 }else{
@@ -100,7 +100,12 @@ modificar = async(req, res) => {
                     if(response.errno){
                         res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
                     }else{
-                        res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:response[0]});
+                        response = await estudianteBD.buscarPorId(req.body.idEstudiante)
+                        if(response.errno){
+                            res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                        }else{
+                            res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:response[0]});
+                        }
                     }
                 }
             }else{
@@ -128,6 +133,6 @@ module.exports = {
     buscar,
     agregar,
     eliminar,
-    modificar,
+    editar,
     test
 }

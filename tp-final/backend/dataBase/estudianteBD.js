@@ -117,7 +117,7 @@ const eliminarEstudiante = async (idEstudiante) => {
     }
 }
 
-const modificarEstudiante = async (id, dni, nombre, apellido, fechaNacimiento, nacionalidad, correoElectronico, celular, foto) => {
+const editarEstudiante = async (id, dni, nombre, apellido, fechaNacimiento, nacionalidad, correoElectronico, celular, foto) => {
     try{
 
         const consulta = 'UPDATE estudiante SET dni=?,  nombre=?, apellido=?,fechaNacimiento = ?, nacionalidad = ?, correoElectronico = ?, celular = ?, foto = ? WHERE activo = 1 AND idEstudiante = ?';
@@ -136,5 +136,5 @@ module.exports = {
     buscarPorApeNomb,
     agregarEstudiante,
     eliminarEstudiante,
-    modificarEstudiante,
+    editarEstudiante,
 }
