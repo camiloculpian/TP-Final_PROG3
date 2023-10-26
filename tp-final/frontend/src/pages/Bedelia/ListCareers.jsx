@@ -32,12 +32,14 @@ export default function ListCareers(){
         notifType: '',
         state: false
     })
-    const getCarres = () => {
-        launchNotificacion({
-            notifMessage: <p>Obteniendo lista de carreras</p>,
-            notifType: 'WAIT',
-            state: true
-        })
+    const getCarres = (notificationWait=true) => {
+        if(notificationWait){
+            launchNotificacion({
+                notifMessage: <p>Obteniendo lista de carreras</p>,
+                notifType: 'WAIT',
+                state: true
+            });
+        }
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
@@ -54,11 +56,14 @@ export default function ListCareers(){
                 return data;
             }).then(data =>{
                 setData(data);
-                launchNotificacion({
-                    notifMessage: '',
-                    notifType: '',
-                    state: false
-                })
+                if(notificationWait)
+                {
+                    launchNotificacion({
+                        notifMessage: '',
+                        notifType: '',
+                        state: false
+                    })
+                }
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
@@ -103,7 +108,7 @@ export default function ListCareers(){
                     notifType: 'OK',
                     state: true
                 })
-                getCarres();
+                getCarres(false);
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
