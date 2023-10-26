@@ -53,7 +53,16 @@ export default function ListCourseInscription(){
 
     const [courseList, setCourseList] = useState({headers :[{}], data: [{}]});
 
-    const lookupCourse = (idEstudiante,idCarrera) => {
+    const lookupCourse = async (idEstudiante,idCarrera,notificationWait=true) => {
+        if(notificationWait){
+            launchNotificacion(() => {
+                return{
+                    notifMessage: 'Obteniendo lista de materias',
+                    notifType: 'WAIT',
+                    state: true
+                }
+            })
+        }  
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
@@ -70,11 +79,15 @@ export default function ListCourseInscription(){
                     return data;
                 }).then(data =>{
                         setCourseList(data);
-                        // launchNotificacion({
-                        //     notifMessage: '',
-                        //     notifType: '',
-                        //     state: false
-                        // })
+                        if(notificationWait){
+                            launchNotificacion(()=>{
+                                return{
+                                    notifMessage: '',
+                                    notifType: '',
+                                    state: false
+                                }
+                            })
+                        }
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage: <>
@@ -139,7 +152,7 @@ export default function ListCourseInscription(){
                                         <h4>{error.message}</h4>
                                       </>,
                         notifType: 'ERROR',
-                        state: true
+                        state: false
                     })
                 });;
         }else{
@@ -171,15 +184,16 @@ export default function ListCourseInscription(){
                         return Promise.reject(error);
                     }
                     return data;
-                }).then(data =>{
-                    console.log(data);
+                }).then(async data =>{
                     if(data.status==='OK'){
-                        lookupCourse(formData.idEstudiante, formData.idCarrera);
+                        await lookupCourse(formData.idEstudiante, formData.idCarrera, false);
                     }
-                    launchNotificacion({
-                        notifMessage: <p>{data.message}</p>,
-                        notifType: data.status,
-                        state: true
+                    launchNotificacion(()=>{
+                        return{
+                            notifMessage: <p>{data.message}</p>,
+                            notifType: data.status,
+                            state: true
+                        }
                     })
                 }).catch(error => { 
                     launchNotificacion({
@@ -220,7 +234,7 @@ export default function ListCourseInscription(){
                     return data;
                 }).then(data =>{
                     if(data['status']==='OK'){
-                        lookupCourse(formData.idEstudiante, formData.idCarrera);
+                        lookupCourse(formData.idEstudiante, formData.idCarrera, false);
                     }
                     launchNotificacion({
                         notifMessage: <p>{data.message}</p>,

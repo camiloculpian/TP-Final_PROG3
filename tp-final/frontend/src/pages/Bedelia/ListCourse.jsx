@@ -34,12 +34,12 @@ export default function ListCourse(){
         setFormData(newValues);
     }
 
-    const getCourses = (notificateSearch=false) => {
+    const getCourses = (notificateWait=false) => {
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
         };
-        if(notificateSearch){
+        if(notificateWait){
             launchNotificacion({
                 notifMessage: <p>Obteniendo lista de materias</p>,
                 notifType: 'WAIT',
@@ -57,7 +57,7 @@ export default function ListCourse(){
                 return data;
             }).then(data =>{
                 setData(data);
-                if(notificateSearch){
+                if(notificateWait){
                     launchNotificacion({
                         notifMessage: '',
                         notifType: '',

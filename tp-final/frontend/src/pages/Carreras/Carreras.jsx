@@ -76,6 +76,9 @@ function Carreras() {
                 }
                 return data;
             }).then(data =>{
+                // setMaterias((data) => {
+                //     return {dara:data}
+                // })
                 setMaterias(data);
                 launchNotificacion({
                     notifMessage: '',
