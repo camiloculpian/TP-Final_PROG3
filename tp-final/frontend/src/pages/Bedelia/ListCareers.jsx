@@ -121,6 +121,48 @@ export default function ListCareers(){
             });;
     }
 
+    const editCareer = () =>{
+        launchNotificacion({
+            notifMessage: <p>Guardando modificaciones</p>,
+            notifType: 'WAIT',
+            state: true
+        })
+        const requestOptions = {
+            method: 'PUT',
+            credentials: 'include',
+            headers:{
+                'Content-Type':'application/json'
+                },
+                body: JSON.stringify(formData)
+        };
+        fetch(`http://localhost:3005/api/v1/carrera/edit`,requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                if (!response.ok) {
+                    // const error = (data && data.message) || response.status;
+                    const error = data;
+                    return Promise.reject(error);
+                }
+                return data;
+            }).then(data =>{
+                launchNotificacion({
+                    notifMessage: data.message,
+                    notifType: data.status,
+                    state: true
+                })
+                getCarres(false);
+            }).catch(error => { 
+                launchNotificacion({
+                    notifMessage: <>
+                                    <p>No se pudo realizar la solicitud debido al siguiente error</p>
+                                    <h4>{error.message}</h4>
+                                  </>,
+                    notifType: 'ERROR',
+                    state: false
+                })
+            });;
+    }
 
     const callbackSelectable = (e) => {
         //console.log(e);
@@ -152,6 +194,7 @@ export default function ListCareers(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        editCareer();
         setEstadoModal(false);
     }
 

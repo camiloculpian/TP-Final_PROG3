@@ -86,7 +86,7 @@ export default function RegisterCareer(){
                 <form onSubmit={handleSubmit} onReset={handleReset}>
                     <fieldset>
                         <legend>Carreras -&gt; Registrar Carrera</legend>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre Carrera:</label><input name="nombre" required='true' className="dataEntry" value={formData.nombre} onChange={handleChange}/></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="nombre">Nombre Carrera:</label><input name="nombre" required={true} className="dataEntry" value={formData.nombre} onChange={handleChange}/></div>
                         <div className="dataLine">
                             <label className="dataTitle" htmlFor="modalidad">Modalidad</label>
                             <select name="modalidad" required="" className="dataEntry" value={formData.modalidad} onChange={handleChange}>

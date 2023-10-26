@@ -76,12 +76,27 @@ modificar = async(req, res) => {
     try{
         if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
             let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
-            if(estudiante[0].length){
+
+            if(estudiante[0].length && estudiante[0][0].DNI == req.body.dni){
+                // existe y no modifica el DNI
                 response = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
                 if(response.errno){
                     res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
                 }else{
                     response = await estudianteBD.buscarPorId(req.body.idEstudiante);
+                    if(response.errno){
+                        res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                    }else{
+                        res.status(200).json({status:'OK',message:'El estudiante se modifico correctamente', data:response[0]});
+                    }
+                }
+            }else if(estudiante[0].length){
+                // existe y modifico DNI, chequear que no exista otro igual
+                estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
+                if(estudiante[0].length){
+                    res.status(400).json({status:'ERROR', message:'ERROR: Existe un estudiante con ese DNI!', data:[{}]});
+                }else{
+                    response = await estudianteBD.modificarEstudiante(parseInt(req.body.idEstudiante),parseInt(req.body.dni),req.body.nombre,req.body.apellido,req.body.fechaNacimiento,parseInt(req.body.nacionalidad),req.body.correoElectronico,req.body.celular,req.body.foto);
                     if(response.errno){
                         res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
                     }else{

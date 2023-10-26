@@ -69,22 +69,24 @@ function EditStudent(){
                 }
                 return data;
             }).then((data) =>{
+                if(data.data){
+                    setReturnStudent( {
+                        idEstudiante: data['data'][0]['idEstudiante'],
+                        apellido: data['data'][0]['Apellido'],
+                        nombre: data['data'][0]['Nombre'],
+                        dni: data['data'][0]['DNI'],
+                        fechaNacimiento: data['data'][0]['Fecha Nac.'],
+                        nacionalidad: data['data'][0]['idNacionalidad'],
+                        correoElectronico: data['data'][0]['e-m@il'],
+                        celular: data['data'][0]['Celular'],
+                        foto: "",
+                    });
+                }
                 launchNotificacion({
                     notifMessage: data['message'],
                     notifType: data['status'],
                     state: true
                 })  
-                setReturnStudent( {
-                    idEstudiante: data['data'][0]['idEstudiante'],
-                    apellido: data['data'][0]['Apellido'],
-                    nombre: data['data'][0]['Nombre'],
-                    dni: data['data'][0]['DNI'],
-                    fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                    nacionalidad: data['data'][0]['idNacionalidad'],
-                    correoElectronico: data['data'][0]['e-m@il'],
-                    celular: data['data'][0]['Celular'],
-                    foto: "",
-                });
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>

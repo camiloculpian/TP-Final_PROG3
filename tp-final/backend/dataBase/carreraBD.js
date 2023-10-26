@@ -70,10 +70,21 @@ const buscarCarreraPorNombreExacto = async (nombre) =>{
     }
 }
 
+const editarCarrera = async(idCarrera, nombre, modalidad) =>{
+    try{
+        const consulta = `UPDATE carrera SET nombre = ?, modalidad = ? WHERE activo=1 AND idCarrera = ?`;
+        const response = await conexion.query(consulta,[nombre, modalidad, idCarrera]);
+        return response;
+    }catch(e){
+        return e
+    }
+}
+
 module.exports = {
     agregarCarrera,
     buscarCarrera,
     buscarCarreraPorId,
     buscarCarreraPorNombreExacto,
-    borrarCarrera
+    borrarCarrera,
+    editarCarrera
 }
