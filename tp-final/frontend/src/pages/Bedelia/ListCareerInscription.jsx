@@ -64,7 +64,6 @@ export default function ListCareerInscription(){
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
                     if (!response.ok) {
-                        // const error = (data && data.message) || response.status;
                         const error = data;
                         return Promise.reject(error);
                     }
@@ -183,19 +182,19 @@ export default function ListCareerInscription(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data['status']==='OK'){
+                    if(data.status==='OK'){
                         lookupCareers(formData.idEstudiante);
                     }
                     launchNotificacion({
-                        notifMessage: <p>{data['message']}</p>,
-                        notifType: data['status'],
+                        notifMessage: <p>{data.message}</p>,
+                        notifType: data.status,
                         state: true
                     })
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage:
                                     <>
-                                        <p>NO se pudo registrar la Inscripciona</p>
+                                        <p>NO se pudo registrar la Inscripcion</p>
                                         <h4>{error.message}</h4>
                                     </>,
                         notifType: 'ERROR',
@@ -229,7 +228,7 @@ export default function ListCareerInscription(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data['status']==='OK'){
+                    if(data.status==='OK'){
                         lookupCareers(formData.idEstudiante);
                     }
                     launchNotificacion({

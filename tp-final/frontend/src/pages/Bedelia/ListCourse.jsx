@@ -34,33 +34,36 @@ export default function ListCourse(){
         setFormData(newValues);
     }
 
-    const getCourses = () => {
+    const getCourses = (notificateSearch=false) => {
         const requestOptions = {
             method: 'GET',
             credentials: 'include',
         };
-        launchNotificacion({
-            notifMessage: <p>Obteniendo lista de materias</p>,
-            notifType: 'WAIT',
-            state: true
-        })
+        if(notificateSearch){
+            launchNotificacion({
+                notifMessage: <p>Obteniendo lista de materias</p>,
+                notifType: 'WAIT',
+                state: true
+            })
+        }
         fetch('http://localhost:3005/api/v1/materia/lookup', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
                 if (!response.ok) {
-                    // const error = (data && data.message) || response.status;
                     const error = data;
                     return Promise.reject(error);
                 }
                 return data;
             }).then(data =>{
                 setData(data);
-                launchNotificacion({
-                    notifMessage: '',
-                    notifType: '',
-                    state: false
-                })
+                if(notificateSearch){
+                    launchNotificacion({
+                        notifMessage: '',
+                        notifType: '',
+                        state: false
+                    })
+                }
             }).catch(error => {
                 launchNotificacion({
                     notifMessage: <>
@@ -73,7 +76,7 @@ export default function ListCourse(){
             });;
     }
 
-    useEffect(()=>{getCourses()},[]);
+    useEffect(()=>{getCourses(true)},[]);
 
     const deleteCourse = (idMateria) =>{
         launchNotificacion({
@@ -101,9 +104,10 @@ export default function ListCourse(){
             }).then(data =>{
                 launchNotificacion({
                     notifMessage: <><p>Los cambios fueron guardados de forma correcta.</p><h3>La materia esta marcada ahora como inactiva</h3></>,
-                    notifType: 'OK',
+                    notifType: data.status,
                     state: true
                 })
+                getCourses();
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
@@ -155,7 +159,6 @@ export default function ListCourse(){
             notifType: 'WARN',
             state: true
         })
-        // deleteCareer(e.id)
     }
     return(
         <>

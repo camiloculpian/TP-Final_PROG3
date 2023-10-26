@@ -21,6 +21,7 @@ export default function ListCourseInscription(){
     })
     //ESTO CAMBIAR
     const [studentData, setStudentData] = useState({});
+    
     const [formData, setFormData] = useState({idEstudiante:'',idCarrera:0})
 
     const tableData={
@@ -48,8 +49,6 @@ export default function ListCourseInscription(){
         setFormData(newValues);
     };
 
-
-
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
     const [courseList, setCourseList] = useState({headers :[{}], data: [{}]});
@@ -71,11 +70,11 @@ export default function ListCourseInscription(){
                     return data;
                 }).then(data =>{
                         setCourseList(data);
-                        launchNotificacion({
-                            notifMessage: '',
-                            notifType: '',
-                            state: false
-                        })
+                        // launchNotificacion({
+                        //     notifMessage: '',
+                        //     notifType: '',
+                        //     state: false
+                        // })
                 }).catch(error => { 
                     launchNotificacion({
                         notifMessage: <>
@@ -89,7 +88,6 @@ export default function ListCourseInscription(){
     }
 
     function buscarEstudiante(){
-        handleReset();
         if(valorDeBusqueda){
             launchNotificacion({
                 notifMessage: <p>Buscando estudiante</p>,
@@ -141,16 +139,12 @@ export default function ListCourseInscription(){
                                         <h4>{error.message}</h4>
                                       </>,
                         notifType: 'ERROR',
-                        state: false
+                        state: true
                     })
                 });;
         }else{
             cambiarEstadoModal(true);
         }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
     }
 
     const darDeAlta = (course) => {
@@ -178,12 +172,13 @@ export default function ListCourseInscription(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data['status']==='OK'){
+                    console.log(data);
+                    if(data.status==='OK'){
                         lookupCourse(formData.idEstudiante, formData.idCarrera);
                     }
                     launchNotificacion({
-                        notifMessage: <p>{data['message']}</p>,
-                        notifType: data['status'],
+                        notifMessage: <p>{data.message}</p>,
+                        notifType: data.status,
                         state: true
                     })
                 }).catch(error => { 
@@ -228,8 +223,8 @@ export default function ListCourseInscription(){
                         lookupCourse(formData.idEstudiante, formData.idCarrera);
                     }
                     launchNotificacion({
-                        notifMessage: <p>{data['message']}</p>,
-                        notifType: data['status'],
+                        notifMessage: <p>{data.message}</p>,
+                        notifType: data.status,
                         state: true
                     })
                 }).catch(error => { 
@@ -274,7 +269,12 @@ export default function ListCourseInscription(){
         })
     }
 
-    const handleReset = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    const handleReset = (e) => {
+        e.preventDefault();
         setStudentData({});
         setFormData({});
     }

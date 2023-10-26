@@ -8,11 +8,12 @@ const inscribirMateria = async(req, res) => {
             const response = await inscripcionesBD.inscribirMateria(req.body['idEstudiante'],req.body['idMateria']);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+            }else{
+                //TO-DO: si afected rows > 0 tuvo exito
+                res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
             }
-            //TO-DO: si afected rows > 0 tuvo exito
-            res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
         }else{
-            res.status(401).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
+            res.status(400).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
         }   
     }catch (e){
         //TO-DO: lanzar errores
@@ -27,11 +28,12 @@ const inscribirCarrera = async(req, res) => {
             const response = await inscripcionesBD.inscribirCarrera(req.body['idEstudiante'],req.body['idCarrera']);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+            }else{
+                //TO-DO: si afected rows > 0 tuvo exito
+                res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
             }
-            //TO-DO: si afected rows > 0 tuvo exito
-            res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
         }else{
-            res.status(401).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
+            res.status(400).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
         }   
     }catch (e){
         //TO-DO: lanzar errores
@@ -44,8 +46,9 @@ const buscarMaterias = async(req, res) => {
         const response = await inscripcionesBD.buscarMaterias(req.query['idEstudiante'],req.query['idCarrera']);
         if(response.errno){
             res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+        }else{
+            res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
-        res.status(200).json({status:'OK', headers: response[1],data:response[0]});
     }catch (e){
         //TO-DO: lanzar errores
         throw e;
@@ -74,9 +77,10 @@ const borrarInscripcionMateria = async (req, res) => {
             const response = await inscripcionesBD.borrarInscripcionMateria(req.body['idEstudiante'],req.body['idMateria']);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+            }else{
+                //TO-DO: si afected rows > 0 tuvo exito
+                res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
             }
-            //TO-DO: si afected rows > 0 tuvo exito
-            res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
         }   
@@ -93,9 +97,10 @@ const borrarInscripcionCarrera = async (req, res) => {
             const response = await inscripcionesBD.borrarInscripcionCarrera(req.body['idEstudiante'],req.body['idCarrera']);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+            }else{
+                //TO-DO: si afected rows > 0 tuvo exito
+                res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
             }
-            //TO-DO: si afected rows > 0 tuvo exito
-            res.status(200).json({status:'OK', message:'La inscripcion se ha eliminado con exito'});
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
         }   
