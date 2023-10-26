@@ -57,7 +57,7 @@ function Login() {
       }).catch(error => { 
           launchNotificacion({
               notifMessage: <>
-                              <p>No se pudio</p>
+                              <p>No se pudo</p>
                               <h4>{error.message}</h4>
                             </>,
               notifType: 'ERROR',
