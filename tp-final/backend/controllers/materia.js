@@ -54,24 +54,17 @@ editar = async(req, res) => {
         if(req.body.idMateria && req.body.nombre && req.body.horasSemanales && (req.body.tipoMateria==0 || req.body.tipoMateria==1) && req.body.idCarrera){
             resp = await materiaBD.buscarMateriaPorId(req.body.idMateria);
             if(resp[0].length && resp[0][0].Nombre == req.body.nombre && resp[0][0].idCarrera == req.body.idCarrera ){
-                // la matera esiste y no modifico el nombre, ni la carrera, entonces
+                // la matera esiste y NO modificó el nombre, ni la carrera, entonces
                 resp = await materiaBD.editarMateria(req.body.idMateria, req.body.nombre, req.body.horasSemanales, req.body.tipoMateria, req.body.idCarrera);
                 if(resp.errno){
                     res.status(400).json({status:'ERROR', message:'ERROR: '+resp.sqlMessage});
                 }else{
-                    resp = await materiaBD.editarMateria(req.body.idMateria, req.body.nombre, req.body.horasSemanales, req.body.tipoMateria, req.body.idCarrera);
-                    if(resp.errno){
-                        res.status(400).json({status:'ERROR', message:'ERROR: '+resp.sqlMessage});
-                    }else{
-                        //ACA
-                        res.status(200).json({status:'OK',message:'Los cambios furon guardados.'});
-                    }
+                    res.status(200).json({status:'OK',message:'Los cambios furon guardados.'});
                 }
             }else if(resp[0].length && (resp[0][0].Nombre != req.body.nombre || resp[0][0].idCarrera != req.body.idCarrera) ){
-                // la materia existe y modifico el nombre o la carrera
+                // la materia existe y modificó el nombre o la carrera, ver que no haya otra materia que se llame igual
                 resp = await materiaBD.buscarMateriaPorCarreraNombreExacto(req.body.idCarrera, req.body.nombre);
                 if(resp[0].length){
-                    // Si la cambio de carrera o le cambio el nombre o ambos, ver que no haya otra materia que se llame igual
                     res.status(400).json({status:'ERROR',message:'ERROR: Ya existe otra materia IGUAL, en la MISMA carrera!'});
                 }else{
                     resp = await materiaBD.editarMateria(req.body.idMateria, req.body.nombre, req.body.horasSemanales, req.body.tipoMateria, req.body.idCarrera);

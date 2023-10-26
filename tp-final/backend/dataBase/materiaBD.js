@@ -76,7 +76,6 @@ const eliminarMateria = async (idMateria) => {
 }
 
 const buscarMateriaPorId = async (idMateria) => {
-    console.log(idMateria);
     try{
         const consulta = `SELECT 
                             materia.idMateria AS idMateria,
