@@ -6,7 +6,7 @@ function BedeliaMenu({loginState}){
     return(
         <aside>
             <ProtectedElement mustBeBedel={true}>
-                <section className="seccionHeader">MENU</section>
+                <section className="seccionHeader iconMenu">MENU</section>
                 <div className="dropdownVerticalMenu">
                     <ul>
                         <li><p>Estudiantes</p>

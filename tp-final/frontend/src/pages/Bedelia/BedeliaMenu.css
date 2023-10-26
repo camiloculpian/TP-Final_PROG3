@@ -62,3 +62,11 @@ div.dropdownVerticalMenu li p:hover{
     color:#ebebeb;
     background-color:#001E2D;
 }
+
+.iconMenu{
+    background-image: url('../../layouts/svg/bars-menu.svg');
+    background-position-x: 10px;
+    background-position-y: center ;
+    background-size: 1.3rem 1.3rem;
+    background-repeat: no-repeat;
+}
