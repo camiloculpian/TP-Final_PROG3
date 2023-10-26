@@ -71,14 +71,14 @@ function EditStudent(){
             }).then((data) =>{
                 if(data.data){
                     setReturnStudent( {
-                        idEstudiante: data['data'][0]['idEstudiante'],
-                        apellido: data['data'][0]['Apellido'],
-                        nombre: data['data'][0]['Nombre'],
-                        dni: data['data'][0]['DNI'],
-                        fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                        nacionalidad: data['data'][0]['idNacionalidad'],
-                        correoElectronico: data['data'][0]['e-m@il'],
-                        celular: data['data'][0]['Celular'],
+                        idEstudiante: data.data[0]['idEstudiante'],
+                        apellido: data.data[0]['Apellido'],
+                        nombre: data.data[0]['Nombre'],
+                        dni: data.data[0]['DNI'],
+                        fechaNacimiento: data.data[0]['Fecha Nac.'],
+                        nacionalidad: data.data[0]['idNacionalidad'],
+                        correoElectronico: data.data[0]['e-m@il'],
+                        celular: data.data[0]['Celular'],
                         foto: "",
                     });
                 }
@@ -121,16 +121,16 @@ function EditStudent(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data['data'][0]){
+                    if(data.data[0]){
                         setFormData({
-                            idEstudiante: data['data'][0]['idEstudiante'],
-                            dni: data['data'][0]['DNI'],
-                            nombre: data['data'][0]['Nombre'],
-                            apellido: data['data'][0]['Apellido'],
-                            fechaNacimiento: data['data'][0]['Fecha Nac.'],
-                            nacionalidad: data['data'][0]['idNacionalidad'],
-                            correoElectronico: data['data'][0]['e-m@il'],
-                            celular: data['data'][0]['Celular'],
+                            idEstudiante: data.data[0]['idEstudiante'],
+                            dni: data.data[0]['DNI'],
+                            nombre: data.data[0]['Nombre'],
+                            apellido: data.data[0]['Apellido'],
+                            fechaNacimiento: data.data[0]['Fecha Nac.'],
+                            nacionalidad: data.data[0]['idNacionalidad'],
+                            correoElectronico: data.data[0]['e-m@il'],
+                            celular: data.data[0]['Celular'],
                             foto: ""
                         });
                         launchNotificacion({
