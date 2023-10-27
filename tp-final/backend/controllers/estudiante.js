@@ -24,7 +24,7 @@ buscar = async(req, res) => {
 
 agregar = async(req, res) => {
     try{
-        if(req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
+        if(req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad && req.body.correoElectronico ){
             let estudiante = await estudianteBD.buscarPorDNI(req.body.dni);
             if(!estudiante[0].length){
                 response = await estudianteBD.agregarEstudiante(req.body);
@@ -74,7 +74,7 @@ borrar = async(req, res) => {
 
 editar = async(req, res) => {
     try{
-        if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad ){
+        if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad && req.body.correoElectronico ){
             let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
 
             if(estudiante[0].length && estudiante[0][0].DNI == req.body.dni){

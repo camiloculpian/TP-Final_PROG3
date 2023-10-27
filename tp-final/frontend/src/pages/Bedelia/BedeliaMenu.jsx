@@ -40,7 +40,7 @@ function BedeliaMenu({loginState}){
                 </div>
             </ProtectedElement>
             <ProtectedElement mustBeDecano={true}>
-                <section className="seccionHeader">BEDELIA</section>
+                <section className="seccionHeader iconMenu">MENU</section>
                 <div className="dropdownVerticalMenu">
                     <ul>
                         <li><p>Estadisticas</p>
