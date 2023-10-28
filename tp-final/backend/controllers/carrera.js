@@ -1,4 +1,3 @@
-const { response } = require('express');
 const carreraBD = require('../dataBase/carreraBD');
 
 agregar = async(req, res) => {

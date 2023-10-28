@@ -57,6 +57,7 @@ const V1Carrera = require('./v1/routes/carrera');
 const V1Materia = require('./v1/routes/materia');
 const v1Usuario = require('./v1/routes/usuario');
 const v1Inscripciones = require('./v1/routes/inscripciones');
+const v1Estadisticas = require('./v1/routes/estadistica');
 const v1Auth = require('./v1/routes/auth');
 const V1Resources = require('./v1/routes/resources');
 
@@ -68,6 +69,7 @@ appi.use('/api/v1/estudiante', v1Estudiante);
 appi.use('/api/v1/carrera', V1Carrera);
 appi.use('/api/v1/materia', V1Materia);
 appi.use('/api/v1/inscripcion', v1Inscripciones);
+appi.use('/api/v1/estadistica', v1Estadisticas);
 appi.use('/api/v1/usuario', v1Usuario);
 appi.use('/api/v1/auth', v1Auth);
 appi.use('/api/v1/resources', V1Resources);
