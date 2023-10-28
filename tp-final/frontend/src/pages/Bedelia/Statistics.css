@@ -1,0 +1,22 @@
+.statisticsBoxs{
+    display: flex;
+}
+.infoBox{
+    margin: 20px;
+    padding: 25px;
+    border-radius: 5px;
+    
+}
+.infoBoxTitle{
+    color: azure;
+}
+.infoBoxContent{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: azure;
+}
+
+.infoBoxContent p{
+    margin: 5px;
+}

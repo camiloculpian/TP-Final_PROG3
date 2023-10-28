@@ -21,6 +21,9 @@ import ListCareerInscription from './pages/Bedelia/ListCareerInscription';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { UserProvider } from './components/UserContext';
 import SearchCourse from './pages/Bedelia/SearchCourse';
+import StatiscticsCareers from './pages/Bedelia/StatisticsCareers';
+import StatiscticsCourses from './pages/Bedelia/StatisticsCourses';
+import StatiscticsStudents from './pages/Bedelia/StatisticsStudents';
 
 function App() {
   return (
@@ -86,17 +89,33 @@ function App() {
               } />
             </Route>
             <Route path='enrollments'>
-            <Route path='course/list' element={
-              <ProtectedRoute mustBeBedel={true}>
-                {<ListCourseInscription />}
-              </ProtectedRoute>
-            } />
-            <Route path='career/list' element={
-              <ProtectedRoute mustBeBedel={true}>
-                {<ListCareerInscription />}
-              </ProtectedRoute>
-            } />
-            
+              <Route path='course/list' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<ListCourseInscription />}
+                </ProtectedRoute>
+              } />
+              <Route path='career/list' element={
+                <ProtectedRoute mustBeBedel={true}>
+                  {<ListCareerInscription />}
+                </ProtectedRoute>
+              } />
+            </Route>
+            < Route path='statistics'>
+              <Route path='careers' element={
+                <ProtectedRoute mustBeDecano={true}>
+                  {<StatiscticsCareers />}
+                </ProtectedRoute>
+              } />
+              <Route path='courses' element={
+                <ProtectedRoute mustBeDecano={true}>
+                  {<StatiscticsCourses />}
+                </ProtectedRoute>
+              } />
+              <Route path='students' element={
+                <ProtectedRoute mustBeDecano={true}>
+                  {<StatiscticsStudents />}
+                </ProtectedRoute>
+              } />
             </Route>
           </ Route>
         </Routes>

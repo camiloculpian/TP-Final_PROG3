@@ -45,7 +45,9 @@ function BedeliaMenu({loginState}){
                     <ul>
                         <li><p>Estadisticas</p>
                             <ul>
-                                <li><NavLink to={'/bedelia/estadisticas/materias'}>Materias</NavLink></li>
+                                <li><NavLink to={'/bedelia/statistics/courses'}>Materias</NavLink></li>
+                                <li><NavLink to={'/bedelia/statistics/careers'}>Carreras</NavLink></li>
+                                <li><NavLink to={'/bedelia/statistics/students'}>Estudiantes</NavLink></li>
                             </ul>
                         </li>
                     </ul>
