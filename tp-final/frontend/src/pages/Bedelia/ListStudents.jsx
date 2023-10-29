@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
-
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function ListStudent(){
     // ACA ELFETCH DE LOS DATOS
-    const[countryList, setCountryList] = useState([]);
     const [data, setData] = useState();
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
@@ -51,21 +50,8 @@ export default function ListStudent(){
             });;
     }, [])
 
-    const getCountryList = () =>{
-        const consulta = `http://localhost:3005/api/v1/resources/countryList`;
-        fetch(consulta)
-        .then( resp => {
-            resp.json().then(data => {
-                setCountryList(data['data']);
-            } )
-        })
-        .catch(error => {
-            console.log('error -->', error);
-        });
-    }
-
     return(
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Estudiantes -&gt; Listar Estudiantes</legend>
@@ -73,6 +59,6 @@ export default function ListStudent(){
                 </fieldset>
             </div>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-        </>
+        </ProtectedElement>
     )
 }

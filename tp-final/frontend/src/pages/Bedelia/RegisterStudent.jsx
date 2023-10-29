@@ -2,6 +2,8 @@ import { useState } from "react";
 import CountrySelect from "../../components/CountrySelect";
 import './Bedelia.css'
 import { Notification } from "../../components/Notifications";
+import { ProtectedElement } from "../../components/ProtectedElement";
+
 function RegisterStudent(){
 
     const [notificationState, launchNotificacion] = useState({
@@ -98,7 +100,7 @@ function RegisterStudent(){
         });
     }
     return (
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Estudiantes -&gt; Añadir Estudiante</legend>
@@ -120,7 +122,7 @@ function RegisterStudent(){
                 </fieldset>
             </div>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-        </>
+        </ProtectedElement>
     );
 }
 

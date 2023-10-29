@@ -2,7 +2,6 @@ const conexion = require('./conexionBD');
 
 const getCareerStatistic = async (idCarrera) =>{
     try{
-        console.log('const getCareerStatistic = async (idCarrera)');
         const consulta = ``;
         const response = await conexion.query(consulta,[idCarrera]);
         return response;

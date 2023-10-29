@@ -3,7 +3,7 @@ import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 import CareerSelect from "./CareerSelect";
 import Modal from "../../components/Modal";
-
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function ListCourse(){
     // ACA EL FETCH DE LOS DATOS
@@ -205,7 +205,7 @@ export default function ListCourse(){
         })
     }
     return(
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Materias -&gt; Listar Materias</legend>
@@ -240,6 +240,6 @@ export default function ListCourse(){
                 </>
             </Modal>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-        </>
+        </ProtectedElement>
     )
 }

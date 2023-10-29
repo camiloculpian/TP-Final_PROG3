@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Bedelia.css'
 import { AdaptativeTable } from '../../components/AdaptativeTable';
 import { Notification } from '../../components/Notifications';
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 function SearchStudent({returnStudent}){
     const [notificationState, launchNotificacion] = useState({
@@ -83,21 +84,21 @@ function SearchStudent({returnStudent}){
     }
 
     return (
-            <>
-                <div>
-                    <form onSubmit={searchStudent}  method='GET'>
-                        <div className="dataLine">
-                            <label className="dataTitle" htmlFor="apellidoBusqueda">Apellido:</label>
-                            <input className="dataEntry" id="apellidoBusqueda" name="apellidoBusqueda" autoFocus="" placeholder="Ingrese Apellido" value={formData.apellidoBusqueda} onChange={handleChange}></input>
-                            <label className="dataTitle" htmlFor="nombreBusqueda">Nombre:</label>
-                            <input className="dataEntry" id="nombreBusqueda" name="nombreBusqueda" autoFocus="" placeholder="Ingrese Nombre" value={formData.nombreBusqueda} onChange={handleChange}></input>
-                            <button type='submit' className="searchButton"></button>
-                        </div>
-                    </form>
-                    <AdaptativeTable tableData={studentsList?studentsList:{studentsList: []}} callbackSelectable={setReturnStudent} scroll={true}/>
-                </div>
-                <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-            </>
+        <ProtectedElement mustBeBedel={true}>
+            <div>
+                <form onSubmit={searchStudent}  method='GET'>
+                    <div className="dataLine">
+                        <label className="dataTitle" htmlFor="apellidoBusqueda">Apellido:</label>
+                        <input className="dataEntry" id="apellidoBusqueda" name="apellidoBusqueda" autoFocus="" placeholder="Ingrese Apellido" value={formData.apellidoBusqueda} onChange={handleChange}></input>
+                        <label className="dataTitle" htmlFor="nombreBusqueda">Nombre:</label>
+                        <input className="dataEntry" id="nombreBusqueda" name="nombreBusqueda" autoFocus="" placeholder="Ingrese Nombre" value={formData.nombreBusqueda} onChange={handleChange}></input>
+                        <button type='submit' className="searchButton"></button>
+                    </div>
+                </form>
+                <AdaptativeTable tableData={studentsList?studentsList:{studentsList: []}} callbackSelectable={setReturnStudent} scroll={true}/>
+            </div>
+            <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
+        </ProtectedElement>
     );
 }
 

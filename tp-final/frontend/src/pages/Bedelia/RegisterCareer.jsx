@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Notification } from "../../components/Notifications";
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function RegisterCareer(){
     const [notificationState, launchNotificacion] = useState({
@@ -81,7 +82,7 @@ export default function RegisterCareer(){
         })
     }
     return(
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent" >
                 <form onSubmit={handleSubmit} onReset={handleReset}>
                     <fieldset>
@@ -102,6 +103,6 @@ export default function RegisterCareer(){
                 </form>
             </div>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-        </>
+        </ProtectedElement>
     )
 }

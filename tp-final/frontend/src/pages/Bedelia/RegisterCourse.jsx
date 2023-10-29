@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CareerSelect from "./CareerSelect";
 import { Notification } from "../../components/Notifications";
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function CreateCourse(){
     const [notificationState, launchNotificacion] = useState({
@@ -83,7 +84,7 @@ export default function CreateCourse(){
     }
 
     return(
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <form onSubmit={handleSubmit} onReset={handleReset}>
                     <fieldset>
@@ -107,6 +108,6 @@ export default function CreateCourse(){
                 </form>
             </div>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-        </>
+        </ProtectedElement>
     );
 }

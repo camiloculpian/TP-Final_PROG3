@@ -3,6 +3,7 @@ import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
 import SearchStudent from "./SearchStudent";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function ListCareerInscription(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
@@ -289,7 +290,7 @@ export default function ListCareerInscription(){
     }
 
     return (
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <form onSubmit={handleSubmit} onReset={handleReset}> 
                     <fieldset>
@@ -338,6 +339,6 @@ export default function ListCareerInscription(){
                 </Modal>
                 <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
             </div>
-        </>
+        </ProtectedElement>
     )
 }

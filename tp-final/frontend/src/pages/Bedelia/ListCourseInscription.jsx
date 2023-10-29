@@ -4,6 +4,7 @@ import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
 import SearchStudent from "./SearchStudent";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function ListCourseInscription(){
     const [estadoModal, cambiarEstadoModal] = useState(false);
@@ -294,7 +295,7 @@ export default function ListCourseInscription(){
     }
 
     return (
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <form onSubmit={handleSubmit} onReset={handleReset}> 
                     <fieldset>
@@ -352,6 +353,6 @@ export default function ListCourseInscription(){
                 </Modal>
                 <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
             </div>
-        </>
+        </ProtectedElement>
     )
 }

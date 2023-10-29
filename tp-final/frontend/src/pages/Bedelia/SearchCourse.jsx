@@ -3,7 +3,7 @@ import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 import CareerSelect from "./CareerSelect";
 import Modal from "../../components/Modal";
-
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 export default function SearchCourse(){
     // ACA EL FETCH DE LOS DATOS
@@ -218,7 +218,7 @@ export default function SearchCourse(){
         // deleteCareer(e.id)
     }
     return(
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Materias -&gt; Buscar Materias</legend>
@@ -263,6 +263,6 @@ export default function SearchCourse(){
                 </>
             </Modal>
             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
-        </>
+        </ProtectedElement>
     )
 }

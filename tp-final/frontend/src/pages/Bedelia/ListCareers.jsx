@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
+import { ProtectedElement } from "../../components/ProtectedElement";
 
 
 export default function ListCareers(){
@@ -204,7 +205,7 @@ export default function ListCareers(){
     }
 
     return(
-        <>
+        <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
                 <fieldset>
                     <legend>Carreras -&gt; Listar Carreras</legend>
@@ -232,6 +233,6 @@ export default function ListCareers(){
                     </form>
                 </div>
             </Modal>
-        </>
+        </ProtectedElement>
     )
 }
