@@ -62,7 +62,7 @@ export default function StatiscticsStudents(){
                                 <div className="infoBoxContent">
                                 <p>Total:{' '+data?.data[0]?.estudiantes}</p>
                                 <p>Argentinos:{' '+data?.data[0]?.nacionales}</p>
-                                <p>Extrangeros:{' '+data?.data[0]?.extrangeros}</p>
+                                <p>Extranjeros:{' '+data?.data[0]?.extrangeros}</p>
                             </div>
                         </div>
                     }
