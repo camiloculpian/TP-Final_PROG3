@@ -1,6 +1,7 @@
 import './Statistics.css';
 import { ProtectedElement } from "../../components/ProtectedElement";
 import { useEffect, useState } from 'react';
+import { Notification } from '../../components/Notifications';
 
 export default function StatiscticsCareers(){
     const [data, setData] = useState();
@@ -69,7 +70,8 @@ export default function StatiscticsCareers(){
                         })
                     }
                 </div>
-             </div>     
+             </div>
+             <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
         </ProtectedElement>
     );
 }
