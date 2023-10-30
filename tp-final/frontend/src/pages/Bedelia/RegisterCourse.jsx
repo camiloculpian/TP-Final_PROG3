@@ -48,7 +48,7 @@ export default function CreateCourse(){
                     }
                     return data;
                 }).then(data =>{
-                    if(data?.data==='OK'){
+                    if(data?.status==='OK'){
                         setFormData({
                             nombre: "",
                             horasSemanales: 0,
