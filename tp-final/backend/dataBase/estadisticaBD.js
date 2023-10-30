@@ -91,11 +91,15 @@ const getCourseStatistic = async (idMateria) =>{
     }
 }
 
-const getStudentStatistic = async (idEstudiante) =>{
+const getStudentsStatistic = async () =>{
     try{
-        console.log('const getStudentStatistic = async (idEstudiante)');
-        const consulta = ``;
-        const response = await conexion.query(consulta,[idEstudiante]);
+        const consulta = `SELECT 	
+                                    COUNT(estudiante.idEstudiante) AS 'estudiantes',
+                                    COUNT(IF((estudiante.nacionalidad=5),estudiante.idEstudiante,NULL)) AS nacionales,
+                                    COUNT(IF((estudiante.nacionalidad!=5),estudiante.idEstudiante,NULL)) AS extrangeros
+                            FROM estudiante 
+                            WHERE estudiante.activo=1;`;
+        const response = await conexion.query(consulta);
         return response;
     }catch(e){
         return(e);
@@ -112,5 +116,5 @@ module.exports = {
     getCareerCantpresential,
 
     getCourseStatistic,
-    getStudentStatistic
+    getStudentsStatistic
 }

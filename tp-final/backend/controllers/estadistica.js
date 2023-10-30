@@ -36,7 +36,7 @@ obtenerEstadisticaCarreras = async(req, res) => {
 
 obtenerEstadisticaEstudiantes = async(req, res) => {
     try{
-        response = await estadisticaBD.getStudentStatistic(req.query['idEstudiante']);
+        response = await estadisticaBD.getStudentsStatistic();
         if(response.errno){
             res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
         }else{
