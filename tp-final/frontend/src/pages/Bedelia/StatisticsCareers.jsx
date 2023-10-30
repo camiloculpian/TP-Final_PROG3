@@ -51,17 +51,18 @@ export default function StatiscticsCareers(){
     return(
         <ProtectedElement mustBeDecano={true}>
             <div className="moduleContent">
-                <h3>Carreras:</h3>
+                <h3>Informacion de las Carreras:</h3>
                 <div className="statisticsBoxs">
                     {data?.data?.map((element, id) => {
                         return(
                                 <div className={"infoBox Color"+parseInt(id+1%7)}>
                                     <div className="infoBoxTitle">
-                                    <h4>{element.Carrera}</h4>
+                                    <h4>{element.nombre}</h4>
                                     </div>
                                     <div className="infoBoxContent">
-                                        <p>Tot. de Mat.:</p>
-                                        <p>Est. Inscriptos:</p>
+                                        <p>Modalidad:{' '+element.modalidad}</p>
+                                        <p>Materias:{' '+element.materias}</p>
+                                        <p>Estudiantes Inscriptos:{' '+element.inscriptos}</p>
                                     </div>
                                 </div>
                             )

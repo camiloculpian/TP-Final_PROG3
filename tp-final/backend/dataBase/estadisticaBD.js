@@ -2,7 +2,11 @@ const conexion = require('./conexionBD');
 
 const getCareers = async () =>{
     try{
-        const consulta = `SELECT carrera.idCarrera AS 'idCarrera', carrera.nombre AS Carrera FROM carrera WHERE carrera.activo=1;`;
+        const consulta = `SELECT carrera.idCarrera AS 'idCarrera',
+                            carrera.nombre AS nombre,
+                            IF((modalidad=0),'Presencial','Virtual') AS modalidad
+                        FROM carrera 
+                        WHERE carrera.activo=1;`;
         const response = await conexion.query(consulta);
         return response;
     }catch(e){
@@ -52,8 +56,7 @@ const getCareerCantDeleted = async () =>{
 
 const getCareerCantInscript = async (idCarrera) =>{
     try{
-        const consulta = `SELECT COUNT(estudiantecarrera.idEstudianteCarrera) AS 'Cant.estudiantes Inscriptos',
-                                    carrera.nombre AS 'Carrera'
+        const consulta = `SELECT COUNT(estudiantecarrera.idEstudianteCarrera) AS 'inscriptos'
                             FROM estudiantecarrera
                             LEFT JOIN carrera ON estudiantecarrera.carrera = carrera.idCarrera
                             WHERE estudiantecarrera.fechaBaja IS NULL AND estudiantecarrera.carrera = ?;`;
@@ -66,8 +69,7 @@ const getCareerCantInscript = async (idCarrera) =>{
 
 const getCareerCantCourses = async (idCarrera) =>{
     try{
-        const consulta = `SELECT COUNT(carreramateria.idCarreraMateria) AS 'Cant. de Materias de la Carrera',
-                                    carrera.nombre AS 'Carrera'
+        const consulta = `SELECT COUNT(carreramateria.idCarreraMateria) AS 'materias'
                             FROM carreramateria
                             LEFT JOIN carrera ON carreramateria.idCarrera = carrera.idCarrera
                             WHERE carreramateria.idCarrera = ?;`;
