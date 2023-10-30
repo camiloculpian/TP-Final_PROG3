@@ -13,7 +13,7 @@ function MainMenu() {
         </li>
         <li className='imgCarreras'><NavLink to='/carreras' >Carreras</NavLink></li>
         <li className='imgContact'><NavLink to='/contacto'>Contacto</NavLink></li>
-        <li className='imgLogin'><NavLink to='/bedelia' >Acceso Bedelia</NavLink></li>
+        <li className='imgLogin'><NavLink to='/bedelia' >Bedelia</NavLink></li>
       </ul>
     </nav>
     );
