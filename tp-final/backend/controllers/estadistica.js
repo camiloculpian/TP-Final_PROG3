@@ -14,14 +14,18 @@ obtenerEstadisticaMaterias = async(req, res) => {
 }
 
 obtenerEstadisticaCarreras = async(req, res) => {
+    console.log('-> obtenerEstadisticaCarreras = async(req, res)');
+    //response = {headers:'',data:''};
     try{
-        response = await estadisticaBD.getCareerStatistic(req.query['idCarrera']);
+        response = await estadisticaBD.getCareers();
         if(response.errno){
             res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
         }else{
+            console.log('<- obtenerEstadisticaCarreras = async(req, res)')
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (e){
+        console.log(e);
         return e;
     }
 }

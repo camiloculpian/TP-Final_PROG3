@@ -1,11 +1,12 @@
 .statisticsBoxs{
     display: flex;
+    flex-wrap: wrap;
+    width: inherit;
 }
 .infoBox{
     margin: 20px;
     padding: 25px;
     border-radius: 5px;
-    
 }
 .infoBoxTitle{
     color: azure;
@@ -14,9 +15,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    text-align: left;
     color: azure;
+    width: 200px;
 }
 
 .infoBoxContent p{
-    margin: 5px;
+    margin: 3px;
+}
+
+.infoBox h4{
+    margin-bottom: 10px;
 }
