@@ -9,24 +9,14 @@ export default function StatiscticsStudents(){
                 <div className="statisticsBoxs">
                     <div className="infoBox Color1">
                         <div className="infoBoxTitle">
-                        <h4>Titulo de info</h4>
+                        <h4>Alumnos Inscriptos</h4>
                         </div>
                         <div className="infoBoxContent">
-                            <p>info 1:</p>
-                            <p>info 2:</p>
-                            <p>info 3:</p>
+                            <p>Total:</p>
+                            <p>Argentinos:</p>
+                            <p>Extranjeros:</p>
                         </div>
-                    </div>
-                    <div className="infoBox Color3">
-                        <div className="infoBoxTitle">
-                            <h4>Titulo de info</h4>
-                        </div>
-                        <div className="infoBoxContent">
-                            <p>info 1:</p>
-                            <p>info 2:</p>
-                            <p>info 3:</p>
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
         </ProtectedElement>
