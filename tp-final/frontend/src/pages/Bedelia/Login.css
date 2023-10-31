@@ -1,7 +1,26 @@
 .loginForm{
-    margin: 4%;
+    /* margin: 4%; */
     padding: 4%;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0;
     width: 100%;
     background-color: rgba(105, 105, 105, 0.11);
+}
+
+.loginLine{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.authLogin{
+    display: flex;
+    background-image: url('../../layouts/svg/user-solid-hover.svg');
+    background-size: 100px !important;
+    background-color: rgb(70, 70, 70);
+    background-position: center; 
+    width: 250px;
+    height: 200px;
+    background-repeat: no-repeat;
+    border-radius: 5px 0 0 5px;
+    
 }

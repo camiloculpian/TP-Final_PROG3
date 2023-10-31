@@ -68,6 +68,8 @@ function Login() {
   return (
     <>
     <div className="moduleContent">
+      <div className='loginLine'>
+      <div className='authLogin'></div>
       <form className='loginForm' onSubmit={handleSubmit}> 
         <div className="dataLine justifyRight">
           <label className="dataTitle" htmlFor="username">Usuario:</label>
@@ -81,6 +83,7 @@ function Login() {
           <button type="submit" className="botonComun">Iniciar Sesion</button>
         </div>
       </form>
+      </div>
       </div>
       <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
     </>
