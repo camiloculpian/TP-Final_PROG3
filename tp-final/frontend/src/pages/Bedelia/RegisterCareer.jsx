@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Notification } from "../../components/Notifications";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 export default function RegisterCareer(){
+    const {userData } = useContext(UserContext);
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
         notifType: '',
@@ -34,8 +36,7 @@ export default function RegisterCareer(){
         })
         const requestOptions = {
             method: 'POST',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData?.token}` },
             body: JSON.stringify(formData)
         };
         fetch('http://localhost:3005/api/v1/carrera/add', requestOptions)
@@ -43,7 +44,6 @@ export default function RegisterCareer(){
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
                     if (!response.ok) {
-                        // const error = (data && data.message) || response.status;
                         const error = data;
                         return Promise.reject(error);
                     }

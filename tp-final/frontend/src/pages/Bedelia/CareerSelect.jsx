@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Notification } from "../../components/Notifications";
+import { UserContext } from '../../components/UserContext';
 
 // DEJAR ELEGIRT EL NOMBRE DEL CAMPO
 
 //si se pasa idEstudiante, solo devuelve las carreras a las que esta inscripto el estudiante
 
 function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiante}){
+    const {userData } = useContext(UserContext);
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
         notifType: '',
@@ -22,7 +24,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
         })
         let consulta = '';
         !idEstudiante ? consulta = `http://localhost:3005/api/v1/carrera/lookup`: consulta = `http://localhost:3005/api/v1/inscripcion/career/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}&showOnlyInscripted=true`
-        fetch(consulta, {method: 'GET', credentials: 'include'})
+        fetch(consulta, {method: 'GET', headers: {'Authorization': `Bearer ${userData?.token}`}})
         .then( resp => {
             resp.json().then(data => {
                 setDatos(data['data']);
@@ -44,7 +46,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
                 state: true
             })
         });
-    }, [idEstudiante]);
+    }, [idEstudiante,userData?.token]);
 
     const changeSelected = event => {
         callbackSelected(event);

@@ -1,9 +1,11 @@
 import './Statistics.css';
 import { ProtectedElement } from "../../components/ProtectedElement";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Notification } from '../../components/Notifications';
+import { UserContext } from '../../components/UserContext';
 
 export default function StatiscticsCareers(){
+    const {userData } = useContext(UserContext);
     const [data, setData] = useState();
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
@@ -11,13 +13,17 @@ export default function StatiscticsCareers(){
         state: false
     })
     useEffect(() => {
+        console.log(userData?.token);
         const requestOptions = {
             method: 'GET',
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${userData.token}`
+            }
         };
         launchNotificacion({
             notifMessage: <p>Obteniendo estadisticas de las carreras</p>,
             notifType: 'WAIT',
+
             state: true
         })
         fetch('http://localhost:3005/api/v1/estadistica/carrera', requestOptions)
@@ -47,7 +53,7 @@ export default function StatiscticsCareers(){
                     state: false
                 })
             });;
-    }, [])
+    }, [userData?.token])
 
     return(
         <ProtectedElement mustBeDecano={true}>

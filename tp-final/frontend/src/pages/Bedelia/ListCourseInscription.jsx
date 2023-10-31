@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CareerSelect from "./CareerSelect";
 import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
 import SearchStudent from "./SearchStudent";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 export default function ListCourseInscription(){
+    const {userData } = useContext(UserContext);
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const setReturnStudent = (student) =>{
@@ -66,7 +68,7 @@ export default function ListCourseInscription(){
         }  
         const requestOptions = {
             method: 'GET',
-            credentials: 'include',
+            headers:{'Authorization': `Bearer ${userData?.token}`}
         };
         fetch(`http://localhost:3005/api/v1/inscripcion/course/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}&idCarrera=${encodeURIComponent(idCarrera)}`, requestOptions)
                 .then(async response => {
@@ -110,7 +112,7 @@ export default function ListCourseInscription(){
             })
             const requestOptions = {
                 method: 'GET',
-                credentials: 'include',
+                headers:{'Authorization': `Bearer ${userData?.token}`}
             };
             fetch(`http://localhost:3005/api/v1/estudiante/lookup?dni=${encodeURIComponent(valorDeBusqueda)}`, requestOptions)
                 .then(async response => {
@@ -169,8 +171,7 @@ export default function ListCourseInscription(){
         })
         const requestOptions = {
             method: 'POST',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData?.token}` },
             body: JSON.stringify({
                 idEstudiante:formData.idEstudiante,
                 idMateria:course.idMateria
@@ -217,8 +218,7 @@ export default function ListCourseInscription(){
         })
         const requestOptions = {
             method: 'DELETE',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData?.token}` },
             body: JSON.stringify({
                 idEstudiante:formData.idEstudiante,
                 idMateria:course.idMateria

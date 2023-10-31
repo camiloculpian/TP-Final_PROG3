@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
 import SearchStudent from "./SearchStudent";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 export default function ListCareerInscription(){
+    const {userData } = useContext(UserContext);
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const setReturnStudent = (student) =>{
@@ -20,17 +22,8 @@ export default function ListCareerInscription(){
         notifType: '',
         state: false
     })
-    //ESTO CAMBIAR
-    const [studentData, setStudentData] = useState({
-        // idEstudiante:0,
-        // dni: "",
-        // apellido: "",
-        // nombre: "",
-        // fechaNacimiento: "",
-        // nacionalidad: 5,
-        // celular: "",
-        // correoElectronico: "",
-    });
+
+    const [studentData, setStudentData] = useState({});
     const [careerList, setCareerList] = useState({headers :[{}], data: [{}]});
     
     const tableData={
@@ -38,20 +31,7 @@ export default function ListCareerInscription(){
         data: [studentData]
     };
     
-    const [formData, setFormData] = useState({
-        // idEstudiante : 0,
-        // idCarrera : 0
-    });
-
-    // const handleChange = (e) => {
-    //     const { target } = e;
-    //     const { name, value } = target;
-    //     const newValues = {
-    //       ...formData,
-    //       [name]: value,
-    //     };
-    //     setFormData(newValues);
-    // };
+    const [formData, setFormData] = useState({});
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
 
@@ -65,7 +45,7 @@ export default function ListCareerInscription(){
         }
         const requestOptions = {
             method: 'GET',
-            credentials: 'include',
+            headers: {'Authorization': `Bearer ${userData?.token}`}
         };
         fetch(`http://localhost:3005/api/v1/inscripcion/career/lookup?idEstudiante=${encodeURIComponent(idEstudiante)}`, requestOptions)
                 .then(async response => {
@@ -107,14 +87,13 @@ export default function ListCareerInscription(){
             })
             const requestOptions = {
                 method: 'GET',
-                credentials: 'include',
+                headers: {'Authorization': `Bearer ${userData?.token}`}
             };
             fetch(`http://localhost:3005/api/v1/estudiante/lookup?dni=${encodeURIComponent(valorDeBusqueda)}`, requestOptions)
                 .then(async response => {
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
                     if (!response.ok) {
-                        // const error = (data && data.message) || response.status;
                         const error = data;
                         return Promise.reject(error);
                     }
@@ -176,7 +155,7 @@ export default function ListCareerInscription(){
         const requestOptions = {
             method: 'POST',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData?.token}` },
             body: JSON.stringify({
                 idEstudiante:formData.idEstudiante,
                 idCarrera:career.idCarrera
@@ -223,7 +202,7 @@ export default function ListCareerInscription(){
         const requestOptions = {
             method: 'DELETE',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData?.token}` },
             body: JSON.stringify({
                 idEstudiante:formData.idEstudiante,
                 idCarrera:career.idCarrera

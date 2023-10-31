@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 import CareerSelect from "./CareerSelect";
 import Modal from "../../components/Modal";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 export default function ListCourse(){
-    // ACA EL FETCH DE LOS DATOS
+    const {userData } = useContext(UserContext);
     const [data, setData] = useState();
 
     const [estadoModal, setEstadoModal] = useState(false);
@@ -34,11 +35,7 @@ export default function ListCourse(){
         setFormData(newValues);
     }
 
-    const getCourses = (notificateWait=false) => {
-        const requestOptions = {
-            method: 'GET',
-            credentials: 'include',
-        };
+    const getCourses =  useCallback((notificateWait=true) => {
         if(notificateWait){
             launchNotificacion({
                 notifMessage: <p>Obteniendo lista de materias</p>,
@@ -46,6 +43,10 @@ export default function ListCourse(){
                 state: true
             })
         }
+        const requestOptions = {
+            method: 'GET',
+            headers: {'Authorization': `Bearer ${userData?.token}`}
+        };
         fetch('http://localhost:3005/api/v1/materia/lookup', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
@@ -74,9 +75,9 @@ export default function ListCourse(){
                     state: false
                 })
             });;
-    }
+    }, [userData?.token]);
 
-    useEffect(()=>{getCourses(true)},[]);
+    useEffect(()=>{getCourses(true)},[getCourses]);
 
     const deleteCourse = (idMateria) =>{
         launchNotificacion({
@@ -86,9 +87,9 @@ export default function ListCourse(){
         })
         const requestOptions = {
             method: 'DELETE',
-            credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify({idMateria: idMateria})
         };
@@ -130,7 +131,8 @@ export default function ListCourse(){
             method: 'PUT',
             credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify(formData)
         };
@@ -165,7 +167,6 @@ export default function ListCourse(){
     }
 
     const callbackSelectable = (e) => {
-        //console.log(e);
     }
 
     const handleSubmit = (e) => {

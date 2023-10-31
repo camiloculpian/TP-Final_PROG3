@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 import CareerSelect from "./CareerSelect";
 import Modal from "../../components/Modal";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 export default function SearchCourse(){
-    // ACA EL FETCH DE LOS DATOS
+    const {userData } = useContext(UserContext);
     const [data, setData] = useState();
 
     const [estadoModal, setEstadoModal] = useState(false);
@@ -51,7 +52,7 @@ export default function SearchCourse(){
     const getCourses = (notificateWait=false) => {
         const requestOptions = {
             method: 'GET',
-            credentials: 'include',
+            headers: {'Authorization': `Bearer ${userData?.token}`}
         };
         if(notificateWait){
             launchNotificacion({
@@ -99,9 +100,9 @@ export default function SearchCourse(){
         })
         const requestOptions = {
             method: 'DELETE',
-            credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify({idMateria: idMateria})
         };
@@ -141,9 +142,9 @@ export default function SearchCourse(){
         })
         const requestOptions = {
             method: 'PUT',
-            credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify(formData)
         };

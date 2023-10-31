@@ -1,9 +1,12 @@
 import './Statistics.css';
 import { ProtectedElement } from "../../components/ProtectedElement";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Notification } from '../../components/Notifications';
+import { UserContext } from '../../components/UserContext';
+
 
 export default function StatiscticsStudents(){
+    const {userData } = useContext(UserContext);
     const [data, setData] = useState();
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
@@ -13,7 +16,9 @@ export default function StatiscticsStudents(){
     useEffect(() => {
         const requestOptions = {
             method: 'GET',
-            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${userData?.token}`
+            }
         };
         launchNotificacion({
             notifMessage: <p>Obteniendo estadisticas de los estudiantes</p>,
@@ -47,7 +52,7 @@ export default function StatiscticsStudents(){
                     state: false
                 })
             });;
-    }, [])
+    }, [userData?.token])
 
     return(
         <ProtectedElement mustBeDecano={true}>

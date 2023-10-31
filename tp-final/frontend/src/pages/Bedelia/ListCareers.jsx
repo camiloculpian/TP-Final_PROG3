@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { AdaptativeTable } from "../../components/AdaptativeTable";
 import { Notification } from "../../components/Notifications";
 import Modal from "../../components/Modal";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 
 export default function ListCareers(){
-    // ACA EL FETCH DE LOS DATOS
+    const {userData } = useContext(UserContext);
     const [data, setData] = useState();
 
     const [estadoModal, setEstadoModal] = useState(false);
@@ -33,7 +34,7 @@ export default function ListCareers(){
         notifType: '',
         state: false
     })
-    const getCarres = (notificationWait=true) => {
+    const getCarres = useCallback((notificationWait=true) => {
         if(notificationWait){
             launchNotificacion({
                 notifMessage: <p>Obteniendo lista de carreras</p>,
@@ -43,7 +44,7 @@ export default function ListCareers(){
         }
         const requestOptions = {
             method: 'GET',
-            credentials: 'include',
+            headers: {'Authorization': `Bearer ${userData?.token}`}
         };
         fetch('http://localhost:3005/api/v1/carrera/lookup', requestOptions)
             .then(async response => {
@@ -75,9 +76,9 @@ export default function ListCareers(){
                     state: false
                 })
             });;
-    };
+    }, [userData?.token]);
 
-    useEffect(()=>{getCarres()},[]);
+    useEffect(()=>{getCarres() },[getCarres]);
 
     const deleteCareer = (idCarrera) =>{
         launchNotificacion({
@@ -89,7 +90,8 @@ export default function ListCareers(){
             method: 'DELETE',
             credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify({idCarrera: idCarrera})
         };
@@ -132,7 +134,8 @@ export default function ListCareers(){
             method: 'PUT',
             credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify(formData)
         };
@@ -166,7 +169,6 @@ export default function ListCareers(){
     }
 
     const callbackSelectable = (e) => {
-        //console.log(e);
     }
 
     const callbackEditable = (e) => {

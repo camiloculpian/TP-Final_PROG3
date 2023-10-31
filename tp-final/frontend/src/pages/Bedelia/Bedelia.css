@@ -8,8 +8,8 @@
 }
 
 .moduleContent{
-    /*margin: auto;*/
-    margin-right: inherit;
+    margin: auto;
+    /* margin-right: inherit; */
 }
 
 .moduleContent fieldset {

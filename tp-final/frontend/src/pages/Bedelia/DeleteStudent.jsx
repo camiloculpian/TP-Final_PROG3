@@ -2,11 +2,13 @@ import './Bedelia.css'
 import '../../components/Notifications.css'
 import CountrySelect from '../../components/CountrySelect';
 import Modal from '../../components/Modal';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SearchStudent from './SearchStudent';
 import { Notification } from '../../components/Notifications';
+import { UserContext } from '../../components/UserContext';
 
 function DeleteStudent(){
+    const {userData } = useContext(UserContext);
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const [notificationState, launchNotificacion] = useState({
@@ -40,9 +42,9 @@ function DeleteStudent(){
         })
         const requestOptions = {
             method: 'DELETE',
-            credentials: 'include',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
                 body: JSON.stringify(formData)
         };
@@ -135,7 +137,7 @@ function DeleteStudent(){
             })
             const requestOptions = {
                 method: 'GET',
-                credentials: 'include'
+                headers: {'Authorization': `Bearer ${userData?.token}`}
             };
             fetch(`http://localhost:3005/api/v1/estudiante/lookup?dni=${encodeURIComponent(valorDeBusqueda)}`, requestOptions)
                 .then(async response => {

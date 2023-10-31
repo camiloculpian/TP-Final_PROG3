@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CountrySelect from "../../components/CountrySelect";
 import './Bedelia.css'
 import { Notification } from "../../components/Notifications";
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from "../../components/UserContext";
 
 function RegisterStudent(){
-
+    const {userData } = useContext(UserContext);
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
         notifType: '',
@@ -42,7 +43,7 @@ function RegisterStudent(){
         const requestOptions = {
             method: 'POST',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${userData?.token}` },
             body: JSON.stringify(formData)
         };
         fetch('http://localhost:3005/api/v1/estudiante/add', requestOptions)
@@ -113,7 +114,7 @@ function RegisterStudent(){
                             <CountrySelect callbackSelected={handleChange} name={'nacionalidad'} selected={formData.nacionalidad}/>
                         </div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" className="dataEntry" value={formData.celular} onChange={handleChange}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={handleChange}></input></div>
                         <div>
                             <button type="submit" className="botonComun">Agregar Estudiante</button>
                             <button type="reset" className="botonComun">Cancelar</button>

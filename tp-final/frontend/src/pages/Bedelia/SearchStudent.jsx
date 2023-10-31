@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './Bedelia.css'
 import { AdaptativeTable } from '../../components/AdaptativeTable';
 import { Notification } from '../../components/Notifications';
 import { ProtectedElement } from "../../components/ProtectedElement";
+import { UserContext } from '../../components/UserContext';
 
 function SearchStudent({returnStudent}){
+    const {userData } = useContext(UserContext);
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
         notifType: '',
@@ -51,7 +53,7 @@ function SearchStudent({returnStudent}){
         })
         const requestOptions = {
             method: 'GET',
-            credentials: 'include'
+            headers: {'Authorization': `Bearer ${userData?.token}`}
         };
         fetch(`http://localhost:3005/api/v1/estudiante/lookup?apellido=${encodeURIComponent(formData.apellidoBusqueda)}&nombre=${encodeURIComponent(formData.nombreBusqueda)}`, requestOptions)
             .then(async response => {

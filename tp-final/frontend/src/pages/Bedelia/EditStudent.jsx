@@ -1,11 +1,13 @@
 import './Bedelia.css'
 import CountrySelect from '../../components/CountrySelect';
 import Modal from '../../components/Modal';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SearchStudent from './SearchStudent';
 import { Notification } from '../../components/Notifications';
+import { UserContext } from '../../components/UserContext';
 
 function EditStudent(){
+    const {userData } = useContext(UserContext);
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const[valorDeBusqueda, setValorDeBusqueda] = useState('');
@@ -53,7 +55,8 @@ function EditStudent(){
         const requestOptions = {
             method: 'PUT',
             headers:{
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${userData?.token}`
                 },
             credentials: 'include',
             body: JSON.stringify(formData)
@@ -90,7 +93,7 @@ function EditStudent(){
             }).catch(error => { 
                 launchNotificacion({
                     notifMessage: <>
-                                    <p>No se pudo realizar la busqueda debido al siguiente error</p>
+                                    <p>No se pudo guardar debido al siguiente error</p>
                                     <h4>{error.message}</h4>
                                   </>,
                     notifType: 'ERROR',
@@ -108,7 +111,7 @@ function EditStudent(){
             })
             const requestOptions = {
                 method: 'GET',
-                credentials: 'include',
+                headers: {'Authorization': `Bearer ${userData?.token}`}
             };
             fetch(`http://localhost:3005/api/v1/estudiante/lookup?dni=${encodeURIComponent(valorDeBusqueda)}`, requestOptions)
                 .then(async response => {
@@ -196,7 +199,7 @@ function EditStudent(){
                             <CountrySelect callbackSelected={formData.idEstudiante ? handleChange:()=>{}} name={'nacionalidad'} selected={formData.nacionalidad}/>
                         </div>
                         <div className="dataLine"><label className="dataTitle" htmlFor="celular">Teléfono:</label><input name="celular" type="tel" className="dataEntry" value={formData.celular} onChange={formData.idEstudiante ? handleChange:()=>{}}></input></div>
-                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" className="dataEntry" value={formData.correoElectronico} onChange={formData.idEstudiante?handleChange:()=>{}}></input></div>
+                        <div className="dataLine"><label className="dataTitle" htmlFor="correoElectronico">e-m@il:</label><input name="correoElectronico" type="email" required className="dataEntry" value={formData.correoElectronico} onChange={formData.idEstudiante?handleChange:()=>{}}></input></div>
                         <div>
                             <button className="botonComun" type="submit">Guardar</button>
                             <button className="botonComun" type="reset" >Cancelar</button>
