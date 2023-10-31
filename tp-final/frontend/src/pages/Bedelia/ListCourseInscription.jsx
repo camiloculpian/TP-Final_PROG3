@@ -9,6 +9,7 @@ import { UserContext } from "../../components/UserContext";
 
 export default function ListCourseInscription(){
     const {userData } = useContext(UserContext);
+
     const [estadoModal, cambiarEstadoModal] = useState(false);
 
     const setReturnStudent = (student) =>{
@@ -209,6 +210,11 @@ export default function ListCourseInscription(){
                     })
                 });
     }
+    
+    const limpiarFormulario = () => {
+        setStudentData({});
+        setFormData({idEstudiante:'',idCarrera:0});
+    }
 
     const darDeBaja = (course) => {
         launchNotificacion({
@@ -344,6 +350,7 @@ export default function ListCourseInscription(){
                                         })
                                     }</tbody>
                                 </table>
+                                <button className="botonComun" onClick={limpiarFormulario}>Limpiar</button>
                             </>
                         }
                     </fieldset>

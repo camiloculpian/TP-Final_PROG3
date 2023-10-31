@@ -239,6 +239,12 @@ export default function ListCareerInscription(){
                 });
     }
 
+    const limpiarFormulario = () => {
+        setStudentData({});
+        setCareerList({headers :[{}], data: [{}]});
+        setFormData({});
+    }
+
     const handleBaja = async (career) => {
         await launchNotificacion({
             notifMessage: <>
@@ -309,6 +315,7 @@ export default function ListCareerInscription(){
                                         })
                                     }</tbody>
                                 </table>
+                                <button className="botonComun" onClick={limpiarFormulario}>Limpiar</button>
                             </>
                         }
                     </fieldset>
