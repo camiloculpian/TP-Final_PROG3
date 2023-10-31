@@ -79,7 +79,7 @@ function Login() {
           <label className="dataTitle" htmlFor="password">Contraseña:</label>
           <input type='password' name="password" required className="dataEntry" value={formData.password} onChange={handleChange}></input>
         </div>
-        <div>
+        <div className='justifyRight'>
           <button type="submit" className="botonComun">Iniciar Sesion</button>
         </div>
       </form>
