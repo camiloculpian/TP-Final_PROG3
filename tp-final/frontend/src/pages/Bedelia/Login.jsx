@@ -72,11 +72,11 @@ function Login() {
       <div className='authLogin'></div>
       <form className='loginForm' onSubmit={handleSubmit}> 
         <div className="dataLine justifyRight">
-          <label className="dataTitle" htmlFor="username">Usuario:</label>
+          <label className="dataLoginUsername" htmlFor="username"/>
           <input name="username" autoFocus required className="dataEntry" value={formData.username} onChange={handleChange}></input>
         </div>
         <div className="dataLine justifyRight">
-          <label className="dataTitle" htmlFor="password">Contraseña:</label>
+          <label className="dataLoginPassword" htmlFor="password"/>
           <input type='password' name="password" required className="dataEntry" value={formData.password} onChange={handleChange}></input>
         </div>
         <div className='justifyRight'>

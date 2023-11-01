@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const isAuthenticated = async (req,res,next) => {
     try {
         let token = '';
-
         if(req.headers.authorization)
         {
             const bearer = req.headers.authorization.split(" ");
@@ -27,7 +26,6 @@ const isAuthenticated = async (req,res,next) => {
 const isAuthenticatedAndBedel = async (req,res,next) => {
     try {
         let token = '';
-
         if(req.headers.authorization)
         {
             const bearer = req.headers.authorization.split(" ");
@@ -50,7 +48,6 @@ const isAuthenticatedAndBedel = async (req,res,next) => {
 const isAuthenticatedAndDecano = async (req,res,next) => {
     try {
         let token = '';
-
         if(req.headers.authorization)
         {
             const bearer = req.headers.authorization.split(" ");

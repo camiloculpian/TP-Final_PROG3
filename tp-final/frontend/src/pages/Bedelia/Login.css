@@ -17,10 +17,50 @@
     justify-content: space-between;
 }
 
+.dataLoginUsername{
+    background-image: url('../../layouts/svg/user-solid-hover.svg');
+    background-position-x: center;
+    background-position-y: center ;
+    background-size: 1.3rem 1.3rem;
+    background-repeat: no-repeat;
+    margin-right: 0;
+    margin-left: 0;
+    border-radius: 5px;
+    text-align:center;
+    background-color: #001E2D;
+    color:#ebebeb;
+    height:20px;
+    width: 20px;
+    padding:10px 10px;
+    border: none;
+}
+
+.loginMarginBottom{
+    margin-bottom: 15px;
+}
+
+.dataLoginPassword{
+    background-image: url('../../layouts/svg/lock-solid-hover.svg');
+    background-position-x: center;
+    background-position-y: center ;
+    background-size: 1.3rem 1.3rem;
+    background-repeat: no-repeat;
+    margin-right: 0;
+    margin-left: 0;
+    border-radius: 5px;
+    text-align:center;
+    background-color: #001E2D;
+    color:#ebebeb;
+    height:20px;
+    width: 20px;
+    padding:10px 10px;
+    border: none;
+}
+
 .authLogin{
     display: flex;
-    background-image: url('../../layouts/svg/user-solid-hover.svg');
-    background-size: 100px !important;
+    background-image: url('../../layouts/svg/user-shield-solid-hover.svg');
+    background-size: 150px !important;
     background-color: rgb(70, 70, 70);
     background-position: center; 
     width: 250px;
