@@ -8,7 +8,7 @@ const ProtectedRoute = ({mustBeBedel, children }) => {
     const { isLoggedIn, isBedel } = useContext(UserContext);
 
     if (!isLoggedIn() || (mustBeBedel && !isBedel())) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/" replace={true} />;
     }
 
     return children;
