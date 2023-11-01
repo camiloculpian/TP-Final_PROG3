@@ -67,23 +67,26 @@ function Login() {
   }
   return (
     <>
-    <div className="moduleContent">
-      <div className='loginLine'>
-      <div className='authLogin'></div>
-      <form className='loginForm' onSubmit={handleSubmit}> 
-        <div className="dataLine justifyRight">
-          <label className="dataLoginUsername" htmlFor="username"/>
-          <input name="username" autoFocus required className="dataEntry" value={formData.username} onChange={handleChange}></input>
+      <div className="moduleContent">
+        <div className='loginLine'>
+          <div className='authLoginImg'/>
+          <div className='authLoginContent'>
+            <form className='loginForm' onSubmit={handleSubmit}> 
+              <div className="dataLine justifyMiddle">
+                <label className="dataLoginUsername" htmlFor="username"/>
+                <input name="username" autoFocus required className="dataEntry" value={formData.username} onChange={handleChange}></input>
+              </div>
+              <div className='loginMarginBottom'></div>
+              <div className="dataLine justifyMiddle">
+                <label className="dataLoginPassword" htmlFor="password"/>
+                <input type='password' name="password" required className="dataEntry" value={formData.password} onChange={handleChange}></input>
+              </div>
+              <div className='justifyRight'>
+                <button type="submit" className="botonComun">Iniciar Sesion</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div className="dataLine justifyRight">
-          <label className="dataLoginPassword" htmlFor="password"/>
-          <input type='password' name="password" required className="dataEntry" value={formData.password} onChange={handleChange}></input>
-        </div>
-        <div className='justifyRight'>
-          <button type="submit" className="botonComun">Iniciar Sesion</button>
-        </div>
-      </form>
-      </div>
       </div>
       <Notification state={notificationState} onCloseNotificacion={launchNotificacion}/>
     </>
