@@ -310,8 +310,8 @@ textarea {
 }
 
 .dataLine {
-    margin-top: 10px;
     margin: 5px;
+    /* margin-top: 10px; */
     display: flex;
     width: auto;
 }

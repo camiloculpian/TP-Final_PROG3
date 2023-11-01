@@ -3,6 +3,7 @@ import './Bedelia.css';
 import { useContext, useState } from 'react';
 import { Notification } from '../../components/Notifications';
 import { UserContext } from '../../components/UserContext';
+// import { NavLink } from 'react-router-dom';
 
 function Login() {
   const {setUserData } = useContext(UserContext);
@@ -69,7 +70,7 @@ function Login() {
     <>
       <div className="moduleContent">
         <div className='loginLine'>
-          <div className='authLoginImg'/>
+          <img className='authLoginImg' alt=''/>
           <div className='authLoginContent'>
             <form className='loginForm' onSubmit={handleSubmit}> 
               <div className="dataLine justifyMiddle">
@@ -81,8 +82,16 @@ function Login() {
                 <label className="dataLoginPassword" htmlFor="password"/>
                 <input type='password' name="password" required className="dataEntry" value={formData.password} onChange={handleChange}></input>
               </div>
-              <div className='justifyRight'>
-                <button type="submit" className="botonComun">Iniciar Sesion</button>
+              <div className="dataLineSpread">
+                <div>
+                  <input type='checkbox' name="rememberMe" className="dataEntry"/><label className="dataLabel" htmlFor="rememberMe">Recordarme</label>
+                </div>
+                {/* <div>
+                  <li><NavLink>Olvide mi Contraseña...</NavLink></li>
+                </div> */}
+              </div>
+              <div className='doLine'>
+                <button type="submit" className="loginButton">Iniciar Sesion</button>
               </div>
             </form>
           </div>
