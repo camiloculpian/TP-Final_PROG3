@@ -350,8 +350,11 @@ export default function ListCourseInscription(){
                                         })
                                     }</tbody>
                                 </table>
-                                <button className="botonComun" onClick={limpiarFormulario}>Limpiar</button>
+    
                             </>
+                        }
+                        {formData.idEstudiante &&
+                            <button className="botonComun" onClick={limpiarFormulario}>Limpiar</button>
                         }
                     </fieldset>
                 </form>
