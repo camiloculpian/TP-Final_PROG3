@@ -8,6 +8,7 @@ import { UserContext } from "../../components/UserContext";
 
 export default function SearchCourse(){
     const {userData } = useContext(UserContext);
+
     const [data, setData] = useState();
 
     const [estadoModal, setEstadoModal] = useState(false);
@@ -218,6 +219,12 @@ export default function SearchCourse(){
         })
         // deleteCareer(e.id)
     }
+
+    const limpiarFormulario = () => {
+        setFormData({idCarrera:'',nombreMateria:''});
+        setData();
+    }
+
     return(
         <ProtectedElement mustBeBedel={true}>
             <div className="moduleContent">
@@ -234,6 +241,7 @@ export default function SearchCourse(){
                         </div>
                     </div>
                     <AdaptativeTable tableData={data?data:{data: []}}  callbackSelectable={callbackSelectable} callbackEditable={callbackEditable} callbackDeletable={callbackDeletable} style={{width:'100%'}}/>
+                    {data && <button className="botonComun" onClick={limpiarFormulario}>Limpiar</button>}
                 </fieldset>
             </div>
             <Modal title={'Editar Carrera'} state={estadoModal} changeState={setEstadoModal}>

@@ -2,7 +2,7 @@ const carreraBD = require('../dataBase/carreraBD');
 
 agregar = async(req, res) => {
     try{
-        if(req.body.nombre && (req.body.modalidad===0 || req.body.modalidad===1)){
+        if(req.body.nombre && (req.body.modalidad==0 || req.body.modalidad==1)){
             carrera = await carreraBD.buscarCarreraPorNombreExacto(req.body.nombre);
             if(!carrera[0].length){
                 resp = await carreraBD.agregarCarrera(req.body);
