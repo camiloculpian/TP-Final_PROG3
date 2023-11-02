@@ -10,12 +10,17 @@ const inscribirMateria = async(req, res) => {
             estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
             materia = await materiaBD.buscarMateriaPorId(req.body.idMateria);
             if(estudiante[0].length > 0 && materia[0].length > 0){
-                const response = await inscripcionesBD.inscribirMateria(req.body['idEstudiante'],req.body['idMateria']);
-                if(response.errno){
-                    res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                inscripto = await inscripcionesBD.buscarInscripcionMateria(req.body.idEstudiante, req.body.idMateria)
+                if(inscripto[0].length > 0){
+                    res.status(400).json({status:'ERROR', message:'ERROR el estudiante ya esta inscripto...'});
                 }else{
-                    //TO-DO: si afected rows > 0 tuvo exito
-                    res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
+                    const response = await inscripcionesBD.inscribirMateria(req.body['idEstudiante'],req.body['idMateria']);
+                    if(response.errno){
+                        res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                    }else{
+                        //TO-DO: si afected rows > 0 tuvo exito
+                        res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
+                    }
                 }
             }else{
                 res.status(400).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idMateria validos...'});
@@ -36,13 +41,19 @@ const inscribirCarrera = async(req, res) => {
             estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
             carrera = await carreraBD.buscarCarreraPorId(req.body.idCarrera);
             if(estudiante[0].length > 0 && carrera[0].length > 0){
-                const response = await inscripcionesBD.inscribirCarrera(req.body['idEstudiante'],req.body['idCarrera']);
-                if(response.errno){
-                    res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                inscripto = await inscripcionesBD.buscarInscripcionCarrera(req.body.idEstudiante, req.body.idCarrera)
+                if(inscripto[0].length > 0){
+                    res.status(400).json({status:'ERROR', message:'ERROR el estudiante ya esta inscripto...'});
                 }else{
-                    //TO-DO: si afected rows > 0 tuvo exito
-                    res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
+                    const response = await inscripcionesBD.inscribirCarrera(req.body['idEstudiante'],req.body['idCarrera']);
+                    if(response.errno){
+                        res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
+                    }else{
+                        //TO-DO: si afected rows > 0 tuvo exito
+                        res.status(200).json({status:'OK', message:'La inscripcion se ha registrado con exito'});
+                    }
                 }
+                
             }else{
                 res.status(400).json({status:'ERROR', message:'ERROR debe proveer idEstudiante e idCarrera validos...'});
             }   

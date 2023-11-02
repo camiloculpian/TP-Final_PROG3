@@ -21,6 +21,19 @@ const inscribirCarrera = async (idEstudiante, idCarrera) =>{
     }
 }
 
+const buscarInscripcionMateria = async (idEstudiante, idMateria) => {
+    //toma el idUsuario i el idCarrera y devuelve lista de materias con un campo extra que dice si esta inscripto o no
+    try{
+        const consulta = `SELECT *
+                            FROM estudiantemateria
+                            WHERE estudiante=? AND materia=?`;
+        const inscripcion = await conexion.query(consulta,[idEstudiante,idMateria]);  
+        return inscripcion;
+    }catch(e){
+        return e;
+    }
+}
+
 const buscarMaterias = async (idEstudiante, idCarrera) => {
     //toma el idUsuario i el idCarrera y devuelve lista de materias con un campo extra que dice si esta inscripto o no
     try{
@@ -55,6 +68,19 @@ const buscarCarreras = async (idEstudiante) => {
         
         const carreras = await conexion.query(consulta,[idEstudiante,idEstudiante]);  
         return carreras;
+    }catch(e){
+        return e;
+    }
+}
+
+const buscarInscripcionCarrera = async (idEstudiante, idCarrera) => {
+    //toma el idUsuario i el idCarrera y devuelve lista de materias con un campo extra que dice si esta inscripto o no
+    try{
+        const consulta = `SELECT *
+                            FROM estudiantecarrera
+                            WHERE estudiante=? AND carrera=? AND fechaBaja IS NULL`;
+        const inscripcion = await conexion.query(consulta,[idEstudiante,idCarrera]);  
+        return inscripcion;
     }catch(e){
         return e;
     }
@@ -101,9 +127,11 @@ const borrarInscripcionMateria = async (idEstudiante, idMateria) => {
 module.exports = {
     inscribirMateria,
     buscarMaterias,
+    buscarInscripcionMateria,
     buscarCarreras,
     inscribirCarrera,
     buscarCarrerasInscriptas,
+    buscarInscripcionCarrera,
     borrarInscripcionCarrera,
     borrarInscripcionMateria
 }
