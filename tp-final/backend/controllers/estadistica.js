@@ -9,7 +9,7 @@ obtenerEstadisticaMaterias = async(req, res) => {
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (e){
-        return e;
+        res.status(400).json({status:'ERROR',message:e.message});
     }
 }
 
@@ -28,7 +28,8 @@ obtenerEstadisticaCarreras = async(req, res) => {
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (e){
-        return e;
+        res.status(400).json({status:'ERROR',message:e.message});
+        //return e;
     }
 }
 
@@ -41,7 +42,8 @@ obtenerEstadisticaEstudiantes = async(req, res) => {
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
     }catch (e){
-        return e;
+        res.status(400).json({status:'ERROR',message:e.message});
+        //return e;
     }
 }
 

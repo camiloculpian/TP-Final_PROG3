@@ -54,8 +54,8 @@ const enviarCorreo = async (req, res) =>{
             })
         }
     }catch(e){
-        res.status(400).json({status:'ERROR',message:excep});
-        return(e);
+        res.status(400).json({status:'ERROR',message:e.message});
+        // return(e);
     }
 }
 
@@ -67,25 +67,25 @@ const getCarreras = async (req, res) => {
         }
         res.status(200).json({status:'OK', data:response});
     }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw(excep);
+        res.status(400).json({status:'ERROR',message:e.message});
+        // throw(e);
     }
 }
 
 const getMaterias = async (req, res) => {
     try{
-        if(req.query['codigoCarrera']){
+        if(!isNaN(req.query['codigoCarrera'])){
             const response = await publicoBD.getMaterias(req.query['codigoCarrera']);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
             }
             res.status(200).json({status:'OK', headers: response[1], data:response[0]});
         }else{
-            res.status(400).json({status:'ERROR',message:'ERROR: codigoCarrera MUST be provided'});
+            res.status(400).json({status:'ERROR',message:'ERROR: codigoCarrera MUST be provided and MUST be valid'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw(excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        // throw(e);
     }
 }
 

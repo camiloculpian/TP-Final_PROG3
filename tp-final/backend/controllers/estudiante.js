@@ -1,4 +1,3 @@
-const { query } = require('../dataBase/conexionBD');
 const estudianteBD = require('../dataBase/estudianteBD');
 
 buscar = async(req, res) => {
@@ -16,9 +15,9 @@ buscar = async(req, res) => {
         }else{
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         } 
-    }catch (excep){
-        // res.status(400).json({status:'ERROR', message:excep});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR', message:e.message});
+        // throw excep;
     }
 }
 
@@ -44,15 +43,15 @@ agregar = async(req, res) => {
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR: Faltan datos OBLIGATORIOS!!!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR', message:excep});
-        throw(excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR', message:e.message});
+        // throw(excep);
     }
 }
 
 borrar = async(req, res) => {
     try{
-        if(parseInt(req.body.idEstudiante)){
+        if(!isNaN(req.body.idEstudiante)){
             const response = await estudianteBD.eliminarEstudiante(req.body.idEstudiante);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
@@ -66,15 +65,15 @@ borrar = async(req, res) => {
         }else{
             res.status(400).json({status:'ERROR', message:'ERROR: idEstudiante debe ser un valor valido'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR', message:excep});
-        throw (excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR', message:e.message});
+        //throw (excep);
     }
 }
 
 editar = async(req, res) => {
     try{
-        if(req.body.idEstudiante && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad && req.body.correoElectronico ){
+        if(!isNaN(req.body.idEstudiante) && req.body.dni && req.body.nombre && req.body.apellido && req.body.nacionalidad && req.body.correoElectronico ){
             let estudiante = await estudianteBD.buscarPorId(req.body.idEstudiante);
 
             if(estudiante[0].length && estudiante[0][0].DNI == req.body.dni){
@@ -112,20 +111,11 @@ editar = async(req, res) => {
                 res.status(400).json({status:'ERROR', message:'ERROR: El estudiante no existe o esta dado de baja.', data:[{}]});
             }
         }else{
-            res.status(400).json({status:'ERROR', message:'ERROR: faltan datos OBLIGATORIOS!', data:[{}]});
+            res.status(400).json({status:'ERROR', message:'ERROR: faltan datos OBLIGATORIOS o NO son correctos!', data:[{}]});
         }
-    }catch (excep){
-        throw (excep);
-    }
-}
-
-test = async(req, res) => {
-    try{
-        console.log(req)
-        res.status(200).json({status:'OK',message:'Bienvenido!!!'})
-    }catch (excep){
-        res.status(400).json({status:'ERROR', message:excep});
-        throw (excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR', message:e.message});
+        //throw (excep);
     }
 }
 
@@ -133,6 +123,5 @@ module.exports = {
     buscar,
     agregar,
     borrar,
-    editar,
-    test
+    editar
 }

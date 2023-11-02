@@ -13,7 +13,9 @@ function CountrySelect({callbackSelected, name='countrySelect', selected}){
         .then( resp => {
             resp.json().then(data => {
                 //CHEQUEAR QUE DATA NO ESTA VACIO
-                setDatos(data['data']);
+                if(data.data){
+                    setDatos(data['data']);
+                }
             } )
         })
         .catch(error => {

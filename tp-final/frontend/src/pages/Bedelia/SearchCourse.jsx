@@ -244,7 +244,7 @@ export default function SearchCourse(){
                     {data && <button className="botonComun" onClick={limpiarFormulario}>Limpiar</button>}
                 </fieldset>
             </div>
-            <Modal title={'Editar Carrera'} state={estadoModal} changeState={setEstadoModal}>
+            <Modal title={'Editar Materia'} state={estadoModal} changeState={setEstadoModal}>
                 <>
                     <div className="moduleContent">
                         <form onSubmit={handleSubmit} onReset={handleReset}>
@@ -259,7 +259,7 @@ export default function SearchCourse(){
                                 </div>
                                 <div className="dataLine"><label className="dataTitle" htmlFor="horasSemanales">Hs. Semanales:</label><input name="horasSemanales" required="" className="dataEntry" value={formData.horasSemanales} onChange={(e) => !isNaN(e.target.value) ? handleChange(e) : null}/></div>
                                 <div className="dataLine"><label className="dataTitle" htmlFor="idCarrera">Carrera:</label>
-                                <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera}/>
+                                <CareerSelect callbackSelected={handleChange} name={'idCarrera'} value={formData.idCarrera} requiered={true}/>
                                 </div>
                                 <div>
                                     <button className="botonComun" type="submit">Guardar</button>

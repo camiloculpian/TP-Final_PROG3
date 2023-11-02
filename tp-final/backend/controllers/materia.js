@@ -2,7 +2,7 @@ const materiaBD = require('../dataBase/materiaBD');
 
 agregar = async(req, res) => {
     try{
-        if(req.body.nombre && req.body.horasSemanales && (req.body.tipoMateria==0 || req.body.tipoMateria==1) && req.body.idCarrera){
+        if(req.body.nombre && req.body.horasSemanales && (req.body.tipoMateria==0 || req.body.tipoMateria==1) && !isNaN(req.body.idCarrera)){
             response = await materiaBD.buscarMateriaPorCarreraNombreExacto(req.body.idCarrera, req.body.nombre);
             if(response.errno){
                 res.status(400).json({status:'ERROR', message:'ERROR: '+response.sqlMessage});
@@ -21,9 +21,9 @@ agregar = async(req, res) => {
         }else{
             res.status(400).json({status:'ERROR',message:'ERROR: Faltan datos REQUERIDOS!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw(excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        // throw(excep);
     }
 }
 
@@ -43,15 +43,15 @@ buscar = async(req, res) => {
         }else{
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR', message:excep});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR', message:e.message});
+        // throw excep;
     }
 }
 
 editar = async(req, res) => {
     try{
-        if(req.body.idMateria && req.body.nombre && req.body.horasSemanales && (req.body.tipoMateria==0 || req.body.tipoMateria==1) && req.body.idCarrera){
+        if(!isNaN(req.body.idMateria) && req.body.nombre && req.body.horasSemanales && (req.body.tipoMateria==0 || req.body.tipoMateria==1) && !isNaN(req.body.idCarrera)){
             resp = await materiaBD.buscarMateriaPorId(req.body.idMateria);
             if(resp[0].length && resp[0][0].Nombre == req.body.nombre && resp[0][0].idCarrera == req.body.idCarrera ){
                 // la matera esiste y NO modificó el nombre, ni la carrera, entonces
@@ -79,17 +79,17 @@ editar = async(req, res) => {
                 res.status(400).json({status:'ERROR',message:'ERROR: NO existe una materia con ese Id!'});
             }
         }else{
-            res.status(400).json({status:'ERROR',message:'ERROR: Faltan datos REQUERIDOS!'});
+            res.status(400).json({status:'ERROR',message:'ERROR: Faltan datos REQUERIDOS o NO son correctos!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep.message});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        // throw e;
     }
 }
 
 borrar = async(req, res) => {
     try{
-        if(req.body.idMateria){
+        if(!isNaN(req.body.idMateria)){
             response = await materiaBD.eliminarMateria(req.body.idMateria);
             if(response.affectedRows >= 1){
                 res.status(200).json({status:'OK',message:'La materia fue dada de baja'});
@@ -97,11 +97,11 @@ borrar = async(req, res) => {
                 res.status(400).json({status:'ERROR', message:'ERROR: La materia con ese Id NO EXISTE!'});
             }
         }else{
-            res.status(400).json({status:'ERROR',message:'ERROR: Faltan datos REQUERIDOS!'});
+            res.status(400).json({status:'ERROR',message:'ERROR: Faltan datos REQUERIDOS o NO son correctos!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        // throw e;
     }
 }
 
@@ -113,9 +113,9 @@ buscarPorCarrera = async(req, res) => {
         }else{
             res.status(200).json({status:'OK', headers: response[1],data:response[0]});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        // throw excep;
     }
 }
 

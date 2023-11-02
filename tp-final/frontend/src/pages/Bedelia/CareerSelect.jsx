@@ -6,7 +6,7 @@ import { UserContext } from '../../components/UserContext';
 
 //si se pasa idEstudiante, solo devuelve las carreras a las que esta inscripto el estudiante
 
-function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiante}){
+function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiante, requiered=false}){
     const {userData } = useContext(UserContext);
     const [notificationState, launchNotificacion] = useState({
         notifMessage: '',
@@ -54,7 +54,7 @@ function CareerSelect({callbackSelected, name='careerSelect', value, idEstudiant
       };
     return (
         <>
-            <select name={name} className="dataEntry" value={value? parseInt(value): ''} onChange={changeSelected}>
+            <select name={name} className="dataEntry" value={value? parseInt(value): ''} onChange={changeSelected} required={true}>
                 <option key={''} value={''} >{'Seleccione la Carrera'}</option>
                 {datos?.map((carrera) => {
                     return (

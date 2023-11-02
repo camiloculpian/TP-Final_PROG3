@@ -20,9 +20,9 @@ login = async(req, res) => {
         }else{
             res.status(401).json({status:'ERROR', message:'ERROR: username and password MUST be provided!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw (excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        //throw (excep);
     }
 }
 

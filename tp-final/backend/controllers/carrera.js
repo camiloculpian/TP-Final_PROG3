@@ -17,11 +17,11 @@ agregar = async(req, res) => {
                 res.status(400).json({status:'ERROR', message:'ERROR: Ya existe una carrera con ese nombre!'});
             } 
         }else{
-            res.status(400).json({status:'ERROR', message:'ERROR: faltan datos!!'});
+            res.status(400).json({status:'ERROR', message:'ERROR: faltan datos o no son correctos!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw(excep);
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        //throw(e);
     }
 }
 
@@ -34,15 +34,15 @@ buscar = async(req, res) => {
         }else{
             res.status(200).json({status:'OK', headers: resp[1],data: resp[0]});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        //throw excep;
     }
 }
 
 borrar = async(req, res) => {
     try{
-        if(req.body.idCarrera){
+        if(!isNaN(req.body.idCarrera)){
             carrera = await carreraBD.buscarCarreraPorId(req.body.idCarrera);
             if(carrera[0].length){
                 const resp = await carreraBD.borrarCarrera(req.body.idCarrera);
@@ -56,17 +56,17 @@ borrar = async(req, res) => {
                 res.status(400).json({status:'ERROR',message:'ERROR: no existe una carrera con ese Id!'});
             }
         }else{
-            res.status(400).json({status:'ERROR',message:'ERROR idCarrera MUST be provided!'});
+            res.status(400).json({status:'ERROR',message:'ERROR idCarrera MUST be provided and MUST be valid!'});
         }
-    }catch (excep){
-        res.status(400).json({status:'ERROR',message:excep});
-        throw excep;
+    }catch (e){
+        res.status(400).json({status:'ERROR',message:e.message});
+        //throw excep;
     }
 }
 
 editar = async(req, res) => {
     try{
-        if(req.body.idCarrera && req.body.nombre && (req.body.modalidad == 0 ||  req.body.modalidad == 1)){
+        if(!isNaN(req.body.idCarrera) && req.body.nombre && (req.body.modalidad == 0 ||  req.body.modalidad == 1)){
             resp = await carreraBD.buscarCarreraPorId(req.body.idCarrera)
             if(resp[0].length >= 1 && resp[0][0].Nombre === req.body.nombre){
                 // Si existe y NO modificó el nombre que deje modificar el tipo de carrera
@@ -102,10 +102,12 @@ editar = async(req, res) => {
             }else{
                     res.status(400).json({status:'ERROR',message:'NO existe una carrera con ese Id!'});
             }
+        }else{
+            res.status(400).json({status:'ERROR',message:'ERROR idCarrera MUST be provided, and MUST be valid!'});
         }
     }catch(e){
-        res.status(400).json({status:'ERROR',message:e});
-        throw e;
+        res.status(400).json({status:'ERROR',message:e.message});
+        //throw e;
     }
 }
 

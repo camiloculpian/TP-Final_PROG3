@@ -62,7 +62,6 @@ const isAuthenticatedAndDecano = async (req,res,next) => {
         req.user = await usuarioBD.buscarUsuarioPorID(verify.idUsuario);
         req.user.length > 0 && req.user[0].tipoUsuario == 0? next() : res.status(401).json({status:'ERROR', message: 'AUTHORIZATION ERROR, check user and permissions'});
     } catch (error) {
-        console.log(error);
        return next(error); 
     }
 }
